@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExam.Pages", "OnlineExam.Pages\OnlineExam.Pages.csproj", "{F6046EDD-9C1E-4460-B1B4-69DE5F3D3004}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExam.Tests", "OnlineExam.Tests\OnlineExam.Tests.csproj", "{F59F8485-4C2B-46CC-876D-10191FCDE686}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6046EDD-9C1E-4460-B1B4-69DE5F3D3004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6046EDD-9C1E-4460-B1B4-69DE5F3D3004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6046EDD-9C1E-4460-B1B4-69DE5F3D3004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6046EDD-9C1E-4460-B1B4-69DE5F3D3004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F59F8485-4C2B-46CC-876D-10191FCDE686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F59F8485-4C2B-46CC-876D-10191FCDE686}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F59F8485-4C2B-46CC-876D-10191FCDE686}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F59F8485-4C2B-46CC-876D-10191FCDE686}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A12AED9C-D474-4C2B-9E39-6C7D76813624}
+	EndGlobalSection
+EndGlobal
