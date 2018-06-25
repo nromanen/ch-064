@@ -36,17 +36,18 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="WebDriver, Version=3.12.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.3.12.1\lib\net45\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=3.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.13.0\lib\net45\WebDriver.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver.Support, Version=3.12.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.3.12.1\lib\net45\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver.Support, Version=3.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.3.13.0\lib\net45\WebDriver.Support.dll</HintPath>
     </Reference>
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
@@ -64,11 +65,26 @@
   <ItemGroup>
     <Compile Include="POM\AdminPanelPage.cs" />
     <Compile Include="POM\BasePage.cs" />
+    <Compile Include="POM\ChangeCourseOwnerPage.cs" />
     <Compile Include="POM\ChangeRolePage.cs" />
+    <Compile Include="POM\CodeHistoryPage.cs" />
+    <Compile Include="POM\CodePage.cs" />
+    <Compile Include="POM\CodeReviewPage.cs" />
+    <Compile Include="POM\CourseManagementPage.cs" />
+    <Compile Include="POM\CreateCoursePage.cs" />
     <Compile Include="POM\Header.cs" />
     <Compile Include="POM\IndexPage.cs" />
     <Compile Include="POM\LogInPage.cs" />
+    <Compile Include="POM\NewsPage.cs" />
+    <Compile Include="POM\RatingsPage.cs" />
+    <Compile Include="POM\RegisterPage.cs" />
     <Compile Include="POM\SideBar.cs" />
+    <Compile Include="POM\TeacherNewsPage.cs" />
+    <Compile Include="POM\UserDetails\ChangeEmailPage.cs" />
+    <Compile Include="POM\UserDetails\ChangeNamePage.cs" />
+    <Compile Include="POM\UserDetails\ChangePasswordPage.cs" />
+    <Compile Include="POM\UserDetails\UserInfoPage.cs" />
+    <Compile Include="POM\ViewCoursesPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

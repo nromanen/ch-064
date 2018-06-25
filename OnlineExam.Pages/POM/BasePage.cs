@@ -27,5 +27,6 @@ namespace OnlineExam.Pages.POM
             WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
             wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
         }
+
     }
 }
