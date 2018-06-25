@@ -48,7 +48,7 @@ namespace OnlineExam.Pages.POM
             adminPanelMenuItemElement.Click();
             return new AdminPanelPage(driver);
         }
-
+//
         public NewsPage NewsMenuItemClick()
         {
             navBarElement.Click();
