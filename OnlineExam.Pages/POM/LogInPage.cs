@@ -14,7 +14,7 @@ namespace OnlineExam.Pages.POM
 
         public LogInPage(IWebDriver driver) : base(driver)
         {
-            
+
         }
 
         [FindsBy(How = How.Id, Using = "emailLogin")]
