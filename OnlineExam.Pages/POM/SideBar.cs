@@ -65,12 +65,12 @@ namespace OnlineExam.Pages.POM
             return new RatingsPage(driver);
         }
 
-        public CoursesPage CoursesMenuItemClick()
+        public CourseManagementPage CoursesMenuItemClick()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(coursesMenuItemElement);
             coursesMenuItemElement.Click();
-            return new CoursesPage(driver);
+            return new CourseManagementPage(driver);
         }
 
         public CodeHistoryPage CodeHistoryMenuItemClick()
@@ -102,7 +102,7 @@ namespace OnlineExam.Pages.POM
             navBarElement.Click();
             WaitWhileNotClickableWebElement(tasksMenuItemElement);
             tasksMenuItemElement.Click();
-            return new TaskPage(driver);
+            return new TasksPage(driver);
         }
     }
 }

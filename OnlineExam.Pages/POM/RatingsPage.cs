@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 
 namespace OnlineExam.Pages.POM
 {
-    class RatingsPage : BasePage
+    public class RatingsPage : BasePage
     {
         public RatingsPage(IWebDriver driver) : base(driver)
         {

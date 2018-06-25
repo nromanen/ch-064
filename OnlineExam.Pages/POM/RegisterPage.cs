@@ -8,7 +8,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.Pages.POM
 {
-    class RegisterPage : BasePage
+    public class RegisterPage : BasePage
     {
         public RegisterPage(IWebDriver driver) : base(driver)
         {
