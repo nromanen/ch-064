@@ -14,7 +14,6 @@ namespace OnlineExam.Pages.POM
 
         public LogInPage(IWebDriver driver) : base(driver)
         {
-
         }
 
         [FindsBy(How = How.Id, Using = "emailLogin")]
@@ -28,11 +27,13 @@ namespace OnlineExam.Pages.POM
 
         [FindsBy(How = How.Id, Using = "submitLogin")]
         public IWebElement signInInputSubmit;
+
         public IndexPage SignIn(string email, string password)
         {
             driver.Navigate().GoToUrl("http://localhost:55842/Account/Login");
             emailInput.SendKeys(email);
             passwordInput.SendKeys(password);
+            rememberMeCheckBox.Click();
             signInInputSubmit.Click();
             Thread.Sleep(1000);
             driver.Navigate().Refresh();
