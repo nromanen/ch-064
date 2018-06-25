@@ -12,7 +12,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = ".body-content > h2:nth-child(2)")]
         private IWebElement listOfUsersH2Element;
 
-        [FindsBy(How = How.CssSelector, Using = ".row")]
+        [FindsBy(How = How.CssSelector, Using = ".row")]//
         private IList<IWebElement> rowOfDivsUserListElements;
 
         public AdminPanelPage(IWebDriver driver) : base(driver)
