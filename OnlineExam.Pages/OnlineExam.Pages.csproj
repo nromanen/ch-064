@@ -62,8 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="POM\BasePage.cs" />
+    <Compile Include="POM\CodeHistoryPage.cs" />
+    <Compile Include="POM\UserDetails\ChangeEmailPage.cs" />
+    <Compile Include="POM\UserDetails\ChangeNamePage.cs" />
+    <Compile Include="POM\UserDetails\ChangePasswordPage.cs" />
+    <Compile Include="POM\UserDetails\UserInfoPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

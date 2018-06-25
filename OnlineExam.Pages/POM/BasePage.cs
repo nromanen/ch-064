@@ -15,7 +15,8 @@ namespace OnlineExam.Pages.POM
         public BasePage(IWebDriver driver)
         {
             this.driver = driver;
-            PageFactory.InitElements(driver, this);// comment
+            PageFactory.InitElements(driver,this);
         }
+
     }
 }
