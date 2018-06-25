@@ -64,11 +64,17 @@
   <ItemGroup>
     <Compile Include="POM\AdminPanelPage.cs" />
     <Compile Include="POM\BasePage.cs" />
+    <Compile Include="POM\ChangeCourseOwnerPage.cs" />
     <Compile Include="POM\ChangeRolePage.cs" />
+    <Compile Include="POM\CodePage.cs" />
+    <Compile Include="POM\CodeReviewPage.cs" />
+    <Compile Include="POM\CourseManagementPage.cs" />
+    <Compile Include="POM\CreateCoursePage.cs" />
     <Compile Include="POM\Header.cs" />
     <Compile Include="POM\IndexPage.cs" />
     <Compile Include="POM\LogInPage.cs" />
     <Compile Include="POM\SideBar.cs" />
+    <Compile Include="POM\ViewCoursesPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
