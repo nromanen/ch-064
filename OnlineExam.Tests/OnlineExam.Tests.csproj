@@ -75,10 +75,6 @@
     <Analyzer Include="..\packages\xunit.analyzers.0.9.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OnlineExam.Console\OnlineExam.Console.csproj">
-      <Project>{f18839d0-41e1-4716-a510-99d2bd947dc9}</Project>
-      <Name>OnlineExam.Console</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OnlineExam.Pages\OnlineExam.Pages.csproj">
       <Project>{f6046edd-9c1e-4460-b1b4-69de5f3d3004}</Project>
       <Name>OnlineExam.Pages</Name>
