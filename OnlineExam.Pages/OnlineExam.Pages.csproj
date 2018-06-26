@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="POM\AddTaskAsTeacherPage.cs" />
     <Compile Include="POM\AdminPanelPage.cs" />
     <Compile Include="POM\BasePage.cs" />
     <Compile Include="POM\ChangeCourseOwnerPage.cs" />
@@ -82,6 +83,9 @@
     <Compile Include="POM\RatingsPage.cs" />
     <Compile Include="POM\RegisterPage.cs" />
     <Compile Include="POM\SideBar.cs" />
+    <Compile Include="POM\SolutionCodePage.cs" />
+    <Compile Include="POM\TaskViewPage.cs" />
+    <Compile Include="POM\TeacherExerciseManagerPage.cs" />
     <Compile Include="POM\UserDetails\ChangeEmailPage.cs" />
     <Compile Include="POM\UserDetails\ChangeNamePage.cs" />
     <Compile Include="POM\UserDetails\ChangePasswordPage.cs" />
