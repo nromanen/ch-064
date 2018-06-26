@@ -41,13 +41,13 @@ namespace OnlineExam.Pages.POM
         public void SwitchToFavourites()
         {
             FavouritesButton.Click();
-            return new FavouritesPage(this.driver);
+                //        return new FavouritesPage(this.driver);
         }
 
         public void SwitchToHistory()
         {
             HistoryButton.Click();
-            return new CodeHistoryPage(this.driver);
+        //    return new CodeHistoryPage(this.driver);
         }
 
         public void SaveToFavourites()
@@ -59,7 +59,7 @@ namespace OnlineExam.Pages.POM
         public void OpenEditTaskPage()
         {
             LikeButton.Click();
-            return new TaskPage(this.driver);
+           // return new TaskPage(this.driver);
         }
 
     }

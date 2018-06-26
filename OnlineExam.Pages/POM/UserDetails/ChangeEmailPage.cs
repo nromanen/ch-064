@@ -32,7 +32,7 @@ namespace OnlineExam.Pages.POM.UserDetails
         public void SaveNewEmail()
         {
             SaveButton.Click();
-            return NewsPage(this.driver);
+         //   return NewsPage(this.driver);
         }
     }
 }

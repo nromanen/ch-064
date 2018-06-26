@@ -36,7 +36,7 @@ namespace OnlineExam.Pages.POM.UserDetails
         public void SaveNewPassword()
         {
             SaveButton.Click();
-            return new NewsPage(this.driver);
+          //  return new NewsPage(this.driver);
         }
     }
 }

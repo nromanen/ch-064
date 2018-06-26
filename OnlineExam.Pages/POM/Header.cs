@@ -1,4 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using OnlineExam.Pages.POM.UserDetails;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
@@ -6,11 +10,14 @@ namespace OnlineExam.Pages.POM
 {
     public class Header : BasePage
     {
+
+        [FindsBy(How = How.CssSelector, Using = "#gn-menu")]
+        private IWebElement headerElement;
+
         [FindsBy(How = How.CssSelector, Using = "#requestCulture_RequestCulture_UICulture_Name")]
         private IWebElement changeLanguageSelectElement;
 
-        [FindsBy(How = How.CssSelector,
-            Using = "#gn-menu > li:nth-child(2) > a")]
+        [FindsBy(How = How.CssSelector, Using = "#gn-menu > li:nth-child(2) > a")]
         //@"a[href*='/']"      is available but can not to click on it
         private IWebElement homePageLinkElement;
 
@@ -34,10 +41,31 @@ namespace OnlineExam.Pages.POM
         }
 
 
-        public NewsPage GoToHomePage()
+        public NewsPage GoToHomePage(string text)
         {
-            WaitWhileNotClickableWebElement(homePageLinkElement);
-            homePageLinkElement.Click();
+
+            IList<IWebElement> headerList = headerElement.FindElements(By.TagName("li"));
+            foreach (var element in headerList)
+            {
+                
+                Console.WriteLine(element.Text);
+                if (text.Equals(element.Text))
+                {
+                    element.Click();
+                    break;
+                }
+            }
+            //foreach (var element in headerListElements)
+            //{
+            //    var str = element.FindElement(By.TagName("a")).Text;   
+            //    if (text.Equals(element.FindElement(By.TagName("a")).Text))
+            //    {
+            //        element.Click();
+            //        break;
+            //    }
+            //}
+            //WaitWhileNotClickableWebElement(homePageLinkElement);
+            //homePageLinkElement.Click();
             return new NewsPage(driver);
         }
 
@@ -68,11 +96,11 @@ namespace OnlineExam.Pages.POM
             return new RegisterPage(driver);
         }
 
-        public UserAccountPage GoToUserAccountPage()
+        public UserInfoPage GoToUserAccountPage()
         {
             WaitWhileNotClickableWebElement(userAccountManageLinkElement);
             userAccountManageLinkElement.Click();
-            return new UserAccountPage(driver);
+            return new UserInfoPage(driver);
         }
     }
 }

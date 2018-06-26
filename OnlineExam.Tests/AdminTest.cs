@@ -19,10 +19,14 @@ namespace OnlineExam.Tests
         [Fact]
         public void DeleteUserTest()
         {
-            var logInPage = new LogInPage(driver);
+            var header = new Header(driver);
+            var logInPage = header.GoToLogInPage();
             logInPage.SignIn(ADMIN_EMAIL, ADMIN_PASSWORD);
             var adminPanelPage = new SideBar(driver).AdminPanelMenuItemClick();
+            Assert.True(adminPanelPage.IsUserPresentedInUserList("viktor@gmail.com"),"User is not presented in the system," +
+                                                                                     "so we have not opportunity to delete this user");
             adminPanelPage.DeleteUser("viktor@gmail.com");
+            Assert.False(adminPanelPage.IsUserPresentedInUserList("viktor@gmail.com"),"Error");
 
         }
         public void Dispose()
