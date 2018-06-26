@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace OnlineExam.Pages.POM
 {
@@ -22,8 +23,8 @@ namespace OnlineExam.Pages.POM
         public void ChooseCourseAddTaskAsTeacherPage(string CourseName)
         {
             ListofCoursesInAddTaskAsTeacherPage.Click();
-            var selectElement = new SelectElement(CourseId);
-            selectElement.SelectByText(CourseName);
+           // var selectElement = new SelectElement(CourseId);
+            //selectElement.SelectByText(CourseName);
 
             //// select the drop down list
             //var education = driver.FindElement(By.Name("education"));
