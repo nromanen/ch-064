@@ -68,11 +68,11 @@ namespace OnlineExam.Pages.POM
             return new RegisterPage(driver);
         }
 
-        public UserAccountPage GoToUserAccountPage()
-        {
-            WaitWhileNotClickableWebElement(userAccountManageLinkElement);
-            userAccountManageLinkElement.Click();
-            return new UserAccountPage(driver);
-        }
+        //public UserAccountPage GoToUserAccountPage()
+        //{
+        //    WaitWhileNotClickableWebElement(userAccountManageLinkElement);
+        //    userAccountManageLinkElement.Click();
+        //    return new UserAccountPage(driver);
+        //}
     }
 }

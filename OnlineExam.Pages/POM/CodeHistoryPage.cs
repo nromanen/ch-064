@@ -56,11 +56,11 @@ namespace OnlineExam.Pages.POM
             
         }
 
-        public void OpenEditTaskPage()
-        {
-            LikeButton.Click();
-            return new TaskPage(this.driver);
-        }
+        //public void OpenEditTaskPage()
+        //{
+        //    LikeButton.Click();
+        //    return new TaskPage(this.driver);
+        //}
 
     }
 }

@@ -29,10 +29,10 @@ namespace OnlineExam.Pages.POM.UserDetails
             PasswordField.SendKeys(password);
         }
 
-        public void SaveNewName()
+        public NewsPage SaveNewName()
         {
             SaveButton.Click();
-            return NewsPage(this.driver);
+            return new NewsPage(this.driver);
         }
     }
 }
