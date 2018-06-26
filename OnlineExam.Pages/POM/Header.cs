@@ -61,11 +61,11 @@ namespace OnlineExam.Pages.POM
             return new IndexPage(driver);
         }
 
-        public RegistrationPage GoToRegistrationPage()
+        public RegisterPage GoToRegistrationPage()
         {
             WaitWhileNotClickableWebElement(signInLinkElement);
             signUpLinkElement.Click();
-            return new RegistrationPage(driver);
+            return new RegisterPage(driver);
         }
 
         public UserAccountPage GoToUserAccountPage()
