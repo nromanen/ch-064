@@ -7,7 +7,6 @@ using Xunit;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OnlineExam.Pages.POM;
-using static OnlineExam.Tests.Properties.Settings;
 using System.Threading;
 
 namespace OnlineExam.Tests
@@ -21,7 +20,7 @@ namespace OnlineExam.Tests
         {
             var header = new Header(driver);
             var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Default.TEACHER_EMAIL, Default.TEACHER_PASSWORD);
+            logInPage.SignIn("teacher@gmail.com", "Teacher_123");
             var CourseMenu = new SideBar(driver).CoursesMenuItemClick();
             var CourseMenegmentPage = new CourseManagementPage(driver);
             CourseMenegmentPage.AddCourseBtn.Click();
