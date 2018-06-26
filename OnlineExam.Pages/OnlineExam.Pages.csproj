@@ -66,14 +66,14 @@
     <Compile Include="POM\AddTaskAsTeacherPage.cs" />
     <Compile Include="POM\AdminPanelPage.cs" />
     <Compile Include="POM\BasePage.cs" />
-    <Compile Include="POM\ChangeCourseOwnerPage.cs" />
+    <Compile Include="POM\CoursePage\ChangeCourseOwnerPage.cs" />
     <Compile Include="POM\ChangeRolePage.cs" />
     <Compile Include="POM\CodeHistoryPage.cs" />
-    <Compile Include="POM\CodePage.cs" />
-    <Compile Include="POM\CodeReviewPage.cs" />
+    <Compile Include="POM\CoursePage\CodePage.cs" />
+    <Compile Include="POM\CoursePage\CodeReviewPage.cs" />
     <Compile Include="POM\ContactUsPage.cs" />
-    <Compile Include="POM\CourseManagementPage.cs" />
-    <Compile Include="POM\CreateCoursePage.cs" />
+    <Compile Include="POM\CoursePage\CourseManagementPage.cs" />
+    <Compile Include="POM\CoursePage\CreateCoursePage.cs" />
     <Compile Include="POM\FavouritesPage.cs" />
     <Compile Include="POM\Header.cs" />
     <Compile Include="POM\IndexPage.cs" />
@@ -86,13 +86,19 @@
     <Compile Include="POM\SolutionCodePage.cs" />
     <Compile Include="POM\TaskViewPage.cs" />
     <Compile Include="POM\TeacherExerciseManagerPage.cs" />
+    <Compile Include="POM\SolutionCodePage.cs" />
+    <Compile Include="POM\TasksPage.cs" />
+    <Compile Include="POM\TaskViewPage.cs" />
+    <Compile Include="POM\TeacherExerciseManagerPage.cs" />
+    <Compile Include="POM\TeacherNewsPage.cs" />
+    <Compile Include="POM\SolutionCodePage.cs" />
+    <Compile Include="POM\TaskViewPage.cs" />
+    <Compile Include="POM\TeacherExerciseManagerPage.cs" />
     <Compile Include="POM\UserDetails\ChangeEmailPage.cs" />
     <Compile Include="POM\UserDetails\ChangeNamePage.cs" />
     <Compile Include="POM\UserDetails\ChangePasswordPage.cs" />
     <Compile Include="POM\UserDetails\UserInfoPage.cs" />
-    <Compile Include="POM\TasksPage.cs" />
-    <Compile Include="POM\TeacherNewsPage.cs" />
-    <Compile Include="POM\ViewCoursesPage.cs" />
+    <Compile Include="POM\CoursePage\ViewCoursesPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
