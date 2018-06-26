@@ -10,6 +10,8 @@ namespace OnlineExam.Framework
 {
     public class ExtendedWebDriver : IDisposable
     {
+        private IWebDriver driver;
+
         public ExtendedWebDriver(IWebDriver driver)
         {
             this.driver = driver;
@@ -17,15 +19,13 @@ namespace OnlineExam.Framework
 
         public void GoToUrl(string url)
         {
-            this.driver.Navigate().GoToUrl(url);
+            driver.Navigate().GoToUrl(url);
         }
 
 
-        private IWebDriver driver;
-
         public void Dispose()
         {
-            driver?.Dispose();
+            driver.Dispose();
         }
     }
 }
