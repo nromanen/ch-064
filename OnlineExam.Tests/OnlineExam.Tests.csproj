@@ -67,25 +67,20 @@
     <Compile Include="AddNewTaskAsTeacher.cs" />
     <Compile Include="AdminTest.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.9.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OnlineExam.Framework\OnlineExam.Framework.csproj">
+      <Project>{bd4e4a4b-6275-458f-99ca-f541d6eecb7e}</Project>
+      <Name>OnlineExam.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnlineExam.Pages\OnlineExam.Pages.csproj">
       <Project>{f6046edd-9c1e-4460-b1b4-69de5f3d3004}</Project>
       <Name>OnlineExam.Pages</Name>

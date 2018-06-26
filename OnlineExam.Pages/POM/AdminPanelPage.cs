@@ -48,12 +48,8 @@ namespace OnlineExam.Pages.POM
             return null;
         }
 
-        public bool IsUserPresentedInUserList(string email)
+        public bool isUserPresentedInUserList(string email)
         {
-            if (!driver.Url.Contains("/User"))
-            {
-                return true;
-            }
             foreach (var row in rowOfDivsUserListElements)
             {
                 var text = row.FindElement(By.TagName("p")).Text;
