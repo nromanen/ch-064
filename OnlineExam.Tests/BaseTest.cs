@@ -17,7 +17,6 @@ namespace OnlineExam.Tests
 
         protected BaseTest()
         {
-           //
             driver = new ChromeDriver();
             driver.Navigate().GoToUrl(Default.HOME_URL);
         }
