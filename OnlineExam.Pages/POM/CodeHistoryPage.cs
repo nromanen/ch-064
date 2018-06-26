@@ -48,7 +48,7 @@ namespace OnlineExam.Pages.POM
         {
             HistoryButton.Click();
             return this;
-        }
+        } 
 
         public void SaveToFavourites()
         {
