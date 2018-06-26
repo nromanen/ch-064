@@ -7,8 +7,6 @@ using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Xunit;
-using static OnlineExam.Tests.Properties.Settings;
-
 
 namespace OnlineExam.Tests
 {
@@ -23,7 +21,7 @@ namespace OnlineExam.Tests
         {
             var header = new Header(driver);
             var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Default.ADMIN_EMAIL, Default.ADMIN_PASSWORD);
+            logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var adminPanelPage = new SideBar(driver).AdminPanelMenuItemClick();
             Assert.True(adminPanelPage.IsUserPresentedInUserList("viktor@gmail.com"),
                 "User is not presented in the system," +
@@ -31,7 +29,6 @@ namespace OnlineExam.Tests
             adminPanelPage.DeleteUser("viktor@gmail.com");
             Assert.False(adminPanelPage.IsUserPresentedInUserList("viktor@gmail.com"), "Error");
         }
-
 
         public void Dispose()
         {

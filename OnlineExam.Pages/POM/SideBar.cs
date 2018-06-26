@@ -5,7 +5,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
-
 namespace OnlineExam.Pages.POM
 {
     public class SideBar : BasePage
