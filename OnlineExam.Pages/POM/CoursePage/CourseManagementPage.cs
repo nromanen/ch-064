@@ -17,7 +17,7 @@ namespace OnlineExam.Pages.POM
 
         public CourseManagementPage(IWebDriver driver) : base(driver) { }
 
-        [FindsBy(How = How.LinkText, Using = "Add course")]
+        [FindsBy(How = How.CssSelector, Using = ".container > a:nth-child(1)")]
         public IWebElement AddCourseBtn { get; set; }
 
         [FindsBy(How = How.LinkText, Using = "My courses")]
@@ -25,5 +25,10 @@ namespace OnlineExam.Pages.POM
 
         [FindsBy(How = How.ClassName, Using = "bluehighl")]
         public IWebElement CourseNameLink { get; set; }
+
+        public void CreateCourse()
+        {
+            AddCourseBtn.Click();
+        }
     }
 }
