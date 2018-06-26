@@ -38,16 +38,16 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.ClassName, Using = "col-lg-1")]
         public IWebElement StartButton { get; set; }
 
-        public FavouritesPage SwitchToFavourites()
+        public void SwitchToFavourites()
         {
             FavouritesButton.Click();
-            return new FavouritesPage(this.driver);
+                //        return new FavouritesPage(this.driver);
         }
 
-        public CodeHistoryPage SwitchToHistory()
+        public void SwitchToHistory()
         {
             HistoryButton.Click();
-            return this;
+        //    return new CodeHistoryPage(this.driver);
         }
 
         public void SaveToFavourites()
@@ -56,11 +56,11 @@ namespace OnlineExam.Pages.POM
             
         }
 
-        //public void OpenEditTaskPage()
-        //{
-        //    LikeButton.Click();
-        //    return new TaskPage(this.driver);
-        //}
+        public void OpenEditTaskPage()
+        {
+            LikeButton.Click();
+           // return new TaskPage(this.driver);
+        }
 
     }
 }
