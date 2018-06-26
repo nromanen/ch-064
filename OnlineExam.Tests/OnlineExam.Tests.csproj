@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="AdminTest.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="ChangeNameTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
