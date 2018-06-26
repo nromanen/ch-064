@@ -33,7 +33,7 @@ namespace OnlineExam.Pages.POM.UserDetails
             ConfirmNewPasswordField.SendKeys(confirmNewPassword);
         }
 
-        public void SaveNewPassword()
+        public NewsPage SaveNewPassword()
         {
             SaveButton.Click();
           //  return new NewsPage(this.driver);
