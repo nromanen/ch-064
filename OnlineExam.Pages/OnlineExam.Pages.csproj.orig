@@ -1,17 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" />
-  <Import Project="..\packages\xunit.runner.console.2.3.1\build\xunit.runner.console.props" Condition="Exists('..\packages\xunit.runner.console.2.3.1\build\xunit.runner.console.props')" />
   <Import Project="..\packages\xunit.core.2.3.1\build\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.3.1\build\xunit.core.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F59F8485-4C2B-46CC-876D-10191FCDE686}</ProjectGuid>
+    <ProjectGuid>{F6046EDD-9C1E-4460-B1B4-69DE5F3D3004}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OnlineExam.Tests</RootNamespace>
-    <AssemblyName>OnlineExam.Tests</AssemblyName>
+    <RootNamespace>OnlineExam.Pages</RootNamespace>
+    <AssemblyName>OnlineExam.Pages</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -38,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,21 +63,52 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminTest.cs" />
-    <Compile Include="BaseTest.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="POM\AdminPanelPage.cs" />
+    <Compile Include="POM\BasePage.cs" />
+    <Compile Include="POM\ChangeCourseOwnerPage.cs" />
+    <Compile Include="POM\ChangeRolePage.cs" />
+    <Compile Include="POM\CodeHistoryPage.cs" />
+    <Compile Include="POM\CodePage.cs" />
+    <Compile Include="POM\CodeReviewPage.cs" />
+    <Compile Include="POM\ContactUsPage.cs" />
+    <Compile Include="POM\CourseManagementPage.cs" />
+    <Compile Include="POM\CreateCoursePage.cs" />
+    <Compile Include="POM\FavouritesPage.cs" />
+    <Compile Include="POM\Header.cs" />
+    <Compile Include="POM\IndexPage.cs" />
+    <Compile Include="POM\LogInPage.cs" />
+    <Compile Include="POM\MailBoxPage.cs" />
+    <Compile Include="POM\NewsPage.cs" />
+    <Compile Include="POM\RatingsPage.cs" />
+    <Compile Include="POM\RegisterPage.cs" />
+    <Compile Include="POM\SideBar.cs" />
+    <Compile Include="POM\UserDetails\ChangeEmailPage.cs" />
+    <Compile Include="POM\UserDetails\ChangeNamePage.cs" />
+    <Compile Include="POM\UserDetails\ChangePasswordPage.cs" />
+    <Compile Include="POM\UserDetails\UserInfoPage.cs" />
+    <Compile Include="POM\TasksPage.cs" />
+    <Compile Include="POM\TeacherNewsPage.cs" />
+    <Compile Include="POM\UserDetails\ChangePasswordPage.cs" />
+    <Compile Include="POM\UserDetails\UserInfoPage.cs" />
+    <Compile Include="POM\ViewCoursesPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="obj\Debug\build.force" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\OnlineExam.Pages.csproj.CoreCompileInputs.cache" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.9.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OnlineExam.Pages\OnlineExam.Pages.csproj">
-      <Project>{f6046edd-9c1e-4460-b1b4-69de5f3d3004}</Project>
-      <Name>OnlineExam.Pages</Name>
-    </ProjectReference>
+    <Folder Include="bin\Debug\" />
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -87,8 +117,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\xunit.core.2.3.1\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.3.1\build\xunit.core.props'))" />
     <Error Condition="!Exists('..\packages\xunit.core.2.3.1\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.3.1\build\xunit.core.targets'))" />
-    <Error Condition="!Exists('..\packages\xunit.runner.console.2.3.1\build\xunit.runner.console.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.console.2.3.1\build\xunit.runner.console.props'))" />
-    <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props'))" />
     <Error Condition="!Exists('..\packages\Selenium.Chrome.WebDriver.2.40\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Chrome.WebDriver.2.40\build\Selenium.Chrome.WebDriver.targets'))" />
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.40.0\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.2.40.0\build\Selenium.WebDriver.ChromeDriver.targets'))" />
   </Target>
