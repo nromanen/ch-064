@@ -8,76 +8,87 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.Pages.POM
 {
-    class TeacherExerciseManagerPage : BasePage
+    public class TeacherExerciseManagerPage : BasePage
     {
         public TeacherExerciseManagerPage(IWebDriver driver) : base(driver)
         {
         }
 
         [FindsBy(How = How.TagName, Using = "tr")]
-        public IList<IWebElement> RowOfTdsTaskNamesListElementsInExercisemanagment { get; set; }
+        public IList<IWebElement> RowOfTdsTaskNamesListElementspublic { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "btn btn-sm btn-default")]
-        public IWebElement ChangeButtonInTeacherExercisemanagerPage { get; set; }
+        public IWebElement ChangeButton { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "btn btn-sm btn-danger")]
-        public IWebElement DeleteButtonInTeacherExercisemanagerPage { get; set; }
+        public IWebElement DeleteButton { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "btn btn-sm btn-default col-md-3")]
-        public IWebElement SolutionButtonInTeacherExercisemanagerPage { get; set; }
+        public IWebElement SolutionButton { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > h4 > a")]
-        public IWebElement AddTaskButtonInTeacherExercisemanagerPage { get; set; }
+        public IWebElement AddTaskButton { get; set; }
 
-
-
-        public void ClickOnChangeButtonInTeacherExercisemanagerPage(string TaskName)
+        public bool IsTaskAvailable(string TaskName)
         {
-            foreach (var tr in RowOfTdsTaskNamesListElementsInExercisemanagment)
+            foreach (var tr in RowOfTdsTaskNamesListElementspublic)
             {
                 var text = tr.FindElement(By.Id("bluhighl")).Text;
                 if (text.Equals(TaskName))
                 {
-                    ChangeButtonInTeacherExercisemanagerPage.Click();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+          public void ClickOnChangeButton(string TaskName)
+        {
+            foreach (var tr in RowOfTdsTaskNamesListElementspublic)
+            {
+                var text = tr.FindElement(By.Id("bluhighl")).Text;
+                if (text.Equals(TaskName))
+                {
+                    ChangeButton.Click();
                     break;
                 }
             }
         }
 
-        public void ClickOnDeleteButtonInTeacherExercisemanagerPage(string TaskName)
+        public void ClickOnDeleteButton(string TaskName)
         {
-            foreach (var tr in RowOfTdsTaskNamesListElementsInExercisemanagment)
+            foreach (var tr in RowOfTdsTaskNamesListElementspublic)
             {
                 var text = tr.FindElement(By.Id("bluhighl")).Text;
                 if (text.Equals(TaskName))
                 {
-                    DeleteButtonInTeacherExercisemanagerPage.Click();
+                    DeleteButton.Click();
                     break;
                 }
             }
         }
 
-        public void ClickOnSolutionsButtonInTeacherExercisemanagerPage(string TaskName)
+        public void ClickOnSolutionsButton(string TaskName)
         {
-            foreach (var tr in RowOfTdsTaskNamesListElementsInExercisemanagment)
+            foreach (var tr in RowOfTdsTaskNamesListElementspublic)
             {
                 var text = tr.FindElement(By.Id("bluhighl")).Text;
                 if (text.Equals(TaskName))
                 {
-                    SolutionButtonInTeacherExercisemanagerPage.Click();
+                    SolutionButton.Click();
                     break;
                 }
             }
         }
 
-        public void ClickOnAddTaskbuttonInTeacherExercisemanagerPage()
+        public void ClickOnAddTaskbutton()
         {
-            AddTaskButtonInTeacherExercisemanagerPage.Click();
+            AddTaskButton.Click();
         }
 
-        public void ClickOnTasknameInTeacherExercisemanagerPage(string TaskName)
+        public void ClickOnTaskname(string TaskName)
         {
-            foreach (var tr in RowOfTdsTaskNamesListElementsInExercisemanagment)
+            foreach (var tr in RowOfTdsTaskNamesListElementspublic)
             {
                 var text = tr.FindElement(By.Id("bluhighl")).Text;
                 if (text.Equals(TaskName))

@@ -8,7 +8,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.Pages.POM
 {
-    class TaskViewPage : BasePage
+    public class TaskViewPage : BasePage
     {
         public TaskViewPage(IWebDriver driver) : base(driver)
         {           

@@ -9,53 +9,53 @@ using System.Threading.Tasks;
 namespace OnlineExam.Pages.POM
 {
 
-    class SolutionCodePage : BasePage
+    public class SolutionCodePage : BasePage
     {
         public SolutionCodePage(IWebDriver driver) : base(driver)
         {
         }
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div:nth-child(1) > div:nth-child(2)")]
-        public IWebElement MessageAboutreviewingSolutionInCodeSolutionPage { get; set; }
+        public IWebElement MessageAboutreviewingSolution { get; set; }
 
         [FindsBy(How = How.Id, Using = "tinymce")]
-        public IWebElement TaskDescriptionInCodeSolutionPage { get; set; }
+        public IWebElement TaskDescription { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "CodeMirror-code")] //body > div > div > div.row.block2 > div > div > div > div.col-md-9 > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div > div > div.CodeMirror-code
-        public IWebElement FieldForCodeInCodeSolutionPage { get; set; }
+        public IWebElement FieldForCode { get; set; }
 
         [FindsBy(How = How.Id, Using = "result")]
-        public IWebElement FieldWithResultOfCompilationCodeInCodeSolutionPage { get; set; }
+        public IWebElement FieldWithResultOfCompilationCode { get; set; }
 
         [FindsBy(How = How.Id, Using = "executeButton")]
-        public IWebElement ExecuteButtonInCodeSolutionPage { get; set; }
+        public IWebElement ExecuteButton { get; set; }
 
         [FindsBy(How = How.Id, Using = "exit")]
-        public IWebElement ExitButtonInCodeSolutionPage { get; set; }
+        public IWebElement ExitButton { get; set; }
 
         [FindsBy(How = How.Id, Using = "done")]
-        public IWebElement DoneButtonInCodeSolutionPage { get; set; }
+        public IWebElement DoneButton { get; set; }
 
 
-        public void FillingInFieldForCodeInCodeSolutionPage(string CodeText)
+        public void FillingInFieldForCode(string CodeText)
         {
-            FieldForCodeInCodeSolutionPage.Clear();
-            FieldForCodeInCodeSolutionPage.SendKeys(CodeText);
+            FieldForCode.Clear();
+            FieldForCode.SendKeys(CodeText);
         }
 
-        public void ClickOnExecuteButtonInCodeSolutionPage()
+        public void ClickOnExecuteButton()
         {
-            ExecuteButtonInCodeSolutionPage.Click();
+            ExecuteButton.Click();
         }
 
-        public void ClickOnExitButtonInCodeSolutionPage()
+        public void ClickOnExitButton()
         {
-            ExitButtonInCodeSolutionPage.Click();
+            ExitButton.Click();
         }
 
-        public void ClickOnDoneButtonInCodeSolutionPage()
+        public void ClickOnDoneButton()
         {
-            DoneButtonInCodeSolutionPage.Click();
+            DoneButton.Click();
         }
 
     }

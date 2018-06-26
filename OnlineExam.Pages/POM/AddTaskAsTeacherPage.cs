@@ -8,7 +8,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.Pages.POM
 {
-    class AddTaskAsTeacherPage : BasePage
+    public class AddTaskAsTeacherPage : BasePage
     {
         public AddTaskAsTeacherPage(IWebDriver driver) : base(driver)
         {
@@ -16,32 +16,32 @@ namespace OnlineExam.Pages.POM
 
   
         [FindsBy(How = How.Id, Using = "CourseId")]
-        public IWebElement ListofCoursesInAddTaskAsTeacherPage { get; set; }
+        public IWebElement ListofCourses { get; set; }
 
         [FindsBy(How = How.Id, Using = "TaskName")]
-        public IWebElement AddTaskNameInAddTaskAsTeacherPage { get; set; }
+        public IWebElement AddTaskName { get; set; }
 
         [FindsBy(How =How.Id, Using = "tinymce")]
-        public IWebElement AddDescriptionToTheNewTaskInAddTaskAsTeacherPage { get; set; }
+        public IWebElement AddDescriptionToTheNewTask { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.row > div.col-md-6 > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div")]
-        public IWebElement FieldForBaseCodeInAddTaskAsTeacherPage { get; set; }
+        public IWebElement FieldForBaseCode { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.row > div:nth-child(2) > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div")]
-        public IWebElement FieldForTestCasesCodeInAddTaskAsTeacherPage { get; set; }
+        public IWebElement FieldForTestCasesCode { get; set; }
 
-        [FindsBy(How =How.ClassName, Using = "btn btn-default")]
-        public IWebElement AddButtonInAddTaskAsTeacherPage { get; set; }
+        [FindsBy(How =How.CssSelector, Using = "body > div > div > form > div:nth-child(8) > button")]
+        public IWebElement AddButton { get; set; }
 
         [FindsBy(How =How.Id, Using = "runCode")]
-        public IWebElement RunButtonInAddTaskAsteacherPage { get; set; }
+        public IWebElement RunButton { get; set; }
 
 
         public void ChooseCourseAddTaskAsTeacherPage(string CourseName)
         {
-            //ListofCoursesInAddTaskAsTeacherPage.Click();
-            //var selectElement = new SelectElement(CourseId);
-            //selectElement.SelectByText(CourseName);
+            //ListofCourses.Click();
+            
+
 
             //// select the drop down list
             //var education = driver.FindElement(By.Name("education"));
@@ -54,34 +54,34 @@ namespace OnlineExam.Pages.POM
             //selectElement.SelectByText("HighSchool");
         }
 
-        public void AddTaskNameForNewTaskInAddTaskAsTeacherPage(string NewTaskName)
+        public void AddTaskNameForNewTask(string NewTaskName)
         {
-            AddTaskNameInAddTaskAsTeacherPage.SendKeys(NewTaskName);
+            AddTaskName.SendKeys(NewTaskName);
         }
 
-        public void AddDescriptionForNewTaskInAddTaskAsTeacherPage(string DescriptionForNewTask)
+        public void AddDescriptionForNewTask(string DescriptionForNewTask)
         {
-            AddDescriptionToTheNewTaskInAddTaskAsTeacherPage.SendKeys(DescriptionForNewTask);
+            AddDescriptionToTheNewTask.SendKeys(DescriptionForNewTask);
         }
 
-        public void AddBaseCodeForNewTaskInAddTaskAsTeacherPage(string BaseCode)
+        public void AddBaseCodeForNewTask(string BaseCode)
         {
-            FieldForBaseCodeInAddTaskAsTeacherPage.SendKeys(BaseCode);
+            FieldForBaseCode.SendKeys(BaseCode);
         }
 
-        public void AddTestCasesCodeInAddTaskAsTeacherPage (string TestCaseCode)
+        public void AddTestCasesCode (string TestCaseCode)
         {
-            FieldForTestCasesCodeInAddTaskAsTeacherPage.SendKeys(TestCaseCode);
+            FieldForTestCasesCode.SendKeys(TestCaseCode);
         }
 
-        public void ClickOnAddButtonInAddTaskAsteacherPage()
+        public void ClickOnAddButton()
         {
-            AddButtonInAddTaskAsTeacherPage.Click();
+            AddButton.Click();
         }
 
         public void ClickOnRunButton()
         {
-            RunButtonInAddTaskAsteacherPage.Click();
+            RunButton.Click();
         }
     }
 }
