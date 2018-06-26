@@ -49,12 +49,12 @@ namespace OnlineExam.Pages.POM
             return new AdminPanelPage(driver);
         }
 //
-        public NewsPage NewsMenuItemClick()
+        public TeacherNewsPage NewsMenuItemClick()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(newsMenuItemElement);
             newsMenuItemElement.Click();
-            return new NewsPage(driver);
+            return new TeacherNewsPage(driver);
         }
 
         public RatingsPage RatingsMenuItemClick()

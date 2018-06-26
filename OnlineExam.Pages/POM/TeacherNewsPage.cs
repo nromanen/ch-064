@@ -9,7 +9,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.Pages.POM
 {
-    class TeacherNewsPage : NewsPage
+    public class TeacherNewsPage : NewsPage
     {
         public TeacherNewsPage(IWebDriver driver) : base(driver)
         {
@@ -35,7 +35,6 @@ namespace OnlineExam.Pages.POM
 
         public TeacherNewsPage CreateArticle()
         {
-            driver.Navigate().GoToUrl("http://localhost:55842/AddNews/News");
             CreateArticleReference.Click();
             ChooseFileInput.Click();
             SendKeys.SendWait(@"D:\photo_2018-06-23_22-09-53.jpg");
@@ -45,6 +44,24 @@ namespace OnlineExam.Pages.POM
             ArticleTextArea.SendKeys("New article");
             PublishInput.Click();
             return new TeacherNewsPage(driver);
+        }
+
+        public bool IsNewsPresentedInNewsList(string title)
+        {
+            if (!driver.Url.Contains("/News"))
+            {
+                return true;
+            }
+            foreach (var row in rowOfDivsNewsListElements)
+            {
+                var text = row.FindElement(By.TagName("p")).Text;
+                if (text.Equals(title))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
