@@ -7,7 +7,6 @@ using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Xunit;
-using static OnlineExam.Tests.Properties.Settings;
 using System.Threading;
 
 namespace OnlineExam.Tests
