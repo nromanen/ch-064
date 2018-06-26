@@ -9,7 +9,6 @@ namespace OnlineExam.Pages.POM
 {
     public class SideBar : BasePage
     {
-        .gn-menu > li:nth-child(3) > a:nth-child(1)
         [FindsBy(How = How.CssSelector, Using = @"a[href*='/AdminPanel/Users']")]
         private IWebElement adminPanelMenuItemElement;
 
