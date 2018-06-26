@@ -30,7 +30,8 @@ namespace OnlineExam.Pages.POM
 
         public IndexPage SignIn(string email, string password)
         {
-            driver.Navigate().GoToUrl("http://localhost:55842/Account/Login");
+            Header header=new Header(driver);
+            header.GoToLogInPage();
             emailInput.SendKeys(email);
             passwordInput.SendKeys(password);
             rememberMeCheckBox.Click();
