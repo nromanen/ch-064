@@ -20,7 +20,7 @@ namespace OnlineExam.Tests
         public void DeleteUserTest()
         {
             var logInPage = new LogInPage(driver);
-            logInPage.SignIn(ADMIN_EMAIL, ADMIN_PASSWORD);
+            logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var adminPanelPage = new SideBar(driver).AdminPanelMenuItemClick();
             adminPanelPage.DeleteUser("viktor@gmail.com");
 
