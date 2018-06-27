@@ -27,24 +27,27 @@ namespace OnlineExam.Tests
         [Fact]
         public void IsUserPresentedInUserListTest()
         {
-           Assert.True(adminPanelPage.IsUserPresentedInUserList("viktor@gmail.com"));
+           Assert.True(adminPanelPage.IsUserPresentedInUserList(""));
         }
 
         [Fact]
         public void DeleteUserTest()
         {
-            Assert.True(adminPanelPage.IsUserPresentedInUserList("viktor@gmail.com"),
+            Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.VIKTOR_EMAIL),
                 "User is not presented in the system," +
                 "so we have not opportunity to delete this user");
-            adminPanelPage.DeleteUser("viktor@gmail.com");
+            adminPanelPage.DeleteUser(Constants.VIKTOR_EMAIL);
             Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
-            Assert.False(adminPanelPage.IsUserPresentedInUserList("viktor@gmail.com"), "Error");
+            Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.VIKTOR_EMAIL), "Error");
         }
 
         [Fact]
         public void ChangeUserRole()
         {
-
+            var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.VIKTOR_EMAIL);
+            changeRolePage.ChangeRole(Constants.TEACHER);
+            changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.VIKTOR_EMAIL);
+            Assert.Equal(Constants.TEACHER,changeRolePage.CurrentRole());
         }
 
        

@@ -24,6 +24,11 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+        public string CurrentRole()
+        {
+            return currentRoleOfUserDivElement.Text;
+        }
+
         public void ChangeRole(string role)
         {
             foreach (var radio in radioButtonsChangeRoleOfUserListElements)
