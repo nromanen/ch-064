@@ -42,7 +42,7 @@ namespace OnlineExam.Pages.POM
             return false;
         }
 
-          public void ClickOnChangeButton(string TaskName)
+        public void ClickOnChangeButton(string TaskName)
         {
             foreach (var tr in RowOfTdsTaskNamesListElementspublic)
             {

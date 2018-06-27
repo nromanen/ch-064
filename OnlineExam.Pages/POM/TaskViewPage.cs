@@ -11,7 +11,7 @@ namespace OnlineExam.Pages.POM
     public class TaskViewPage : BasePage
     {
         public TaskViewPage(IWebDriver driver) : base(driver)
-        {           
+        {
         }
 
         [FindsBy(How = How.ClassName, Using = "form-control")]
@@ -41,7 +41,7 @@ namespace OnlineExam.Pages.POM
             OkButtonInTaskView.Click();
         }
 
-        public void  ClickOnStartButtonInTaskView()
+        public void ClickOnStartButtonInTaskView()
         {
             StartButtonInTaskView.Click();
         }

@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OnlineExam.Pages.POM;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using OnlineExam.Pages.POM;
 using Xunit;
-using System.Threading;
 
 namespace OnlineExam.Tests
 {
