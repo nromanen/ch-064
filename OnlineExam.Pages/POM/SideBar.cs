@@ -35,8 +35,7 @@ namespace OnlineExam.Pages.POM
 
         [FindsBy(How = How.CssSelector, Using = ".gn-icon-menu")]
         private IWebElement navBarElement;
-
-
+         
         public SideBar(IWebDriver driver) : base(driver)
         {
         }
@@ -48,7 +47,7 @@ namespace OnlineExam.Pages.POM
             adminPanelMenuItemElement.Click();
             return new AdminPanelPage(driver);
         }
-//
+
         public TeacherNewsPage NewsMenuItemClick()
         {
             navBarElement.Click();

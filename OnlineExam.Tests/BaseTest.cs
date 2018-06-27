@@ -9,16 +9,22 @@ using OpenQA.Selenium.Chrome;
 
 namespace OnlineExam.Tests
 {
-    public abstract class BaseTest
+    public abstract class BaseTest : IDisposable
     {
-        protected IWebDriver driver;
-        protected ExtendedWebDriver extendedDriver;
+    protected IWebDriver driver;
+    protected ExtendedWebDriver extendedDriver;
 
-        protected BaseTest()
+    protected BaseTest()
+    {
+       // extendedDriver = DriversFabric.InitChrome();
+        driver = new ChromeDriver();
+        driver.Navigate().GoToUrl(Constants.HOME_URL);
+    }
+
+        public void Dispose()
         {
-            extendedDriver = DriversFabric.InitChrome();
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl(Constants.HOME_URL);
+            driver.Dispose();
+            extendedDriver?.Dispose();
         }
     }
 }

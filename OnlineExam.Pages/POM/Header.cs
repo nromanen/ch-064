@@ -11,7 +11,6 @@ namespace OnlineExam.Pages.POM
 
         [FindsBy(How = How.CssSelector,
             Using = "#gn-menu > li:nth-child(2) > a")]
-        //@"a[href*='/']"      is available but can not to click on it
         private IWebElement homePageLinkElement;
 
         [FindsBy(How = How.CssSelector, Using = ".btn")]
@@ -24,9 +23,7 @@ namespace OnlineExam.Pages.POM
         private IWebElement signUpLinkElement;
 
         [FindsBy(How = How.CssSelector, Using = "#gn-menu > li:nth-child(3) > a:nth-child(1)")]
-        //@"a[href*='/User']"    is available but can not to click on it
         private IWebElement userAccountManageLinkElement;
-        //масив і працювати з масивом
 
 
         public Header(IWebDriver driver) : base(driver)

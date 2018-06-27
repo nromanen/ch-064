@@ -15,6 +15,7 @@ namespace OnlineExam.Tests
         public const string TEACHER_PASSWORD = "Teacher_123";
         public const string STUDENT_EMAIL = "student@gmail.com";
         public const string STUDENT_PASSWORD = "Student_123";
+        public const string VIKTOR_EMAIL = "viktor@gmail.com";
 
     }
 }

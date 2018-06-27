@@ -12,7 +12,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = ".body-content > h2:nth-child(2)")]
         private IWebElement listOfUsersH2Element;
 
-        [FindsBy(How = How.CssSelector, Using = ".row")]//
+        [FindsBy(How = How.CssSelector, Using = ".row")] 
         private IList<IWebElement> rowOfDivsUserListElements;
 
         public AdminPanelPage(IWebDriver driver) : base(driver)
@@ -50,10 +50,6 @@ namespace OnlineExam.Pages.POM
 
         public bool IsUserPresentedInUserList(string email)
         {
-            if (!driver.Url.Contains("/User"))
-            {
-                return true;
-            }
             foreach (var row in rowOfDivsUserListElements)
             {
                 var text = row.FindElement(By.TagName("p")).Text;
@@ -65,5 +61,14 @@ namespace OnlineExam.Pages.POM
 
             return false;
         }
+
+        public bool IsListOfUsersH2ElementPresented()
+        {
+            if (listOfUsersH2Element.Displayed)
+                return true;
+
+            return false;
+        }
+
     }
 }
