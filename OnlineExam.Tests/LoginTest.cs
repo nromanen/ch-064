@@ -11,7 +11,7 @@ using Xunit;
 
 namespace OnlineExam.Tests
 {
-    public class LoginTest : BaseTest, IDisposable
+    public class LoginTest : BaseTest
     {
         LoginTest()
         {
@@ -35,9 +35,5 @@ namespace OnlineExam.Tests
          //   Assert.Contains(userAccountManageLinkElement, header);
         }
 
-        public void Dispose()
-        {
-            driver.Dispose();
-        }
     }
 }

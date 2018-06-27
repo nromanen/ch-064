@@ -11,7 +11,7 @@ using System.Threading;
 
 namespace OnlineExam.Tests
 {
-    public class CreateCourseTest : BaseTest,IDisposable
+    public class CreateCourseTest : BaseTest
     {
         public CreateCourseTest() { }
 
@@ -33,9 +33,5 @@ namespace OnlineExam.Tests
             CreateCoursePage.CourseOkBtn.Click();
         }
 
-        public void Dispose()
-        {
-            driver.Dispose();
-        }
-    }
+      }
 }

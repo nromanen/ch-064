@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace OnlineExam.Pages.POM
 {
@@ -13,7 +14,6 @@ namespace OnlineExam.Pages.POM
         public AddTaskAsTeacherPage(IWebDriver driver) : base(driver)
         {
         }
-
   
         [FindsBy(How = How.Id, Using = "CourseId")]
         public IWebElement ListofCourses { get; set; }
@@ -24,7 +24,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How =How.Id, Using = "tinymce")]
         public IWebElement AddDescriptionToTheNewTask { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.row > div.col-md-6 > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div")]
+        [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.row > div.col-md-6 > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div > div > div.CodeMirror-code > div")]
         public IWebElement FieldForBaseCode { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.row > div:nth-child(2) > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div")]
@@ -37,21 +37,10 @@ namespace OnlineExam.Pages.POM
         public IWebElement RunButton { get; set; }
 
 
-        public void ChooseCourseAddTaskAsTeacherPage(string CourseName)
+        public void ChooseCourse(string CourseName)
         {
-            //ListofCourses.Click();
-            
-
-
-            //// select the drop down list
-            //var education = driver.FindElement(By.Name("education"));
-            ////create select element object 
-            //var selectElement = new SelectElement(education);
-
-            ////select by value
-            //selectElement.SelectByValue("Jr.High");
-            //// select by text
-            //selectElement.SelectByText("HighSchool");
+            var selectelement = new SelectElement(ListofCourses);
+            selectelement.SelectByText(CourseName);
         }
 
         public void AddTaskNameForNewTask(string NewTaskName)
