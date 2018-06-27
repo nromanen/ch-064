@@ -24,6 +24,10 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div > div.col-lg-4 > a:nth-child(7)")]
         public IWebElement CSharpAdvancedReference { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".row")]//
+        protected IList<IWebElement> rowOfDivsNewsListElements;
+
+        [FindsBy(How = How.CssSelector, Using = ".section")]
         public List<IWebElement> allSections;
 
         public NewsPage CheckCourse(int id)

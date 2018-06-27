@@ -70,6 +70,7 @@
     <Compile Include="BaseTest.cs" />
     <Compile Include="CreateCourseTest.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="LoginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
