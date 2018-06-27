@@ -47,7 +47,7 @@ namespace OnlineExam.Tests
             var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.VIKTOR_EMAIL);
             changeRolePage.ChangeRole(Constants.TEACHER);
             changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.VIKTOR_EMAIL);
-            Assert.Equal(Constants.TEACHER,changeRolePage.CurrentRole());
+            Assert.Equal(Constants.STUDENT,changeRolePage.CurrentRole());
         }
 
        
