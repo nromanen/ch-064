@@ -30,15 +30,31 @@ namespace OnlineExam.Pages.POM
 
         public IndexPage SignIn(string email, string password)
         {
-            Header header=new Header(driver);
-            header.GoToLogInPage();
             emailInput.SendKeys(email);
             passwordInput.SendKeys(password);
             rememberMeCheckBox.Click();
             signInInputSubmit.Click();
             Thread.Sleep(1000);
+
             driver.Navigate().Refresh();
+
+            Thread.Sleep(1000);
+
             return new IndexPage(driver);
+        }
+
+        public bool IsUserEmailPresentedInHeader(string email)
+        {
+            Header header = new Header(driver);
+
+            if (header.GetText("CssSelector", "#gn-menu > li:nth-child(3) > a:nth-child(1)") == email.ToUpper())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

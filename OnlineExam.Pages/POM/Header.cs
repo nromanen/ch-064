@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
@@ -30,6 +31,18 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+        public string GetText(string elementType, string element)
+        {
+            if (elementType == "Id")
+            {
+                return driver.FindElement(By.Id(element)).Text;
+            }
+            else if (elementType == "CssSelector")
+            {
+                return driver.FindElement(By.CssSelector(element)).Text;
+            }
+            else return String.Empty;
+        }
 
         public NewsPage GoToHomePage()
         {
