@@ -67,6 +67,8 @@
     <Compile Include="AddNewTaskAsTeacher.cs" />
     <Compile Include="AdminTest.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="ChangeEmailTest.cs" />
+    <Compile Include="ChangeNameTest.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

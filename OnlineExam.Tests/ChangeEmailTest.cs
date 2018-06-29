@@ -8,16 +8,19 @@ using Xunit;
 
 namespace OnlineExam.Tests
 {
-    public class ChangeNameTest : BaseTest
+    public class ChangeEmailTest : BaseTest
     {
-
+        public ChangeEmailTest()
+        {
+        }
 
         [Fact]
-        public void TestChangeName()
+        public void TestChangeEmail()
         {
             BeginTest();
             driver.Navigate().GoToUrl("http://localhost:55842/Account/Login");
             System.Threading.Thread.Sleep(1000);
+
             var loginPage = new LogInPage(driver);
             var indexPage = loginPage.SignIn("student@gmail.com", Constants.STUDENT_PASSWORD);
             var header = new Header(driver);
@@ -32,6 +35,5 @@ namespace OnlineExam.Tests
             var isEqual = String.Equals("studentTEST", newUserName, StringComparison.InvariantCultureIgnoreCase);
             Assert.True(isEqual);
         }
-
     }
 }
