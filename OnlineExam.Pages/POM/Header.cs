@@ -1,7 +1,9 @@
 ﻿using System;
+using OnlineExam.Pages.POM.UserDetails;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace OnlineExam.Pages.POM
 {
@@ -44,6 +46,12 @@ namespace OnlineExam.Pages.POM
             else return String.Empty;
         }
 
+
+        public string GetHeaderUserName()
+        {
+            return userAccountManageLinkElement.Text;
+        }
+
         public NewsPage GoToHomePage()
         {
             WaitWhileNotClickableWebElement(homePageLinkElement);
@@ -78,11 +86,11 @@ namespace OnlineExam.Pages.POM
             return new RegisterPage(driver);
         }
 
-        //public UserAccountPage GoToUserAccountPage()
-        //{
-        //    WaitWhileNotClickableWebElement(userAccountManageLinkElement);
-        //    userAccountManageLinkElement.Click();
-        //    return new UserAccountPage(driver);
-        //}
+        public UserInfoPage GoToUserAccountPage()
+        {
+            WaitWhileNotClickableWebElement(userAccountManageLinkElement);
+            userAccountManageLinkElement.Click();
+            return new UserInfoPage(driver);
+        }
     }
 }
