@@ -27,7 +27,7 @@ namespace OnlineExam.Tests
         [Fact]
         public void IsUserPresentedInUserListTest()
         {
-           Assert.True(adminPanelPage.IsUserPresentedInUserList(""));
+            Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL));
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace OnlineExam.Tests
             var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.VIKTOR_EMAIL);
             changeRolePage.ChangeRole(Constants.TEACHER);
             changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.VIKTOR_EMAIL);
-            Assert.Equal(Constants.STUDENT,changeRolePage.CurrentRole());
+            Assert.Equal(Constants.TEACHER,changeRolePage.CurrentRole());
         }
 
        
