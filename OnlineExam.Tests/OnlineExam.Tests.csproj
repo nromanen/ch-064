@@ -69,6 +69,8 @@
     <Compile Include="AdminTest.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="CreateCourseTest.cs" />
+    <Compile Include="ChangeEmailTest.cs" />
+    <Compile Include="ChangeNameTest.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="LoginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

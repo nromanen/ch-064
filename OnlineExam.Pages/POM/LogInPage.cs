@@ -28,6 +28,8 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.Id, Using = "submitLogin")]
         public IWebElement signInInputSubmit;
 
+      
+
         public IndexPage SignIn(string email, string password)
         {
             emailInput.SendKeys(email);
