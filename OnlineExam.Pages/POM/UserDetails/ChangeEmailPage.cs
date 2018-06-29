@@ -23,7 +23,7 @@ namespace OnlineExam.Pages.POM.UserDetails
         [FindsBy(How = How.CssSelector, Using = "input[value=Save]")]
         public IWebElement SaveButton { get; set; }
 
-        public void SetNewName(string newEmail, string password)
+        public void SetNewEmail(string newEmail, string password)
         {
             NewEmailField.SendKeys(newEmail);
             PasswordField.SendKeys(password);

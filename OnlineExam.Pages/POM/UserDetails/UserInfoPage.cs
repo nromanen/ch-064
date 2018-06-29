@@ -23,6 +23,8 @@ namespace OnlineExam.Pages.POM.UserDetails
         [FindsBy(How = How.Id, Using = "ChPaswBut3")]
         public IWebElement ChangeEmailButton { get; set; }
 
+        [FindsBy(How = How.ClassName, Using = "col-lg-4")]
+        public IWebElement Email { get; set; }
         
         public ChangePasswordPage OpenChangePasswordPage()
         {
