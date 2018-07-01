@@ -21,7 +21,7 @@ namespace OnlineExam.Tests
             var header = new Header(driver);
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn("teacher@gmail.com", "Teacher_123");
-            var CourseMenu = new SideBar(driver).CoursesMenuItemClick();
+            var CourseMenu = new SideBar(driver).GoToCourseManagementPage();
             var CourseMenegmentPage = new CourseManagementPage(driver);
             CourseMenegmentPage.AddCourseBtn.Click();
             var CreateCoursePage = new CreateCoursePage(driver);

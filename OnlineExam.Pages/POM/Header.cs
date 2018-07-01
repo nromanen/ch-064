@@ -45,11 +45,15 @@ namespace OnlineExam.Pages.POM
             }
             else return String.Empty;
         }
-
-
+        
         public string GetHeaderUserName()
         {
             return userAccountManageLinkElement.Text;
+        }
+
+        public string GetSignInButtonText()
+        {
+            return signInLinkElement.Text;
         }
 
         public NewsPage GoToHomePage()

@@ -20,6 +20,14 @@ namespace OnlineExam.Tests
         public const string STUDENT = "Student";
         public const string REGISTRATION_EMAIL = "example@gmail.com";
         public const string REGISTRATION_PASSWORD = "Example_123";
-
+        public const string ENGLISH = "en";
+        public const string UKRAINE = "uk";
+        public const string SIGN_IN_ENGLISH = "SIGN IN";
+        public const string SIGN_IN_UKRAINE = "ВХІД";
+        public const string LOGIN_URL_CONTAINS = "Login";
+        public const string REGISTRATION_URL_CONTAINS = "Register";
+        public const string RATING_URL_CONTAINS = "UserRating";
+        public const string COURSEMANAGEMENT_URL_CONTAINS = "CourseManagement";
+        public const string CONTACTUS_URL_CONTAINS = "EmailMessages";
     }
 }

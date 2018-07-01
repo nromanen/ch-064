@@ -18,10 +18,11 @@ namespace OnlineExam.Tests
 
         public AdminTest()
         {
+            BeginTest();
             header = new Header(driver);
             logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            adminPanelPage = new SideBar(driver).AdminPanelMenuItemClick();
+            adminPanelPage = new SideBar(driver).GoToAdminPanelPage();
         }
 
         [Fact]
@@ -42,13 +43,21 @@ namespace OnlineExam.Tests
         }
 
         [Fact]
-        public void ChangeUserRole()
+        public void ChangeUserRoleTest()
         {
             var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.VIKTOR_EMAIL);
             changeRolePage.ChangeRole(Constants.TEACHER);
             changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.VIKTOR_EMAIL);
             Assert.Equal(Constants.TEACHER,changeRolePage.CurrentRole());
         }
+
+        [Fact]
+        public void IsUserListAvailable()
+        {
+            Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
+        }
+
+        
 
        
     }

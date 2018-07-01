@@ -29,5 +29,11 @@ namespace OnlineExam.Pages.POM
             wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
         }
 
+        public string GetUrl()
+        {
+            return driver.Url;
+        }
+      
+
     }
 }

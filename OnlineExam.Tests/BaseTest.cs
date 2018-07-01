@@ -11,18 +11,18 @@ namespace OnlineExam.Tests
 {
     public abstract class BaseTest : IDisposable
     {
-    protected IWebDriver driver;
-    protected ExtendedWebDriver extendedDriver;
+        protected IWebDriver driver;
+        protected ExtendedWebDriver extendedDriver;
 
-    protected BaseTest()
-    {
+        protected BaseTest()
+        {
             //extendedDriver = DriversFabric.InitChrome();
-        driver = new ChromeDriver();
+            driver = new ChromeDriver();
         }
 
         public void BeginTest()
         {
-        driver.Navigate().GoToUrl(Constants.HOME_URL);
+            driver.Navigate().GoToUrl(Constants.HOME_URL);
         }
 
         public virtual void Dispose()

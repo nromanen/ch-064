@@ -16,7 +16,7 @@ namespace OnlineExam.Tests
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
 
-            var TeacherTasksPage = new SideBar(driver).TasksMenuItemClick();
+            var TeacherTasksPage = new SideBar(driver).GoToTasksPage();
             var Tasks = new TeacherExerciseManagerPage(driver);
             Tasks.ClickOnAddTaskbutton();
             var AddTaskPage = new AddTaskAsTeacherPage(driver);
