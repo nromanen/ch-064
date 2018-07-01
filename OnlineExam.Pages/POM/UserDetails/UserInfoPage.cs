@@ -24,7 +24,12 @@ namespace OnlineExam.Pages.POM.UserDetails
         public IWebElement ChangeEmailButton { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "col-lg-4")]
-        public IWebElement Email { get; set; }
+        public IList<IWebElement> Labels { get; set; }
+
+        public string GetEmail()
+        {
+            return Labels[1].Text;
+        }
         
         public ChangePasswordPage OpenChangePasswordPage()
         {

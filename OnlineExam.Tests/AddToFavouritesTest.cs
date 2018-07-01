@@ -27,7 +27,7 @@ namespace OnlineExam.Tests
             var likeCode = new HistoryBlock(driver);
             likeCode.SaveToFavourites();
 
-            Assert.
+            
 
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OnlineExam.Pages.POM.CodeHistory.Favourites;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -20,24 +21,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.ClassName, Using = "col-lg-2 tabs favourites")]
         public IWebElement FavouritesButton { get; set; }
 
-
-
-        [FindsBy(How = How.ClassName, Using = "form-control titlecode")]
-        public IWebElement IndexersField { get; set; }
-
-        [FindsBy(How = How.ClassName, Using = "form-control col")]
-        public IWebElement TaskField { get; set; }
-
-
-        [FindsBy(How = How.ClassName, Using = "col-lg-12")]
-        public IWebElement TaskTime { get; set; }
-
-        [FindsBy(How = How.ClassName, Using = "checkbox_wrapper col-lg-1")]
-        public IWebElement LikeButton { get; set; }
-
-        [FindsBy(How = How.ClassName, Using = "col-lg-1")]
-        public IWebElement StartButton { get; set; }
-
+        
         public FavouritesPage SwitchToFavourites()
         {
             FavouritesButton.Click();
@@ -50,17 +34,8 @@ namespace OnlineExam.Pages.POM
             return this;
         } 
 
-        public void SaveToFavourites()
-        {
-            LikeButton.Click();
-            
-        }
 
-        //public void OpenEditTaskPage()
-        //{
-        //    LikeButton.Click();
-        //    return new TaskPage(this.driver);
-        //}
+      
 
     }
 }

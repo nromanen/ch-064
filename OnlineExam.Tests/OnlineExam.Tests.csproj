@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddNewTaskAsTeacher.cs" />
+    <Compile Include="AddToFavouritesTest.cs" />
     <Compile Include="AdminTest.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="ChangePasswordTest.cs" />

@@ -32,7 +32,14 @@ namespace OnlineExam.Pages.POM.UserDetails
         public NewsPage SaveNewEmail()
         {
             SaveButton.Click();
-            return new NewsPage(this.driver);
+            try
+            {
+                return new NewsPage(this.driver);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }
