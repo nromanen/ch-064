@@ -20,6 +20,32 @@ namespace OnlineExam.Pages.POM
             PageFactory.InitElements(driver, this);
         }
 
+        public BasePage()
+        {
+
+        }
+
+        public void SetDriver(IWebDriver driver)
+        {
+            this.driver = driver;
+        }
+
+        public T ConstructPage<T>() where T : BasePage, new()
+        {
+            var page = new T();
+            page.SetDriver(driver);
+
+            try
+            {
+                PageFactory.InitElements(driver, page);
+                return page;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public static TimeSpan WAIT_TIME = new TimeSpan(0, 0, 100);
 
 

@@ -14,6 +14,10 @@ namespace OnlineExam.Pages.POM.UserDetails
         {
         }
 
+        public ChangeNamePage()
+        {
+        }
+
         [FindsBy(How = How.Id, Using = "NewUserName")]
         public IWebElement NewUserNameField { get; set; }
 

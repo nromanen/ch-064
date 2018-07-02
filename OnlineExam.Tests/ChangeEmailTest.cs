@@ -24,6 +24,11 @@ namespace OnlineExam.Tests
             var loginPage = new LogInPage(driver);
             var indexPage = loginPage.SignIn("student@gmail.com", Constants.STUDENT_PASSWORD);
             var header = new Header(driver);
+            var header2 = ConstructPage<Header>();
+            if(header2 != null)
+            {
+                header2.GoToHomePage();
+            }
             var userInfo = header.GoToUserAccountPage();
             var changeNamePage = userInfo.OpenChangeNamePage();
 

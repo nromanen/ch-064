@@ -9,6 +9,10 @@ namespace OnlineExam.Pages.POM
 {
     public class Header : BasePage
     {
+        public Header()
+        {
+
+        }
         [FindsBy(How = How.CssSelector, Using = "#requestCulture_RequestCulture_UICulture_Name")]
         private IWebElement changeLanguageSelectElement;
 

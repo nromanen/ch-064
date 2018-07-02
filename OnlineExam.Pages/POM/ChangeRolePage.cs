@@ -24,6 +24,10 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+        public ChangeRolePage()
+        {
+        }
+
         public string CurrentRole()
         {
             return currentRoleOfUserDivElement.Text;
