@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OnlineExam.Pages.POM.CodeHistory.Favourites;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.Pages.POM
 {
-    public class FavouritesPage : BasePage
+    public class FavouritesPage : BasePage 
+        
     {
         public FavouritesPage(IWebDriver driver) : base(driver)
         {
@@ -18,6 +20,8 @@ namespace OnlineExam.Pages.POM
 
         [FindsBy(How = How.ClassName, Using = "col-lg-2 tabs favourites")]
         public IWebElement FavouritesButton { get; set; }
+
+        
 
         public CodeHistoryPage SwitchToHistory()
         {
@@ -30,5 +34,7 @@ namespace OnlineExam.Pages.POM
             FavouritesButton.Click();
             return this;
         }
+
+        
     }
 }

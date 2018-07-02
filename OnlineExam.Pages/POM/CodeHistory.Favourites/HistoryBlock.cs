@@ -33,7 +33,7 @@ namespace OnlineExam.Pages.POM.CodeHistory.Favourites
             [FindsBy(How = How.ClassName, Using = "col-lg-12")]
             public IWebElement TaskTime { get; set; }
 
-            [FindsBy(How = How.ClassName, Using = "checkbox_wrapper col-lg-1")]
+            [FindsBy(How = How.Id, Using = "icon")]
             public IWebElement LikeButton { get; set; }
 
             [FindsBy(How = How.ClassName, Using = "col-lg-1")]

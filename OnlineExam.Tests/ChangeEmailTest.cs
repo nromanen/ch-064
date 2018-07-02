@@ -35,6 +35,7 @@ namespace OnlineExam.Tests
             var userInfoPage = new UserInfoPage(driver);
             var labelText = userInfoPage.GetEmail();
             var isEqual = String.Equals( labelText, newEmail);
+            Assert.True(isEqual);
 
             header = new Header(driver);
             header.SignOut();
@@ -49,7 +50,7 @@ namespace OnlineExam.Tests
             header.GoToUserAccountPage();
             var isEqualAfterRepeatLogIn = string.Equals(userInfo.GetEmail(), newEmail);
 
-            Assert.True(isEqual || isEqualAfterRepeatLogIn);
+            Assert.True(isEqualAfterRepeatLogIn);
         }
     }
 }
