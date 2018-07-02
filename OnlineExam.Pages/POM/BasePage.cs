@@ -29,5 +29,17 @@ namespace OnlineExam.Pages.POM
             wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
         }
 
+        public string GetText(string elementType, string element)
+        {
+            if (elementType == "Id")
+            {
+                return driver.FindElement(By.Id(element)).Text;
+            }
+            else if (elementType == "CssSelector")
+            {
+                return driver.FindElement(By.CssSelector(element)).Text;
+            }
+            else return String.Empty;
+        }
     }
 }

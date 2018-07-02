@@ -37,5 +37,23 @@ namespace OnlineExam.Pages.POM
             return new NewsPage(driver);
         }
 
+        
+
+        public bool IsLinkPresentedInNewsPage(string linkName)
+        {
+            bool flag = true;
+            foreach (var v in allSections)
+            {
+                if (v.Text == linkName)
+                {
+                    flag = true && flag;
+                }
+                else
+                {
+                    flag = false && flag;
+                }
+            }
+            return flag;
+        }
     }
 }

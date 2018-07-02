@@ -17,25 +17,25 @@ namespace OnlineExam.Pages.POM
         }
 
         [FindsBy(How = How.Id, Using = "emailLogin")]
-        public IWebElement emailInput;
+        public IWebElement EmailInput { get; set; }
 
         [FindsBy(How = How.Id, Using = "passwordLogin")]
-        public IWebElement passwordInput;
+        public IWebElement PasswordInput { get; set; }
 
         [FindsBy(How = How.Id, Using = "RememberMe")]
-        public IWebElement rememberMeCheckBox;
+        public IWebElement RememberMeCheckBox { get; set; }
 
         [FindsBy(How = How.Id, Using = "submitLogin")]
-        public IWebElement signInInputSubmit;
+        public IWebElement SignInInputSubmit { get; set; }
 
       
 
         public IndexPage SignIn(string email, string password)
         {
-            emailInput.SendKeys(email);
-            passwordInput.SendKeys(password);
-            rememberMeCheckBox.Click();
-            signInInputSubmit.Click();
+            EmailInput.SendKeys(email);
+            PasswordInput.SendKeys(password);
+            RememberMeCheckBox.Click();
+            SignInInputSubmit.Click();
             Thread.Sleep(1000);
 
             driver.Navigate().Refresh();
@@ -48,7 +48,7 @@ namespace OnlineExam.Pages.POM
         public bool IsUserEmailPresentedInHeader(string email)
         {
             Header header = new Header(driver);
-
+            
             if (header.GetText("CssSelector", "#gn-menu > li:nth-child(3) > a:nth-child(1)") == email.ToUpper())
             {
                 return true;
@@ -57,6 +57,13 @@ namespace OnlineExam.Pages.POM
             {
                 return false;
             }
+        }
+
+        public bool IsSignInPresentedInHeader()
+        {
+            Header header = new Header(driver);
+
+            return header.GetSignInElement();
         }
     }
 }
