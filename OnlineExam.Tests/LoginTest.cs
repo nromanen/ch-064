@@ -13,26 +13,28 @@ namespace OnlineExam.Tests
 {
     public class LoginTest : BaseTest, IDisposable
     {
-        LoginTest()
+        public LoginTest()
         {
         }
-
         [Fact]
         public void SignInTest()
         {
-            LogInPage logIn = new LogInPage(driver);
-            var result = logIn.SignIn("student@gmail.com", "Student_123");
-          //  Assert.Equal(new IndexPage, result);
+            var header = new Header(driver);
+            var logIn = header.GoToLogInPage();
+            logIn.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+            Assert.True(logIn.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
         }
 
         [Fact]
         public void SignOutTest()
         {
-            LogInPage logIn = new LogInPage(driver);
-            logIn.SignIn("student@gmail.com", "Student_123");
-            Header header = new Header(driver);
-            var result = header.SignOut();
-         //   Assert.Contains(userAccountManageLinkElement, header);
+            var header = new Header(driver);
+            var logIn = header.GoToLogInPage();
+            logIn.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+            driver.Navigate().Refresh();
+            header.SignOut();
+            driver.Navigate().Refresh();
+            Assert.True(logIn.IsSignInPresentedInHeader());
         }
 
         public void Dispose()
