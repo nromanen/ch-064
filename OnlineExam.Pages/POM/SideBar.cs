@@ -12,7 +12,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = @"a[href*='/AdminPanel/Users']")]
         private IWebElement adminPanelMenuItemElement;
 
-        [FindsBy(How = How.CssSelector, Using = "#gn-menu > li.gn-trigger > nav > div > ul > li:nth-child(1) > a")]
+        [FindsBy(How = How.CssSelector, Using = "a[href*='/AddNews/News']")]
         private IWebElement newsMenuItemElement;
 
         [FindsBy(How = How.CssSelector, Using = @"a[href*='/UserRating']")]
@@ -48,12 +48,12 @@ namespace OnlineExam.Pages.POM
             return new AdminPanelPage(driver);
         }
 
-        public NewsPage NewsMenuItemClick()
+        public TeacherNewsPage NewsMenuItemClick()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(newsMenuItemElement);
             newsMenuItemElement.Click();
-            return new NewsPage(driver);
+            return new TeacherNewsPage(driver);
         }
 
         public RatingsPage RatingsMenuItemClick()

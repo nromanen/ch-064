@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -28,7 +29,7 @@ namespace OnlineExam.Tests
             Thread.Sleep(1000);
             driver.Navigate().Refresh();
             Thread.Sleep(1000);
-          //  Assert.True(newsPage.IsLinkPresentedInNewsPage("C# Starter"));
+            Assert.True(newsPage.IsNewsPresentedInNewsList("C# Starter"));
         }
 
         [Fact]
@@ -38,10 +39,17 @@ namespace OnlineExam.Tests
             var logInPage = header.GoToLogInPage();
             var signIn = logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
             Thread.Sleep(1000);
-            var teacherNewsPage = new SideBar(driver).NewsMenuItemClick();
+            var newsPage = new SideBar(driver).NewsMenuItemClick();
             Thread.Sleep(1000);
-            teacherNewsPage.CreateArticle();
-         //   Assert.True(teacherNewsPage.IsNewsPresentedInNewsList("Title"));
+            var result = newsPage.CreateArticle();
+            Thread.Sleep(1000);
+
+            string writePath = @"D:\text.txt";
+            using (StreamWriter sw = new StreamWriter(writePath, true, System.Text.Encoding.Default))
+            {
+                sw.WriteLine(result.GetText("CssSelector", "body > h1"));
+            }
+            Assert.StartsWith(result.GetText("CssSelector", "body > h1"), "An unhandled exception occurred while processing the request.");
 
         }
 
