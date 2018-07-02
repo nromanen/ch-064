@@ -16,14 +16,15 @@ namespace OnlineExam.Tests
 
     protected BaseTest()
     {
-       // extendedDriver = DriversFabric.InitChrome();
+        extendedDriver = DriversFabric.InitChrome();
         driver = new ChromeDriver();
         driver.Navigate().GoToUrl(Constants.HOME_URL);
     }
 
         public void Dispose()
-        {
-            driver.Dispose();
+        {   
+            driver?.Close();
+            driver?.Dispose();
             extendedDriver?.Dispose();
         }
     }

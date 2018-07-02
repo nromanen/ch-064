@@ -68,6 +68,7 @@
     <Compile Include="AddNewTaskAsTeacher.cs" />
     <Compile Include="AdminTest.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="CheckStatus.cs" />
     <Compile Include="CourseTests.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="LoginTest.cs" />

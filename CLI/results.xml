@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies timestamp="07/02/2018 19:19:34">
+  <assembly name="F:\FeareD\GitHub\ch-064\OnlineExam.Tests\bin\debug\OnlineExam.Tests.DLL" environment="64-bit .NET 4.0.30319.42000 [collection-per-class, parallel (8 threads)]" test-framework="xUnit.net 2.3.1.3858" run-date="2018-07-02" run-time="19:19:34" config-file="F:\FeareD\GitHub\ch-064\packages\xunit.runner.console.2.3.1\tools\net452\xunit.console.exe.Config" total="14" passed="1" failed="13" skipped="0" time="0.239" errors="0">
+    <errors />
+    <collection total="2" passed="0" failed="2" skipped="0" name="Test collection for OnlineExam.Tests.LoginTest" time="0.000">
+      <test name="OnlineExam.Tests.LoginTest.SignOutTest" type="OnlineExam.Tests.LoginTest" method="SignOutTest" time="0" result="Fail">
+        <failure exception-type="Xunit.Sdk.TestClassException">
+          <message><![CDATA[A test class may only define a single public constructor.]]></message>
+          <stack-trace><![CDATA[]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.LoginTest.SignInTest" type="OnlineExam.Tests.LoginTest" method="SignInTest" time="0" result="Fail">
+        <failure exception-type="Xunit.Sdk.TestClassException">
+          <message><![CDATA[A test class may only define a single public constructor.]]></message>
+          <stack-trace><![CDATA[]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="1" passed="1" failed="0" skipped="0" name="Test collection for OnlineExam.Tests.CheckStatus" time="0.008">
+      <test name="OnlineExam.Tests.CheckStatus.SumTest" type="OnlineExam.Tests.CheckStatus" method="SumTest" time="0.0080437" result="Pass" />
+    </collection>
+    <collection total="1" passed="0" failed="1" skipped="0" name="Test collection for OnlineExam.Tests.AddNewTaskAsTeacher" time="0.000">
+      <test name="OnlineExam.Tests.AddNewTaskAsTeacher.AddNewTaskTest" type="OnlineExam.Tests.AddNewTaskAsTeacher" method="AddNewTaskTest" time="0" result="Fail">
+        <failure exception-type="System.NullReferenceException">
+          <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+          <stack-trace><![CDATA[   at OnlineExam.Tests.BaseTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\BaseTest.cs:line 21
+   at OnlineExam.Tests.AddNewTaskAsTeacher..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\AddNewTaskAsTeacher.cs:line 8]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="7" passed="0" failed="7" skipped="0" name="Test collection for OnlineExam.Tests.CourseTests" time="0.000">
+      <test name="OnlineExam.Tests.CourseTests.ChangeCourse_ShouldChangeCourseData" type="OnlineExam.Tests.CourseTests" method="ChangeCourse_ShouldChangeCourseData" time="0" result="Fail">
+        <failure exception-type="System.NullReferenceException">
+          <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+          <stack-trace><![CDATA[   at OnlineExam.Tests.BaseTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\BaseTest.cs:line 21
+   at OnlineExam.Tests.CourseTests..ctor(ITestOutputHelper output) in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\CourseTests.cs:line 14]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.CourseTests.ChangeCourseOwner_ShouldChangeOwner" type="OnlineExam.Tests.CourseTests" method="ChangeCourseOwner_ShouldChangeOwner" time="0" result="Fail">
+        <failure exception-type="System.NullReferenceException">
+          <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+          <stack-trace><![CDATA[   at OnlineExam.Tests.BaseTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\BaseTest.cs:line 21
+   at OnlineExam.Tests.CourseTests..ctor(ITestOutputHelper output) in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\CourseTests.cs:line 14]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.CourseTests.RestoreCourse_ShouldRestoreCourse" type="OnlineExam.Tests.CourseTests" method="RestoreCourse_ShouldRestoreCourse" time="0" result="Fail">
+        <failure exception-type="System.NullReferenceException">
+          <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+          <stack-trace><![CDATA[   at OnlineExam.Tests.BaseTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\BaseTest.cs:line 21
+   at OnlineExam.Tests.CourseTests..ctor(ITestOutputHelper output) in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\CourseTests.cs:line 14]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.CourseTests.DeleteCourse_ShouldDeleteCourse" type="OnlineExam.Tests.CourseTests" method="DeleteCourse_ShouldDeleteCourse" time="0" result="Fail">
+        <failure exception-type="System.NullReferenceException">
+          <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+          <stack-trace><![CDATA[   at OnlineExam.Tests.BaseTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\BaseTest.cs:line 21
+   at OnlineExam.Tests.CourseTests..ctor(ITestOutputHelper output) in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\CourseTests.cs:line 14]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.CourseTests.CreateCourse_ErrorMessageShouldAppear" type="OnlineExam.Tests.CourseTests" method="CreateCourse_ErrorMessageShouldAppear" time="0" result="Fail">
+        <failure exception-type="System.NullReferenceException">
+          <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+          <stack-trace><![CDATA[   at OnlineExam.Tests.BaseTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\BaseTest.cs:line 21
+   at OnlineExam.Tests.CourseTests..ctor(ITestOutputHelper output) in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\CourseTests.cs:line 14]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.CourseTests.CreateCourse_ShouldCreateCourse" type="OnlineExam.Tests.CourseTests" method="CreateCourse_ShouldCreateCourse" time="0" result="Fail">
+        <failure exception-type="System.NullReferenceException">
+          <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+          <stack-trace><![CDATA[   at OnlineExam.Tests.BaseTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\BaseTest.cs:line 21
+   at OnlineExam.Tests.CourseTests..ctor(ITestOutputHelper output) in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\CourseTests.cs:line 14]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.CourseTests.CheckTask_ShouldChangeTaskStatusToDone" type="OnlineExam.Tests.CourseTests" method="CheckTask_ShouldChangeTaskStatusToDone" time="0" result="Fail">
+        <failure exception-type="System.NullReferenceException">
+          <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+          <stack-trace><![CDATA[   at OnlineExam.Tests.BaseTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\BaseTest.cs:line 21
+   at OnlineExam.Tests.CourseTests..ctor(ITestOutputHelper output) in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\CourseTests.cs:line 14]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="3" passed="0" failed="3" skipped="0" name="Test collection for OnlineExam.Tests.AdminTest" time="0.000">
+      <test name="OnlineExam.Tests.AdminTest.ChangeUserRole" type="OnlineExam.Tests.AdminTest" method="ChangeUserRole" time="0" result="Fail">
+        <failure exception-type="System.NullReferenceException">
+          <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+          <stack-trace><![CDATA[   at OnlineExam.Tests.BaseTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\BaseTest.cs:line 21
+   at OnlineExam.Tests.AdminTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\AdminTest.cs:line 19]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.AdminTest.IsUserPresentedInUserListTest" type="OnlineExam.Tests.AdminTest" method="IsUserPresentedInUserListTest" time="0" result="Fail">
+        <failure exception-type="System.NullReferenceException">
+          <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+          <stack-trace><![CDATA[   at OnlineExam.Tests.BaseTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\BaseTest.cs:line 21
+   at OnlineExam.Tests.AdminTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\AdminTest.cs:line 19]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.AdminTest.DeleteUserTest" type="OnlineExam.Tests.AdminTest" method="DeleteUserTest" time="0" result="Fail">
+        <failure exception-type="System.NullReferenceException">
+          <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+          <stack-trace><![CDATA[   at OnlineExam.Tests.BaseTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\BaseTest.cs:line 21
+   at OnlineExam.Tests.AdminTest..ctor() in F:\FeareD\GitHub\ch-064\OnlineExam.Tests\AdminTest.cs:line 19]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+  </assembly>
+</assemblies>
