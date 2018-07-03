@@ -19,6 +19,10 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+        public AdminPanelPage()
+        {
+        }
+
         public void DeleteUser(string email)
         {
             foreach (var row in rowOfDivsUserListElements)

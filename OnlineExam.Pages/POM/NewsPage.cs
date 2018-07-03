@@ -16,6 +16,10 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+        public NewsPage()
+        {
+        }
+
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div > div.col-lg-4 > a:nth-child(3)")]
         public IWebElement CSharpStarterReference { get; set; }
 

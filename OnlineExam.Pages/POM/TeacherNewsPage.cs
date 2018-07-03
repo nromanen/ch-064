@@ -16,6 +16,11 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+        public TeacherNewsPage()
+        {
+
+        }
+
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div > div.col-lg-4 > a.btn.btn-default")]
         public IWebElement CreateArticleReference { get; set; }
 
@@ -35,7 +40,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "#openModal > div > form > input[type=\"submit\"]:nth-child(3)")]
         public IWebElement PublishInput { get; set; }
         
-        public NewsPage CreateArticle()
+        public TeacherNewsPage CreateArticle()
         {
             CreateArticleReference.Click();
             Thread.Sleep(1000);
@@ -47,9 +52,8 @@ namespace OnlineExam.Pages.POM
             CourseNameInput.SendKeys("New name");
             TitleTextArea.SendKeys("New title");
             ArticleTextArea.SendKeys("New article");
-            
             PublishInput.Click();
-            return new NewsPage(driver);
+            return ConstructPage<TeacherNewsPage>();
         }
     }
 }
