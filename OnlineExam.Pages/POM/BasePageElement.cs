@@ -10,9 +10,20 @@ namespace OnlineExam.Pages.POM
 {
     public abstract class BasePageElement
     {
+        IWebDriver driver;
         public BasePageElement(IWebElement context)
         {
             PageFactory.InitElements(context, this);
+        }
+
+        public BasePageElement()
+        {
+
+        }
+
+        internal void SetDriver(IWebDriver driver)
+        {
+            this.driver = driver;
         }
     }
 }
