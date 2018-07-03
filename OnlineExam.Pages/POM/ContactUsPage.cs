@@ -7,5 +7,9 @@ namespace OnlineExam.Pages.POM
         public ContactUsPage(IWebDriver driver) : base(driver)
         {
         }
+
+        public ContactUsPage()
+        {
+        }
     }
 }

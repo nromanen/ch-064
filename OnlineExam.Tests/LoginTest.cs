@@ -16,19 +16,20 @@ namespace OnlineExam.Tests
         public LoginTest()
         {
         }
+
         [Fact]
         public void SignInTest()
         {
-            var header = new Header(driver);
+            var header = ConstructPage<Header>();
             var logIn = header.GoToLogInPage();
             logIn.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            Assert.True(logIn.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+            Assert.True(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
         }
 
         [Fact]
         public void SignOutTest()
         {
-            var header = new Header(driver);
+            var header = ConstructPage<Header>();
             var logIn = header.GoToLogInPage();
             logIn.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             driver.Navigate().Refresh();

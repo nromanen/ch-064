@@ -9,6 +9,10 @@ namespace OnlineExam.Pages.POM
 {
     public class SideBar : BasePage
     {
+        public SideBar()
+        {
+        }
+
         [FindsBy(How = How.CssSelector, Using = @"a[href*='/AdminPanel/Users']")]
         private IWebElement adminPanelMenuItemElement;
 
