@@ -23,7 +23,7 @@ namespace OnlineExam.Tests
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
 
-            var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
+            var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
             var Tasks = ConstructPage<TeacherExerciseManagerPage>();
             //Tasks.ClickOnAddTaskbutton();
             var AddTaskPage = ConstructPage<AddTaskAsTeacherPage>();
@@ -46,7 +46,7 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            var TeacherTasksPage = ConstructPage< SideBar>().TasksMenuItemClick();
+            var TeacherTasksPage = ConstructPage< SideBar>().GoToTasksPage();
             var Tasks = ConstructPage<TeacherExerciseManagerPage>();
            // Tasks.ClickOnDeleteButton(TASK);
             var ListOfTasks = ConstructPage<TasksPage>();
@@ -102,7 +102,7 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
+            var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
             var Tasks = ConstructPage<TeacherExerciseManagerPage>();
       //      Tasks.ClickOnChangeButton("PrivetKakdela");
             Thread.Sleep(3000);
@@ -134,7 +134,7 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
+            var TeacherTasksPage = ConstructPage<SideBar>();
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
             var taskRowItem = ListOfTasks.GetByName("Indexers");
             

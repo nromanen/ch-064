@@ -78,7 +78,6 @@
     <Compile Include="BaseTest.cs" />
     <Compile Include="ChangePasswordTest.cs" />
     <Compile Include="HeaderTest.cs" />
-    <Compile Include="CreateCourseTest.cs" />
     <Compile Include="ChangeEmailTest.cs" />
     <Compile Include="ChangeNameTest.cs" />
     <Compile Include="CheckStatus.cs" />

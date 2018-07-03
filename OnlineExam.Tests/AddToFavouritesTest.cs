@@ -24,7 +24,7 @@ namespace OnlineExam.Tests
             var loginPage = new LogInPage(driver);
             var indexPage = loginPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
 
-            var goToHistoryPage = new SideBar(driver).CodeHistoryMenuItemClick();
+            var goToHistoryPage = new SideBar(driver).GoToCodeHistoryPage();
             var historyPage = new CodeHistoryPage(driver);
             var blocks = historyPage.GetBlocks();
             if (blocks.Any())
