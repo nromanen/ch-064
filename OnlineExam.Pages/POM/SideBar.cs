@@ -9,10 +9,14 @@ namespace OnlineExam.Pages.POM
 {
     public class SideBar : BasePage
     {
+        public SideBar()
+        {
+        }
+
         [FindsBy(How = How.CssSelector, Using = @"a[href*='/AdminPanel/Users']")]
         private IWebElement adminPanelMenuItemElement;
 
-        [FindsBy(How = How.CssSelector, Using = "#gn-menu > li.gn-trigger > nav > div > ul > li:nth-child(1) > a")]
+        [FindsBy(How = How.CssSelector, Using = "a[href*='/AddNews/News']")]
         private IWebElement newsMenuItemElement;
 
         [FindsBy(How = How.CssSelector, Using = @"a[href*='/UserRating']")]
@@ -45,15 +49,15 @@ namespace OnlineExam.Pages.POM
             navBarElement.Click();
             WaitWhileNotClickableWebElement(adminPanelMenuItemElement);
             adminPanelMenuItemElement.Click();
-            return new AdminPanelPage(driver);
+            return ConstructPage<AdminPanelPage>();
         }
 
-        public NewsPage NewsMenuItemClick()
+        public TeacherNewsPage NewsMenuItemClick()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(newsMenuItemElement);
             newsMenuItemElement.Click();
-            return new NewsPage(driver);
+            return ConstructPage<TeacherNewsPage>();
         }
 
         public RatingsPage RatingsMenuItemClick()
@@ -61,7 +65,7 @@ namespace OnlineExam.Pages.POM
             navBarElement.Click();
             WaitWhileNotClickableWebElement(ratingsMenuItemElement);
             ratingsMenuItemElement.Click();
-            return new RatingsPage(driver);
+            return ConstructPage<RatingsPage>();
         }
 
         public CourseManagementPage CoursesMenuItemClick()
@@ -69,7 +73,7 @@ namespace OnlineExam.Pages.POM
             navBarElement.Click();
             WaitWhileNotClickableWebElement(coursesMenuItemElement);
             coursesMenuItemElement.Click();
-            return new CourseManagementPage(driver);
+            return ConstructPage<CourseManagementPage>();
         }
 
         public CodeHistoryPage CodeHistoryMenuItemClick()
@@ -85,7 +89,7 @@ namespace OnlineExam.Pages.POM
             navBarElement.Click();
             WaitWhileNotClickableWebElement(mailBoxMenuItemElement);
             mailBoxMenuItemElement.Click();
-            return new MailBoxPage(driver);
+            return ConstructPage<MailBoxPage>();
         }
 
         public ContactUsPage ContactUsMenuItemElementClick()
@@ -93,7 +97,7 @@ namespace OnlineExam.Pages.POM
             navBarElement.Click();
             WaitWhileNotClickableWebElement(contactUsMenuItemElement);
             contactUsMenuItemElement.Click();
-            return new ContactUsPage(driver);
+            return ConstructPage<ContactUsPage>();
         }
 
         public TasksPage TasksMenuItemClick()

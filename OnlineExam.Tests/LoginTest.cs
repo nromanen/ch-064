@@ -11,24 +11,25 @@ using Xunit;
 
 namespace OnlineExam.Tests
 {
-    public class LoginTest : BaseTest, IDisposable
+    public class LoginTest : BaseTest
     {
         public LoginTest()
         {
         }
+
         [Fact]
         public void SignInTest()
         {
-            var header = new Header(driver);
+            var header = ConstructPage<Header>();
             var logIn = header.GoToLogInPage();
             logIn.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            Assert.True(logIn.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+            Assert.True(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
         }
 
         [Fact]
         public void SignOutTest()
         {
-            var header = new Header(driver);
+            var header = ConstructPage<Header>();
             var logIn = header.GoToLogInPage();
             logIn.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             driver.Navigate().Refresh();
@@ -37,9 +38,5 @@ namespace OnlineExam.Tests
             Assert.True(logIn.IsSignInPresentedInHeader());
         }
 
-        public void Dispose()
-        {
-            driver.Dispose();
-        }
     }
 }
