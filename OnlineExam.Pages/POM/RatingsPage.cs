@@ -12,5 +12,9 @@ namespace OnlineExam.Pages.POM
         public RatingsPage(IWebDriver driver) : base(driver)
         {
         }
+
+        public RatingsPage()
+        {
+        }
     }
 }

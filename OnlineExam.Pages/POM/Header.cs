@@ -93,5 +93,19 @@ namespace OnlineExam.Pages.POM
             userAccountManageLinkElement.Click();
             return new UserInfoPage(driver);
         }
+
+        public bool IsUserEmailPresentedInHeader(string email)
+        {
+            Header header = ConstructPage<Header>();
+
+            if (header.GetHeaderUserName() == email.ToUpper())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

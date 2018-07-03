@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies timestamp="07/03/2018 14:20:39">
+  <assembly name="D:\ch-064\OnlineExam.Tests\bin\debug\OnlineExam.Tests.DLL" environment="64-bit .NET 4.0.30319.42000 [collection-per-class, parallel (4 threads)]" test-framework="xUnit.net 2.3.1.3858" run-date="2018-07-03" run-time="14:15:59" config-file="D:\ch-064\packages\xunit.runner.console.2.3.1\tools\net452\xunit.console.exe.Config" total="13" passed="0" failed="13" skipped="0" time="278.829" errors="0">
+    <errors />
+    <collection total="1" passed="0" failed="1" skipped="0" name="Test collection for OnlineExam.Tests.ChangeEmailTest" time="0.000">
+      <test name="OnlineExam.Tests.ChangeEmailTest.TestChangeEmail" type="OnlineExam.Tests.ChangeEmailTest" method="TestChangeEmail" time="0" result="Fail">
+        <failure exception-type="OpenQA.Selenium.WebDriverException">
+          <message><![CDATA[OpenQA.Selenium.WebDriverException : The HTTP request to the remote WebDriver server for URL http://localhost:54299/session/38c9d6393fe27d54a338210f4411a7ef/url timed out after 60 seconds.\r\n---- System.Net.WebException : Время ожидания операции истекло]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Remote.HttpCommandExecutor.MakeHttpRequest(HttpRequestInfo requestInfo)
+   в OpenQA.Selenium.Remote.HttpCommandExecutor.Execute(Command commandToExecute)
+   в OpenQA.Selenium.Remote.DriverServiceCommandExecutor.Execute(Command commandToExecute)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OnlineExam.Tests.BaseTest..ctor() в D:\ch-064\OnlineExam.Tests\BaseTest.cs:строка 23
+   в OnlineExam.Tests.ChangeEmailTest..ctor() в D:\ch-064\OnlineExam.Tests\ChangeEmailTest.cs:строка 13
+----- Inner Stack Trace -----
+   в System.Net.HttpWebRequest.GetResponse()
+   в OpenQA.Selenium.Remote.HttpCommandExecutor.MakeHttpRequest(HttpRequestInfo requestInfo)]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="1" passed="0" failed="1" skipped="0" name="Test collection for OnlineExam.Tests.ChangeNameTest" time="0.000">
+      <test name="OnlineExam.Tests.ChangeNameTest.TestChangeName" type="OnlineExam.Tests.ChangeNameTest" method="TestChangeName" time="0" result="Fail">
+        <failure exception-type="OpenQA.Selenium.WebDriverException">
+          <message><![CDATA[OpenQA.Selenium.WebDriverException : The HTTP request to the remote WebDriver server for URL http://localhost:54298/session/b7a1dfff72a8e3f40540c1e5c21e5e72/url timed out after 60 seconds.\r\n---- System.Net.WebException : Время ожидания операции истекло]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Remote.HttpCommandExecutor.MakeHttpRequest(HttpRequestInfo requestInfo)
+   в OpenQA.Selenium.Remote.HttpCommandExecutor.Execute(Command commandToExecute)
+   в OpenQA.Selenium.Remote.DriverServiceCommandExecutor.Execute(Command commandToExecute)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OnlineExam.Tests.BaseTest..ctor() в D:\ch-064\OnlineExam.Tests\BaseTest.cs:строка 23
+   в OnlineExam.Tests.ChangeNameTest..ctor()
+----- Inner Stack Trace -----
+   в System.Net.HttpWebRequest.GetResponse()
+   в OpenQA.Selenium.Remote.HttpCommandExecutor.MakeHttpRequest(HttpRequestInfo requestInfo)]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="1" passed="0" failed="1" skipped="0" name="Test collection for OnlineExam.Tests.CreateCourseTest" time="0.000">
+      <test name="OnlineExam.Tests.CreateCourseTest.CreateCourse_ShouldCreateCourse" type="OnlineExam.Tests.CreateCourseTest" method="CreateCourse_ShouldCreateCourse" time="0" result="Fail">
+        <failure exception-type="OpenQA.Selenium.WebDriverException">
+          <message><![CDATA[OpenQA.Selenium.WebDriverException : The HTTP request to the remote WebDriver server for URL http://localhost:54301/session/35e1b72ada088d95cd75cc9a60cb4b2c/url timed out after 60 seconds.\r\n---- System.Net.WebException : Время ожидания операции истекло]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Remote.HttpCommandExecutor.MakeHttpRequest(HttpRequestInfo requestInfo)
+   в OpenQA.Selenium.Remote.HttpCommandExecutor.Execute(Command commandToExecute)
+   в OpenQA.Selenium.Remote.DriverServiceCommandExecutor.Execute(Command commandToExecute)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OnlineExam.Tests.BaseTest..ctor() в D:\ch-064\OnlineExam.Tests\BaseTest.cs:строка 23
+   в OnlineExam.Tests.CreateCourseTest..ctor() в D:\ch-064\OnlineExam.Tests\CreateCourseTest.cs:строка 16
+----- Inner Stack Trace -----
+   в System.Net.HttpWebRequest.GetResponse()
+   в OpenQA.Selenium.Remote.HttpCommandExecutor.MakeHttpRequest(HttpRequestInfo requestInfo)]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="3" passed="0" failed="3" skipped="0" name="Test collection for OnlineExam.Tests.AdminTest" time="0.000">
+      <test name="OnlineExam.Tests.AdminTest.ChangeUserRole" type="OnlineExam.Tests.AdminTest" method="ChangeUserRole" time="0" result="Fail">
+        <failure exception-type="OpenQA.Selenium.WebDriverException">
+          <message><![CDATA[OpenQA.Selenium.WebDriverException : The HTTP request to the remote WebDriver server for URL http://localhost:54300/session/75aea363b01a7f7b4d85083b093e8877/url timed out after 60 seconds.\r\n---- System.Net.WebException : Время ожидания операции истекло]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Remote.HttpCommandExecutor.MakeHttpRequest(HttpRequestInfo requestInfo)
+   в OpenQA.Selenium.Remote.HttpCommandExecutor.Execute(Command commandToExecute)
+   в OpenQA.Selenium.Remote.DriverServiceCommandExecutor.Execute(Command commandToExecute)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OnlineExam.Tests.BaseTest..ctor() в D:\ch-064\OnlineExam.Tests\BaseTest.cs:строка 23
+   в OnlineExam.Tests.AdminTest..ctor() в D:\ch-064\OnlineExam.Tests\AdminTest.cs:строка 19
+----- Inner Stack Trace -----
+   в System.Net.HttpWebRequest.GetResponse()
+   в OpenQA.Selenium.Remote.HttpCommandExecutor.MakeHttpRequest(HttpRequestInfo requestInfo)]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.AdminTest.IsUserPresentedInUserListTest" type="OnlineExam.Tests.AdminTest" method="IsUserPresentedInUserListTest" time="0" result="Fail">
+        <failure exception-type="OpenQA.Selenium.WebDriverException">
+          <message><![CDATA[OpenQA.Selenium.WebDriverException : unknown error: cannot determine loading status\nfrom unknown error: cannot determine loading status\nfrom disconnected: received Inspector.detached event\n  (Session info: chrome=67.0.3396.99)\n  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64)]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OnlineExam.Tests.BaseTest..ctor() в D:\ch-064\OnlineExam.Tests\BaseTest.cs:строка 23
+   в OnlineExam.Tests.AdminTest..ctor() в D:\ch-064\OnlineExam.Tests\AdminTest.cs:строка 19]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.AdminTest.DeleteUserTest" type="OnlineExam.Tests.AdminTest" method="DeleteUserTest" time="0" result="Fail">
+        <failure exception-type="OpenQA.Selenium.WebDriverTimeoutException">
+          <message><![CDATA[OpenQA.Selenium.WebDriverTimeoutException : Timed out after 100 seconds\r\n---- OpenQA.Selenium.NoSuchWindowException : no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=67.0.3396.99)\n  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64)]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Support.UI.DefaultWait`1.ThrowTimeoutException(String exceptionMessage, Exception lastException)
+   в OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)
+   в OnlineExam.Pages.POM.BasePage.WaitWhileNotClickableWebElement(IWebElement webElement) в D:\ch-064\OnlineExam.Pages\POM\BasePage.cs:строка 55
+   в OnlineExam.Pages.POM.Header.GoToLogInPage() в D:\ch-064\OnlineExam.Pages\POM\Header.cs:строка 59
+   в OnlineExam.Tests.AdminTest..ctor() в D:\ch-064\OnlineExam.Tests\AdminTest.cs:строка 22
+----- Inner Stack Trace -----
+   в OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value)
+   в OpenQA.Selenium.Support.PageObjects.DefaultElementLocator.LocateElement(IEnumerable`1 bys)
+   в OpenQA.Selenium.Support.PageObjects.WebElementProxy.get_Element()
+   в OpenQA.Selenium.Support.PageObjects.WebElementProxy.Invoke(IMessage msg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в OpenQA.Selenium.IWebElement.get_Displayed()
+   в OpenQA.Selenium.Support.UI.ExpectedConditions.<>c__DisplayClass20_0.<ElementToBeClickable>b__0(IWebDriver driver)
+   в OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="2" passed="0" failed="2" skipped="0" name="Test collection for OnlineExam.Tests.LoginTest" time="0.000">
+      <test name="OnlineExam.Tests.LoginTest.SignOutTest" type="OnlineExam.Tests.LoginTest" method="SignOutTest" time="0" result="Fail">
+        <failure exception-type="OpenQA.Selenium.WebDriverException">
+          <message><![CDATA[OpenQA.Selenium.WebDriverException : unknown error: cannot determine loading status\nfrom unknown error: cannot determine loading status\nfrom disconnected: received Inspector.detached event\n  (Session info: chrome=67.0.3396.99)\n  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64)]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OnlineExam.Tests.BaseTest..ctor() в D:\ch-064\OnlineExam.Tests\BaseTest.cs:строка 23
+   в OnlineExam.Tests.LoginTest..ctor() в D:\ch-064\OnlineExam.Tests\LoginTest.cs:строка 16]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.LoginTest.SignInTest" type="OnlineExam.Tests.LoginTest" method="SignInTest" time="0" result="Fail">
+        <failure exception-type="OpenQA.Selenium.WebDriverException">
+          <message><![CDATA[OpenQA.Selenium.WebDriverException : unknown error: cannot determine loading status\nfrom unknown error: cannot determine loading status\nfrom disconnected: received Inspector.detached event\n  (Session info: chrome=67.0.3396.99)\n  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64)]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OnlineExam.Tests.BaseTest..ctor() в D:\ch-064\OnlineExam.Tests\BaseTest.cs:строка 23
+   в OnlineExam.Tests.LoginTest..ctor() в D:\ch-064\OnlineExam.Tests\LoginTest.cs:строка 16]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="2" passed="0" failed="2" skipped="0" name="Test collection for OnlineExam.Tests.RegisterTest" time="0.000">
+      <test name="OnlineExam.Tests.RegisterTest.SignUpAsUsedEmail" type="OnlineExam.Tests.RegisterTest" method="SignUpAsUsedEmail" time="0" result="Fail">
+        <failure exception-type="OpenQA.Selenium.WebDriverException">
+          <message><![CDATA[OpenQA.Selenium.WebDriverException : unknown error: cannot determine loading status\nfrom unknown error: cannot determine loading status\nfrom disconnected: Unable to receive message from renderer\n  (Session info: chrome=67.0.3396.99)\n  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64)]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OnlineExam.Tests.BaseTest..ctor() в D:\ch-064\OnlineExam.Tests\BaseTest.cs:строка 23
+   в OnlineExam.Tests.RegisterTest..ctor() в D:\ch-064\OnlineExam.Tests\RegisterTest.cs:строка 14]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.RegisterTest.SignUpTest" type="OnlineExam.Tests.RegisterTest" method="SignUpTest" time="0" result="Fail">
+        <failure exception-type="OpenQA.Selenium.WebDriverException">
+          <message><![CDATA[OpenQA.Selenium.WebDriverException : unknown error: cannot determine loading status\nfrom unknown error: cannot determine loading status\nfrom disconnected: unable to send message to renderer\n  (Session info: chrome=67.0.3396.99)\n  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64)]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OnlineExam.Tests.BaseTest..ctor() в D:\ch-064\OnlineExam.Tests\BaseTest.cs:строка 23
+   в OnlineExam.Tests.RegisterTest..ctor() в D:\ch-064\OnlineExam.Tests\RegisterTest.cs:строка 14]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="1" passed="0" failed="1" skipped="0" name="Test collection for OnlineExam.Tests.AddNewTaskAsTeacher" time="0.000">
+      <test name="OnlineExam.Tests.AddNewTaskAsTeacher.AddNewTaskTest" type="OnlineExam.Tests.AddNewTaskAsTeacher" method="AddNewTaskTest" time="0" result="Fail">
+        <failure exception-type="OpenQA.Selenium.WebDriverException">
+          <message><![CDATA[OpenQA.Selenium.WebDriverException : unknown error: cannot determine loading status\nfrom unknown error: cannot determine loading status\nfrom disconnected: received Inspector.detached event\n  (Session info: chrome=67.0.3396.99)\n  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64)]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OnlineExam.Tests.BaseTest..ctor() в D:\ch-064\OnlineExam.Tests\BaseTest.cs:строка 23
+   в OnlineExam.Tests.AddNewTaskAsTeacher..ctor() в D:\ch-064\OnlineExam.Tests\AddNewTaskAsTeacher.cs:строка 8]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="2" passed="0" failed="2" skipped="0" name="Test collection for OnlineExam.Tests.NewsTest" time="38.860">
+      <test name="OnlineExam.Tests.NewsTest.ReferencesExistTests" type="OnlineExam.Tests.NewsTest" method="ReferencesExistTests" time="0" result="Fail">
+        <failure exception-type="OpenQA.Selenium.WebDriverException">
+          <message><![CDATA[OpenQA.Selenium.WebDriverException : unknown error: cannot determine loading status\nfrom unknown error: cannot determine loading status\nfrom disconnected: received Inspector.detached event\n  (Session info: chrome=67.0.3396.99)\n  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64)]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OnlineExam.Tests.BaseTest..ctor() в D:\ch-064\OnlineExam.Tests\BaseTest.cs:строка 23
+   в OnlineExam.Tests.NewsTest..ctor() в D:\ch-064\OnlineExam.Tests\NewsTest.cs:строка 16]]></stack-trace>
+        </failure>
+      </test>
+      <test name="OnlineExam.Tests.NewsTest.CreateNewsTest" type="OnlineExam.Tests.NewsTest" method="CreateNewsTest" time="38.8596372" result="Fail">
+        <failure exception-type="System.InvalidOperationException">
+          <message><![CDATA[System.InvalidOperationException : chrome not reachable\n  (Session info: chrome=67.0.3396.99)\n  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64) (100)]]></message>
+          <stack-trace><![CDATA[   в OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   в OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(String mechanism, String value)
+   в OpenQA.Selenium.Support.PageObjects.DefaultElementLocator.LocateElement(IEnumerable`1 bys)
+   в OpenQA.Selenium.Support.PageObjects.WebElementProxy.get_Element()
+   в OpenQA.Selenium.Support.PageObjects.WebElementProxy.Invoke(IMessage msg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   в OpenQA.Selenium.IWebElement.get_Displayed()
+   в OpenQA.Selenium.Support.UI.ExpectedConditions.<>c__DisplayClass20_0.<ElementToBeClickable>b__0(IWebDriver driver)
+   в OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)
+   в OnlineExam.Pages.POM.BasePage.WaitWhileNotClickableWebElement(IWebElement webElement) в D:\ch-064\OnlineExam.Pages\POM\BasePage.cs:строка 55
+   в OnlineExam.Pages.POM.SideBar.NewsMenuItemClick() в D:\ch-064\OnlineExam.Pages\POM\SideBar.cs:строка 58
+   в OnlineExam.Tests.NewsTest.CreateNewsTest() в D:\ch-064\OnlineExam.Tests\NewsTest.cs:строка 41]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+  </assembly>
+</assemblies>

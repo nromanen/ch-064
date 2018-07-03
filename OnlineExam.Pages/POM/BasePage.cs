@@ -46,6 +46,20 @@ namespace OnlineExam.Pages.POM
             }
         }
 
+        public T ConstructPageElement<T>(IWebElement pageElement) where T: BasePageElement, new()
+        {
+            var element = new T();
+            element.SetDriver(driver);
+            try
+            {
+                PageFactory.InitElements(pageElement, element);
+                return element;
+            } catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public static TimeSpan WAIT_TIME = new TimeSpan(0, 0, 100);
 
 
@@ -55,17 +69,9 @@ namespace OnlineExam.Pages.POM
             wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
         }
 
-        public string GetText(string elementType, string element)
+        public string GetText(IWebElement element)
         {
-            if (elementType == "Id")
-            {
-                return driver.FindElement(By.Id(element)).Text;
-            }
-            else if (elementType == "CssSelector")
-            {
-                return driver.FindElement(By.CssSelector(element)).Text;
-            }
-            else return String.Empty;
+            return element.Text;
         }
         public string GetUrl()
         {

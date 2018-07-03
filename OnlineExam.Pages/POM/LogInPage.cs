@@ -16,6 +16,10 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+        public LogInPage()
+        {
+        }
+
         [FindsBy(How = How.Id, Using = "emailLogin")]
         public IWebElement emailInput;
 
@@ -41,23 +45,10 @@ namespace OnlineExam.Pages.POM
             driver.Navigate().Refresh();
 
             Thread.Sleep(1000);
-
-            return new IndexPage(driver);
+            return ConstructPage<IndexPage>();
         }
 
-        public bool IsUserEmailPresentedInHeader(string email)
-        {
-            Header header = new Header(driver);
-
-            if (header.GetText("CssSelector", "#gn-menu > li:nth-child(3) > a:nth-child(1)") == email.ToUpper())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
 
         public bool IsSignInPresentedInHeader()
         {
