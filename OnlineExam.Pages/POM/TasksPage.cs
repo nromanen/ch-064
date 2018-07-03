@@ -15,6 +15,9 @@ namespace OnlineExam.Pages.POM
 {
     public class TasksPage : BasePage
     {
+
+        public TasksPage() { }
+
         public TasksPage(IWebDriver driver) : base(driver)
         {
             var rowItemsList = new List<TasksPageRowItem>();

@@ -16,7 +16,9 @@ namespace OnlineExam.Pages.POM
         public AddTaskAsTeacherPage(IWebDriver driver) : base(driver)
         {
         }
-  
+
+        public AddTaskAsTeacherPage() { }
+
         [FindsBy(How = How.Id, Using = "CourseId")]
         public IWebElement ListofCourses { get; set; }
 

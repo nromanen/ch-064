@@ -12,6 +12,7 @@ namespace OnlineExam.Pages.POM
 {
     public class TaskViewPage : BasePage
     {
+        public TaskViewPage() { }
         public TaskViewPage(IWebDriver driver) : base(driver)
         {
         }
