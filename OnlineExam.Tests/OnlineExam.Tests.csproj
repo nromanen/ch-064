@@ -75,6 +75,7 @@
     <Compile Include="ChangeNameTest.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="LoginTest.cs" />
+    <Compile Include="NewsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterTest.cs" />
     <Compile Include="SideBarTest.cs" />

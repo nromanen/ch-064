@@ -9,6 +9,10 @@ namespace OnlineExam.Pages.POM
 {
     public class Header : BasePage
     {
+        public Header()
+        {
+
+        }
         [FindsBy(How = How.CssSelector, Using = "#requestCulture_RequestCulture_UICulture_Name")]
         private IWebElement changeLanguageSelectElement;
 
@@ -32,20 +36,12 @@ namespace OnlineExam.Pages.POM
         public Header(IWebDriver driver) : base(driver)
         {
         }
-
-        public string GetText(string elementType, string element)
-        {
-            if (elementType == "Id")
-            {
-                return driver.FindElement(By.Id(element)).Text;
-            }
-            else if (elementType == "CssSelector")
-            {
-                return driver.FindElement(By.CssSelector(element)).Text;
-            }
-            else return String.Empty;
-        }
         
+        public bool GetSignInElement()
+        {
+            return signInLinkElement.Displayed;
+        }
+
         public string GetHeaderUserName()
         {
             return userAccountManageLinkElement.Text;
@@ -70,10 +66,11 @@ namespace OnlineExam.Pages.POM
             return new LogInPage(driver);
         }
 
-        public void ChangeLanguage(string value)
+        public Header ChangeLanguage(string value)
         {
             var selectElement = new SelectElement(changeLanguageSelectElement);
             selectElement.SelectByValue(value);
+            return this;
         }
 
         public IndexPage SignOut()

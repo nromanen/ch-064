@@ -31,8 +31,10 @@ namespace OnlineExam.Tests
             var header = new Header(driver);
             var logIn = header.GoToLogInPage();
             logIn.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+            driver.Navigate().Refresh();
             header.SignOut();
-            Assert.False(logIn.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+            driver.Navigate().Refresh();
+            Assert.True(logIn.IsSignInPresentedInHeader());
         }
 
         public void Dispose()

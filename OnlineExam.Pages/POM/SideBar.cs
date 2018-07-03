@@ -12,7 +12,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = @"a[href*='/AdminPanel/Users']")]
         private IWebElement adminPanelMenuItemElement;
 
-        [FindsBy(How = How.CssSelector, Using = @"a[href*='/AddNews/News']")]
+        [FindsBy(How = How.CssSelector, Using = "a[href*='/AddNews/News']")]
         private IWebElement newsMenuItemElement;
 
         [FindsBy(How = How.CssSelector, Using = @"a[href*='/UserRating']")]

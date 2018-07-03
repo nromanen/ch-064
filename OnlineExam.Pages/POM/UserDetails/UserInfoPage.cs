@@ -33,7 +33,8 @@ namespace OnlineExam.Pages.POM.UserDetails
         public ChangeNamePage OpenChangeNamePage()
         {
             ChangeNameButton.Click();
-            return new ChangeNamePage(this.driver);
+            return ConstructPage<ChangeNamePage>();
+            //return new ChangeNamePage(this.driver);
         }
 
         public ChangeEmailPage OpenChangeEmailPage()

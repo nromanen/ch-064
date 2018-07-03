@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -12,7 +14,6 @@ namespace OnlineExam.Pages.POM
     {
         public NewsPage(IWebDriver driver) : base(driver)
         {
-            allSections = base.driver.FindElements(By.ClassName("section")).ToList();
         }
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div > div.col-lg-4 > a:nth-child(3)")]
@@ -25,17 +26,24 @@ namespace OnlineExam.Pages.POM
         public IWebElement CSharpAdvancedReference { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".row")]//
-        protected IList<IWebElement> rowOfDivsNewsListElements;
+        private IList<IWebElement> rowOfDivsNewsListElements;
 
-        [FindsBy(How = How.CssSelector, Using = ".section")]
-        public List<IWebElement> allSections;
 
-        public NewsPage CheckCourse(int id)
+        public bool IsNewsPresentedInNewsList(string title)
         {
-            driver.Navigate().GoToUrl("http://localhost:55842/AddNews/News");
-            allSections[id - 1].Click();
-            return new NewsPage(driver);
+            if (!driver.Url.Contains("/News"))
+            {
+                return true;
+            }
+            foreach (var row in rowOfDivsNewsListElements)
+            {
+                var text = row.FindElement(By.TagName("p")).Text;
+                if (text.Equals(title))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
-
     }
 }
