@@ -19,12 +19,12 @@ namespace OnlineExam.Tests
         public void ContactUsTest()
         {
             var sideBar = ConstructPage<SideBar>();
-            var contactUs = sideBar.ContactUsMenuItemElementClick();
+            var contactUs = sideBar.GoToContactUsPage();
             contactUs.ContactUs();
             var header = ConstructPage<Header>();
             header.SignOut();
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            var mailBox = sideBar.MailBoxMenuItemElementClick();
+            var mailBox = sideBar.GoToMailBoxPage();
             Thread.Sleep(500);
             mailBox.IsMailPresentedInMailList("ewrtyuio");
         }

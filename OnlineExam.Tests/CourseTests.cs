@@ -183,7 +183,7 @@ namespace OnlineExam.Tests
             Header header = new Header(driver);
             LogInPage logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            var CourseMenu = new SideBar(driver).CoursesMenuItemClick();
+            var CourseMenu = new SideBar(driver).GoToCourseManagementPage();
         }
 
         public void LoginAsAdmin()
@@ -191,7 +191,7 @@ namespace OnlineExam.Tests
             Header header = new Header(driver);
             LogInPage logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            var CourseMenu = new SideBar(driver).CoursesMenuItemClick();
+            var CourseMenu = new SideBar(driver).GoToCourseManagementPage();
         }
        
 

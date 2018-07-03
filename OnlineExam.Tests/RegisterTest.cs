@@ -24,7 +24,7 @@ namespace OnlineExam.Tests
             header.SignOut();
             var logIn = header.GoToLogInPage();
             logIn.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            var adminPanelPage = ConstructPage<SideBar>().AdminPanelMenuItemClick();
+            var adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
             Thread.Sleep(1000);
 
             Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.REGISTRATION_EMAIL));
