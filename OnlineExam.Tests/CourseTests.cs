@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace OnlineExam.Tests
 {
-    public class CourseTests : BaseTest, IDisposable
+    public class CourseTests : BaseTest
     {
         private readonly ITestOutputHelper output;
 
@@ -17,71 +17,95 @@ namespace OnlineExam.Tests
         }
         #region Create tests 2
         [Fact]
-        public void CreateCourse_ShouldCreateCourse()
+        public void CreateCourse_ValidData()
         {
             LoginAsTeacher();
-            string Title = "Title1", Description = "Description1";
-            var CourseMenegmentPage = new CourseManagementPage(driver);
-            CourseMenegmentPage.AddCourseBtn.Click();
-            var CreateCoursePage = new CreateCoursePage(driver);
+            string Title = "NEW", Description = "Description1";
+            var CourseMenegmentPage = ConstructPage<CourseManagementPage>();
+            if (CourseMenegmentPage != null)
+            {
+                CourseMenegmentPage.AddCourseBtn.Click();
+            }
 
-            CreateCoursePage.FillCourse(Title, Description);
-            Assert.Equal(Title, CreateCoursePage.GetName());
-            Assert.Equal(Description, CreateCoursePage.GetDescription());
+            var CreateCoursePage = ConstructPage<CreateCoursePage>();
+            if (CreateCoursePage != null)
+            {
+                CreateCoursePage.FillCourse(Title, Description);
+                Assert.Equal(Title, CreateCoursePage.GetName());
+                Assert.Equal(Description, CreateCoursePage.GetDescription());
 
-            CreateCoursePage.CourseOkBtn.Click();
-            Assert.True(CourseMenegmentPage.IsExist(Title));
+                CreateCoursePage.CourseOkBtn.Click();
+                Assert.True(CourseMenegmentPage.IsExist(Title));
+            } 
         }
 
         [Fact]
-        public void CreateCourse_ErrorMessageShouldAppear()
+        public void CreateCourse_InvalidData()
         {
             LoginAsTeacher();
             string Title = String.Empty, Description = "Description1";
             var expectedURL = "http://localhost:55842/CourseManagement/Create";
             
-            var CourseMenegmentPage = new CourseManagementPage(driver);
-            CourseMenegmentPage.AddCourseBtn.Click();
-            var CreateCoursePage = new CreateCoursePage(driver);
+            var CourseMenegmentPage = ConstructPage<CourseManagementPage>();
+            if (CourseMenegmentPage != null)
+            {
+                CourseMenegmentPage.AddCourseBtn.Click();
+            }
+            
+            var CreateCoursePage = ConstructPage<CreateCoursePage>();
+            if (CreateCoursePage != null)
+            {
+                CreateCoursePage.FillCourse(Title, Description);
+                Assert.Equal(Title, CreateCoursePage.GetName());
+                Assert.Equal(Description, CreateCoursePage.GetDescription());
 
-            CreateCoursePage.FillCourse(Title, Description);
-            Assert.Equal(Title, CreateCoursePage.GetName());
-            Assert.Equal(Description, CreateCoursePage.GetDescription());
-
-            CreateCoursePage.CourseOkBtn.Click();
-            Thread.Sleep(2000);
-
-            string actualURL = driver.Url;
-            Assert.Equal(expectedURL,actualURL);
+                CreateCoursePage.CourseOkBtn.Click();
+                string actualURL = driver.Url;
+                Assert.Equal(expectedURL, actualURL);
+            }
         }
         #endregion
 
-        #region Delete test 1
+        #region Delete test
         [Fact]
         public void DeleteCourse_ShouldDeleteCourse()
         {
             LoginAsTeacher();
-            string CourseName = "Title1";
-            var CourseMenegmentPage = new CourseManagementPage(driver);
-            CourseMenegmentPage.MyCoursesBtn.Click();
-            var ViewCoursePage = new ViewCoursesPage(driver);
-            ViewCoursePage.DeleteCourse(CourseName);
-            Assert.True(ViewCoursePage.IsCourseDeleted(CourseName));
+            string CourseName = "NEW";
+            var CourseMenegmentPage = ConstructPage<CourseManagementPage>();
+            if (CourseMenegmentPage != null)
+            {
+                CourseMenegmentPage.MyCoursesBtn.Click();
+            }
+
+            var ViewCoursePage = ConstructPage<ViewCoursesPage>();
+            if (ViewCoursePage != null)
+            {
+                ViewCoursePage.DeleteCourse(CourseName);
+                Assert.True(ViewCoursePage.IsCourseDeleted(CourseName));
+            }
         }
         #endregion
 
-        #region Restore test 1
+        #region Restore test
         [Fact]
         public void RestoreCourse_ShouldRestoreCourse()
         {
             LoginAsTeacher();
-            string CourseName = "Title1";
-            var CourseMenegmentPage = new CourseManagementPage(driver);
-            CourseMenegmentPage.MyCoursesBtn.Click();
-            var ViewCoursePage = new ViewCoursesPage(driver);
-            Assert.True(ViewCoursePage.IsCourseDeleted(CourseName));
-            ViewCoursePage.RestoreCourse(CourseName);
-            Assert.True(ViewCoursePage.IsCourseRestored(CourseName));
+            string CourseName = "NEW";
+            var CourseMenegmentPage = ConstructPage<CourseManagementPage>();
+            if (CourseMenegmentPage != null)
+            {
+                CourseMenegmentPage.MyCoursesBtn.Click();
+            }
+
+            var ViewCoursePage = ConstructPage<ViewCoursesPage>();
+            if (ViewCoursePage != null)
+            {
+                Assert.True(ViewCoursePage.IsCourseDeleted(CourseName));
+                ViewCoursePage.RestoreCourse(CourseName);
+                Assert.True(ViewCoursePage.IsCourseRestored(CourseName));
+            }
         }
         #endregion
 
@@ -91,45 +115,60 @@ namespace OnlineExam.Tests
         {
             LoginAsTeacher();
             string courseName = "NEW";
-            var CourseMenegmentPage = new CourseManagementPage(driver);
-            CourseMenegmentPage.MyCoursesBtn.Click();
-            var viewCoursePage = new ViewCoursesPage(driver);
-            //TODO: fix this shit with link
-            var href = viewCoursePage.GetCourseLink(courseName);
-            driver.Navigate().GoToUrl(href);
-            var editCoursePage = new CreateCoursePage(driver);
-            var oldName = editCoursePage.GetName();
-            var oldDescription = editCoursePage.GetDescription();
-            string newName = "asda", newDescription = "asda";
-            editCoursePage.EditCourse(newName, newDescription);
-            editCoursePage.CourseOkBtn.Click();
-            //TODO: fix this shit with link
-            var newHref = viewCoursePage.GetCourseLink(newName);
-            driver.Navigate().GoToUrl(newHref);
-            Assert.Equal(newName,editCoursePage.GetName());
-            Assert.Equal(newDescription, editCoursePage.GetDescription());
-            Thread.Sleep(3000);
+            var courseMenegmentPage = ConstructPage<CourseManagementPage>();
+            if (courseMenegmentPage != null)
+            {
+                courseMenegmentPage.MyCoursesBtn.Click();
+            }
+            var viewCoursePage = ConstructPage<ViewCoursesPage>();
+            if (viewCoursePage != null)
+            {
+                //TODO: fix this shit with link
+                var href = viewCoursePage.GetCourseLink(courseName);
+                driver.Navigate().GoToUrl(href);
+            }
+
+            var editCoursePage = ConstructPage<CreateCoursePage>();
+            if (editCoursePage != null)
+            {
+                var oldName = editCoursePage.GetName();
+                var oldDescription = editCoursePage.GetDescription();
+                string newName = "asda", newDescription = "asda";
+                editCoursePage.EditCourse(newName, newDescription);
+                editCoursePage.CourseOkBtn.Click();
+                //TODO: fix this shit with link
+                var newHref = viewCoursePage.GetCourseLink(newName);
+                driver.Navigate().GoToUrl(newHref);
+                Assert.Equal(newName, editCoursePage.GetName());
+                Assert.Equal(newDescription, editCoursePage.GetDescription());
+            }
         }
         #endregion
 
-        #region Change course owner test 1
+        #region Change course owner test
         [Fact]
         public void ChangeCourseOwner_ShouldChangeOwner()
         {
             LoginAsAdmin();
             string CourseName = "C# Starter";
-            var CourseMenegmentPage = new CourseManagementPage(driver);
-            
+            var CourseMenegmentPage = ConstructPage<CourseManagementPage>();
             var tmp = CourseMenegmentPage.ChangeOwner(CourseName);
-            //TODO: fix this shit
-            driver.Navigate().GoToUrl(tmp);
-            var ChangeOwner = new ChangeCourseOwnerPage(driver);
-            string oldOwner = ChangeOwner.GetOwner();
-            ChangeOwner.ChangeOwner();
-            
-            driver.Navigate().GoToUrl(tmp);
-            string newOwner = ChangeOwner.GetOwner();
-            Assert.NotEqual(oldOwner,newOwner);
+            if (CourseMenegmentPage != null)
+            {
+                //TODO: fix this shit
+                driver.Navigate().GoToUrl(tmp);
+            }
+
+            var ChangeOwner = ConstructPage<ChangeCourseOwnerPage>();
+            if (ChangeOwner != null)
+            {
+                string oldOwner = ChangeOwner.GetOwner();
+                ChangeOwner.ChangeOwner();
+
+                driver.Navigate().GoToUrl(tmp);
+                string newOwner = ChangeOwner.GetOwner();
+                Assert.NotEqual(oldOwner, newOwner);
+            }  
         }
         #endregion
 
@@ -160,8 +199,6 @@ namespace OnlineExam.Tests
 
         //TODO: 1. Execute tests without Visual studio
         //TODO: 2. Generate report for Executed Tests
-        //TODO: 3. Backup and Rollback DB in tests
-
-        
+        //TODO: 3. Backup and Rollback DB in tests 
     }
 }

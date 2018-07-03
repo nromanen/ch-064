@@ -15,6 +15,11 @@ namespace OnlineExam.Pages.POM
         /// <summary>
         /// http://localhost:55842/CourseManagement/ChangeOwner/1
         /// </summary>
+        /// 
+        public ChangeCourseOwnerPage()
+        {
+                
+        }
 
         public ChangeCourseOwnerPage(IWebDriver driver) : base(driver){}
 
@@ -22,7 +27,7 @@ namespace OnlineExam.Pages.POM
         public IWebElement TeacherSelect { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "input.btn")]
-        public IWebElement btnOK { get; set; }
+        public IWebElement BtnOK { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".container > p:nth-child(2)")]
         public IWebElement CurrentOwner { get; set; }
@@ -56,7 +61,7 @@ namespace OnlineExam.Pages.POM
             {
                 value.SelectByText(teacher1);
             }
-            btnOK.Click();
+            BtnOK.Click();
         }
 
         public string OwnerParser(string text)

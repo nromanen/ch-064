@@ -16,7 +16,10 @@ namespace OnlineExam.Pages.POM
         /// Course managment as teacher
         /// http://localhost:55842/CourseManagement
         /// </summary>
+        public CourseManagementPage()
+        {
 
+        }
         public CourseManagementPage(IWebDriver driver) : base(driver) { }
 
         [FindsBy(How = How.CssSelector, Using = "a.btn:nth-child(1)")]

@@ -10,6 +10,11 @@ namespace OnlineExam.Pages.POM
 {
     public class CreateCoursePage : BasePage
     {
+
+        public CreateCoursePage()
+        {
+
+        }
         /// <summary>
         /// http://localhost:55842/CourseManagement/Create
         /// </summary>

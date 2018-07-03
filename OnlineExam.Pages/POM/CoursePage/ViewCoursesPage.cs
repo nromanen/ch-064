@@ -16,6 +16,11 @@ namespace OnlineExam.Pages.POM
         /// <summary>
         /// http://localhost:55842/CourseManagement/ViewCourses
         /// </summary>
+        /// 
+        public ViewCoursesPage()
+        {
+                
+        }
 
         public ViewCoursesPage(IWebDriver driver) : base(driver) { }
 
@@ -39,7 +44,7 @@ namespace OnlineExam.Pages.POM
             var List = FindCourse(courseName);
             foreach (var item in List)
             {
-                MessageBox.Show(item.Text);
+                //MessageBox.Show(item.Text);
                 if (item.Text.Equals("Відновити") || item.Text.Equals("Recover"))
                     return true;
             }
@@ -61,7 +66,7 @@ namespace OnlineExam.Pages.POM
             var List = FindCourse(courseName);
             foreach (var item in List)
             {
-                MessageBox.Show(item.Text);
+                //MessageBox.Show(item.Text);
                 if (item.Text.Equals("Видалити") || item.Text.Equals("Delete"))
                     return true;
             }
@@ -98,7 +103,10 @@ namespace OnlineExam.Pages.POM
                     //string link = item.GetAttribute("href");
                     //MessageBox.Show(link);
                     //item.Click();
-
+                    //MessageBox.Show(item.Text);
+                    //MessageBox.Show(link);
+                    WaitWhileNotClickableWebElement(item);
+                    item.Click();
                     // driver.FindElement(By.PartialLinkText(link)).Click();
                     #endregion
                 }
