@@ -73,7 +73,7 @@ namespace OnlineExam.Pages.POM
             navBarElement.Click();
             WaitWhileNotClickableWebElement(coursesMenuItemElement);
             coursesMenuItemElement.Click();
-            return new CourseManagementPage(driver);
+            return ConstructPage<CourseManagementPage>();
         }
 
         public CodeHistoryPage CodeHistoryMenuItemClick()
