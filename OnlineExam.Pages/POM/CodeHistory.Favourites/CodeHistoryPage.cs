@@ -18,7 +18,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.ClassName, Using = "col-lg-3 tabs history active")]
         public IWebElement HistoryButton { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = "col-lg-2 tabs favourites")]
+        [FindsBy(How = How.ClassName, Using = "favourites")]
         public IWebElement FavouritesButton { get; set; }
 
         

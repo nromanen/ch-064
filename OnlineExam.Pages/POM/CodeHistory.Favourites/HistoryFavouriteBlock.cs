@@ -15,29 +15,28 @@ namespace OnlineExam.Pages.POM.CodeHistory.Favourites
         }
 
         [FindsBy(How = How.ClassName, Using = "row")]
-        public IList<IWebElement> CodeHistoryBlockOfExecutedCode;
-                
+        public IList<IWebElement> CodeHistoryBlockOfExecutedCode;    
 
-            [FindsBy(How = How.ClassName, Using = "form-control titlecode")]
-            public IWebElement IndexersField { get; set; }
+        [FindsBy(How = How.ClassName, Using = "form-control titlecode")]
+        public IWebElement IndexersField { get; set; }
 
-            [FindsBy(How = How.Id, Using = "code-example")]
-            public IWebElement IndexersFieldText { get; set; }
+        [FindsBy(How = How.Id, Using = "code-example")]
+        public IWebElement IndexersFieldText { get; set; }
 
-            [FindsBy(How = How.Id, Using = "myBtn")]
-            public IWebElement SaveButton{ get; set; }
+        [FindsBy(How = How.Id, Using = "myBtn")]
+        public IWebElement SaveButton{ get; set; }
 
-            [FindsBy(How = How.ClassName, Using = "form-control col")]
-            public IWebElement TaskField { get; set; }
+        [FindsBy(How = How.ClassName, Using = "form-control col")]
+        public IWebElement TaskField { get; set; }
 
-            [FindsBy(How = How.ClassName, Using = "col-lg-12")]
-            public IWebElement TaskTime { get; set; }
+        [FindsBy(How = How.ClassName, Using = "col-lg-12")]
+        public IWebElement TaskTime { get; set; }
 
-            [FindsBy(How = How.Id, Using = "icon")]
-            public IWebElement LikeButton { get; set; }
+        [FindsBy(How = How.Id, Using = "icon")]
+        public IWebElement LikeButton { get; set; }
 
-            [FindsBy(How = How.ClassName, Using = "col-lg-1")]
-            public IWebElement StartButton { get; set; }
+        [FindsBy(How = How.ClassName, Using = "col-lg-1")]
+        public IWebElement StartButton { get; set; }
         
         public void ReviewExecutedCode ()
         {
