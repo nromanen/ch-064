@@ -11,7 +11,7 @@ using Xunit;
 
 namespace OnlineExam.Tests
 {
-    public class LoginTest : BaseTest, IDisposable
+    public class LoginTest : BaseTest
     {
         public LoginTest()
         {
@@ -37,9 +37,5 @@ namespace OnlineExam.Tests
             Assert.True(logIn.IsSignInPresentedInHeader());
         }
 
-        public void Dispose()
-        {
-            driver.Dispose();
-        }
     }
 }

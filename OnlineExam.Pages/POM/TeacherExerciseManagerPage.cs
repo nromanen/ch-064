@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -15,7 +17,13 @@ namespace OnlineExam.Pages.POM
         }
 
         [FindsBy(How = How.TagName, Using = "tr")]
-        public IList<IWebElement> RowOfTdsTaskNamesListElementspublic { get; set; }
+        public IList<IWebElement> RowOfTrs { get; set; }
+
+        [FindsBy(How = How.Id, Using = "bluhighl")]
+        public IList<IWebElement> RowOfIDS { get; set; }
+
+        [FindsBy(How =How.Id, Using = "bluhighl")]
+        public IWebElement TaskNameId { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "btn btn-sm btn-default")]
         public IWebElement ChangeButton { get; set; }
@@ -31,22 +39,24 @@ namespace OnlineExam.Pages.POM
 
         public bool IsTaskAvailable(string TaskName)
         {
-            foreach (var tr in RowOfTdsTaskNamesListElementspublic)
+          
+            foreach (var id in RowOfIDS)
             {
-                var text = tr.FindElement(By.Id("bluhighl")).Text;
+                var text = id.Text;
                 if (text.Equals(TaskName))
                 {
                     return true;
                 }
             }
+                
             return false;
         }
 
         public void ClickOnChangeButton(string TaskName)
         {
-            foreach (var tr in RowOfTdsTaskNamesListElementspublic)
+            foreach (var id in RowOfIDS)
             {
-                var text = tr.FindElement(By.Id("bluhighl")).Text;
+                var text = id.Text;
                 if (text.Equals(TaskName))
                 {
                     ChangeButton.Click();
@@ -57,22 +67,27 @@ namespace OnlineExam.Pages.POM
 
         public void ClickOnDeleteButton(string TaskName)
         {
-            foreach (var tr in RowOfTdsTaskNamesListElementspublic)
+            foreach(var tr in RowOfTrs)
             {
-                var text = tr.FindElement(By.Id("bluhighl")).Text;
+                var hz = tr.Text;
+                MessageBox.Show(hz);
+                foreach (var id in RowOfIDS)
+                {
+                var text = id.Text;
                 if (text.Equals(TaskName))
                 {
                     DeleteButton.Click();
                     break;
+                }
                 }
             }
         }
 
         public void ClickOnSolutionsButton(string TaskName)
         {
-            foreach (var tr in RowOfTdsTaskNamesListElementspublic)
+            foreach (var id in RowOfIDS)
             {
-                var text = tr.FindElement(By.Id("bluhighl")).Text;
+                var text = id.Text;
                 if (text.Equals(TaskName))
                 {
                     SolutionButton.Click();
@@ -88,12 +103,12 @@ namespace OnlineExam.Pages.POM
 
         public void ClickOnTaskname(string TaskName)
         {
-            foreach (var tr in RowOfTdsTaskNamesListElementspublic)
+            foreach (var id in RowOfIDS)
             {
-                var text = tr.FindElement(By.Id("bluhighl")).Text;
+                var text = id.Text;
                 if (text.Equals(TaskName))
                 {
-                    tr.FindElement(By.Id("bluhighl")).Click();
+                    id.Click();
                     break;
                 }
             }

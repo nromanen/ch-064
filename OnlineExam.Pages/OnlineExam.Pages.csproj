@@ -76,6 +76,7 @@
     <Compile Include="POM\ContactUsPage.cs" />
     <Compile Include="POM\CoursePage\CourseManagementPage.cs" />
     <Compile Include="POM\CoursePage\CreateCoursePage.cs" />
+    <Compile Include="POM\ExerciseSolutionsIndex.cs" />
     <Compile Include="POM\FavouritesPage.cs" />
     <Compile Include="POM\Header.cs" />
     <Compile Include="POM\IndexPage.cs" />
