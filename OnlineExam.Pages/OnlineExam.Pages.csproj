@@ -82,6 +82,7 @@
     <Compile Include="POM\NewsPage.cs" />
     <Compile Include="POM\RatingsPage.cs" />
     <Compile Include="POM\RegisterPage.cs" />
+    <Compile Include="POM\SendEmailPage.cs" />
     <Compile Include="POM\SideBar.cs" />
     <Compile Include="POM\SolutionCodePage.cs" />
     <Compile Include="POM\TasksPage.cs" />
