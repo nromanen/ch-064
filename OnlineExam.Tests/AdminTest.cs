@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using RelevantCodes.ExtentReports;
 using Xunit;
 
 namespace OnlineExam.Tests
@@ -15,9 +16,13 @@ namespace OnlineExam.Tests
         private Header header;
         private LogInPage logInPage;
         private AdminPanelPage adminPanelPage;
+        private ExtentReports extent;
+        private ExtentTest test;
 
         public AdminTest()
         {
+            extent = new ExtentReports(@"E:\SS\report.html",false);
+            test = extent.StartTest("Admin test", "description");
             BeginTest();
             header = new Header(driver);
             logInPage = header.GoToLogInPage();
@@ -29,6 +34,7 @@ namespace OnlineExam.Tests
         public void IsUserPresentedInUserListTest()
         {
             Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL));
+            test.Log(LogStatus.Pass, "User is presented in user list");
         }
 
         [Fact]
@@ -40,6 +46,8 @@ namespace OnlineExam.Tests
             adminPanelPage.DeleteUser(Constants.VIKTOR_EMAIL);
             Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
             Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.VIKTOR_EMAIL), "Error");
+            test.Log(LogStatus.Pass, "User is deleted successfully");
+
         }
 
         [Fact]
@@ -48,17 +56,24 @@ namespace OnlineExam.Tests
             var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.VIKTOR_EMAIL);
             changeRolePage.ChangeRole(Constants.TEACHER);
             changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.VIKTOR_EMAIL);
-            Assert.Equal(Constants.TEACHER,changeRolePage.CurrentRole());
+            Assert.Equal(Constants.TEACHER, changeRolePage.CurrentRole());
+            test.Log(LogStatus.Pass, "Role is changed successfully");
         }
 
         [Fact]
         public void IsUserListAvailable()
         {
             Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
+            test.Log(LogStatus.Pass,"User list is available");
         }
 
-        
-
-       
+        public override void Dispose()
+        {
+            // ending test
+            extent.EndTest(test);
+            // Flush test
+            extent.Flush();
+            base.Dispose();
+        }
     }
 }
