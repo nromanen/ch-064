@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 
 OnlineExam.Console/
+/CLI/results.xml
