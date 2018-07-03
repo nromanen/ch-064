@@ -15,11 +15,26 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+        [FindsBy(How=How.CssSelector, Using = ".historyblock > .row")]
+        public IList<IWebElement> BlocksList { get; set; }
+
         [FindsBy(How = How.ClassName, Using = "col-lg-3 tabs history active")]
         public IWebElement HistoryButton { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "favourites")]
         public IWebElement FavouritesButton { get; set; }
+
+        public IList<HistoryFavouriteBlock> GetBlocks()
+        {
+            var blocks = new List<HistoryFavouriteBlock>();
+            foreach (var row in BlocksList)
+            {
+                var block = ConstructPageElement<HistoryFavouriteBlock>(row);
+                if (block != null)
+                    blocks.Add(block);
+            }
+            return blocks;
+        }
 
         
         public FavouritesPage SwitchToFavourites()

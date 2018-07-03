@@ -25,28 +25,35 @@ namespace OnlineExam.Tests
             var indexPage = loginPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
 
             var goToHistoryPage = new SideBar(driver).CodeHistoryMenuItemClick();
-            //var likeCode = new CodeHistoryPage(driver);
-            //likeCode.SwitchToFavourites();
-            var newBlock = new HistoryBlock(driver);
-            //var executedCode = newBlock.CodeHistoryBlockOfExecutedCode[0]
-            string colorOfLikeButton = newBlock.LikeButton.GetCssValue("color");
-
-
-            if (colorOfLikeButton == "rgba(51, 51, 51, 1)")
-            {
-                var likeCode = new CodeHistoryPage(driver);
-                likeCode.SwitchToFavourites();
-            }
-            var isEqual = string.Equals(colorOfLikeButton, "rgba(255, 0, 0, 1)");
-            Assert.True(isEqual);
-
             var historyPage = new CodeHistoryPage(driver);
-            historyPage.SwitchToFavourites();
+            var blocks = historyPage.GetBlocks();
+            if (blocks.Any())
+            {
+                var firstBlock = blocks[1];
+                firstBlock.ClickOnTitle();
+                firstBlock.IsLiked();
+            }
+            //likeCode.SwitchToFavourites();
+            //var newBlock = new HistoryFavouriteBlock(driver);
+            ////var executedCode = newBlock.CodeHistoryBlockOfExecutedCode[0]
+            //string colorOfLikeButton = newBlock.LikeButton.GetCssValue("color");
 
-            var newBlockFavourites = new HistoryBlock(driver);
-            var isEqualInFovourites = string.Equals(newBlock.IndexersFieldText, newBlockFavourites.IndexersFieldText);
 
-            Assert.True(isEqualInFovourites);
+            //if (colorOfLikeButton == "rgba(51, 51, 51, 1)")
+            //{
+            //    var likeCode = new CodeHistoryPage(driver);
+            //    likeCode.SwitchToFavourites();
+            //}
+            //var isEqual = string.Equals(colorOfLikeButton, "rgba(255, 0, 0, 1)");
+            //Assert.True(isEqual);
+
+            //var historyPage = new CodeHistoryPage(driver);
+            //historyPage.SwitchToFavourites();
+
+            //var newBlockFavourites = new HistoryFavouriteBlock(driver);
+            //var isEqualInFovourites = string.Equals(newBlock.IndexersFieldText, newBlockFavourites.IndexersFieldText);
+
+            //Assert.True(isEqualInFovourites);
 
 
 
