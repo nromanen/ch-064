@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
+//MISHA
+
 namespace OnlineExam.Pages.POM
 {
     public class TeacherExerciseManagerPage : BasePage
@@ -21,9 +23,6 @@ namespace OnlineExam.Pages.POM
 
         [FindsBy(How = How.Id, Using = "bluhighl")]
         public IList<IWebElement> RowOfIDS { get; set; }
-
-        [FindsBy(How =How.Id, Using = "bluhighl")]
-        public IWebElement TaskNameId { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "btn btn-sm btn-default")]
         public IWebElement ChangeButton { get; set; }

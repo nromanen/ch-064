@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
+//MISHA
+
 namespace OnlineExam.Pages.POM
 {
     public class TaskViewPage : BasePage
@@ -23,44 +25,32 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.ClassName, Using = "CodeMirror-code")]
         public IWebElement TaskCode { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.col-md-1 > input")]
-        public IWebElement OkButtonInTaskView { get; set; }
+        public IWebElement OkButton { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div.col-md-2 > form > button")]
-        public IWebElement StartButtonInTaskView { get; set; }
+        public IWebElement StartButton { get; set; }
 
         [FindsBy(How = How.Id, Using = "tggl")]
-        public IWebElement ShowHideCommentsButtonInTaskView { get; set; }
+        public IWebElement ShowHideCommentsButton { get; set; }
 
         [FindsBy(How = How.Id, Using = "buttn")]
-        public IWebElement CommentButtonInTaskView { get; set; }
+        public IWebElement CommentButton { get; set; }
 
-        public void ClickOnOkButtonInTaskView()
+        public void ClickOnOkButton()
         {
-            OkButtonInTaskView.Click();
+            OkButton.Click();
         }
 
-        public void ClickOnStartButtonInTaskView()
+        public void ClickOnStartButton()
         {
-            StartButtonInTaskView.Click();
+            StartButton.Click();
         }
 
-        public void ClickOnShowHideCommentsButtonInTaskView()
+        public void ClickOnShowHideCommentsButton()
         {
-            ShowHideCommentsButtonInTaskView.Click();
+            ShowHideCommentsButton.Click();
         }
-
-        public void CreateNewCommentInTaskView(string Comment, int CountOfStars)
-        {
-            driver.Navigate().GoToUrl("http://localhost:55842/ExerciseManagement/TaskView/1");
-            IWebElement element = driver.FindElement(By.Id("textField"));
-            element.SendKeys(Comment);
-            // RATING && Url (1)
-            CommentButtonInTaskView.Click();
-        }
-
-
 
     }
 }

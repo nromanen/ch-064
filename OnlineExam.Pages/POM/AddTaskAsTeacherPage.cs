@@ -7,6 +7,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
+//MISHA
+
 namespace OnlineExam.Pages.POM
 {
     public class AddTaskAsTeacherPage : BasePage
@@ -24,10 +26,10 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How =How.Id, Using = "tinymce")]
         public IWebElement AddDescriptionToTheNewTask { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.row > div.col-md-6 > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div > div > div.CodeMirror-code > div")]
+        [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.row > div.col-md-6 > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div > div > div.CodeMirror-cursors")]
         public IWebElement FieldForBaseCode { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.row > div:nth-child(2) > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div")]
+        [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.row > div:nth-child(2) > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div > div > div.CodeMirror-code > div")]
         public IWebElement FieldForTestCasesCode { get; set; }
 
         [FindsBy(How =How.CssSelector, Using = "body > div > div > form > div:nth-child(8) > button")]
