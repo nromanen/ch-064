@@ -84,6 +84,7 @@
     <Compile Include="POM\NewsPage.cs" />
     <Compile Include="POM\RatingsPage.cs" />
     <Compile Include="POM\RegisterPage.cs" />
+    <Compile Include="POM\SendEmailPage.cs" />
     <Compile Include="POM\SideBar.cs" />
     <Compile Include="POM\SolutionCodePage.cs" />
     <Compile Include="POM\TasksPage.cs" />
@@ -109,6 +110,9 @@
       <Project>{bd4e4a4b-6275-458f-99ca-f541d6eecb7e}</Project>
       <Name>OnlineExam.Framework</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="POM\Example.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

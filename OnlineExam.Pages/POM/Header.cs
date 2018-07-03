@@ -1,12 +1,18 @@
 ﻿using System;
+using OnlineExam.Pages.POM.UserDetails;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace OnlineExam.Pages.POM
 {
     public class Header : BasePage
     {
+        public Header()
+        {
+
+        }
         [FindsBy(How = How.CssSelector, Using = "#requestCulture_RequestCulture_UICulture_Name")]
         private IWebElement changeLanguageSelectElement;
 
@@ -30,18 +36,15 @@ namespace OnlineExam.Pages.POM
         public Header(IWebDriver driver) : base(driver)
         {
         }
-
-        public string GetText(string elementType, string element)
+        
+        public bool GetSignInElement()
         {
-            if (elementType == "Id")
-            {
-                return driver.FindElement(By.Id(element)).Text;
-            }
-            else if (elementType == "CssSelector")
-            {
-                return driver.FindElement(By.CssSelector(element)).Text;
-            }
-            else return String.Empty;
+            return signInLinkElement.Displayed;
+        }
+
+        public string GetHeaderUserName()
+        {
+            return userAccountManageLinkElement.Text;
         }
 
         public NewsPage GoToHomePage()
@@ -58,10 +61,11 @@ namespace OnlineExam.Pages.POM
             return new LogInPage(driver);
         }
 
-        public void ChangeLanguage(string value)
+        public Header ChangeLanguage(string value)
         {
             var selectElement = new SelectElement(changeLanguageSelectElement);
             selectElement.SelectByValue(value);
+            return this;
         }
 
         public IndexPage SignOut()
@@ -78,11 +82,25 @@ namespace OnlineExam.Pages.POM
             return new RegisterPage(driver);
         }
 
-        //public UserAccountPage GoToUserAccountPage()
-        //{
-        //    WaitWhileNotClickableWebElement(userAccountManageLinkElement);
-        //    userAccountManageLinkElement.Click();
-        //    return new UserAccountPage(driver);
-        //}
+        public UserInfoPage GoToUserAccountPage()
+        {
+            WaitWhileNotClickableWebElement(userAccountManageLinkElement);
+            userAccountManageLinkElement.Click();
+            return new UserInfoPage(driver);
+        }
+
+        public bool IsUserEmailPresentedInHeader(string email)
+        {
+            Header header = ConstructPage<Header>();
+
+            if (header.GetHeaderUserName() == email.ToUpper())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

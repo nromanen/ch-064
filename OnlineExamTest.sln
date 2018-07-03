@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExam.Tests", "OnlineE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExam.Framework", "OnlineExam.Framework\OnlineExam.Framework.csproj", "{BD4E4A4B-6275-458F-99CA-F541D6EECB7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExam.Console", "OnlineExam.Console\OnlineExam.Console.csproj", "{F18839D0-41E1-4716-A510-99D2BD947DC9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{BD4E4A4B-6275-458F-99CA-F541D6EECB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD4E4A4B-6275-458F-99CA-F541D6EECB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD4E4A4B-6275-458F-99CA-F541D6EECB7E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F18839D0-41E1-4716-A510-99D2BD947DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F18839D0-41E1-4716-A510-99D2BD947DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F18839D0-41E1-4716-A510-99D2BD947DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F18839D0-41E1-4716-A510-99D2BD947DC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

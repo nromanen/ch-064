@@ -14,6 +14,10 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+        public RegisterPage()
+        {
+        }
+
         [FindsBy(How = How.Id, Using = "Email")]
         public IWebElement EmailInput { get; set; }
 
@@ -33,7 +37,7 @@ namespace OnlineExam.Pages.POM
             PasswordInput.SendKeys(password);
             PasswordConfirmInput.SendKeys(passwordConfirm);
             RegistrationButton.Click();
-            return new IndexPage(driver);
+            return ConstructPage<IndexPage>();
         }
     }
 }

@@ -7,6 +7,7 @@ using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.Tests
 {
@@ -17,19 +18,35 @@ namespace OnlineExam.Tests
 
         protected BaseTest()
         {
-            // extendedDriver = DriversFabric.InitChrome();
+            //extendedDriver = DriversFabric.InitChrome();
             driver = new ChromeDriver();
+            driver.Navigate().GoToUrl(Constants.HOME_URL);
+
+        }
+
+        public void BeginTest()
+        {
             driver.Navigate().GoToUrl(Constants.HOME_URL);
         }
 
-        //public T InitPage<T>() where T : BasePage
-        //{
-        //    return new T(driver);
-        //}
-
-        public void Dispose()
+        public T ConstructPage<T>()where T: BasePage, new()
         {
-            driver.Dispose();
+            var page = new T();
+            page.SetDriver(driver);
+
+            try
+            {
+                PageFactory.InitElements(driver, page);
+                return page;
+            } catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public virtual void Dispose()
+        {
+            driver?.Dispose();
             extendedDriver?.Dispose();
         }
     }

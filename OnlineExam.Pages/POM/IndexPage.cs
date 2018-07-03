@@ -13,7 +13,12 @@ namespace OnlineExam.Pages.POM
         {
         }
 
-        public IndexPage Index()
+        public IndexPage()
+        {
+
+        }
+
+        public IndexPage GoToIndexPage()
         {
             driver.Navigate().GoToUrl("http://localhost:55842");
             return new IndexPage(driver);
