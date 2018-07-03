@@ -14,6 +14,7 @@ namespace OnlineExam.Pages.POM.CodeHistory.Favourites
         {
         }
 
+
         [FindsBy(How = How.CssSelector, Using = ".titlecode")]
         public IWebElement Title { get; set; }
 
