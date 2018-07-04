@@ -19,10 +19,10 @@ namespace OnlineExam.Pages.POM
 
         public TeacherExerciseManagerPage(IWebDriver driver) : base(driver)
         {
-            var rowItemsList = new List<TasksPageRowItem>();
+            var rowItemsList = new List<TeacherExerciseManagerPageRowItem>();
             foreach (var tr in RowOfTrs)
             {
-                var rowItem = new TasksPageRowItem(tr);
+                var rowItem = new TeacherExerciseManagerPageRowItem(tr);
                 rowItemsList.Add(rowItem);
             }
             RowItems = rowItemsList;
@@ -31,91 +31,38 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = ".table tr:not(:first-of-type)")]
         public IList<IWebElement> RowOfTrs { get; set; }
 
-        public IList<TasksPageRowItem> RowItems { get; set; }
+        public IList<TeacherExerciseManagerPageRowItem> RowItems { get; set; }
 
-       
-        /// ///////////////////////
-        [FindsBy(How = How.Id, Using = "bluhighl")]
-        public IList<IWebElement> RowOfIDS { get; set; }
-        /// ////////////////////
+        [FindsBy(How =How.TagName, Using = "td")]
+        public IList<IWebElement> TEMP_TD { get; set; }
 
-        public TasksPageRowItem GetByName(string TaskName)
+
+
+
+        public TeacherExerciseManagerPageRowItem GetByName(string TaskName)
         {
             return RowItems.FirstOrDefault(x => String.Equals(x.TEMP_GetName(), TaskName, StringComparison.OrdinalIgnoreCase));
         }
 
-        public TasksPageRowItem GetCreationDate(string TaskName)
+        public TeacherExerciseManagerPageRowItem GetCreationDate(string TaskName)
         {
             return RowItems.FirstOrDefault(x => String.Equals(x.TEMP_GetCreationDate(), TaskName, StringComparison.OrdinalIgnoreCase));
         }
 
-        public TasksPageRowItem GetUpgradeDate(string TaskName)
+        public TeacherExerciseManagerPageRowItem GetUpgradeDate(string TaskName)
         {
             return RowItems.FirstOrDefault(x => String.Equals(x.TEMP_GetUpdateDate(), TaskName, StringComparison.OrdinalIgnoreCase));
         }
 
 
+        [FindsBy( How = How.CssSelector, Using = "body > div > div > h4 > a")]
+        public IWebElement AddTaskButton { get; set; }
 
-        //public void ClickOnChangeButton(string TaskName)
-        //{
-        //    foreach (var id in RowOfIDS)
-        //    {
-        //        var text = id.Text;
-        //        if (text.Equals(TaskName))
-        //        {
-        //            ChangeButton.Click();
-        //            break;
-        //        }
-        //    }
-        //}
-
-        //public void ClickOnDeleteButton(string TaskName)
-        //{
-        //    foreach(var tr in RowOfTrs)
-        //    {
-        //        var hz = tr.Text;
-        //        MessageBox.Show(hz);
-        //        foreach (var id in RowOfIDS)
-        //        {
-        //        var text = id.Text;
-        //        if (text.Equals(TaskName))
-        //        {
-        //            DeleteButton.Click();
-        //            break;
-        //        }
-        //        }
-        //    }
-        //}
-
-        //public void ClickOnSolutionsButton(string TaskName)
-        //{
-        //    foreach (var id in RowOfIDS)
-        //    {
-        //        var text = id.Text;
-        //        if (text.Equals(TaskName))
-        //        {
-        //            SolutionButton.Click();
-        //            break;
-        //        }
-        //    }
-        //}
-
-        //public void ClickOnAddTaskbutton()
-        //{
-        //    AddTaskButton.Click();
-        //}
-
-        public void ClickOnTaskname(string TaskName)
+        public void ClickOnAddTaskbutton()
         {
-            foreach (var id in RowOfIDS)
-            {
-                var text = id.Text;
-                if (text.Equals(TaskName))
-                {
-                    id.Click();
-                    break;
-                }
-            }
+           AddTaskButton.Click();
         }
+
+      
     }
 }

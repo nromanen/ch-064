@@ -25,7 +25,7 @@ namespace OnlineExam.Tests
 
             var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
             var Tasks = ConstructPage<TeacherExerciseManagerPage>();
-            //Tasks.ClickOnAddTaskbutton();
+            Tasks.ClickOnAddTaskbutton();
             var AddTaskPage = ConstructPage<AddTaskAsTeacherPage>();
             AddTaskPage.ChooseCourse("C# Essential");
             AddTaskPage.AddTaskNameForNewTask(NEWTASK);
@@ -39,20 +39,7 @@ namespace OnlineExam.Tests
             Assert.True(ListOfTasks.IsTaskAvailable(NEWTASK));
         }
 
-        [Fact]
-        public void DeleteTask()
-        {
-            string TASK = "Proba2";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            var TeacherTasksPage = ConstructPage< SideBar>().TasksMenuItemClick();
-            var Tasks = ConstructPage<TeacherExerciseManagerPage>();
-           // Tasks.ClickOnDeleteButton(TASK);
-            var ListOfTasks = ConstructPage<TasksPage>();
-            Assert.True(ListOfTasks.IsTaskAvailable(TASK));
-        }
-
+    
         [Fact]
         public void IsTaskAvailable()
         {
@@ -61,7 +48,10 @@ namespace OnlineExam.Tests
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
             var ListOfTasks = ConstructPage<TasksPage>();
-            Assert.True(ListOfTasks.IsTaskAvailable("Proba3"));
+            MessageBox.Show("1");
+            var taskRowItem = ListOfTasks.GetByName("Proba3");
+            MessageBox.Show("2");
+            Assert.Equal(taskRowItem.ToString(), "Proba3");
         }
 
         [Fact]
@@ -81,23 +71,7 @@ namespace OnlineExam.Tests
         }
 
         [Fact]
-        public void TaskButtonAvailbaleeee()
-        {
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var taskRowItem = ListOfTasks.GetByTasksButton("Tasks");
-            Assert.NotNull(taskRowItem);
-            //taskRowItem.ClickOnTasksButton();
-            //Thread.Sleep(3000);
-            //var title = driver.Title;
-            //Assert.Equal("Task View - WebApp", title);
-        }
-
-        [Fact]
-        public void ChangeButtonInTeaacherExerciseManager()
+        public void ChangeButtonInTeacherExerciseManager()
         {
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
@@ -125,25 +99,5 @@ namespace OnlineExam.Tests
 
             Thread.Sleep(3000);
         }
-
-        ///////////////////////NEWer///////////////////////////////
-
-        [Fact]
-        public void TeacherExerciseManagerONE()
-        {
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
-            var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
-            var taskRowItem = ListOfTasks.GetByName("Indexers");
-            
-            MessageBox.Show(taskRowItem.ToString());
-            Assert.NotNull(taskRowItem);
-        }
-
-
-
-
     }
 }
