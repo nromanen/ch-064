@@ -16,17 +16,25 @@ namespace OnlineExam.Tests
         }
 
         [Fact]
-        public void ContactUsTest()
+        public void CheckIfContactUsMessageIsVisibleInInbox()
         {
             var sideBar = ConstructPage<SideBar>();
             var contactUs = sideBar.ContactUsMenuItemElementClick();
-            contactUs.ContactUs();
+            contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Name", "Text");
+            DateTime now = DateTime.Now;
             var header = ConstructPage<Header>();
-            header.SignOut();
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var mailBox = sideBar.MailBoxMenuItemElementClick();
             Thread.Sleep(500);
-            mailBox.IsMailPresentedInMailList("ewrtyuio");
+            string expectedResult = Constants.EXAMPLE_EMAIL + " " + now.Month + "/" +
+                now.Day + "/" + now.Year + " " + now.Hour + ":" + now.Minute + ":" + now.Second + " PM";
+            Assert.True(mailBox.IsMailPresentedInInbox(expectedResult));
+        }
+
+        [Fact]
+        public void CheckIfOutboxMessageIsVisible()
+        {
+
         }
 
         public void Dispose()
