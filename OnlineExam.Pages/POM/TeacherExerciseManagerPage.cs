@@ -19,14 +19,23 @@ namespace OnlineExam.Pages.POM
 
         public TeacherExerciseManagerPage(IWebDriver driver) : base(driver)
         {
-            var rowItemsList = new List<TeacherExerciseManagerPageRowItem>();
-            foreach (var tr in RowOfTrs)
-            {
-                var rowItem = new TeacherExerciseManagerPageRowItem(tr);
-                rowItemsList.Add(rowItem);
-            }
-            RowItems = rowItemsList;
         }
+
+
+        public IList<TeacherExerciseManagerPageRowItem> GetBlocks()
+        {
+            var blocks = new List<TeacherExerciseManagerPageRowItem>();
+            foreach (var row in RowOfTrs)
+            {
+                var block = ConstructPageElement<TeacherExerciseManagerPageRowItem>(row);
+                if (block != null)
+                    blocks.Add(block);
+            }
+            return blocks;
+        }
+
+
+
 
         [FindsBy(How = How.CssSelector, Using = ".table tr:not(:first-of-type)")]
         public IList<IWebElement> RowOfTrs { get; set; }
@@ -35,8 +44,6 @@ namespace OnlineExam.Pages.POM
 
         [FindsBy(How =How.TagName, Using = "td")]
         public IList<IWebElement> TEMP_TD { get; set; }
-
-
 
 
         public TeacherExerciseManagerPageRowItem GetByName(string TaskName)

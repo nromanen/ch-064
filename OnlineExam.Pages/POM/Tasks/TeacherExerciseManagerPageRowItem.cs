@@ -10,7 +10,8 @@ namespace OnlineExam.Pages.POM.Tasks
 {
     public class TeacherExerciseManagerPageRowItem :BasePageElement
     {
-    
+
+        public TeacherExerciseManagerPageRowItem() { }
 
     public TeacherExerciseManagerPageRowItem(IWebElement searchContext) : base(searchContext)
     {
@@ -27,12 +28,24 @@ namespace OnlineExam.Pages.POM.Tasks
     [FindsBy(How = How.CssSelector, Using = ":nth-child(5)")]
     public IWebElement AllButtons { get; set; }
 
-      
+
         [FindsBy(How = How.CssSelector, Using = ":nth-child(3)")]
         public IWebElement RecoverButton { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "")]
+        public IWebElement ChangeButton { get; set; }
 
 
+        public void ClickOn()
+        {
+            ChangeButton.Click();
+        }
+
+
+    public void ClickOntaskname()
+        {
+            TaskName.Click();
+        }
 
     public string TEMP_GetName()
     {

@@ -10,15 +10,15 @@ namespace OnlineExam.Pages.POM.Tasks
 {
     public class TasksPageRowItem : BasePageElement
     {
-        /// <summary>
-        /// Expected Table row
-        /// </summary>
-        /// <param name="webElement"></param>
+      
         public TasksPageRowItem(IWebElement searchContext) : base(searchContext)
         {
         }
 
-        /////////////////////////////////////TASKS PAGE//////////////////////////////////////////
+        public TasksPageRowItem()
+        {
+          
+        }
 
 
         [FindsBy(How=How.CssSelector, Using = ":nth-child(1)")]

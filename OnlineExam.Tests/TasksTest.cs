@@ -3,6 +3,7 @@ using OnlineExam.Pages.POM.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Xunit;
@@ -36,22 +37,26 @@ namespace OnlineExam.Tests
 
             AddTaskPage.ClickOnAddButton();
             var ListOfTasks = ConstructPage<TasksPage>();
-            Assert.True(ListOfTasks.IsTaskAvailable(NEWTASK));
+            //Assert.True(ListOfTasks.IsTaskAvailable(NEWTASK));
         }
 
     
         [Fact]
         public void IsTaskAvailable()
         {
+            string TaskName = "Proba3";
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
             var ListOfTasks = ConstructPage<TasksPage>();
-            MessageBox.Show("1");
-            var taskRowItem = ListOfTasks.GetByName("Proba3");
-            MessageBox.Show("2");
-            Assert.Equal(taskRowItem.ToString(), "Proba3");
+            var blocks = ListOfTasks.GetBlocks();
+            if (blocks != null)
+            {
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                Assert.Equal(firstblock.GetName(), TaskName);
+            }
+            
         }
 
         [Fact]

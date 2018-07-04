@@ -1,13 +1,14 @@
-﻿using OpenQA.Selenium;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 using OnlineExam.Pages.POM.Tasks;
+
 
 //MISHA
 
@@ -19,14 +20,18 @@ namespace OnlineExam.Pages.POM
         public TasksPage() { }
 
         public TasksPage(IWebDriver driver) : base(driver)
+        {}
+
+        public IList<TasksPageRowItem> GetBlocks()
         {
-            var rowItemsList = new List<TasksPageRowItem>();
+            var blocks = new List<TasksPageRowItem>();
             foreach (var tr in RowOfTrs)
             {
-                var rowItem = new TasksPageRowItem(tr);
-                rowItemsList.Add(rowItem);
+                var block = ConstructPageElement<TasksPageRowItem>(tr);
+                if (block != null)
+                    blocks.Add(block);
             }
-            RowItems = rowItemsList;
+            return blocks;
         }
 
         [FindsBy(How = How.CssSelector, Using = ".table tr:not(:first-of-type)")]
@@ -50,52 +55,6 @@ namespace OnlineExam.Pages.POM
 
         [FindsBy(How =How.TagName, Using ="td")]
         public IList<IWebElement> RowofTasksNames { get; set; }
-
-
-      
-
-        public bool IsTaskAvailable(string TaskName)
-        {
-            int i = 0;
-            foreach (var tr in RowOfTrs)
-            {
-                    var td = RowofTasksNames; 
-                    var taskname = td[i].Text; i +=3;
-                MessageBox.Show(taskname);
-                    if (taskname.Equals(TaskName))
-                    {
-                        return true;
-                    }               
-            }
-
-            return false;
-        }
-
-
-        public void ClickOnTasksButton(string TaskName)
-        {
-
-            int i = 0; bool flag = false; int j = 4;
-            foreach (var tr in RowOfTrs)
-            {
-                var td = RowofTasksNames;
-                var taskname = td[i].Text; i += 3; j++;
-                MessageBox.Show(taskname);
-                if (taskname.Equals(TaskName))
-                {
-                    flag = true;
-                }
-
-                if (flag)
-                {
-                    MessageBox.Show("YPA");
-                    var button = TTTaskButton;
-                    button[j].Click();
-                    break;
-                }
-            }
-
-        }
 
 
     }
