@@ -23,7 +23,6 @@ namespace OnlineExam.Tests
         {
             //extendedDriver = DriversFabric.InitChrome();
             driver = new ChromeDriver();
-            fixture = new BaseFixture();
         }
 
         public BaseTest(BaseFixture fixture)
