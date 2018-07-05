@@ -20,21 +20,41 @@ namespace OnlineExam.Tests
         {
             var sideBar = ConstructPage<SideBar>();
             var contactUs = sideBar.ContactUsMenuItemElementClick();
-            contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Name", "Text");
-            DateTime now = DateTime.Now;
+            contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Anna", "Hello admin!");
+            //DateTime now = DateTime.Now;
             var header = ConstructPage<Header>();
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var mailBox = sideBar.MailBoxMenuItemElementClick();
             Thread.Sleep(500);
-            string expectedResult = Constants.EXAMPLE_EMAIL + " " + now.Month + "/" +
-                now.Day + "/" + now.Year + " " + now.Hour + ":" + now.Minute + ":" + now.Second + " PM";
-            Assert.True(mailBox.IsMailPresentedInInbox(expectedResult));
+            //int hour;
+            //if (now.Hour > 12)
+            //{
+            //    hour = now.Hour - 12;
+            //}
+            //else
+            //{
+            //    hour = now.Hour;
+            //}
+            //string expectedResult = Constants.EXAMPLE_EMAIL + " " + now.Month + "/" +
+            //    now.Day + "/" + now.Year + " " + hour.ToString() + ":" + now.Minute + ":" + 
+            //    now.Second + " PM";
+            //Assert.True(mailBox.IsMailPresentedInInbox(expectedResult));
+            Assert.StartsWith( Constants.EXAMPLE_EMAIL, mailBox.GetInboxMail());
+            //Assert.Contains(Constants.EXAMPLE_EMAIL, mailBox.GetInboxMail());
         }
 
         [Fact]
         public void CheckIfOutboxMessageIsVisible()
         {
-
+            var sideBar = ConstructPage<SideBar>();
+            var header = ConstructPage<Header>();
+            header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+            var mailBox = sideBar.MailBoxMenuItemElementClick();
+            var sendEmail = mailBox.SendMessageReferenceClick();
+            sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, "Hello");
+            var outbox = mailBox.OutboxElementClick();
+            
+            //Assert.;
         }
 
         public void Dispose()

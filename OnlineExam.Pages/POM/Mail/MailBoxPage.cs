@@ -26,6 +26,23 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "#OutBoxMEssages > p")]
         public IList<IWebElement> OutboxMailList { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div:nth-child(3) > div.col-lg-3 > a:nth-child(2) > div")]
+        public IWebElement OutboxElement { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div:nth-child(3) > div.col-lg-3 > a:nth-child(1) > div")]
+        public IWebElement InboxElement { get; set; }
+
+        public InboxBlock InboxElementClick()
+        {
+            InboxElement.Click();
+            return new InboxBlock();
+        }
+
+        public OutboxBlock OutboxElementClick()
+        {
+            OutboxElement.Click();
+            return new OutboxBlock();
+        }
 
         public SendEmailPage SendMessageReferenceClick()
         {
@@ -60,6 +77,28 @@ namespace OnlineExam.Pages.POM
                 outboxBlocksList.Add(block);
             }
             return outboxBlocksList;
+        }
+
+        public string GetInboxMail()
+        {
+            string result="";
+            var inboxBlocksList = GetInboxBlocksList();
+            foreach(var block in inboxBlocksList)
+            {
+                result += block.Header.Text+" ";
+            }
+            return result;
+        }
+
+        public string GetOutboxMail()
+        {
+            string result = "";
+            var outboxBlocksList = GetOutboxBlocksList();
+            foreach (var block in outboxBlocksList)
+            {
+                result += block.Header.Text + " ";
+            }
+            return result;
         }
 
         public bool IsMailPresentedInInbox (string email)

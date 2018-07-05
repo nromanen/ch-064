@@ -16,7 +16,7 @@ namespace OnlineExam.Tests
         }
 
         [Fact]
-        public void SignUpTest()
+        public void CheckIfUserIsPresentedInUserListAfterSignUp()
         {
             var header = ConstructPage<Header>();
             var signUp = header.GoToRegistrationPage();

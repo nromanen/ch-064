@@ -15,15 +15,10 @@ namespace OnlineExam.Pages.POM.Mail
 
         }
 
-        [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div:nth-child(3) > div.col-lg-3 > a:nth-child(1) > div")]
-        public IWebElement InboxElement { get; set; }
 
         public IWebElement Header { get; set; }
         public IWebElement Message { get; set; }
 
-        public void InboxElementClick()
-        {
-            InboxElement.Click();
-        }
+        
     }
 }
