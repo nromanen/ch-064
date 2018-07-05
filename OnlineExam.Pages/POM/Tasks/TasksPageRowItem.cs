@@ -20,14 +20,12 @@ namespace OnlineExam.Pages.POM.Tasks
           
         }
 
-
         [FindsBy(How=How.CssSelector, Using = ":nth-child(1)")]
         public IWebElement Name { get; set; }
-        [FindsBy(How = How.CssSelector, Using = ":nth-child(2)")]
+        [FindsBy(How = How.CssSelector, Using = ":nth-child(2) > a")]
         public IWebElement Button { get; set; }
         [FindsBy(How =How.CssSelector, Using =":nth-child(3)")]
         public IWebElement Stars { get; set; }
-
 
         public string GetName()
         {
@@ -43,15 +41,5 @@ namespace OnlineExam.Pages.POM.Tasks
         {
             Button.Click();
         }
-
-
-        /////////////////////////////////////TEACHER EXERCISE MANAGER PAGE//////////////////////////////////////////
-
-       
-                
-
-
-
-
     }
 }

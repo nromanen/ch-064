@@ -34,16 +34,46 @@ namespace OnlineExam.Pages.POM
             return blocks;
         }
 
+        public IList<TeacherExerciseManagerPageRowItem> GetCountOfTDs()
+        {
+            var buttons = new List<TeacherExerciseManagerPageRowItem>();
+            foreach (var tds in RowOfTds)
+            {
+                var td = ConstructPageElement<TeacherExerciseManagerPageRowItem>(tds);
+                if (td != null)
+                    buttons.Add(td);
+            }
+            return buttons;
+        }
 
+
+        public int GetCountOfTDs11()
+        {
+            var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
+            var blocks = ListOfTasks.GetBlocks();
+
+            var buttons = new List<TeacherExerciseManagerPageRowItem>(); int i = 0;
+            var hz = blocks[0];
+            MessageBox.Show(hz.ToString());
+            foreach (var tds in blocks)
+            {
+                i++;
+                MessageBox.Show(tds.ToString());
+            }
+            return i;
+        }
 
 
         [FindsBy(How = How.CssSelector, Using = ".table tr:not(:first-of-type)")]
         public IList<IWebElement> RowOfTrs { get; set; }
 
-        public IList<TeacherExerciseManagerPageRowItem> RowItems { get; set; }
+        [FindsBy(How = How.CssSelector, Using = ".table tr td")]
+        public IList<IWebElement> RowOfTds { get; set; }
 
-        [FindsBy(How =How.TagName, Using = "td")]
-        public IList<IWebElement> TEMP_TD { get; set; }
+        [FindsBy(How = How.CssSelector, Using = ".table tr td")]
+        public IWebElement Tds { get; set; }
+
+        public IList<TeacherExerciseManagerPageRowItem> RowItems { get; set; }
 
 
         public TeacherExerciseManagerPageRowItem GetByName(string TaskName)
@@ -60,6 +90,12 @@ namespace OnlineExam.Pages.POM
         {
             return RowItems.FirstOrDefault(x => String.Equals(x.TEMP_GetUpdateDate(), TaskName, StringComparison.OrdinalIgnoreCase));
         }
+
+        public TeacherExerciseManagerPageRowItem deleted ()
+        {
+            return RowItems.First(x => String.IsNullOrEmpty(x.TEMP_GetCourseName()));
+        }
+
 
 
         [FindsBy( How = How.CssSelector, Using = "body > div > div > h4 > a")]

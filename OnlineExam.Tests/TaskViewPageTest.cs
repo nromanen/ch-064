@@ -10,16 +10,15 @@ using Xunit;
 
 namespace OnlineExam.Tests
 {
-    public class TasksTest : BaseTest
+    public class TaskViewPageTest: BaseTest
     {
-        public TasksTest()
-        {
-        }
+
+        public TaskViewPageTest() { }
 
         [Fact]
-        public void IsTaskAvailable()
+        public void TaskExecuting()
         {
-            string TaskName = "Proba3";
+            string TaskName = "Simple addition";
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
@@ -29,13 +28,20 @@ namespace OnlineExam.Tests
             if (blocks != null)
             {
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                Assert.Equal(firstblock.GetName(), TaskName);
+                firstblock.ClickOnTasksButton();
+                Thread.Sleep(2000);
+                var TaskView = ConstructPage<TaskViewPage>();
+                TaskView.ClickOnStartButton();
+                Thread.Sleep(2000);
+                var Code = ConstructPage<SolutionCodePage>();
+                Code.ClickOnExecuteButton();
+                Thread.Sleep(2000);
             }
-            
         }
 
+
         [Fact]
-        public void ClickOnTasksButton()
+        public void TaskDone()
         {
             string TaskName = "Proba2";
             var header = ConstructPage<Header>();
@@ -46,13 +52,18 @@ namespace OnlineExam.Tests
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                MessageBox.Show(firstBlock.GetButtonText());
-                firstBlock.ClickOnTasksButton();
-                Thread.Sleep(3000);
-                var title = driver.Title;
-                Assert.Equal("Task View - WebApp", title);
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                firstblock.ClickOnTasksButton();
+                Thread.Sleep(2000);
+                var TaskView = ConstructPage<TaskViewPage>();
+                TaskView.ClickOnStartButton();
+                Thread.Sleep(2000);
+                var Code = ConstructPage<SolutionCodePage>();
+                Code.ClickOnDoneButton();
+                Thread.Sleep(2000);
             }
         }
+
+
     }
 }

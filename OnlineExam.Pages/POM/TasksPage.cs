@@ -48,14 +48,5 @@ namespace OnlineExam.Pages.POM
         {
             return RowItems.FirstOrDefault(x => String.Equals(x.GetButtonText(), name, StringComparison.OrdinalIgnoreCase));
         }
-
-
-        [FindsBy(How = How.TagName, Using = "a")]
-        public IList<IWebElement> TTTaskButton { get; set; }
-
-        [FindsBy(How =How.TagName, Using ="td")]
-        public IList<IWebElement> RowofTasksNames { get; set; }
-
-
     }
 }

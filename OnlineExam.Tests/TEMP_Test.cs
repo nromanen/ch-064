@@ -31,6 +31,37 @@ namespace OnlineExam.Tests
             }
         }
 
+
+
+        [Fact]
+        public void Recover()
+        {
+            string taskname = "Proba1";
+            var header = ConstructPage<Header>();
+            var logInPage = header.GoToLogInPage();
+            logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+            var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
+            var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
+            var blocks = ListOfTasks.GetBlocks();
+            if (blocks != null)
+            {
+                var myblock = blocks.FirstOrDefault(x => x.Get_DELETED_TaskName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
+                myblock.ClickOnRecoverButton();
+            }
+            else Assert.True(false);
+
+            var NewListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
+            var newblocks = NewListOfTasks.GetBlocks();
+            if (newblocks != null)
+            {
+                var myblock = newblocks.FirstOrDefault(x => x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
+                Assert.Equal(myblock.TEMP_GetName(), taskname);
+            }
+            else Assert.True(false);
+        }
+
+
+
         [Fact]
         public void TaskCreationDate()
         {
@@ -65,9 +96,8 @@ namespace OnlineExam.Tests
             }
         }
 
-
         [Fact]
-        public void ClickSolution()
+        public void TdsCount()
         {
             string TaskName = "Indexers";
             var header = ConstructPage<Header>();
@@ -76,14 +106,44 @@ namespace OnlineExam.Tests
             var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
             var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            var tds = ListOfTasks.GetCountOfTDs();
+            if (tds != null)
             {
-                var firstBlock = blocks.FirstOrDefault(x => x.TEMP_GetCreationDate().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstBlock.ClickOn();
-                Thread.Sleep(5000);
+                MessageBox.Show("tds NOT NULL");
+                var tdscount = tds.Count()-79;
+                MessageBox.Show(tdscount.ToString());
+                Assert.Equal(tdscount,0);
             }
         }
 
 
+        [Fact]
+        public void AddNewTaskTest()
+        {
+            string NEWTASK = "newtask1";
+            var header = ConstructPage<Header>();
+            var logInPage = header.GoToLogInPage();
+            logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+
+            var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
+            var Tasks = ConstructPage<TeacherExerciseManagerPage>();
+            Tasks.ClickOnAddTaskbutton();
+            var AddTaskPage = ConstructPage<AddTaskAsTeacherPage>();
+            AddTaskPage.ChooseCourse("C# Essential");
+            AddTaskPage.AddTaskNameForNewTask(NEWTASK);
+
+            //AddTaskPage.AddTestCasesCode("Tratataaa case code blalala");
+            //AddTaskPage.AddDescriptionForNewTask("New description tratata blablabla");
+            //AddTaskPage.AddBaseCodeForNewTask("yo maaaaaaaaaan");
+
+            AddTaskPage.ClickOnAddButton();
+            var ListOfTasks = ConstructPage<TasksPage>();
+            var blocks = ListOfTasks.GetBlocks();
+            if (blocks != null)
+            {
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(NEWTASK, StringComparison.OrdinalIgnoreCase));
+                Assert.Equal(firstblock.GetName(), NEWTASK);
+            }
+        }
     }
 }
