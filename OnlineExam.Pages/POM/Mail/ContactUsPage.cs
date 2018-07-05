@@ -29,11 +29,11 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div:nth-child(1) > div.col-lg-5 > a > img")]
         public IWebElement MapWithLink { get; set; }
 
-        public ContactUsPage ContactUs()
+        public ContactUsPage ContactUs(string email, string name, string text)
         {
-            NameInput.SendKeys("Name");
-            EmailInput.SendKeys("example@gmail.com");
-            MessageTextArea.SendKeys("Hello!");
+            NameInput.SendKeys(name);
+            EmailInput.SendKeys(email);
+            MessageTextArea.SendKeys(text);
             SendSubmit.Click();
             return ConstructPage<ContactUsPage>();
         }

@@ -18,15 +18,13 @@ namespace OnlineExam.Tests
         }
 
         [Fact]
-        public void ReferencesExistTests()
+        public void CheckIfNewsArePresent()
         {
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             var signInAsStudent = logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             driver.Navigate().Refresh();
             var newsPage = ConstructPage<SideBar>().NewsMenuItemClick();
-            Thread.Sleep(1000);
-            driver.Navigate().Refresh();
             Thread.Sleep(1000);
             Assert.True(newsPage.IsNewsPresentedInNewsList("C# Starter"));
         }
@@ -37,13 +35,10 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             var signIn = logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            Thread.Sleep(1000);
             var newsPage = ConstructPage<SideBar>().NewsMenuItemClick();
-            Thread.Sleep(1000);
             var result = newsPage.CreateArticle();
             Thread.Sleep(1000);
-            Assert.StartsWith(result.ToString(), "An unhandled exception occurred while processing the request.");
-
+            Assert.StartsWith(result.ToString(), "OnlineExam.Pages.POM.TeacherNewsPage");
         }
 
         public void Dispose()

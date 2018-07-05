@@ -16,17 +16,45 @@ namespace OnlineExam.Tests
         }
 
         [Fact]
-        public void ContactUsTest()
+        public void CheckIfContactUsMessageIsVisibleInInbox()
         {
             var sideBar = ConstructPage<SideBar>();
             var contactUs = sideBar.ContactUsMenuItemElementClick();
-            contactUs.ContactUs();
+            contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Anna", "Hello admin!");
+            //DateTime now = DateTime.Now;
             var header = ConstructPage<Header>();
-            header.SignOut();
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var mailBox = sideBar.MailBoxMenuItemElementClick();
             Thread.Sleep(500);
-            mailBox.IsMailPresentedInMailList("ewrtyuio");
+            //int hour;
+            //if (now.Hour > 12)
+            //{
+            //    hour = now.Hour - 12;
+            //}
+            //else
+            //{
+            //    hour = now.Hour;
+            //}
+            //string expectedResult = Constants.EXAMPLE_EMAIL + " " + now.Month + "/" +
+            //    now.Day + "/" + now.Year + " " + hour.ToString() + ":" + now.Minute + ":" + 
+            //    now.Second + " PM";
+            //Assert.True(mailBox.IsMailPresentedInInbox(expectedResult));
+            Assert.StartsWith( Constants.EXAMPLE_EMAIL, mailBox.GetInboxMail());
+            //Assert.Contains(Constants.EXAMPLE_EMAIL, mailBox.GetInboxMail());
+        }
+
+        [Fact]
+        public void CheckIfOutboxMessageIsVisible()
+        {
+            var sideBar = ConstructPage<SideBar>();
+            var header = ConstructPage<Header>();
+            header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+            var mailBox = sideBar.MailBoxMenuItemElementClick();
+            var sendEmail = mailBox.SendMessageReferenceClick();
+            sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, "Hello");
+            var outbox = mailBox.OutboxElementClick();
+            
+            //Assert.;
         }
 
         public void Dispose()
