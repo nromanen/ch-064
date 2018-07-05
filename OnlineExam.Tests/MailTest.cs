@@ -19,13 +19,13 @@ namespace OnlineExam.Tests
         public void CheckIfContactUsMessageIsVisibleInInbox()
         {
             var sideBar = ConstructPage<SideBar>();
-            var contactUs = sideBar.ContactUsMenuItemElementClick();
-            contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Anna", "Hello admin!");
+            //var contactUs = sideBar.ContactUsMenuItemElementClick();
+            //contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Anna", "Hello admin!");
             //DateTime now = DateTime.Now;
             var header = ConstructPage<Header>();
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var mailBox = sideBar.MailBoxMenuItemElementClick();
-            Thread.Sleep(500);
+            var inbox = mailBox.InboxElementClick();
             //int hour;
             //if (now.Hour > 12)
             //{
@@ -39,7 +39,7 @@ namespace OnlineExam.Tests
             //    now.Day + "/" + now.Year + " " + hour.ToString() + ":" + now.Minute + ":" + 
             //    now.Second + " PM";
             //Assert.True(mailBox.IsMailPresentedInInbox(expectedResult));
-            Assert.StartsWith( Constants.EXAMPLE_EMAIL, mailBox.GetInboxMail());
+            Assert.StartsWith( Constants.EXAMPLE_EMAIL, inbox.GetInboxMail());
             //Assert.Contains(Constants.EXAMPLE_EMAIL, mailBox.GetInboxMail());
         }
 
@@ -53,7 +53,7 @@ namespace OnlineExam.Tests
             var sendEmail = mailBox.SendMessageReferenceClick();
             sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, "Hello");
             var outbox = mailBox.OutboxElementClick();
-            
+            Assert.True(outbox.IsMailPresentedInOutbox("Filipchukruslan@rambler.ru 5 / 28 / 2018 6:07:37 PM"));
             //Assert.;
         }
 
