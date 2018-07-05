@@ -15,32 +15,22 @@ namespace OnlineExam.Tests
         {
         }
 
+        string testMessage = $"{Guid.NewGuid()} Hola from Natasha";
+
         [Fact]
         public void CheckIfContactUsMessageIsVisibleInInbox()
         {
+            //var testMessage = $"{Guid.NewGuid()} Hola from Natasha";
             var sideBar = ConstructPage<SideBar>();
-            //var contactUs = sideBar.ContactUsMenuItemElementClick();
-            //contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Anna", "Hello admin!");
-            //DateTime now = DateTime.Now;
+            var contactUs = sideBar.ContactUsMenuItemElementClick();
+            contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Name", testMessage);
             var header = ConstructPage<Header>();
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var mailBox = sideBar.MailBoxMenuItemElementClick();
             var inbox = mailBox.InboxElementClick();
-            //int hour;
-            //if (now.Hour > 12)
-            //{
-            //    hour = now.Hour - 12;
-            //}
-            //else
-            //{
-            //    hour = now.Hour;
-            //}
-            //string expectedResult = Constants.EXAMPLE_EMAIL + " " + now.Month + "/" +
-            //    now.Day + "/" + now.Year + " " + hour.ToString() + ":" + now.Minute + ":" + 
-            //    now.Second + " PM";
-            //Assert.True(mailBox.IsMailPresentedInInbox(expectedResult));
-            Assert.StartsWith( Constants.EXAMPLE_EMAIL, inbox.GetInboxMail());
-            //Assert.Contains(Constants.EXAMPLE_EMAIL, mailBox.GetInboxMail());
+            var blocks = inbox.GetInboxBlocksList();
+            var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
+            Assert.True(existMessage);
         }
 
         [Fact]
@@ -51,10 +41,11 @@ namespace OnlineExam.Tests
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var mailBox = sideBar.MailBoxMenuItemElementClick();
             var sendEmail = mailBox.SendMessageReferenceClick();
-            sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, "Hello");
+            sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
             var outbox = mailBox.OutboxElementClick();
-            Assert.True(outbox.IsMailPresentedInOutbox("Filipchukruslan@rambler.ru 5 / 28 / 2018 6:07:37 PM"));
-            //Assert.;
+            var blocks = outbox.GetOutboxBlocksList();
+            var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
+            Assert.True(existMessage);
         }
 
         public void Dispose()

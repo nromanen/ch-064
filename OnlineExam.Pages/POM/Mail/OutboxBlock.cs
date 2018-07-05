@@ -15,48 +15,22 @@ namespace OnlineExam.Pages.POM.Mail
 
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#OutBoxMEssages > p")]
-        public IList<IWebElement> OutboxMailList { get; set; }
-
         public IWebElement Header { get; set; }
         public IWebElement Message { get; set; }
 
-        public string GetOutboxMail()
+        public string GetHeaderText()
         {
-            string result = "";
-            var outboxBlocksList = GetOutboxBlocksList();
-            foreach (var block in outboxBlocksList)
-            {
-                result += block.Header.Text + " ";
-            }
-            return result;
+            return Header.Text;
         }
 
-        public bool IsMailPresentedInOutbox(string header)
+        public string GetMessageText()
         {
-            var outboxBlocksList = GetOutboxBlocksList();
-            foreach (var block in outboxBlocksList)
-            {
-                if (block.Header.Text.StartsWith(header))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return Message.Text;
         }
 
-        public IList<OutboxBlock> GetOutboxBlocksList()
+        public bool IsEqualText(string text)
         {
-            var outboxBlocksList = new List<OutboxBlock>();
-            for (var i = 0; i < OutboxMailList.Count; i = i + 2)
-            {
-                var block = new OutboxBlock();
-                block.SetDriver(this.driver);
-                block.Header = OutboxMailList[i];
-                block.Message = OutboxMailList[i + 1];
-                outboxBlocksList.Add(block);
-            }
-            return outboxBlocksList;
+            return GetMessageText().Trim().Equals(text.Trim(), StringComparison.OrdinalIgnoreCase);
         }
 
     }
