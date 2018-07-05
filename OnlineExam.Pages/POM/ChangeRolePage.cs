@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.Pages.POM
@@ -41,24 +39,8 @@ namespace OnlineExam.Pages.POM
 
                 if (sValue.Equals(role))
                 {
-
-                    //Wrapper.WaitWhileNotClickableWebElement(driver, radio);
-                    //radio.Click();
-
-                    /*OpenQA.Selenium.WebDriverException: '
-                    unknown error: Element <input type="radio" name="roles" value="Teacher"> is not clickable at point (69, 251). 
-                    Other element would receive the click: <div class="col-lg-6">...</div> (Session info: chrome=67.0.3396.87)*/
-
-                    // Wrapper.WaitWhileNotClickableWebElement(driver,saveButtonElement);
-                    // saveButtonElement.Click();
-
-
-                          ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();" +
-                                                                "arguments[1].click();", radio,saveButtonElement);
-                    //Що саме не так з радіоБатонами 
-
-                    //((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", saveButtonElement);
-
+                    ((IJavaScriptExecutor) driver).ExecuteScript("arguments[0].click();" +
+                                                                 "arguments[1].click();", radio, saveButtonElement);
                     break;
                 }
             }

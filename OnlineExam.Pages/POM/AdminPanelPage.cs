@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
+﻿using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
 
 namespace OnlineExam.Pages.POM
 {
@@ -12,7 +9,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = ".body-content > h2:nth-child(2)")]
         private IWebElement listOfUsersH2Element;
 
-        [FindsBy(How = How.CssSelector, Using = ".row")] 
+        [FindsBy(How = How.CssSelector, Using = ".row")]
         private IList<IWebElement> rowOfDivsUserListElements;
 
         public AdminPanelPage(IWebDriver driver) : base(driver)
@@ -45,7 +42,7 @@ namespace OnlineExam.Pages.POM
                 if (text.Equals(email))
                 {
                     row.FindElement(By.TagName("a")).Click();
-                    return new ChangeRolePage(driver);
+                    return ConstructPage<ChangeRolePage>();
                 }
             }
 
@@ -73,6 +70,5 @@ namespace OnlineExam.Pages.POM
 
             return false;
         }
-
     }
 }

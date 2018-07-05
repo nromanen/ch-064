@@ -15,6 +15,11 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+        public CodeHistoryPage()
+        {
+            
+        }
+
         [FindsBy(How=How.CssSelector, Using = ".historyblock > .row")]
         public IList<IWebElement> BlocksList { get; set; }
 

@@ -1,18 +1,12 @@
-﻿using System;
-using OnlineExam.Pages.POM.UserDetails;
+﻿using OnlineExam.Pages.POM.UserDetails;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
-using System;
 
 namespace OnlineExam.Pages.POM
 {
     public class Header : BasePage
     {
-        public Header()
-        {
-
-        }
         [FindsBy(How = How.CssSelector, Using = "#requestCulture_RequestCulture_UICulture_Name")]
         private IWebElement changeLanguageSelectElement;
 
@@ -33,10 +27,14 @@ namespace OnlineExam.Pages.POM
         private IWebElement userAccountManageLinkElement;
 
 
+        public Header()
+        {
+        }
+
         public Header(IWebDriver driver) : base(driver)
         {
         }
-        
+
         public bool GetSignInElement()
         {
             return signInLinkElement.Displayed;
@@ -63,7 +61,7 @@ namespace OnlineExam.Pages.POM
         {
             WaitWhileNotClickableWebElement(signInLinkElement);
             signInLinkElement.Click();
-            return new LogInPage(driver);
+            return ConstructPage<LogInPage>();
         }
 
         public Header ChangeLanguage(string value)
@@ -77,21 +75,21 @@ namespace OnlineExam.Pages.POM
         {
             WaitWhileNotClickableWebElement(signOutButtonElement);
             signOutButtonElement.Click();
-            return new IndexPage(driver);
+            return ConstructPage<IndexPage>();
         }
 
         public RegisterPage GoToRegistrationPage()
         {
             WaitWhileNotClickableWebElement(signInLinkElement);
             signUpLinkElement.Click();
-            return new RegisterPage(driver);
+            return ConstructPage<RegisterPage>();
         }
 
         public UserInfoPage GoToUserAccountPage()
         {
             WaitWhileNotClickableWebElement(userAccountManageLinkElement);
             userAccountManageLinkElement.Click();
-            return new UserInfoPage(driver);
+            return ConstructPage<UserInfoPage>();
         }
 
         public bool IsUserEmailPresentedInHeader(string email)

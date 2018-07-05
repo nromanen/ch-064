@@ -82,7 +82,7 @@ namespace OnlineExam.Pages.POM
             navBarElement.Click();
             WaitWhileNotClickableWebElement(codeHistoryMenuItemElement);
             codeHistoryMenuItemElement.Click();
-            return new CodeHistoryPage(driver);
+            return ConstructPage<CodeHistoryPage>();
         }
 
         public MailBoxPage GoToMailBoxPage()
@@ -106,7 +106,7 @@ namespace OnlineExam.Pages.POM
             navBarElement.Click();
             WaitWhileNotClickableWebElement(tasksMenuItemElement);
             tasksMenuItemElement.Click();
-            return new TasksPage(driver);
+            return ConstructPage<TasksPage>();
         }
     }
 }

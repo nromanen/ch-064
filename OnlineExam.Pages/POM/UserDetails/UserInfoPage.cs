@@ -14,6 +14,10 @@ namespace OnlineExam.Pages.POM.UserDetails
         {
         }
 
+        public UserInfoPage()
+        {
+        }
+
         [FindsBy(How = How.Id, Using = "ChPaswBut1")]
         public IWebElement ChangePassButton { get; set; }
 

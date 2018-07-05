@@ -1,52 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OnlineExam.Pages.POM;
+﻿using OnlineExam.Pages.POM;
+using RelevantCodes.ExtentReports;
 using Xunit;
 
 namespace OnlineExam.Tests
 {
+    [Collection("MyTestCollection")]
     public class HeaderTest : BaseTest
-
     {
-        public HeaderTest()
+        private Header header;
+
+        public HeaderTest(BaseFixture fixture) :base(fixture)
         {
             BeginTest();
+            header = ConstructPage<Header>();
         }
 
         [Fact]
         public void ChangeLanguageToEnglishTest()
         {
-            var header = new Header(driver);
+            fixture.test = fixture.extent.StartTest("ChangeLanguageToEnglishTest");
             header.ChangeLanguage(Constants.ENGLISH);
-            Assert.Equal(Constants.SIGN_IN_ENGLISH,header.GetSignInButtonText());
+            Assert.Equal(Constants.SIGN_IN_ENGLISH, header.GetSignInButtonText());
+            fixture.test.Log(LogStatus.Pass, "Language is changed to english successfully");
+
         }
 
         [Fact]
         public void ChangeLanguageToUkraineTest()
         {
-            var header = new Header(driver);
+            fixture.test = fixture.extent.StartTest("ChangeLanguageToUkraineTest");
             header.ChangeLanguage(Constants.UKRAINE);
-            Assert.Equal(Constants.SIGN_IN_UKRAINE,header.GetSignInButtonText());
+            Assert.Equal(Constants.SIGN_IN_UKRAINE, header.GetSignInButtonText());
+            fixture.test.Log(LogStatus.Pass, "Language is changed to ukraine successfully");
         }
 
         [Fact]
         public void SignInButtonTest()
         {
-            var header = new Header(driver);
+            fixture.test = fixture.extent.StartTest("SignInButtonTest");
             var logIn = header.GoToLogInPage();
-            Assert.Contains(Constants.LOGIN_URL_CONTAINS,logIn.GetUrl());
+            Assert.Contains(Constants.LOGIN_URL_CONTAINS, logIn.GetUrl());
+            fixture.test.Log(LogStatus.Pass, "Log in page is visible");
         }
 
         [Fact]
         public void SignUpButtonTest()
         {
-            var header = new Header(driver);
+            fixture.test = fixture.extent.StartTest("SignUpButtonTest");
             var regPage = header.GoToRegistrationPage();
-            Assert.Contains(Constants.REGISTRATION_URL_CONTAINS,regPage.GetUrl());
+            Assert.Contains(Constants.REGISTRATION_URL_CONTAINS, regPage.GetUrl());
+            fixture.test.Log(LogStatus.Pass, "Register page is visible");
         }
 
+      
     }
 }

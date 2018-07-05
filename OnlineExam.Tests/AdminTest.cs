@@ -1,79 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using OnlineExam.Pages.POM;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using RelevantCodes.ExtentReports;
 using Xunit;
+using Xunit.Abstractions;
+using Xunit.Sdk;
 
 namespace OnlineExam.Tests
 {
+    [Collection("MyTestCollection")]
     public class AdminTest : BaseTest
     {
         private Header header;
         private LogInPage logInPage;
         private AdminPanelPage adminPanelPage;
-        private ExtentReports extent;
-        private ExtentTest test;
 
-        public AdminTest()
+
+        //[SetUp]
+        public AdminTest (BaseFixture fixture) : base(fixture)
         {
-            extent = new ExtentReports(@"E:\SS\report.html",false);
-            test = extent.StartTest("Admin test", "description");
             BeginTest();
-            header = new Header(driver);
+
+            header = ConstructPage<Header>();
             logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            adminPanelPage = new SideBar(driver).GoToAdminPanelPage();
+            adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
         }
 
         [Fact]
         public void IsUserPresentedInUserListTest()
         {
+            fixture.test = fixture.extent.StartTest("IsUserPresentedInUserListTest");
             Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL));
-            test.Log(LogStatus.Pass, "User is presented in user list");
+            fixture.test.Log(LogStatus.Pass, "User is presented in user list");
         }
 
         [Fact]
         public void DeleteUserTest()
         {
+            fixture.test = fixture.extent.StartTest("Delete user test");
             Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.VIKTOR_EMAIL),
                 "User is not presented in the system," +
                 "so we have not opportunity to delete this user");
             adminPanelPage.DeleteUser(Constants.VIKTOR_EMAIL);
+            //    fixture.test.Log(LogStatus.Fail,"failed");
+            
             Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
             Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.VIKTOR_EMAIL), "Error");
-            test.Log(LogStatus.Pass, "User is deleted successfully");
-
+            fixture.test.Log(LogStatus.Pass, "User is deleted successfully");
         }
 
         [Fact]
         public void ChangeUserRoleTest()
         {
+            fixture.test = fixture.extent.StartTest("Change user role test");
             var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.VIKTOR_EMAIL);
             changeRolePage.ChangeRole(Constants.TEACHER);
             changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.VIKTOR_EMAIL);
             Assert.Equal(Constants.TEACHER, changeRolePage.CurrentRole());
-            test.Log(LogStatus.Pass, "Role is changed successfully");
+            fixture.test.Log(LogStatus.Pass, "Role is changed successfully");
         }
 
         [Fact]
-        public void IsUserListAvailable()
+        public void IsUserListAvailableTest()
         {
+            fixture.test = fixture.extent.StartTest("Is user list available test");
             Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
-            test.Log(LogStatus.Pass,"User list is available");
+            fixture.test.Log(LogStatus.Pass, "User list is available");
         }
 
-        public override void Dispose()
-        {
-            // ending test
-            extent.EndTest(test);
-            // Flush test
-            extent.Flush();
-            base.Dispose();
-        }
+
+        //[TearDown]
+        //public override void Dispose()
+        //{
+        //    base.Dispose();
+        //}
     }
 }
