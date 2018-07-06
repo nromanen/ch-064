@@ -18,7 +18,8 @@ namespace OnlineExam.Tests
         public void TestChangePassword()
         {
             BeginTest();
-            driver.Navigate().GoToUrl("http://localhost:55842/Account/Login");
+            //driver.Navigate().GoToUrl("http://localhost:55842/Account/Login");
+            throw new Exception("Rewrite using Page constructor");
             System.Threading.Thread.Sleep(1000);
             var loginPage = ConstructPage<LogInPage>();
             var indexPage = loginPage.SignIn("teacher@gmail.com", "Teacher_123");
@@ -33,7 +34,8 @@ namespace OnlineExam.Tests
             header = ConstructPage<Header>();
             header.SignOut();
 
-            driver.Navigate().GoToUrl("http://localhost:55842/Account/Login");
+            //driver.Navigate().GoToUrl("http://localhost:55842/Account/Login");
+            throw new Exception("Rewrite using Page constructor");
             System.Threading.Thread.Sleep(1000);
             var repeatLogIn = ConstructPage<LogInPage>();
             var repeatSignIn = repeatLogIn.SignIn("teacher@gmail.com", newPassword);

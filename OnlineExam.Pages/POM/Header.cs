@@ -32,10 +32,6 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "#gn-menu > li:nth-child(3) > a:nth-child(1)")]
         private IWebElement userAccountManageLinkElement;
 
-
-        public Header(IWebDriver driver) : base(driver)
-        {
-        }
         
         public bool GetSignInElement()
         {
@@ -51,14 +47,16 @@ namespace OnlineExam.Pages.POM
         {
             WaitWhileNotClickableWebElement(homePageLinkElement);
             homePageLinkElement.Click();
-            return new NewsPage(driver);
+            //return new NewsPage(driver);
+            throw new Exception("Rewrite using Page constructor");
         }
 
         public LogInPage GoToLogInPage()
         {
             WaitWhileNotClickableWebElement(signInLinkElement);
             signInLinkElement.Click();
-            return new LogInPage(driver);
+            //return new LogInPage(driver);
+            throw new Exception("Rewrite using Page constructor");
         }
 
         public Header ChangeLanguage(string value)
@@ -72,21 +70,24 @@ namespace OnlineExam.Pages.POM
         {
             WaitWhileNotClickableWebElement(signOutButtonElement);
             signOutButtonElement.Click();
-            return new IndexPage(driver);
+            //return new IndexPage(driver);
+            throw new Exception("Rewrite using Page constructor");
         }
 
         public RegisterPage GoToRegistrationPage()
         {
             WaitWhileNotClickableWebElement(signInLinkElement);
             signUpLinkElement.Click();
-            return new RegisterPage(driver);
+            //return new RegisterPage(driver);
+            throw new Exception("Rewrite using Page constructor");
         }
 
         public UserInfoPage GoToUserAccountPage()
         {
             WaitWhileNotClickableWebElement(userAccountManageLinkElement);
             userAccountManageLinkElement.Click();
-            return new UserInfoPage(driver);
+            //return new UserInfoPage(driver);
+            throw new Exception("Rewrite using Page constructor");
         }
 
         public bool IsUserEmailPresentedInHeader(string email)

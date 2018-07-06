@@ -20,10 +20,6 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "div.col-lg-6:nth-child(2) > h3:nth-child(1)")]
         private IWebElement currentUserEmailH2Element;
 
-        public ChangeRolePage(IWebDriver driver) : base(driver)
-        {
-        }
-
         public ChangeRolePage()
         {
         }

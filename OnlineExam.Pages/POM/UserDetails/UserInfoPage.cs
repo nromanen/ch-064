@@ -10,9 +10,6 @@ namespace OnlineExam.Pages.POM.UserDetails
 {
     public class UserInfoPage : BasePage
     {
-        public UserInfoPage(IWebDriver driver) : base(driver)
-        {
-        }
         public UserInfoPage()  
         {
         }
@@ -37,7 +34,8 @@ namespace OnlineExam.Pages.POM.UserDetails
         public ChangePasswordPage OpenChangePasswordPage()
         {
             ChangePassButton.Click();
-            return new ChangePasswordPage(this.driver);
+            //return new ChangePasswordPage(this.driver);
+            throw new Exception("Rewrite using Page constructor");
         }
 
         public ChangeNamePage OpenChangeNamePage()
@@ -50,7 +48,8 @@ namespace OnlineExam.Pages.POM.UserDetails
         public ChangeEmailPage OpenChangeEmailPage()
         {
             ChangeEmailButton.Click();
-            return new ChangeEmailPage(this.driver);
+            throw new Exception("Rewrite using Page constructor");
+            //return new ChangeEmailPage(this.driver);
         }
 
         public bool HasChangeNameButton()

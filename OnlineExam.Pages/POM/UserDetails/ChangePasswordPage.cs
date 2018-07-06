@@ -10,9 +10,6 @@ namespace OnlineExam.Pages.POM.UserDetails
 {
     public class ChangePasswordPage : BasePage
     {
-        public ChangePasswordPage(IWebDriver driver) : base(driver)
-        {
-        }
 
         [FindsBy(How = How.Id, Using = "OldPassword")]
         public IWebElement OldPasswordField { get; set; }
@@ -38,7 +35,8 @@ namespace OnlineExam.Pages.POM.UserDetails
             SaveButton.Click();
             try
             {
-                return new NewsPage(this.driver);
+                //return new NewsPage(this.driver);
+                throw new Exception("Rewrite using Page constructor");
             } catch (Exception e)
             {
                 return null;

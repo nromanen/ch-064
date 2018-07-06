@@ -20,7 +20,6 @@ namespace OnlineExam.Pages.POM
         {
 
         }
-        public CourseManagementPage(IWebDriver driver) : base(driver) { }
 
         [FindsBy(How = How.CssSelector, Using = "a.btn:nth-child(1)")]
         public IWebElement AddCourseBtn { get; set; }
@@ -30,58 +29,61 @@ namespace OnlineExam.Pages.POM
 
         public bool IsExist(string CourseName)
         {
-            IWebElement table = driver.FindElement(By.TagName("tbody"));
+            throw new Exception("Rewrite using Exteded driver");
+            //IWebElement table = driver.FindElement(By.TagName("tbody"));
 
-            IList<IWebElement> allRows = table.FindElements(By.TagName("tr"));
+            //IList<IWebElement> allRows = table.FindElements(By.TagName("tr"));
 
-            foreach (IWebElement row in allRows)
-            {
-                IList<IWebElement> cells = row.FindElements(By.TagName("td"));
+            //foreach (IWebElement row in allRows)
+            //{
+            //    IList<IWebElement> cells = row.FindElements(By.TagName("td"));
 
-                foreach (IWebElement cell in cells)
-                {
-                    if (cell.Text == CourseName)
-                        return true;
-                }
-            }
-            return false;
+            //    foreach (IWebElement cell in cells)
+            //    {
+            //        if (cell.Text == CourseName)
+            //            return true;
+            //    }
+            //}
+            //return false;
         }
 
         public void FollowLink()
         {
-            IList<IWebElement> bluehighl = driver.FindElements(By.ClassName("bluehighl"));
-            foreach (var item in bluehighl)
-            {
-                if (item.Text == "Check")
-                    item.Click();
-            }
+            //IList<IWebElement> bluehighl = driver.FindElements(By.ClassName("bluehighl"));
+            //foreach (var item in bluehighl)
+            //{
+            //    if (item.Text == "Check")
+            //        item.Click();
+            //}
+            throw new Exception("Rewrite using Extended web driver");
         }
 
         public string ChangeOwner(string courseName)
         {
             //TODO: CHANGE OWNER follow link
             string tmpLink = "";
-            var rows = driver.FindElements(By.TagName("tr"));
-            foreach (var row in rows)
-            {
-                if (row.Text.Contains(courseName))
-                {
-                    //MessageBox.Show(row.Text);
-                    IList<IWebElement> List = row.FindElements(By.TagName("a"));
-                    foreach (var item in List)
-                    {
-                       // MessageBox.Show(item.Text);
-                        if (item.Text.Equals("Змінити власника курсу") || item.Text.Equals("Change course owner"))
-                        {
-                            var link = item.GetAttribute("href");
-                            //item.FindElement(By.LinkText(link)).Click();
-                            //driver.Navigate().GoToUrl(link);
-                            tmpLink = link;
+            //var rows = driver.FindElements(By.TagName("tr"));
+            //foreach (var row in rows)
+            //{
+            //    if (row.Text.Contains(courseName))
+            //    {
+            //        //MessageBox.Show(row.Text);
+            //        IList<IWebElement> List = row.FindElements(By.TagName("a"));
+            //        foreach (var item in List)
+            //        {
+            //           // MessageBox.Show(item.Text);
+            //            if (item.Text.Equals("Змінити власника курсу") || item.Text.Equals("Change course owner"))
+            //            {
+            //                var link = item.GetAttribute("href");
+            //                //item.FindElement(By.LinkText(link)).Click();
+            //                //driver.Navigate().GoToUrl(link);
+            //                tmpLink = link;
 
-                        }
-                    }
-                }
-            }
+            //            }
+            //        }
+            //    }
+            //}
+            throw new Exception("Rewrite using Extended user");
             return tmpLink;
         }
 

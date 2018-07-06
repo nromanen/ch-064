@@ -23,7 +23,8 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             var signInAsStudent = logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().Refresh();
+            //driver.Navigate().Refresh();
+            throw new Exception("Rewrite using new approach");
             var newsPage = ConstructPage<SideBar>().NewsMenuItemClick();
             Assert.True(newsPage.IsNewsPresentedInNewsList("C# Starter"));
         }

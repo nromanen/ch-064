@@ -15,56 +15,7 @@ namespace OnlineExam.Tests
         {
             this.output = output;
         }
-        #region Create tests 2
-        [Fact]
-        public void CreateCourse_ValidData()
-        {
-            LoginAsTeacher();
-            string Title = "NEW", Description = "Description1";
-            var CourseMenegmentPage = ConstructPage<CourseManagementPage>();
-            if (CourseMenegmentPage != null)
-            {
-                CourseMenegmentPage.AddCourseBtn.Click();
-            }
-
-            var CreateCoursePage = ConstructPage<CreateCoursePage>();
-            if (CreateCoursePage != null)
-            {
-                CreateCoursePage.FillCourse(Title, Description);
-                Assert.Equal(Title, CreateCoursePage.GetName());
-                Assert.Equal(Description, CreateCoursePage.GetDescription());
-
-                CreateCoursePage.CourseOkBtn.Click();
-                Assert.True(CourseMenegmentPage.IsExist(Title));
-            } 
-        }
-
-        [Fact]
-        public void CreateCourse_InvalidData()
-        {
-            LoginAsTeacher();
-            string Title = String.Empty, Description = "Description1";
-            var expectedURL = "http://localhost:55842/CourseManagement/Create";
-            
-            var CourseMenegmentPage = ConstructPage<CourseManagementPage>();
-            if (CourseMenegmentPage != null)
-            {
-                CourseMenegmentPage.AddCourseBtn.Click();
-            }
-            
-            var CreateCoursePage = ConstructPage<CreateCoursePage>();
-            if (CreateCoursePage != null)
-            {
-                CreateCoursePage.FillCourse(Title, Description);
-                Assert.Equal(Title, CreateCoursePage.GetName());
-                Assert.Equal(Description, CreateCoursePage.GetDescription());
-
-                CreateCoursePage.CourseOkBtn.Click();
-                string actualURL = driver.Url;
-                Assert.Equal(expectedURL, actualURL);
-            }
-        }
-        #endregion
+        
 
         #region Delete test
         [Fact]
@@ -113,35 +64,36 @@ namespace OnlineExam.Tests
         [Fact]
         public void ChangeCourse_ShouldChangeCourseData()
         {
-            LoginAsTeacher();
-            string courseName = "NEW";
-            var courseMenegmentPage = ConstructPage<CourseManagementPage>();
-            if (courseMenegmentPage != null)
-            {
-                courseMenegmentPage.MyCoursesBtn.Click();
-            }
-            var viewCoursePage = ConstructPage<ViewCoursesPage>();
-            if (viewCoursePage != null)
-            {
-                //TODO: fix this shit with link
-                var href = viewCoursePage.GetCourseLink(courseName);
-                driver.Navigate().GoToUrl(href);
-            }
+            //LoginAsTeacher();
+            //string courseName = "NEW";
+            //var courseMenegmentPage = ConstructPage<CourseManagementPage>();
+            //if (courseMenegmentPage != null)
+            //{
+            //    courseMenegmentPage.MyCoursesBtn.Click();
+            //}
+            //var viewCoursePage = ConstructPage<ViewCoursesPage>();
+            //if (viewCoursePage != null)
+            //{
+            //    //TODO: fix this shit with link
+            //    var href = viewCoursePage.GetCourseLink(courseName);
+            //    driver.Navigate().GoToUrl(href);
+            //}
 
-            var editCoursePage = ConstructPage<CreateCoursePage>();
-            if (editCoursePage != null)
-            {
-                var oldName = editCoursePage.GetName();
-                var oldDescription = editCoursePage.GetDescription();
-                string newName = "asda", newDescription = "asda";
-                editCoursePage.EditCourse(newName, newDescription);
-                editCoursePage.CourseOkBtn.Click();
-                //TODO: fix this shit with link
-                var newHref = viewCoursePage.GetCourseLink(newName);
-                driver.Navigate().GoToUrl(newHref);
-                Assert.Equal(newName, editCoursePage.GetName());
-                Assert.Equal(newDescription, editCoursePage.GetDescription());
-            }
+            //var editCoursePage = ConstructPage<CreateCoursePage>();
+            //if (editCoursePage != null)
+            //{
+            //    var oldName = editCoursePage.GetName();
+            //    var oldDescription = editCoursePage.GetDescription();
+            //    string newName = "asda", newDescription = "asda";
+            //    editCoursePage.EditCourse(newName, newDescription);
+            //    editCoursePage.CourseOkBtn.Click();
+            //    //TODO: fix this shit with link
+            //    var newHref = viewCoursePage.GetCourseLink(newName);
+            //    driver.Navigate().GoToUrl(newHref);
+            //    Assert.Equal(newName, editCoursePage.GetName());
+            //    Assert.Equal(newDescription, editCoursePage.GetDescription());
+            //}
+            throw new Exception("Rewrite using Page constructor");
         }
         #endregion
 
@@ -149,26 +101,27 @@ namespace OnlineExam.Tests
         [Fact]
         public void ChangeCourseOwner_ShouldChangeOwner()
         {
-            LoginAsAdmin();
-            string CourseName = "C# Starter";
-            var CourseMenegmentPage = ConstructPage<CourseManagementPage>();
-            var tmp = CourseMenegmentPage.ChangeOwner(CourseName);
-            if (CourseMenegmentPage != null)
-            {
-                //TODO: fix this shit
-                driver.Navigate().GoToUrl(tmp);
-            }
+            //LoginAsAdmin();
+            //string CourseName = "C# Starter";
+            //var CourseMenegmentPage = ConstructPage<CourseManagementPage>();
+            //var tmp = CourseMenegmentPage.ChangeOwner(CourseName);
+            //if (CourseMenegmentPage != null)
+            //{
+            //    //TODO: fix this shit
+            //    driver.Navigate().GoToUrl(tmp);
+            //}
 
-            var ChangeOwner = ConstructPage<ChangeCourseOwnerPage>();
-            if (ChangeOwner != null)
-            {
-                string oldOwner = ChangeOwner.GetOwner();
-                ChangeOwner.ChangeOwner();
+            //var ChangeOwner = ConstructPage<ChangeCourseOwnerPage>();
+            //if (ChangeOwner != null)
+            //{
+            //    string oldOwner = ChangeOwner.GetOwner();
+            //    ChangeOwner.ChangeOwner();
 
-                driver.Navigate().GoToUrl(tmp);
-                string newOwner = ChangeOwner.GetOwner();
-                Assert.NotEqual(oldOwner, newOwner);
-            }  
+            //    driver.Navigate().GoToUrl(tmp);
+            //    string newOwner = ChangeOwner.GetOwner();
+            //    Assert.NotEqual(oldOwner, newOwner);
+            //}  
+            throw new Exception("Rewrite using Page constructor");
         }
         #endregion
 
@@ -180,18 +133,20 @@ namespace OnlineExam.Tests
 
         public void LoginAsTeacher()
         {
-            Header header = new Header(driver);
-            LogInPage logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            var CourseMenu = new SideBar(driver).CoursesMenuItemClick();
+            //Header header = new Header(driver);
+            //LogInPage logInPage = header.GoToLogInPage();
+            //logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+            //var CourseMenu = new SideBar(driver).CoursesMenuItemClick();
+            throw new Exception("Rewrite using Page constructor");
         }
 
         public void LoginAsAdmin()
         {
-            Header header = new Header(driver);
-            LogInPage logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            var CourseMenu = new SideBar(driver).CoursesMenuItemClick();
+            //Header header = new Header(driver);
+            //LogInPage logInPage = header.GoToLogInPage();
+            //logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+            //var CourseMenu = new SideBar(driver).CoursesMenuItemClick();
+            throw new Exception("Rewrite using Page constructor");
         }
        
 

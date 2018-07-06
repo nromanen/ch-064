@@ -11,10 +11,6 @@ namespace OnlineExam.Pages.POM
     public class SendEmailPage : BasePage
     {
 
-        public SendEmailPage(IWebDriver driver) : base(driver)
-        {
-        }
-
         public SendEmailPage()
         {
 

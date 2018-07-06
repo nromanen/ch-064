@@ -22,7 +22,8 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            throw new Exception("Rewrite using new approach");
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)

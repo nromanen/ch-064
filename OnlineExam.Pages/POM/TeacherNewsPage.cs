@@ -12,9 +12,6 @@ namespace OnlineExam.Pages.POM
 {
     public class TeacherNewsPage : NewsPage
     {
-        public TeacherNewsPage(IWebDriver driver) : base(driver)
-        {
-        }
 
         public TeacherNewsPage()
         {

@@ -22,7 +22,8 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
@@ -47,7 +48,8 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            throw new Exception("Rewrite using new approach");
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
@@ -71,7 +73,8 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            throw new Exception("Rewrite using Page constructor");
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
@@ -84,8 +87,9 @@ namespace OnlineExam.Tests
                 Thread.Sleep(2000);
                 var Code = ConstructPage<SolutionCodePage>();
                 Code.ClickOnExitButton();
-                var url = driver.Url;
-                Assert.Equal(url, "http://localhost:55842/");
+                //var url = driver.Url;
+                throw new Exception("Rewrite using Page constructor");
+                //Assert.Equal(url, "http://localhost:55842/");
                 Thread.Sleep(2000);
             }
 
@@ -99,7 +103,8 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            throw new Exception("Rewrite using Page constructor");
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
@@ -127,7 +132,8 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            throw new Exception("Rewrite using Page constructor");
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)

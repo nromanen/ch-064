@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using OnlineExam.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -20,8 +21,6 @@ namespace OnlineExam.Pages.POM
         {
                 
         }
-
-        public ChangeCourseOwnerPage(IWebDriver driver) : base(driver){}
 
         [FindsBy(How = How.Id, Using = "ResultTeacherId")]
         public IWebElement TeacherSelect { get; set; }

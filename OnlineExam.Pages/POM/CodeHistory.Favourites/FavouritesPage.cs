@@ -12,9 +12,6 @@ namespace OnlineExam.Pages.POM
     public class FavouritesPage : BasePage 
         
     {
-        public FavouritesPage(IWebDriver driver) : base(driver)
-        {
-        }
         [FindsBy(How = How.ClassName, Using = "history")]
         public IWebElement HistoryButton { get; set; }
 
@@ -47,7 +44,8 @@ namespace OnlineExam.Pages.POM
         public CodeHistoryPage SwitchToHistory()
         {
             HistoryButton.Click();
-            return new CodeHistoryPage(this.driver);
+            //return new CodeHistoryPage(this.driver);
+            throw new Exception("Rewrite using Page constructor");
         }
 
         public FavouritesPage SwitchToFavourites()

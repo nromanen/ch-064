@@ -15,10 +15,6 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = ".row")] 
         private IList<IWebElement> rowOfDivsUserListElements;
 
-        public AdminPanelPage(IWebDriver driver) : base(driver)
-        {
-        }
-
         public AdminPanelPage()
         {
         }
@@ -45,7 +41,8 @@ namespace OnlineExam.Pages.POM
                 if (text.Equals(email))
                 {
                     row.FindElement(By.TagName("a")).Click();
-                    return new ChangeRolePage(driver);
+                    //return new ChangeRolePage(driver);
+                    throw new Exception("Rewrite using Page constructor");
                 }
             }
 

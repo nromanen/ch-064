@@ -22,6 +22,8 @@ namespace OnlineExam.Framework
             driver.Navigate().GoToUrl(url);
         }
 
+        public ISearchContext SeleniumContext => driver;
+
 
         public void Dispose()
         {
