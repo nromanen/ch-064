@@ -21,7 +21,7 @@ namespace OnlineExam.Pages.POM
 
         }
 
-        internal void SetDriver(IWebDriver driver)
+        public void SetDriver(IWebDriver driver)
         {
             this.driver = driver;
         }

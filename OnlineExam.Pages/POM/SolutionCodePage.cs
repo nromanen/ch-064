@@ -17,6 +17,8 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+        public SolutionCodePage() { }
+
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div:nth-child(1) > div:nth-child(2)")]
         public IWebElement MessageAboutreviewingSolution { get; set; }
 

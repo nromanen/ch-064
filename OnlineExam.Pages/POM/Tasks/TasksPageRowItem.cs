@@ -10,24 +10,22 @@ namespace OnlineExam.Pages.POM.Tasks
 {
     public class TasksPageRowItem : BasePageElement
     {
-        /// <summary>
-        /// Expected Table row
-        /// </summary>
-        /// <param name="webElement"></param>
+      
         public TasksPageRowItem(IWebElement searchContext) : base(searchContext)
         {
         }
 
-        /////////////////////////////////////TASKS PAGE//////////////////////////////////////////
-
+        public TasksPageRowItem()
+        {
+          
+        }
 
         [FindsBy(How=How.CssSelector, Using = ":nth-child(1)")]
         public IWebElement Name { get; set; }
-        [FindsBy(How = How.CssSelector, Using = ":nth-child(2)")]
+        [FindsBy(How = How.CssSelector, Using = ":nth-child(2) > a")]
         public IWebElement Button { get; set; }
-        [FindsBy(How =How.CssSelector, Using =":nth-child(3)")]
+        [FindsBy(How =How.CssSelector, Using =":nth-child(3) > span")]
         public IWebElement Stars { get; set; }
-
 
         public string GetName()
         {
@@ -44,45 +42,10 @@ namespace OnlineExam.Pages.POM.Tasks
             Button.Click();
         }
 
-
-        /////////////////////////////////////TEACHER EXERCISE MANAGER PAGE//////////////////////////////////////////
-
-        [FindsBy(How = How.CssSelector, Using = ":nth-child(1)")]
-        public IWebElement TaskName { get; set; }
-        [FindsBy(How = How.CssSelector, Using = ":nth-child(2)")]
-        public IWebElement CreationDate { get; set; }
-        [FindsBy(How = How.CssSelector, Using = ":nth-child(3)")]
-        public IWebElement UpdateDate { get; set; }
-        [FindsBy(How = How.CssSelector, Using = ":nth-child(4)")]
-        public IWebElement CourseName { get; set; }
-        [FindsBy(How = How.CssSelector, Using = ":nth-child(5)")]
-        public IWebElement AllButtons { get; set; }
-      
-
-        public string TEMP_GetName()
+        public void StarsCount()
         {
-            return TaskName.Text;
+            Stars.GetProperty("star active");
         }
-
-        public string TEMP_GetCreationDate()
-        {
-            return CreationDate.Text;
-        }
-
-        public string TEMP_GetUpdateDate()
-        {
-            return UpdateDate.Text;
-        }
-
-        public string TEMP_GetCourseName()
-        {
-            return CourseName.Text;
-        }
-
-                
-
-
-
 
     }
 }
