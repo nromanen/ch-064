@@ -20,6 +20,8 @@ namespace OnlineExam.Tests
         public const string STUDENT = "Student";
         public const string EXAMPLE_EMAIL = "example@gmail.com";
         public const string EXAMPLE_PASSWORD = "Example_123";
+        public const string FAKE_EMAIL = "fake@gmail.com";
+        public const string FAKE_PASSWORD = "Fake_123";
 
     }
 }
