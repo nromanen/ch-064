@@ -11,32 +11,34 @@ namespace OnlineExam.Tests
 {
     public class SaveExecutedTaskToCodeHistoryTest : BaseTest
     {
-        //public SaveExecutedTaskToCodeHistoryTest() 
-        //    {
-        //    }
+        public SaveExecutedTaskToCodeHistoryTest()
+        {
+        }
 
-        //[Fact]
-        //public void TestSaveExecutedTestToCodeHistory()
-        //{
-        //    string TaskName = "Simple addition";
-        //    var header = ConstructPage<Header>();
-        //    var logInPage = header.GoToLogInPage();
-        //    logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-        //    driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-        //    var ListOfTasks = ConstructPage<TasksPage>();
-        //    var blocks = ListOfTasks.GetBlocks();
-        //    if (blocks != null)
-        //    {
-        //        var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-        //        firstblock.ClickOnTasksButton();
-        //        Thread.Sleep(2000);
-        //        var TaskView = ConstructPage<TaskViewPage>();
-        //        TaskView.ClickOnStartButton();
-        //        Thread.Sleep(2000);
-        //        var Code = ConstructPage<SolutionCodePage>();
-        //        Code.ClickOnExecuteButton();
-        //        Thread.Sleep(2000);
-        //    }
-        //}
+        [Fact]
+        public void TestSaveExecutedTestToCodeHistory()
+        {
+            string TaskName = "Simple addition";
+            var header = ConstructPage<Header>();
+            var logInPage = header.GoToLogInPage();
+            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            var ListOfTasks = ConstructPage<TasksPage>();
+            var blocks = ListOfTasks.GetBlocks();
+            if (blocks != null)
+            {
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                firstblock.ClickOnTasksButton();
+                Thread.Sleep(2000);
+                var TaskView = ConstructPage<TaskViewPage>();
+                TaskView.ClickOnStartButton();
+                Thread.Sleep(2000);
+                var Code = ConstructPage<SolutionCodePage>();
+                Code.ClickOnExecuteButton();
+                Thread.Sleep(2000);
+            }
+
+
+        }
     }
 }
