@@ -53,5 +53,19 @@ namespace OnlineExam.Pages.POM.UserDetails
             return new ChangeEmailPage(this.driver);
         }
 
+        public bool HasChangeNameButton()
+        {
+            return ChangeNameButton != null;
+        }
+
+        public bool HasChangePasswordButton()
+        {
+            return ChangePassButton != null;
+        }
+
+        public bool HasChangeEmailButton()
+        {
+            return ChangeEmailButton != null;
+        }
     }
 }
