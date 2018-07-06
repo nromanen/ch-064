@@ -82,6 +82,9 @@
     <Compile Include="NewsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterTest.cs" />
+    <Compile Include="SolutionCodePageTest.cs" />
+    <Compile Include="TaskViewPageTest.cs" />
+    <Compile Include="TEMP_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

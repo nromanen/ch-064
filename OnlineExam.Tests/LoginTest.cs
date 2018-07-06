@@ -27,6 +27,24 @@ namespace OnlineExam.Tests
         }
 
         [Fact]
+        public void SignInUsingInvalidEmailTest()
+        {
+            var header = ConstructPage<Header>();
+            var logIn = header.GoToLogInPage();
+            logIn.SignIn(Constants.FAKE_EMAIL, Constants.FAKE_PASSWORD);
+            Assert.True(header.IsUserEmailPresentedInHeader(Constants.FAKE_EMAIL));
+        }
+
+        [Fact]
+        public void SignInUsingInvalidPasswordTest()
+        {
+            var header = ConstructPage<Header>();
+            var logIn = header.GoToLogInPage();
+            logIn.SignIn(Constants.STUDENT_EMAIL, Constants.FAKE_PASSWORD);
+            Assert.True(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+        }
+
+        [Fact]
         public void SignOutTest()
         {
             var header = ConstructPage<Header>();

@@ -44,6 +44,21 @@ namespace OnlineExam.Tests
             }
         }
 
+        public T ConstructPageElement<T>(IWebElement pageElement) where T : BasePageElement, new()
+        {
+            var element = new T();
+            element.SetDriver(driver);
+            try
+            {
+                PageFactory.InitElements(pageElement, element);
+                return element;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public virtual void Dispose()
         {
             driver?.Dispose();

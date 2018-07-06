@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OnlineExam.Pages.POM.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -16,6 +17,41 @@ namespace OnlineExam.Pages.POM
         public TaskViewPage(IWebDriver driver) : base(driver)
         {
         }
+
+        public IList<TaskViewPageDivItem> GetDivs()
+        {
+            var blocks = new List<TaskViewPageDivItem>();
+            foreach (var div in RowOfDiv)
+            {
+                var block = ConstructPageElement<TaskViewPageDivItem>(div);
+                if (block != null)
+                    blocks.Add(block);
+            }
+            return blocks;
+        }
+
+        [FindsBy(How = How.Id, Using = "comments")]
+        public IList<IWebElement> RowOfDiv { get; set; }
+
+        public IList<TaskViewPageDivItem> DivItems { get; set; }
+
+        public TaskViewPageDivItem GetByEmail(string Email)
+        {
+            return DivItems.FirstOrDefault(x => String.Equals(x.GetEmail(), Email, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public TaskViewPageDivItem GetByCommentText(string Email)
+        {
+            return DivItems.FirstOrDefault(x => String.Equals(x.GetCommentText(), Email, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public TaskViewPageDivItem GetByCommentDate(string Email)
+        {
+            return DivItems.FirstOrDefault(x => String.Equals(x.GetCommentDate(), Email, StringComparison.OrdinalIgnoreCase));
+        }
+
+
+
 
         [FindsBy(How = How.ClassName, Using = "form-control")]
         public IWebElement TaskName { get; set; }

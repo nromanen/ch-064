@@ -19,103 +19,93 @@ namespace OnlineExam.Pages.POM
 
         public TeacherExerciseManagerPage(IWebDriver driver) : base(driver)
         {
-            var rowItemsList = new List<TasksPageRowItem>();
-            foreach (var tr in RowOfTrs)
-            {
-                var rowItem = new TasksPageRowItem(tr);
-                rowItemsList.Add(rowItem);
-            }
-            RowItems = rowItemsList;
         }
+
+
+        public IList<TeacherExerciseManagerPageRowItem> GetBlocks()
+        {
+            var blocks = new List<TeacherExerciseManagerPageRowItem>();
+            foreach (var row in RowOfTrs)
+            {
+                var block = ConstructPageElement<TeacherExerciseManagerPageRowItem>(row);
+                if (block != null)
+                    blocks.Add(block);
+            }
+            return blocks;
+        }
+
+        public IList<TeacherExerciseManagerPageRowItem> GetCountOfTDs()
+        {
+            var buttons = new List<TeacherExerciseManagerPageRowItem>();
+            foreach (var tds in RowOfTds)
+            {
+                var td = ConstructPageElement<TeacherExerciseManagerPageRowItem>(tds);
+                if (td != null)
+                    buttons.Add(td);
+            }
+            return buttons;
+        }
+
+
+        public int GetCountOfTDs11()
+        {
+            var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
+            var blocks = ListOfTasks.GetBlocks();
+
+            var buttons = new List<TeacherExerciseManagerPageRowItem>(); int i = 0;
+            var hz = blocks[0];
+            MessageBox.Show(hz.ToString());
+            foreach (var tds in blocks)
+            {
+                i++;
+                MessageBox.Show(tds.ToString());
+            }
+            return i;
+        }
+
 
         [FindsBy(How = How.CssSelector, Using = ".table tr:not(:first-of-type)")]
         public IList<IWebElement> RowOfTrs { get; set; }
 
-        public IList<TasksPageRowItem> RowItems { get; set; }
+        [FindsBy(How = How.CssSelector, Using = ".table tr td")]
+        public IList<IWebElement> RowOfTds { get; set; }
 
-       
-        /// ///////////////////////
-        [FindsBy(How = How.Id, Using = "bluhighl")]
-        public IList<IWebElement> RowOfIDS { get; set; }
-        /// ////////////////////
+        [FindsBy(How = How.CssSelector, Using = ".table tr td")]
+        public IWebElement Tds { get; set; }
 
-        public TasksPageRowItem GetByName(string TaskName)
+        public IList<TeacherExerciseManagerPageRowItem> RowItems { get; set; }
+
+
+        public TeacherExerciseManagerPageRowItem GetByName(string TaskName)
         {
             return RowItems.FirstOrDefault(x => String.Equals(x.TEMP_GetName(), TaskName, StringComparison.OrdinalIgnoreCase));
         }
 
-        public TasksPageRowItem GetCreationDate(string TaskName)
+        public TeacherExerciseManagerPageRowItem GetCreationDate(string TaskName)
         {
             return RowItems.FirstOrDefault(x => String.Equals(x.TEMP_GetCreationDate(), TaskName, StringComparison.OrdinalIgnoreCase));
         }
 
-        public TasksPageRowItem GetUpgradeDate(string TaskName)
+        public TeacherExerciseManagerPageRowItem GetUpgradeDate(string TaskName)
         {
             return RowItems.FirstOrDefault(x => String.Equals(x.TEMP_GetUpdateDate(), TaskName, StringComparison.OrdinalIgnoreCase));
         }
 
-
-
-        //public void ClickOnChangeButton(string TaskName)
-        //{
-        //    foreach (var id in RowOfIDS)
-        //    {
-        //        var text = id.Text;
-        //        if (text.Equals(TaskName))
-        //        {
-        //            ChangeButton.Click();
-        //            break;
-        //        }
-        //    }
-        //}
-
-        //public void ClickOnDeleteButton(string TaskName)
-        //{
-        //    foreach(var tr in RowOfTrs)
-        //    {
-        //        var hz = tr.Text;
-        //        MessageBox.Show(hz);
-        //        foreach (var id in RowOfIDS)
-        //        {
-        //        var text = id.Text;
-        //        if (text.Equals(TaskName))
-        //        {
-        //            DeleteButton.Click();
-        //            break;
-        //        }
-        //        }
-        //    }
-        //}
-
-        //public void ClickOnSolutionsButton(string TaskName)
-        //{
-        //    foreach (var id in RowOfIDS)
-        //    {
-        //        var text = id.Text;
-        //        if (text.Equals(TaskName))
-        //        {
-        //            SolutionButton.Click();
-        //            break;
-        //        }
-        //    }
-        //}
-
-        //public void ClickOnAddTaskbutton()
-        //{
-        //    AddTaskButton.Click();
-        //}
-
-        public void ClickOnTaskname(string TaskName)
+        public TeacherExerciseManagerPageRowItem deleted ()
         {
-            foreach (var id in RowOfIDS)
-            {
-                var text = id.Text;
-                if (text.Equals(TaskName))
-                {
-                    id.Click();
-                    break;
-                }
-            }
+            return RowItems.First(x => String.IsNullOrEmpty(x.TEMP_GetCourseName()));
         }
+
+
+
+        [FindsBy( How = How.CssSelector, Using = "body > div > div > h4 > a")]
+        public IWebElement AddTaskButton { get; set; }
+
+        public void ClickOnAddTaskbutton()
+        {
+           AddTaskButton.Click();
+        }
+
+      
     }
 }

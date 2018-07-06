@@ -15,12 +15,23 @@ namespace OnlineExam.Pages.POM.Mail
 
         }
 
-        
-
         public IWebElement Header { get; set; }
         public IWebElement Message { get; set; }
 
-        
+        public string GetHeaderText()
+        {
+            return Header.Text;
+        }
+
+        public string GetMessageText()
+        {
+            return Message.Text;
+        }
+
+        public bool IsEqualText(string text)
+        {
+            return GetMessageText().Trim().Equals(text.Trim(), StringComparison.OrdinalIgnoreCase);
+        }
 
     }
 }
