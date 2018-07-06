@@ -92,6 +92,7 @@
     <Compile Include="POM\SolutionCodePage.cs" />
     <Compile Include="POM\TasksPage.cs" />
     <Compile Include="POM\Tasks\TasksPageRowItem.cs" />
+    <Compile Include="POM\Tasks\TaskViewPageDivItem.cs" />
     <Compile Include="POM\Tasks\TeacherExerciseManagerPageRowItem.cs" />
     <Compile Include="POM\TaskViewPage.cs" />
     <Compile Include="POM\TeacherExerciseManagerPage.cs" />

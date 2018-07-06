@@ -24,7 +24,7 @@ namespace OnlineExam.Pages.POM.Tasks
         public IWebElement Name { get; set; }
         [FindsBy(How = How.CssSelector, Using = ":nth-child(2) > a")]
         public IWebElement Button { get; set; }
-        [FindsBy(How =How.CssSelector, Using =":nth-child(3)")]
+        [FindsBy(How =How.CssSelector, Using =":nth-child(3) > span")]
         public IWebElement Stars { get; set; }
 
         public string GetName()
@@ -41,5 +41,11 @@ namespace OnlineExam.Pages.POM.Tasks
         {
             Button.Click();
         }
+
+        public void StarsCount()
+        {
+            Stars.GetProperty("star active");
+        }
+
     }
 }

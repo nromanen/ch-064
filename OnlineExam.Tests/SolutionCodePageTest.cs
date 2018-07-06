@@ -10,13 +10,13 @@ using Xunit;
 
 namespace OnlineExam.Tests
 {
-    public class TaskViewPageTest : BaseTest
+    public class SolutionCodePageTest: BaseTest
     {
-        public TaskViewPageTest() { }
 
+        public SolutionCodePageTest() { }
 
         [Fact]
-        public void ClickOnStartButton()
+        public void TaskExecuting()
         {
             string TaskName = "Simple addition";
             var header = ConstructPage<Header>();
@@ -29,15 +29,71 @@ namespace OnlineExam.Tests
             {
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 firstblock.ClickOnTasksButton();
+                Thread.Sleep(2000);
                 var TaskView = ConstructPage<TaskViewPage>();
                 TaskView.ClickOnStartButton();
-                Assert.Equal(driver.Title, "- WebApp");
+                Thread.Sleep(2000);
+                var Code = ConstructPage<SolutionCodePage>();
+                Code.ClickOnExecuteButton();
+                Thread.Sleep(2000);
             }
         }
 
 
         [Fact]
-        public void ClickOnOkButton()
+        public void TaskDone()
+        {
+            string TaskName = "Proba2";
+            var header = ConstructPage<Header>();
+            var logInPage = header.GoToLogInPage();
+            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            var ListOfTasks = ConstructPage<TasksPage>();
+            var blocks = ListOfTasks.GetBlocks();
+            if (blocks != null)
+            {
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                firstblock.ClickOnTasksButton();
+                Thread.Sleep(2000);
+                var TaskView = ConstructPage<TaskViewPage>();
+                TaskView.ClickOnStartButton();
+                Thread.Sleep(2000);
+                var Code = ConstructPage<SolutionCodePage>();
+                Code.ClickOnDoneButton();
+                Thread.Sleep(2000);
+            }
+        }
+
+        [Fact]
+        public void ExitButton()
+        {
+            string TaskName = "Proba2";
+            var header = ConstructPage<Header>();
+            var logInPage = header.GoToLogInPage();
+            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+            var ListOfTasks = ConstructPage<TasksPage>();
+            var blocks = ListOfTasks.GetBlocks();
+            if (blocks != null)
+            {
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                firstblock.ClickOnTasksButton();
+                Thread.Sleep(2000);
+                var TaskView = ConstructPage<TaskViewPage>();
+                TaskView.ClickOnStartButton();
+                Thread.Sleep(2000);
+                var Code = ConstructPage<SolutionCodePage>();
+                Code.ClickOnExitButton();
+                var url = driver.Url;
+                Assert.Equal(url, "http://localhost:55842/");
+                Thread.Sleep(2000);
+            }
+
+        }
+
+
+        [Fact]
+        public void Review()
         {
             string TaskName = "Simple addition";
             var header = ConstructPage<Header>();
@@ -50,18 +106,24 @@ namespace OnlineExam.Tests
             {
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 firstblock.ClickOnTasksButton();
+                Thread.Sleep(2000);
                 var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.ClickOnOkButton();
-                Assert.Equal(driver.Url, "http://localhost:55842/CourseManagement/ShowExercise/1");
+                TaskView.ClickOnStartButton();
+                Thread.Sleep(2000);
+                var Code = ConstructPage<SolutionCodePage>();
+                var review = Code.MessageAboutreviewingSolution.Text;
+                MessageBox.Show(review);
+                Assert.NotEmpty(review);
             }
+
         }
 
 
+
         [Fact]
-        public void EmailFromComment()
+        public void Compilation()
         {
-            string TaskName = "Simple addition";
-            string email = "student@gmail.com";
+            string TaskName = "Proba1";
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
@@ -72,73 +134,27 @@ namespace OnlineExam.Tests
             {
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 firstblock.ClickOnTasksButton();
+                Thread.Sleep(2000);
                 var TaskView = ConstructPage<TaskViewPage>();
-                var divs = TaskView.GetDivs();
-                if (divs != null)
-                {
-                    var anyblock = divs.Any(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    Assert.True(anyblock);
-                }
+                TaskView.ClickOnStartButton();
+                Thread.Sleep(2000);
+                var Code = ConstructPage<SolutionCodePage>();
+                Code.ClickOnExecuteButton();
+                Thread.Sleep(10000);
+                Code = ConstructPage<SolutionCodePage>();
+                var result = Code.FieldWithResultOfCompilationCode.Text;
+                MessageBox.Show(result);
+                Assert.NotEmpty(result);
             }
+
         }
 
 
-        [Fact]
-        public void TextFromComment()
-        {
-            string TaskName = "Simple addition";
-            string email = "student@gmail.com";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
-            {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                var divs = TaskView.GetDivs();
-                if (divs != null)
-                {
-                    var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    var comment = anyblock.GetCommentText();
-                    Assert.Equal(comment.ToString(), "e-yo!");
-                }
-            }
-        }
 
-        [Fact]
-        public void DateFromComment()
-        {
-            string TaskName = "Simple addition";
-            string coment = "one more comment";
-            
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
-            {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                var divs = TaskView.GetDivs();
-                if (divs != null)
-                {
-                    var anyblock = divs.FirstOrDefault(x => x.GetCommentText().Equals(coment, StringComparison.OrdinalIgnoreCase));
-                    var date = anyblock.GetCommentDate();
-                    Assert.Equal(date.ToString(), "6/25/2018 8:08:04 PM");
-                }
-            }
-        }
+
+
 
 
 
     }
 }
-
-    
