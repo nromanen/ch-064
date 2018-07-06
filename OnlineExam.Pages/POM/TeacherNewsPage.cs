@@ -12,9 +12,6 @@ namespace OnlineExam.Pages.POM
 {
     public class TeacherNewsPage : NewsPage
     {
-        public TeacherNewsPage(IWebDriver driver) : base(driver)
-        {
-        }
 
         public TeacherNewsPage()
         {
@@ -46,7 +43,7 @@ namespace OnlineExam.Pages.POM
             CreateArticleReference.Click();
             WaitWhileNotClickableWebElement(ChooseFileInput);
             ChooseFileInput.Click();
-            SendKeys.SendWait(@"D:\ch-064\OnlineExam.Pages\POM\Example.jpg");
+            SendKeys.SendWait(@"D:\ch-064\OnlineExam.Pages\Sources\Example.jpg");
             SendKeys.SendWait("{Enter}");
             Thread.Sleep(10000);
             CourseNameInput.SendKeys("New name");

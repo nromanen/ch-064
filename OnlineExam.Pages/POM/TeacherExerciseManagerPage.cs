@@ -17,10 +17,6 @@ namespace OnlineExam.Pages.POM
     {
         public TeacherExerciseManagerPage() { }
 
-        public TeacherExerciseManagerPage(IWebDriver driver) : base(driver)
-        {
-        }
-
 
         public IList<TeacherExerciseManagerPageRowItem> GetBlocks()
         {

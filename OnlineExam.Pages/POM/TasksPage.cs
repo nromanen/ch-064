@@ -19,9 +19,6 @@ namespace OnlineExam.Pages.POM
 
         public TasksPage() { }
 
-        public TasksPage(IWebDriver driver) : base(driver)
-        {}
-
         public IList<TasksPageRowItem> GetBlocks()
         {
             var blocks = new List<TasksPageRowItem>();

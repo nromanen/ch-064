@@ -12,11 +12,5 @@ namespace OnlineExam.Pages.POM
 {
     class ExerciseSolutionsIndex : BasePage
     {
-        public ExerciseSolutionsIndex(IWebDriver driver) : base(driver)
-        {
-        }
-
-
-
     }
 }

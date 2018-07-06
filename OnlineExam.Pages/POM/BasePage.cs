@@ -12,20 +12,14 @@ namespace OnlineExam.Pages.POM
 {
   public abstract  class BasePage
     {
-        protected IWebDriver driver;
-
-        public BasePage(IWebDriver driver)
-        {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
-        }
+        protected ExtendedWebDriver driver;
 
         public BasePage()
         {
 
         }
 
-        public void SetDriver(IWebDriver driver)
+        public void SetDriver(ExtendedWebDriver driver)
         {
             this.driver = driver;
         }
@@ -37,7 +31,7 @@ namespace OnlineExam.Pages.POM
 
             try
             {
-                PageFactory.InitElements(driver, page);
+                PageFactory.InitElements(driver.SeleniumContext, page);
                 return page;
             }
             catch (Exception e)
@@ -65,13 +59,19 @@ namespace OnlineExam.Pages.POM
 
         public  void WaitWhileNotClickableWebElement(IWebElement webElement)
         {
-            WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-            wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
+            throw new Exception("Rewrite with using ExtendedWebDriver");
+            //WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+            //wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
         }
 
         public string GetText(IWebElement element)
         {
-            return element.Text;
+            throw new Exception("Avoid using this logic");
+        }
+
+        public string GetCurrentUrl()
+        {
+            throw new Exception("Rewrite with using ExtendedWebDriver");
         }
     }
 }

@@ -10,10 +10,6 @@ namespace OnlineExam.Pages.POM
 {
     public class RegisterPage : BasePage
     {
-        public RegisterPage(IWebDriver driver) : base(driver)
-        {
-        }
-
         public RegisterPage()
         {
         }

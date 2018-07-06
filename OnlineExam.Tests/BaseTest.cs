@@ -13,20 +13,19 @@ namespace OnlineExam.Tests
 {
     public abstract class BaseTest : IDisposable
     {
-        protected IWebDriver driver;
-        protected ExtendedWebDriver extendedDriver;
+        //protected IWebDriver driver;
+        protected ExtendedWebDriver driver;
 
         protected BaseTest()
         {
             //extendedDriver = DriversFabric.InitChrome();
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl(Constants.HOME_URL);
+            driver = DriversFabric.InitChrome();
 
         }
 
         public void BeginTest()
         {
-            driver.Navigate().GoToUrl(Constants.HOME_URL);
+            driver.GoToUrl(Constants.HOME_URL);
         }
 
         public T ConstructPage<T>()where T: BasePage, new()
@@ -36,7 +35,7 @@ namespace OnlineExam.Tests
 
             try
             {
-                PageFactory.InitElements(driver, page);
+                PageFactory.InitElements(driver.SeleniumContext, page);
                 return page;
             } catch (Exception e)
             {
@@ -59,10 +58,21 @@ namespace OnlineExam.Tests
             }
         }
 
+        public void UITest(Action action)
+        {
+            try
+            {
+                action();
+            } catch (Exception e)
+            {
+                //driver.TakeScreenshot("");
+                throw;
+            }
+        }
+
         public virtual void Dispose()
         {
             driver?.Dispose();
-            extendedDriver?.Dispose();
         }
     }
 }

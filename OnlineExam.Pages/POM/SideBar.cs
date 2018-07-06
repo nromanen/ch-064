@@ -39,10 +39,6 @@ namespace OnlineExam.Pages.POM
 
         [FindsBy(How = How.CssSelector, Using = ".gn-icon-menu")]
         private IWebElement navBarElement;
-         
-        public SideBar(IWebDriver driver) : base(driver)
-        {
-        }
 
         public AdminPanelPage AdminPanelMenuItemClick()
         {
@@ -81,7 +77,8 @@ namespace OnlineExam.Pages.POM
             navBarElement.Click();
             WaitWhileNotClickableWebElement(codeHistoryMenuItemElement);
             codeHistoryMenuItemElement.Click();
-            return new CodeHistoryPage(driver);
+            //return new CodeHistoryPage(driver);
+            throw new Exception("Rewrite using Page constructor");
         }
 
         public MailBoxPage MailBoxMenuItemElementClick()
@@ -105,7 +102,8 @@ namespace OnlineExam.Pages.POM
             navBarElement.Click();
             WaitWhileNotClickableWebElement(tasksMenuItemElement);
             tasksMenuItemElement.Click();
-            return new TasksPage(driver);
+            //return new TasksPage(driver);
+            throw new Exception("Rewrite using Page constructor");
         }
     }
 }

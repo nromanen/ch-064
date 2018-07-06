@@ -65,6 +65,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckContentUserInfoPage.cs" />
+    <Compile Include="SaveExecutedTaskToCodeHistoryTest.cs" />
     <Compile Include="TasksTest.cs" />
     <Compile Include="AddToFavouritesTest.cs" />
     <Compile Include="AdminTest.cs" />

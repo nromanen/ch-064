@@ -23,7 +23,8 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             var signInAsStudent = logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().Refresh();
+            //driver.Navigate().Refresh();
+            throw new Exception("Rewrite using new approach");
             var newsPage = ConstructPage<SideBar>().NewsMenuItemClick();
             Assert.True(newsPage.IsNewsPresentedInNewsList("C# Starter"));
         }
@@ -36,7 +37,8 @@ namespace OnlineExam.Tests
             var signIn = logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
             var newsPage = ConstructPage<SideBar>().NewsMenuItemClick();
             var result = newsPage.CreateArticle();
-            Assert.StartsWith(result.ToString(), "OnlineExam.Pages.POM.TeacherNewsPage");
+            Assert.Equal("http://localhost:55842/AddNews/News", result.GetCurrentUrl());
+
         }
 
         public void Dispose()

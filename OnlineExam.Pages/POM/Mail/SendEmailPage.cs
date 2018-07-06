@@ -11,10 +11,6 @@ namespace OnlineExam.Pages.POM
     public class SendEmailPage : BasePage
     {
 
-        public SendEmailPage(IWebDriver driver) : base(driver)
-        {
-        }
-
         public SendEmailPage()
         {
 
@@ -41,7 +37,7 @@ namespace OnlineExam.Pages.POM
             EmailInput.SendKeys(email);
             MessageInput.SendKeys(message);
             SubmitInput.Click();
-            return new MailBoxPage();
+            return ConstructPage<MailBoxPage>();
         }
 
         public void GoBackToMailbox()

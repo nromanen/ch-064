@@ -22,8 +22,6 @@ namespace OnlineExam.Pages.POM
                 
         }
 
-        public ViewCoursesPage(IWebDriver driver) : base(driver) { }
-
         [FindsBy(How = How.CssSelector, Using = ".container > a:nth-child(1)")]
         public IWebElement AddCourseBtn { get; set; }
 
@@ -75,16 +73,16 @@ namespace OnlineExam.Pages.POM
 
         public IList<IWebElement> FindCourse(string courseName)
         {
-            var rows = driver.FindElements(By.TagName("tr"));
-            foreach (var row in rows)
-            {
-                if (row.Text.Contains(courseName))
-                {
-                    IList<IWebElement> List = row.FindElements(By.TagName("a"));
-                    List<String> NewList = new List<String>();
-                    return List;
-                }
-            }
+            //var rows = driver.FindElements(By.TagName("tr"));
+            //foreach (var row in rows)
+            //{
+            //    if (row.Text.Contains(courseName))
+            //    {
+            //        IList<IWebElement> List = row.FindElements(By.TagName("a"));
+            //        List<String> NewList = new List<String>();
+            //        return List;
+            //    }
+            //}
             return null;
         }
 
@@ -118,27 +116,27 @@ namespace OnlineExam.Pages.POM
         {
             //TODO: CHANGE OWNER follow link
             string tmpLink = "";
-            var rows = driver.FindElements(By.TagName("tr"));
-            foreach (var row in rows)
-            {
-                if (row.Text.Contains(courseName))
-                {
-                    //MessageBox.Show(row.Text);
-                    IList<IWebElement> List = row.FindElements(By.TagName("a"));
-                    foreach (var item in List)
-                    {
-                        // MessageBox.Show(item.Text);
-                        if (item.Text.Equals("Редагувати") || item.Text.Equals("Change"))
-                        {
-                            var link = item.GetAttribute("href");
-                            //item.FindElement(By.LinkText(link)).Click();
-                            //driver.Navigate().GoToUrl(link);
-                            tmpLink = link;
+            //var rows = driver.FindElements(By.TagName("tr"));
+            //foreach (var row in rows)
+            //{
+            //    if (row.Text.Contains(courseName))
+            //    {
+            //        //MessageBox.Show(row.Text);
+            //        IList<IWebElement> List = row.FindElements(By.TagName("a"));
+            //        foreach (var item in List)
+            //        {
+            //            // MessageBox.Show(item.Text);
+            //            if (item.Text.Equals("Редагувати") || item.Text.Equals("Change"))
+            //            {
+            //                var link = item.GetAttribute("href");
+            //                //item.FindElement(By.LinkText(link)).Click();
+            //                //driver.Navigate().GoToUrl(link);
+            //                tmpLink = link;
 
-                        }
-                    }
-                }
-            }
+            //            }
+            //        }
+            //    }
+            //}
             return tmpLink;
         }
     }

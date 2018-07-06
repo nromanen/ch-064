@@ -22,6 +22,17 @@ namespace OnlineExam.Framework
             driver.Navigate().GoToUrl(url);
         }
 
+        public ISearchContext SeleniumContext => driver;
+
+        public void TakeScreenshot(string path)
+        {
+            var ss = ((ITakesScreenshot)driver).GetScreenshot();
+            string screenshot = ss.AsBase64EncodedString;
+            byte[] screenshotAsByteArray = ss.AsByteArray;
+            ss.SaveAsFile(path, ScreenshotImageFormat.Png); //use any of the built in image formating
+            ss.ToString();//same as string screenshot = ss.AsBase64EncodedString;
+        }
+
 
         public void Dispose()
         {
