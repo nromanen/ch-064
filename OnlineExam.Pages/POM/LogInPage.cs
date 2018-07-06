@@ -52,7 +52,7 @@ namespace OnlineExam.Pages.POM
 
         public bool IsSignInPresentedInHeader()
         {
-            Header header = new Header(driver);
+            Header header = ConstructPage<Header>();
 
             return header.GetSignInElement();
         }

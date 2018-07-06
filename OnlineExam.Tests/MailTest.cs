@@ -33,14 +33,14 @@ namespace OnlineExam.Tests
         }
 
         [Fact]
-        public void CheckIfOutboxMessageIsVisible()
+        public void CheckIfSendEmailIsVisibleInOutBox()
         {
             var sideBar = ConstructPage<SideBar>();
             var header = ConstructPage<Header>();
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var mailBox = sideBar.MailBoxMenuItemElementClick();
             var sendEmail = mailBox.SendMessageReferenceClick();
-            sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
+            var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
             Thread.Sleep(3000);
             var outbox = mailBox.OutboxElementClick();
             var blocks = outbox.GetOutboxBlocksList();
@@ -48,7 +48,20 @@ namespace OnlineExam.Tests
             Assert.True(existMessage);
         }
 
-        public void Dispose()
+        [Fact]
+        public void CheckIfUserCanSendEmail()
+        {
+            var sideBar = ConstructPage<SideBar>();
+            var header = ConstructPage<Header>();
+            header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+            var mailBox = sideBar.MailBoxMenuItemElementClick();
+            var sendEmail = mailBox.SendMessageReferenceClick();
+            var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
+            Thread.Sleep(3000);
+            Assert.Equal("http://localhost:55842/EmailMessages", result.GetCurrentUrl());
+        }
+
+            public void Dispose()
         {
             driver.Dispose();
         }

@@ -73,5 +73,10 @@ namespace OnlineExam.Pages.POM
         {
             return element.Text;
         }
+
+        public string GetCurrentUrl()
+        {
+            return driver.Url.ToString();
+        }
     }
 }
