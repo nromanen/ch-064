@@ -21,7 +21,28 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.ClassName, Using = "favourites")]
         public IWebElement FavouritesButton { get; set; }
 
-        
+        [FindsBy(How = How.CssSelector, Using = ".favouritesblock > .row")]
+        public IList<IWebElement> BlocksList { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".checkbox_wrapper label")]
+        public IWebElement LikeButton { get; set; }
+
+        public IList<HistoryFavouriteBlock> GetBlocks()
+        {
+            var blocks = new List<HistoryFavouriteBlock>();
+            foreach (var row in BlocksList)
+            {
+                var block = ConstructPageElement<HistoryFavouriteBlock>(row);
+                if (block != null)
+                    blocks.Add(block);
+            }
+            return blocks;
+        }
+
+        public string GetId()
+        {
+            return LikeButton.GetAttribute("data-id");
+        }
 
         public CodeHistoryPage SwitchToHistory()
         {

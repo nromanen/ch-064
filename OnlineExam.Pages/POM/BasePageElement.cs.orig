@@ -1,0 +1,33 @@
+﻿using OpenQA.Selenium;
+<<<<<<< HEAD
+=======
+using OpenQA.Selenium.Support.PageObjects;
+>>>>>>> cab56607d714437c63fee98f6a54e3fb99bcd288
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OnlineExam.Pages.POM
+{
+    public abstract class BasePageElement
+    {
+<<<<<<< HEAD
+        public IWebDriver driver;
+        public BasePageElement()
+        {
+
+        }
+
+        public void SetDriver(IWebDriver webDriver)
+        {
+            driver = webDriver;
+=======
+        public BasePageElement(IWebElement context)
+        {
+            PageFactory.InitElements(context, this);
+>>>>>>> cab56607d714437c63fee98f6a54e3fb99bcd288
+        }
+    }
+}

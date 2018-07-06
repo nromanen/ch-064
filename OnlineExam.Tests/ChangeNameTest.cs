@@ -18,18 +18,18 @@ namespace OnlineExam.Tests
             BeginTest();
             driver.Navigate().GoToUrl("http://localhost:55842/Account/Login");
             System.Threading.Thread.Sleep(1000);
-            var loginPage = new LogInPage(driver);
-            var indexPage = loginPage.SignIn("student@gmail.com", Constants.STUDENT_PASSWORD);
-            var header = new Header(driver);
+            var loginPage = ConstructPage<LogInPage>();
+            var indexPage = loginPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
+            var header = ConstructPage<Header>();
             var userInfo = header.GoToUserAccountPage();
             var changeNamePage = userInfo.OpenChangeNamePage();
 
-            changeNamePage.SetNewName("studentTEST", Constants.STUDENT_PASSWORD);
+            changeNamePage.SetNewName("student3@gmail.com", Constants.STUDENT_PASSWORD);
             changeNamePage.SaveNewName();
 
-            header = new Header(driver);
+            header = ConstructPage<Header>();
             var newUserName = header.GetHeaderUserName();
-            var isEqual = String.Equals("studentTEST", newUserName, StringComparison.InvariantCultureIgnoreCase);
+            var isEqual = String.Equals("student3@gmail.com", newUserName, StringComparison.InvariantCultureIgnoreCase);
             Assert.True(isEqual);
         }
 

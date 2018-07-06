@@ -15,18 +15,37 @@ namespace OnlineExam.Tests
         {
         }
 
+        string testMessage = $"{Guid.NewGuid()} Hola from Natasha";
+
         [Fact]
-        public void ContactUsTest()
+        public void CheckIfContactUsMessageIsVisibleInInbox()
         {
+            //var testMessage = $"{Guid.NewGuid()} Hola from Natasha";
             var sideBar = ConstructPage<SideBar>();
             var contactUs = sideBar.ContactUsMenuItemElementClick();
-            contactUs.ContactUs();
+            contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Name", testMessage);
             var header = ConstructPage<Header>();
-            header.SignOut();
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var mailBox = sideBar.MailBoxMenuItemElementClick();
-            Thread.Sleep(500);
-            mailBox.IsMailPresentedInMailList("ewrtyuio");
+            var inbox = mailBox.InboxElementClick();
+            var blocks = inbox.GetInboxBlocksList();
+            var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
+            Assert.True(existMessage);
+        }
+
+        [Fact]
+        public void CheckIfOutboxMessageIsVisible()
+        {
+            var sideBar = ConstructPage<SideBar>();
+            var header = ConstructPage<Header>();
+            header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+            var mailBox = sideBar.MailBoxMenuItemElementClick();
+            var sendEmail = mailBox.SendMessageReferenceClick();
+            sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
+            var outbox = mailBox.OutboxElementClick();
+            var blocks = outbox.GetOutboxBlocksList();
+            var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
+            Assert.True(existMessage);
         }
 
         public void Dispose()

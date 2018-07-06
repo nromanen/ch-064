@@ -16,19 +16,17 @@ namespace OnlineExam.Tests
         }
 
         [Fact]
-        public void SignUpTest()
+        public void CheckIfUserIsPresentedInUserListAfterSignUp()
         {
             var header = ConstructPage<Header>();
             var signUp = header.GoToRegistrationPage();
-            signUp.Registration(Constants.REGISTRATION_EMAIL, Constants.REGISTRATION_PASSWORD, Constants.REGISTRATION_PASSWORD);
+            signUp.Registration(Constants.EXAMPLE_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
             header.SignOut();
             var logIn = header.GoToLogInPage();
             logIn.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var adminPanelPage = ConstructPage<SideBar>().AdminPanelMenuItemClick();
-            Thread.Sleep(1000);
-
-            Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.REGISTRATION_EMAIL));
-            adminPanelPage.DeleteUser(Constants.REGISTRATION_EMAIL);
+            Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.EXAMPLE_EMAIL));
+            adminPanelPage.DeleteUser(Constants.EXAMPLE_EMAIL);
         }
 
         [Fact]
@@ -36,8 +34,7 @@ namespace OnlineExam.Tests
         {
             var header = ConstructPage<Header>();
             var signUp = header.GoToRegistrationPage();
-            signUp.Registration(Constants.STUDENT_EMAIL, Constants.REGISTRATION_PASSWORD, Constants.REGISTRATION_PASSWORD);
-            Thread.Sleep(1000);
+            signUp.Registration(Constants.STUDENT_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
             header.GoToHomePage();
             Assert.True(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
         }
