@@ -36,7 +36,8 @@ namespace OnlineExam.Tests
             var signIn = logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
             var newsPage = ConstructPage<SideBar>().NewsMenuItemClick();
             var result = newsPage.CreateArticle();
-            Assert.StartsWith(result.ToString(), "OnlineExam.Pages.POM.TeacherNewsPage");
+            Assert.Equal("http://localhost:55842/AddNews/News", result.GetCurrentUrl());
+
         }
 
         public void Dispose()
