@@ -41,7 +41,7 @@ namespace OnlineExam.Pages.POM
             EmailInput.SendKeys(email);
             MessageInput.SendKeys(message);
             SubmitInput.Click();
-            return new MailBoxPage();
+            return ConstructPage<MailBoxPage>();
         }
 
         public void GoBackToMailbox()
