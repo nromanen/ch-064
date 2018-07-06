@@ -20,10 +20,15 @@ namespace OnlineExam.Tests
         [Fact]
         public void SignInTest()
         {
-            var header = ConstructPage<Header>();
-            var logIn = header.GoToLogInPage();
-            logIn.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            Assert.True(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+           UITest(() =>
+           {
+               this.driver.GoToUrl(Constants.HOME_URL);
+               driver.TakeScreenshot(@"D:\screenshot.png");
+               var header = ConstructPage<Header>();
+               var logIn = header.GoToLogInPage();
+               logIn.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+               Assert.True(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+           });
         }
 
         [Fact]

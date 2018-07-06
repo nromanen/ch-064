@@ -58,6 +58,18 @@ namespace OnlineExam.Tests
             }
         }
 
+        public void UITest(Action action)
+        {
+            try
+            {
+                action();
+            } catch (Exception e)
+            {
+                //driver.TakeScreenshot("");
+                throw;
+            }
+        }
+
         public virtual void Dispose()
         {
             driver?.Dispose();
