@@ -18,6 +18,7 @@ namespace OnlineExam.Tests
         [Fact]
         public void TestChangeEmail()
         {
+            
             BeginTest();
             NavigateTo("http://localhost:55842/Account/Login");
             System.Threading.Thread.Sleep(1000);

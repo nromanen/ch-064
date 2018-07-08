@@ -10,6 +10,9 @@ namespace OnlineExam.Pages.POM.CodeHistory.Favourites
 {
     public class HistoryFavouritePage : BasePage
     {
+        public HistoryFavouritePage()
+        {
+        }
 
         [FindsBy(How = How.CssSelector, Using = ".historyblock > .row")]
         public IList<IWebElement> BlocksListHistory { get; set; }
