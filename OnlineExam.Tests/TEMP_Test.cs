@@ -23,7 +23,7 @@ namespace OnlineExam.Tests
                 var header = ConstructPage<Header>();
                 var logInPage = header.GoToLogInPage();
                 logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-                var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
+                var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -46,7 +46,7 @@ namespace OnlineExam.Tests
                 var header = ConstructPage<Header>();
                 var logInPage = header.GoToLogInPage();
                 logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-                var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
+                var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -80,7 +80,7 @@ namespace OnlineExam.Tests
                 var header = ConstructPage<Header>();
                 var logInPage = header.GoToLogInPage();
                 logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-                var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
+                var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -101,7 +101,7 @@ namespace OnlineExam.Tests
                 var header = ConstructPage<Header>();
                 var logInPage = header.GoToLogInPage();
                 logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-                var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
+                var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -122,7 +122,7 @@ namespace OnlineExam.Tests
                 var header = ConstructPage<Header>();
                 var logInPage = header.GoToLogInPage();
                 logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-                var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
+                var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 var tds = ListOfTasks.GetCountOfTDs();
@@ -148,7 +148,7 @@ namespace OnlineExam.Tests
                 var logInPage = header.GoToLogInPage();
                 logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
 
-                var TeacherTasksPage = ConstructPage<SideBar>().TasksMenuItemClick();
+                var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
                 var Tasks = ConstructPage<TeacherExerciseManagerPage>();
                 Tasks.ClickOnAddTaskbutton();
                 var AddTaskPage = ConstructPage<AddTaskAsTeacherPage>();

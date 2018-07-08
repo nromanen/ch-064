@@ -35,14 +35,18 @@ namespace OnlineExam.Framework
 
         public string GetDriverTitle()
         {
-            return this.driver.Title;
+            return driver.Title;
         }
 
         public string GetDriverURL()
         {
-            return this.driver.Url;
+            return driver.Url;
         }
 
+        public void Refresh()
+        {
+            driver.Navigate().Refresh();
+        }
 
         public void Dispose()
         {

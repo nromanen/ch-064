@@ -27,20 +27,20 @@ namespace OnlineExam.Pages.POM
             return currentRoleOfUserDivElement.Text;
         }
 
-        public void ChangeRole(string role)
-        {
-            foreach (var radio in radioButtonsChangeRoleOfUserListElements)
-            {
-                string sValue = radio.GetAttribute("value");
+        //public void ChangeRole(string role)
+        //{
+        //    foreach (var radio in radioButtonsChangeRoleOfUserListElements)
+        //    {
+        //        string sValue = radio.GetAttribute("value");
 
-                if (sValue.Equals(role))
-                {
-                    driver.ExecuteJavaScript(
-                        "arguments[0].click();" +
-                        "arguments[1].click();",radio,saveButtonElement);
-                    break;
-                }
-            }
-        }
+        //        if (sValue.Equals(role))
+        //        {
+        //            driver.ExecuteJavaScript(
+        //                "arguments[0].click();" +
+        //                "arguments[1].click();",radio,saveButtonElement);
+        //            break;
+        //        }
+        //    }
+        //}
     }
 }

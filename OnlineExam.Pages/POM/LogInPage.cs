@@ -36,8 +36,7 @@ namespace OnlineExam.Pages.POM
             rememberMeCheckBox.Click();
             signInInputSubmit.Click();
             Thread.Sleep(1000);
-            driver.RefreshPage();
-            //driver.Navigate().Refresh();
+            driver.Refresh();
             return ConstructPage<IndexPage>();
         }
 

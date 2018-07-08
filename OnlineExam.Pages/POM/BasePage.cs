@@ -58,7 +58,7 @@ namespace OnlineExam.Pages.POM
 
         public void WaitWhileNotClickableWebElement(IWebElement webElement)
         {
-            driver.WaitWhileNotClickableWebElement(webElement);
+           // driver.WaitWhileNotClickableWebElement(webElement);
         }
 
         public string GetText(IWebElement element)
