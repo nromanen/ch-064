@@ -70,15 +70,14 @@
     <Compile Include="POM\BasePage.cs" />
     <Compile Include="POM\BasePageElement.cs" />
     <Compile Include="POM\CodeHistory.Favourites\HistoryFavouriteBlock.cs" />
+    <Compile Include="POM\CodeHistory.Favourites\HistoryFavouritePage.cs" />
     <Compile Include="POM\CoursePage\ChangeCourseOwnerPage.cs" />
     <Compile Include="POM\ChangeRolePage.cs" />
-    <Compile Include="POM\CodeHistory.Favourites\CodeHistoryPage.cs" />
     <Compile Include="POM\CoursePage\CodePage.cs" />
     <Compile Include="POM\CoursePage\CodeReviewPage.cs" />
     <Compile Include="POM\Mail\ContactUsPage.cs" />
     <Compile Include="POM\CoursePage\CourseManagementPage.cs" />
     <Compile Include="POM\CoursePage\CreateCoursePage.cs" />
-    <Compile Include="POM\CodeHistory.Favourites\FavouritesPage.cs" />
     <Compile Include="POM\ExerciseSolutionsIndex.cs" />
     <Compile Include="POM\Header.cs" />
     <Compile Include="POM\IndexPage.cs" />

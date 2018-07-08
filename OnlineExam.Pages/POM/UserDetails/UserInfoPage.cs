@@ -34,22 +34,19 @@ namespace OnlineExam.Pages.POM.UserDetails
         public ChangePasswordPage OpenChangePasswordPage()
         {
             ChangePassButton.Click();
-            //return new ChangePasswordPage(this.driver);
-            throw new Exception("Rewrite using Page constructor");
+            return ConstructPage<ChangePasswordPage>();
         }
 
         public ChangeNamePage OpenChangeNamePage()
         {
             ChangeNameButton.Click();
             return ConstructPage<ChangeNamePage>();
-            //return new ChangeNamePage(this.driver);
         }
 
         public ChangeEmailPage OpenChangeEmailPage()
         {
             ChangeEmailButton.Click();
-            throw new Exception("Rewrite using Page constructor");
-            //return new ChangeEmailPage(this.driver);
+            return ConstructPage<ChangeEmailPage>();
         }
 
         public bool HasChangeNameButton()
