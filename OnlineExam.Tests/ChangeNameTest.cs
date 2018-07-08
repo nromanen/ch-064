@@ -15,22 +15,26 @@ namespace OnlineExam.Tests
         [Fact]
         public void TestChangeName()
         {
-            BeginTest();
-            NavigateTo("http://localhost:55842/Account/Login");
-            System.Threading.Thread.Sleep(1000);
-            var loginPage = ConstructPage<LogInPage>();
-            var indexPage = loginPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
-            var header = ConstructPage<Header>();
-            var userInfo = header.GoToUserAccountPage();
-            var changeNamePage = userInfo.OpenChangeNamePage();
+            UITest(() =>
+            {
+                BeginTest();
+                NavigateTo("http://localhost:55842/Account/Login");
+                System.Threading.Thread.Sleep(1000);
+                var loginPage = ConstructPage<LogInPage>();
+                var indexPage = loginPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
+                var header = ConstructPage<Header>();
+                var userInfo = header.GoToUserAccountPage();
+                var changeNamePage = userInfo.OpenChangeNamePage();
 
-            changeNamePage.SetNewName("student3@gmail.com", Constants.STUDENT_PASSWORD);
-            changeNamePage.SaveNewName();
+                changeNamePage.SetNewName("student3@gmail.com", Constants.STUDENT_PASSWORD);
+                changeNamePage.SaveNewName();
 
-            header = ConstructPage<Header>();
-            var newUserName = header.GetHeaderUserName();
-            var isEqual = String.Equals("student3@gmail.com", newUserName, StringComparison.InvariantCultureIgnoreCase);
-            Assert.True(isEqual);
+                header = ConstructPage<Header>();
+                var newUserName = header.GetHeaderUserName();
+                var isEqual = String.Equals("student3@gmail.com", newUserName, StringComparison.InvariantCultureIgnoreCase);
+                Assert.True(isEqual);
+            }
+            );
         }
 
     }
