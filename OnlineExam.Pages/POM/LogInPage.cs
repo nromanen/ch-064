@@ -37,7 +37,8 @@ namespace OnlineExam.Pages.POM
             signInInputSubmit.Click();
             Thread.Sleep(1000);
             driver.RefreshPage();
-            //driver.Navigate().Refresh();
+            Thread.Sleep(1000);
+            driver.RefreshPage();
             return ConstructPage<IndexPage>();
         }
 
