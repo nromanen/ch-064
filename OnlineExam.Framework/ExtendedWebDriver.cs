@@ -33,6 +33,16 @@ namespace OnlineExam.Framework
             ss.ToString();//same as string screenshot = ss.AsBase64EncodedString;
         }
 
+        public string GetDriverTitle()
+        {
+            return this.driver.Title;
+        }
+
+        public string GetDriverURL()
+        {
+            return this.driver.Url;
+        }
+
 
         public void Dispose()
         {

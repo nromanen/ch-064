@@ -19,65 +19,71 @@ namespace OnlineExam.Tests
         [Fact]
         public void IsTaskAvailable()
         {
-            string TaskName = "Proba3";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            throw new Exception("Rewrite using Page constructor");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                Assert.Equal(firstblock.GetName(), TaskName);
+                string TaskName = "Proba3";
+                var header = ConstructPage<Header>();
+                var logInPage = header.GoToLogInPage();
+                logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+                this.driver.GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    Assert.Equal(firstblock.GetName(), TaskName);
+                }
             }
-            
+            );
+
         }
 
         [Fact]
         public void ClickOnTasksButton()
         {
-            string TaskName = "Proba2";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            throw new Exception("Rewrite using Page constructor");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                MessageBox.Show(firstBlock.GetButtonText());
-                firstBlock.ClickOnTasksButton();
-                Thread.Sleep(3000);
-                //var title = driver.Title;
-                //Assert.Equal("Task View - WebApp", title);
+                string TaskName = "Proba2";
+                var header = ConstructPage<Header>();
+                var logInPage = header.GoToLogInPage();
+                logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+                this.driver.GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    MessageBox.Show(firstBlock.GetButtonText());
+                    firstBlock.ClickOnTasksButton();
+                    Thread.Sleep(3000);
+                    //var title = driver.Title;
+                    //Assert.Equal("Task View - WebApp", title);
+                }
             }
+        );
         }
 
 
         [Fact]
         public void StarsCount()
         {
-            string TaskName = "Simple addition";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            throw new Exception("Rewrite using Page constructor");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-            
+                string TaskName = "Simple addition";
+                var header = ConstructPage<Header>();
+                var logInPage = header.GoToLogInPage();
+                logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+                this.driver.GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+
+                }
+
             }
+    );
         }
-
-
-
-
     }
 }

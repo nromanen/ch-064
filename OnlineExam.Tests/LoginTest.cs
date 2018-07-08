@@ -23,7 +23,7 @@ namespace OnlineExam.Tests
            UITest(() =>
            {
                this.driver.GoToUrl(Constants.HOME_URL);
-               driver.TakeScreenshot(@"D:\screenshot.png");
+               driver.TakeScreenshot(@"C:\Users\misha\Desktop\ch-064\Screenshots\screenshot.png");
                var header = ConstructPage<Header>();
                var logIn = header.GoToLogInPage();
                logIn.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
