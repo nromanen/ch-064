@@ -1,4 +1,5 @@
 ﻿using OnlineExam.Pages.POM;
+using OnlineExam.Pages.POM.UserDetails;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,11 @@ using Xunit;
 
 namespace OnlineExam.Tests
 {
-    public class ChangeNameTest : BaseTest
+    public class CheckContentUserInfoPage : BaseTest
     {
-
+        public CheckContentUserInfoPage()
+        { 
+        }
 
         [Fact]
         public void TestChangeName()
@@ -23,16 +26,21 @@ namespace OnlineExam.Tests
             var indexPage = loginPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
             var header = ConstructPage<Header>();
             var userInfo = header.GoToUserAccountPage();
-            var changeNamePage = userInfo.OpenChangeNamePage();
 
-            changeNamePage.SetNewName("student3@gmail.com", Constants.STUDENT_PASSWORD);
-            changeNamePage.SaveNewName();
+            //var isOpened = driver.Url.EndsWith("/User");
+            throw new Exception("Rewrite using Page constructor");
+            //Assert.True(isOpened);
 
-            header = ConstructPage<Header>();
-            var newUserName = header.GetHeaderUserName();
-            var isEqual = String.Equals("student3@gmail.com", newUserName, StringComparison.InvariantCultureIgnoreCase);
+            var userInfoPage = ConstructPage<UserInfoPage>();
+            Assert.True(userInfoPage.HasChangePasswordButton());
+            Assert.True(userInfoPage.HasChangeNameButton());
+            Assert.True(userInfoPage.HasChangeEmailButton());
+
+            var userEmail = userInfoPage.GetEmail();
+            var isEqual = String.Equals(userEmail, "student3@gmail.com");
             Assert.True(isEqual);
-        }
 
+
+        }
     }
 }

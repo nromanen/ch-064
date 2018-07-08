@@ -12,10 +12,6 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = ".row")]
         private IList<IWebElement> rowOfDivsUserListElements;
 
-        public AdminPanelPage(IWebDriver driver) : base(driver)
-        {
-        }
-
         public AdminPanelPage()
         {
         }

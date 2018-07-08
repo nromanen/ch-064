@@ -54,7 +54,8 @@ namespace OnlineExam.Pages.POM
         {
             WaitWhileNotClickableWebElement(homePageLinkElement);
             homePageLinkElement.Click();
-            return new NewsPage(driver);
+            //return new NewsPage(driver);
+            throw new Exception("Rewrite using Page constructor");
         }
 
         public LogInPage GoToLogInPage()

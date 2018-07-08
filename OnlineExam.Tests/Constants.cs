@@ -29,5 +29,10 @@ namespace OnlineExam.Tests
         public const string RATING_URL_CONTAINS = "UserRating";
         public const string COURSEMANAGEMENT_URL_CONTAINS = "CourseManagement";
         public const string CONTACTUS_URL_CONTAINS = "EmailMessages";
+        public const string EXAMPLE_EMAIL = "example@gmail.com";
+        public const string EXAMPLE_PASSWORD = "Example_123";
+        public const string FAKE_EMAIL = "fake@gmail.com";
+        public const string FAKE_PASSWORD = "Fake_123";
+
     }
 }

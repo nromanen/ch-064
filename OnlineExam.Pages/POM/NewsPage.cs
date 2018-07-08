@@ -12,10 +12,6 @@ namespace OnlineExam.Pages.POM
 {
     public class NewsPage : BasePage
     {
-        public NewsPage(IWebDriver driver) : base(driver)
-        {
-        }
-
         public NewsPage()
         {
         }
@@ -35,18 +31,19 @@ namespace OnlineExam.Pages.POM
 
         public bool IsNewsPresentedInNewsList(string title)
         {
-            if (!driver.Url.Contains("/News"))
-            {
-                return true;
-            }
-            foreach (var row in rowOfDivsNewsListElements)
-            {
-                var text = row.FindElement(By.TagName("p")).Text;
-                if (text.Equals(title))
-                {
-                    return true;
-                }
-            }
+            //if (!driver.Url.Contains("/News"))
+            //{
+            //    return true;
+            //}
+            //foreach (var row in rowOfDivsNewsListElements)
+            //{
+            //    var text = row.FindElement(By.TagName("p")).Text;
+            //    if (text.Equals(title))
+            //    {
+            //        return true;
+            //    }
+            //}
+            throw new Exception("Rewrite using Extended driver");
             return false;
         }
     }

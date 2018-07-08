@@ -13,9 +13,7 @@ namespace OnlineExam.Pages.POM
 
     public class SolutionCodePage : BasePage
     {
-        public SolutionCodePage(IWebDriver driver) : base(driver)
-        {
-        }
+        public SolutionCodePage() { }
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div:nth-child(1) > div:nth-child(2)")]
         public IWebElement MessageAboutreviewingSolution { get; set; }

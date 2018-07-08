@@ -1,5 +1,6 @@
 ﻿using OnlineExam.Pages.POM;
 using OnlineExam.Pages.POM.CodeHistory.Favourites;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,45 +19,47 @@ namespace OnlineExam.Tests
         [Fact]
         public void TestAddToFovourites()
         {
-            BeginTest();
-            driver.Navigate().GoToUrl("http://localhost:55842/Account/Login");
-            System.Threading.Thread.Sleep(1000);
-            var loginPage = new LogInPage(driver);
-            var indexPage = loginPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
+            throw new Exception("Rewrite using new approach");
+            //BeginTest();
+            //driver.Navigate().GoToUrl("http://localhost:55842/Account/Login");
+            //System.Threading.Thread.Sleep(1000);
+            //var loginPage = new LogInPage(driver);
+            //var indexPage = loginPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
 
-            var goToHistoryPage = new SideBar(driver).GoToCodeHistoryPage();
-            var historyPage = new CodeHistoryPage(driver);
-            var blocks = historyPage.GetBlocks();
-            if (blocks.Any())
-            {
-                var firstBlock = blocks[1];
-                firstBlock.ClickOnTitle();
-                firstBlock.IsLiked();
-            }
-            //likeCode.SwitchToFavourites();
-            //var newBlock = new HistoryFavouriteBlock(driver);
-            ////var executedCode = newBlock.CodeHistoryBlockOfExecutedCode[0]
-            //string colorOfLikeButton = newBlock.LikeButton.GetCssValue("color");
-
-
-            //if (colorOfLikeButton == "rgba(51, 51, 51, 1)")
-            //{
-            //    var likeCode = new CodeHistoryPage(driver);
-            //    likeCode.SwitchToFavourites();
-            //}
-            //var isEqual = string.Equals(colorOfLikeButton, "rgba(255, 0, 0, 1)");
-            //Assert.True(isEqual);
-
+            //var goToHistoryPage = new SideBar(driver).CodeHistoryMenuItemClick();
             //var historyPage = new CodeHistoryPage(driver);
-            //historyPage.SwitchToFavourites();
+            //var blocks = historyPage.GetBlocks();
+            //string id = "";
+            //if (blocks.Any())
+            //{
+            //    var firstBlock = blocks[0];
+            //    id = firstBlock.GetId();
+            //    firstBlock.IsLiked();
+            //    historyPage.SwitchToFavourites();             
+            //} 
+            //var favouritesPage = new FavouritesPage(driver);
+            //var favouritesBlocks = favouritesPage.GetBlocks();
+            //bool likedBlockFound = false;
 
-            //var newBlockFavourites = new HistoryFavouriteBlock(driver);
-            //var isEqualInFovourites = string.Equals(newBlock.IndexersFieldText, newBlockFavourites.IndexersFieldText);
+            //if (favouritesBlocks.Any())
+            //{
+            //    foreach(var block in favouritesBlocks)
+            //    {
+            //        if(block.GetId() == id)
+            //        {
+            //            likedBlockFound = true;
+            //            break;
+            //        }
+            //    }
 
-            //Assert.True(isEqualInFovourites);
+               
 
+            //    Assert.True(likedBlockFound);
 
+                
+            //}
 
+           
         }
     }
 }

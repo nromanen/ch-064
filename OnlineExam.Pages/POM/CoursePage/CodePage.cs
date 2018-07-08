@@ -14,8 +14,6 @@ namespace OnlineExam.Pages.POM
         /// http://localhost:55842/Code
         /// </summary>
 
-        public CodePage(IWebDriver driver) : base(driver) { }
-
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div:nth-child(1) > div:nth-child(2)")]
         public IWebElement StatusMessageBlock { get; set; }
 

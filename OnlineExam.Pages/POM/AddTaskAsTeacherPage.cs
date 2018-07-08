@@ -13,9 +13,6 @@ namespace OnlineExam.Pages.POM
 {
     public class AddTaskAsTeacherPage : BasePage
     {
-        public AddTaskAsTeacherPage(IWebDriver driver) : base(driver)
-        {
-        }
 
         public AddTaskAsTeacherPage() { }
 

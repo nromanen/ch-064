@@ -19,8 +19,6 @@ namespace OnlineExam.Pages.POM
         /// http://localhost:55842/CourseManagement/Create
         /// </summary>
 
-        public CreateCoursePage(IWebDriver driver) : base(driver) { }
-
         [FindsBy(How = How.Id, Using = "Name")]
         public IWebElement CourseNameInput { get; set; }
 
