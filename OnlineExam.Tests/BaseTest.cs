@@ -36,6 +36,11 @@ namespace OnlineExam.Tests
             driver.GoToUrl(Constants.HOME_URL);
         }
 
+        public void NavigateTo(string url)
+        {
+            driver.GoToUrl(url);
+        }
+
         public T ConstructPage<T>()where T: BasePage, new()
         {
             var page = new T();

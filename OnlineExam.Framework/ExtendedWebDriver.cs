@@ -24,6 +24,9 @@ namespace OnlineExam.Framework
             driver.Navigate().GoToUrl(url);
         }
 
+
+        public string URL => driver.Url;
+        
         public ISearchContext SeleniumContext => driver;
 
         public void TakeScreenshot(string path)
