@@ -35,8 +35,9 @@ namespace OnlineExam.Pages.POM
 
                 if (sValue.Equals(role))
                 {
-                    ((IJavaScriptExecutor) driver).ExecuteScript("arguments[0].click();" +
-                                                                 "arguments[1].click();", radio, saveButtonElement);
+                    driver.ExecuteJavaScript(
+                        "arguments[0].click();" +
+                        "arguments[1].click();",radio,saveButtonElement);
                     break;
                 }
             }

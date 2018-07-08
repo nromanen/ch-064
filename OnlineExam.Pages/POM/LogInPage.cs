@@ -31,16 +31,13 @@ namespace OnlineExam.Pages.POM
 
         public IndexPage SignIn(string email, string password)
         {
-            EmailInput.SendKeys(email);
-            PasswordInput.SendKeys(password);
-            RememberMeCheckBox.Click();
-            SignInInputSubmit.Click();
-            //Thread.Sleep(1000);
-            //driver.Navigate().Refresh();
-            //Thread.Sleep(1000);
-            //driver.Navigate().Refresh();
-            throw new Exception("Rewrite using extended driver");
+            emailInput.SendKeys(email);
+            passwordInput.SendKeys(password);
+            rememberMeCheckBox.Click();
+            signInInputSubmit.Click();
             Thread.Sleep(1000);
+            driver.RefreshPage();
+            //driver.Navigate().Refresh();
             return ConstructPage<IndexPage>();
         }
 

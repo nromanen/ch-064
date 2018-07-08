@@ -41,9 +41,7 @@ namespace OnlineExam.Pages.POM
         private IWebElement navBarElement;
 
 
-        public SideBar(IWebDriver driver) : base(driver)
-        {
-        }
+
 
         public AdminPanelPage GoToAdminPanelPage()
         {

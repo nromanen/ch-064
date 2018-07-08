@@ -39,7 +39,7 @@ namespace OnlineExam.Tests
         {
             fixture.test = fixture.extent.StartTest("SignInButtonTest");
             var logIn = header.GoToLogInPage();
-            Assert.Contains(Constants.LOGIN_URL_CONTAINS, logIn.GetUrl());
+            Assert.Contains(Constants.LOGIN_URL_CONTAINS, logIn.GetCurrentUrl());
             fixture.test.Log(LogStatus.Pass, "Log in page is visible");
         }
 
@@ -48,7 +48,7 @@ namespace OnlineExam.Tests
         {
             fixture.test = fixture.extent.StartTest("SignUpButtonTest");
             var regPage = header.GoToRegistrationPage();
-            Assert.Contains(Constants.REGISTRATION_URL_CONTAINS, regPage.GetUrl());
+            Assert.Contains(Constants.REGISTRATION_URL_CONTAINS, regPage.GetCurrentUrl());
             fixture.test.Log(LogStatus.Pass, "Register page is visible");
         }
 

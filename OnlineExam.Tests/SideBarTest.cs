@@ -20,7 +20,7 @@ namespace OnlineExam.Tests
         {
             fixture.test = fixture.extent.StartTest("GoToRatingsPageTest");
             var ratingPage = sideBar.GoToRatingPage();
-            Assert.Contains(Constants.RATING_URL_CONTAINS, ratingPage.GetUrl());
+            Assert.Contains(Constants.RATING_URL_CONTAINS, ratingPage.GetCurrentUrl());
             fixture.test.Log(LogStatus.Pass,"Rating page is presented");
         }
 
@@ -29,7 +29,7 @@ namespace OnlineExam.Tests
         {
             fixture.test = fixture.extent.StartTest("GoToCoursesPageTest");
             var coursesPage = sideBar.GoToCourseManagementPage();
-            Assert.Contains(Constants.COURSEMANAGEMENT_URL_CONTAINS, coursesPage.GetUrl());
+            Assert.Contains(Constants.COURSEMANAGEMENT_URL_CONTAINS, coursesPage.GetCurrentUrl());
             fixture.test.Log(LogStatus.Pass, "Courses page is presented");
 
         }
@@ -39,7 +39,7 @@ namespace OnlineExam.Tests
         {
             fixture.test = fixture.extent.StartTest("GoToContactUsPageTest");
             var contactUsPage = sideBar.GoToContactUsPage();
-            Assert.Contains(Constants.CONTACTUS_URL_CONTAINS, contactUsPage.GetUrl());
+            Assert.Contains(Constants.CONTACTUS_URL_CONTAINS, contactUsPage.GetCurrentUrl());
             fixture.test.Log(LogStatus.Pass, "Contact us page is presented");
 
         }

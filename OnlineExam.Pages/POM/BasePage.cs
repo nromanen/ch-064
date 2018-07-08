@@ -10,13 +10,12 @@ using OpenQA.Selenium.Support.UI;
 
 namespace OnlineExam.Pages.POM
 {
-  public abstract  class BasePage
+    public abstract class BasePage
     {
         protected ExtendedWebDriver driver;
 
         public BasePage()
         {
-
         }
 
         public void SetDriver(ExtendedWebDriver driver)
@@ -40,7 +39,7 @@ namespace OnlineExam.Pages.POM
             }
         }
 
-        public T ConstructPageElement<T>(IWebElement pageElement) where T: BasePageElement, new()
+        public T ConstructPageElement<T>(IWebElement pageElement) where T : BasePageElement, new()
         {
             var element = new T();
             element.SetDriver(driver);
@@ -48,20 +47,18 @@ namespace OnlineExam.Pages.POM
             {
                 PageFactory.InitElements(pageElement, element);
                 return element;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 return null;
             }
         }
 
-        public static TimeSpan WAIT_TIME = new TimeSpan(0, 0, 100);
 
 
-        public  void WaitWhileNotClickableWebElement(IWebElement webElement)
+        public void WaitWhileNotClickableWebElement(IWebElement webElement)
         {
-            throw new Exception("Rewrite with using ExtendedWebDriver");
-            //WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-            //wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
+            driver.WaitWhileNotClickableWebElement(webElement);
         }
 
         public string GetText(IWebElement element)
@@ -71,13 +68,7 @@ namespace OnlineExam.Pages.POM
 
         public string GetCurrentUrl()
         {
-            throw new Exception("Rewrite with using ExtendedWebDriver");
+            return driver.GetCurrentUrl();
         }
-        public string GetUrl()
-        {
-            return driver.Url;
-        }
-      
-
     }
 }

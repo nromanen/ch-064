@@ -16,15 +16,17 @@ namespace OnlineExam.Tests
     {
         //protected IWebDriver driver;
         protected ExtendedWebDriver driver;
+        protected BaseFixture fixture;
 
         public BaseTest()
         {
             //extendedDriver = DriversFabric.InitChrome();
             driver = DriversFabric.InitChrome();
+        }
 
         public BaseTest(BaseFixture fixture)
         {
-            driver = new ChromeDriver();
+            driver = DriversFabric.InitChrome();
             this.fixture = fixture;
         }
 

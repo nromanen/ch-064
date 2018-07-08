@@ -31,9 +31,7 @@ namespace OnlineExam.Pages.POM
         {
         }
 
-        public Header(IWebDriver driver) : base(driver)
-        {
-        }
+        
 
         public bool GetSignInElement()
         {
@@ -54,8 +52,7 @@ namespace OnlineExam.Pages.POM
         {
             WaitWhileNotClickableWebElement(homePageLinkElement);
             homePageLinkElement.Click();
-            //return new NewsPage(driver);
-            throw new Exception("Rewrite using Page constructor");
+            return ConstructPage<NewsPage>();
         }
 
         public LogInPage GoToLogInPage()
