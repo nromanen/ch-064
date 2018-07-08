@@ -16,31 +16,28 @@ namespace OnlineExam.Pages.POM
         }
 
         [FindsBy(How = How.Id, Using = "emailLogin")]
-        public IWebElement EmailInput { get; set; }
+        public IWebElement emailInput;
 
         [FindsBy(How = How.Id, Using = "passwordLogin")]
-        public IWebElement PasswordInput { get; set; }
+        public IWebElement passwordInput;
 
         [FindsBy(How = How.Id, Using = "RememberMe")]
-        public IWebElement RememberMeCheckBox { get; set; }
+        public IWebElement rememberMeCheckBox;
 
         [FindsBy(How = How.Id, Using = "submitLogin")]
-        public IWebElement SignInInputSubmit { get; set; }
+        public IWebElement signInInputSubmit;
 
-
+      
 
         public IndexPage SignIn(string email, string password)
         {
-            EmailInput.SendKeys(email);
-            PasswordInput.SendKeys(password);
-            RememberMeCheckBox.Click();
-            SignInInputSubmit.Click();
-            //Thread.Sleep(1000);
-            //driver.Navigate().Refresh();
-            //Thread.Sleep(1000);
-            //driver.Navigate().Refresh();
-            throw new Exception("Rewrite using extended driver");
+            emailInput.SendKeys(email);
+            passwordInput.SendKeys(password);
+            rememberMeCheckBox.Click();
+            signInInputSubmit.Click();
             Thread.Sleep(1000);
+            driver.RefreshPage();
+            //driver.Navigate().Refresh();
             return ConstructPage<IndexPage>();
         }
 

@@ -21,11 +21,11 @@ namespace OnlineExam.Tests
         public void CheckIfContactUsMessageIsVisibleInInbox()
         {
             var sideBar = ConstructPage<SideBar>();
-            var contactUs = sideBar.ContactUsMenuItemElementClick();
+            var contactUs = sideBar.GoToContactUsPage();
             contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Name", testMessage);
             var header = ConstructPage<Header>();
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            var mailBox = sideBar.MailBoxMenuItemElementClick();
+            var mailBox = sideBar.GoToMailBoxPage();
             var inbox = mailBox.InboxElementClick();
             var blocks = inbox.GetInboxBlocksList();
             var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
@@ -38,7 +38,7 @@ namespace OnlineExam.Tests
             var sideBar = ConstructPage<SideBar>();
             var header = ConstructPage<Header>();
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            var mailBox = sideBar.MailBoxMenuItemElementClick();
+            var mailBox = sideBar.GoToMailBoxPage();
             var sendEmail = mailBox.SendMessageReferenceClick();
             var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
             Thread.Sleep(3000);
@@ -54,7 +54,7 @@ namespace OnlineExam.Tests
             var sideBar = ConstructPage<SideBar>();
             var header = ConstructPage<Header>();
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            var mailBox = sideBar.MailBoxMenuItemElementClick();
+            var mailBox = sideBar.GoToMailBoxPage();
             var sendEmail = mailBox.SendMessageReferenceClick();
             var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
             Thread.Sleep(3000);

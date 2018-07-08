@@ -24,7 +24,7 @@ namespace OnlineExam.Tests
             header.SignOut();
             var logIn = header.GoToLogInPage();
             logIn.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            var adminPanelPage = ConstructPage<SideBar>().AdminPanelMenuItemClick();
+            var adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
             Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.EXAMPLE_EMAIL));
             adminPanelPage.DeleteUser(Constants.EXAMPLE_EMAIL);
         }

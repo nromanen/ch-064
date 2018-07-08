@@ -40,7 +40,10 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = ".gn-icon-menu")]
         private IWebElement navBarElement;
 
-        public AdminPanelPage AdminPanelMenuItemClick()
+
+
+
+        public AdminPanelPage GoToAdminPanelPage()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(adminPanelMenuItemElement);
@@ -48,7 +51,7 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<AdminPanelPage>();
         }
 
-        public TeacherNewsPage NewsMenuItemClick()
+        public TeacherNewsPage GoToTeacherNewsPage()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(newsMenuItemElement);
@@ -56,7 +59,7 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<TeacherNewsPage>();
         }
 
-        public RatingsPage RatingsMenuItemClick()
+        public RatingsPage GoToRatingPage()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(ratingsMenuItemElement);
@@ -64,7 +67,7 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<RatingsPage>();
         }
 
-        public CourseManagementPage CoursesMenuItemClick()
+        public CourseManagementPage GoToCourseManagementPage()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(coursesMenuItemElement);
@@ -72,16 +75,15 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<CourseManagementPage>();
         }
 
-        public CodeHistoryPage CodeHistoryMenuItemClick()
+        public CodeHistoryPage GoToCodeHistoryPage()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(codeHistoryMenuItemElement);
             codeHistoryMenuItemElement.Click();
-            //return new CodeHistoryPage(driver);
-            throw new Exception("Rewrite using Page constructor");
+            return ConstructPage<CodeHistoryPage>();
         }
 
-        public MailBoxPage MailBoxMenuItemElementClick()
+        public MailBoxPage GoToMailBoxPage()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(mailBoxMenuItemElement);
@@ -89,7 +91,7 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<MailBoxPage>();
         }
 
-        public ContactUsPage ContactUsMenuItemElementClick()
+        public ContactUsPage GoToContactUsPage()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(contactUsMenuItemElement);
@@ -97,13 +99,12 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<ContactUsPage>();
         }
 
-        public TasksPage TasksMenuItemClick()
+        public TasksPage GoToTasksPage()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(tasksMenuItemElement);
             tasksMenuItemElement.Click();
-            //return new TasksPage(driver);
-            throw new Exception("Rewrite using Page constructor");
+            return ConstructPage<TasksPage>();
         }
     }
 }
