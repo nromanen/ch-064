@@ -1,18 +1,12 @@
-﻿using System;
-using OnlineExam.Pages.POM.UserDetails;
+﻿using OnlineExam.Pages.POM.UserDetails;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
-using System;
 
 namespace OnlineExam.Pages.POM
 {
     public class Header : BasePage
     {
-        public Header()
-        {
-
-        }
         [FindsBy(How = How.CssSelector, Using = "#requestCulture_RequestCulture_UICulture_Name")]
         private IWebElement changeLanguageSelectElement;
 
@@ -32,7 +26,13 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "#gn-menu > li:nth-child(3) > a:nth-child(1)")]
         private IWebElement userAccountManageLinkElement;
 
+
+        public Header()
+        {
+        }
+
         
+
         public bool GetSignInElement()
         {
             return signInLinkElement.Displayed;
@@ -43,20 +43,23 @@ namespace OnlineExam.Pages.POM
             return userAccountManageLinkElement.Text;
         }
 
+        public string GetSignInButtonText()
+        {
+            return signInLinkElement.Text;
+        }
+
         public NewsPage GoToHomePage()
         {
             WaitWhileNotClickableWebElement(homePageLinkElement);
             homePageLinkElement.Click();
-            //return new NewsPage(driver);
-            throw new Exception("Rewrite using Page constructor");
+            return ConstructPage<NewsPage>();
         }
 
         public LogInPage GoToLogInPage()
         {
             WaitWhileNotClickableWebElement(signInLinkElement);
             signInLinkElement.Click();
-            //return new LogInPage(driver);
-            throw new Exception("Rewrite using Page constructor");
+            return ConstructPage<LogInPage>();
         }
 
         public Header ChangeLanguage(string value)
@@ -70,24 +73,21 @@ namespace OnlineExam.Pages.POM
         {
             WaitWhileNotClickableWebElement(signOutButtonElement);
             signOutButtonElement.Click();
-            //return new IndexPage(driver);
-            throw new Exception("Rewrite using Page constructor");
+            return ConstructPage<IndexPage>();
         }
 
         public RegisterPage GoToRegistrationPage()
         {
             WaitWhileNotClickableWebElement(signInLinkElement);
             signUpLinkElement.Click();
-            //return new RegisterPage(driver);
-            throw new Exception("Rewrite using Page constructor");
+            return ConstructPage<RegisterPage>();
         }
 
         public UserInfoPage GoToUserAccountPage()
         {
             WaitWhileNotClickableWebElement(userAccountManageLinkElement);
             userAccountManageLinkElement.Click();
-            //return new UserInfoPage(driver);
-            throw new Exception("Rewrite using Page constructor");
+            return ConstructPage<UserInfoPage>();
         }
 
         public bool IsUserEmailPresentedInHeader(string email)

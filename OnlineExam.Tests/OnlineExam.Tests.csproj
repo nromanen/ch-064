@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\XunitXml.TestLogger.2.0.0\build\net45\XunitXml.TestLogger.props" Condition="Exists('..\packages\XunitXml.TestLogger.2.0.0\build\net45\XunitXml.TestLogger.props')" />
   <Import Project="..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" />
   <Import Project="..\packages\xunit.runner.console.2.3.1\build\xunit.runner.console.props" Condition="Exists('..\packages\xunit.runner.console.2.3.1\build\xunit.runner.console.props')" />
   <Import Project="..\packages\xunit.core.2.3.1\build\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.3.1\build\xunit.core.props')" />
@@ -35,6 +36,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RelevantCodes.ExtentReports, Version=1.4.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExtentReports.2.41.0\lib\RelevantCodes.ExtentReports.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -67,11 +74,13 @@
   <ItemGroup>
     <Compile Include="CheckContentUserInfoPage.cs" />
     <Compile Include="SaveExecutedTaskToCodeHistoryTest.cs" />
+    <Compile Include="BaseFixture.cs" />
     <Compile Include="TasksTest.cs" />
     <Compile Include="AddToFavouritesTest.cs" />
     <Compile Include="AdminTest.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="ChangePasswordTest.cs" />
+    <Compile Include="HeaderTest.cs" />
     <Compile Include="ChangeEmailTest.cs" />
     <Compile Include="ChangeNameTest.cs" />
     <Compile Include="CheckStatus.cs" />
@@ -85,8 +94,11 @@
     <Compile Include="SolutionCodePageTest.cs" />
     <Compile Include="TaskViewPageTest.cs" />
     <Compile Include="TEMP_Test.cs" />
+    <Compile Include="SideBarTest.cs" />
+    <Compile Include="TestCollectionOE.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -110,5 +122,6 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.40.0\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.2.40.0\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\XunitXml.TestLogger.2.0.0\build\net45\XunitXml.TestLogger.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\XunitXml.TestLogger.2.0.0\build\net45\XunitXml.TestLogger.props'))" />
   </Target>
 </Project>

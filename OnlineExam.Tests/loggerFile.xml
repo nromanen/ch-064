@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies timestamp="07/01/2018 20:58:59">
+  <assembly name="E:\SS\ch-064\OnlineExam.Tests\bin\Debug\OnlineExam.Tests.dll" run-date="2018-07-01" run-time="20:58:59" total="4" passed="3" failed="1" skipped="0" time="56.124" errors="0">
+    <errors />
+    <collection total="4" passed="3" failed="1" skipped="0" name="Test collection for OnlineExam.Tests.AdminTest" time="56.124">
+      <test name="OnlineExam.Tests.AdminTest.IsUserPresentedInUserListTest" type="OnlineExam.Tests.AdminTest" method="IsUserPresentedInUserListTest" time="9.0500000" result="Pass">
+        <traits />
+      </test>
+      <test name="OnlineExam.Tests.AdminTest.DeleteUserTest" type="OnlineExam.Tests.AdminTest" method="DeleteUserTest" time="27.3770000" result="Fail">
+        <failure>
+          <message>OpenQA.Selenium.NoSuchElementException : Could not find element by: By.CssSelector: .body-content &gt; h2:nth-child(2)</message>
+          <stack-trace>   в OpenQA.Selenium.Support.PageObjects.DefaultElementLocator.LocateElement(IEnumerable`1 bys)
+   в OpenQA.Selenium.Support.PageObjects.WebElementProxy.get_Element()
+   в OpenQA.Selenium.Support.PageObjects.WebElementProxy.Invoke(IMessage msg)
+   в System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData&amp; msgData, Int32 type)
+   в OpenQA.Selenium.IWebElement.get_Displayed()
+   в OnlineExam.Pages.POM.AdminPanelPage.IsListOfUsersH2ElementPresented() в E:\SS\ch-064\OnlineExam.Pages\POM\AdminPanelPage.cs:строка 67
+   в OnlineExam.Tests.AdminTest.DeleteUserTest() в E:\SS\ch-064\OnlineExam.Tests\AdminTest.cs:строка 41</stack-trace>
+        </failure>
+        <traits />
+      </test>
+      <test name="OnlineExam.Tests.AdminTest.ChangeUserRoleTest" type="OnlineExam.Tests.AdminTest" method="ChangeUserRoleTest" time="11.0520000" result="Pass">
+        <traits />
+      </test>
+      <test name="OnlineExam.Tests.AdminTest.IsUserListAvailable" type="OnlineExam.Tests.AdminTest" method="IsUserListAvailable" time="8.6450000" result="Pass">
+        <traits />
+      </test>
+    </collection>
+  </assembly>
+</assemblies>
