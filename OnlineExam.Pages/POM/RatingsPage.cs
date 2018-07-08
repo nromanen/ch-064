@@ -9,10 +9,6 @@ namespace OnlineExam.Pages.POM
 {
     public class RatingsPage : BasePage
     {
-        public RatingsPage(IWebDriver driver) : base(driver)
-        {
-        }
-
         public RatingsPage()
         {
         }

@@ -11,11 +11,6 @@ namespace OnlineExam.Pages.POM
 {
     public class LogInPage : BasePage
     {
-
-        public LogInPage(IWebDriver driver) : base(driver)
-        {
-        }
-
         public LogInPage()
         {
         }
@@ -40,10 +35,11 @@ namespace OnlineExam.Pages.POM
             PasswordInput.SendKeys(password);
             RememberMeCheckBox.Click();
             SignInInputSubmit.Click();
-            Thread.Sleep(1000);
-            driver.Navigate().Refresh();
-            Thread.Sleep(1000);
-            driver.Navigate().Refresh();
+            //Thread.Sleep(1000);
+            //driver.Navigate().Refresh();
+            //Thread.Sleep(1000);
+            //driver.Navigate().Refresh();
+            throw new Exception("Rewrite using extended driver");
             Thread.Sleep(1000);
             return ConstructPage<IndexPage>();
         }
@@ -52,7 +48,7 @@ namespace OnlineExam.Pages.POM
 
         public bool IsSignInPresentedInHeader()
         {
-            Header header = new Header(driver);
+            Header header = ConstructPage<Header>();
 
             return header.GetSignInElement();
         }

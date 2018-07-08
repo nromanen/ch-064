@@ -10,10 +10,6 @@ namespace OnlineExam.Pages.POM.UserDetails
 {
     public class ChangeNamePage : BasePage
     {
-        public ChangeNamePage(IWebDriver driver) : base(driver)
-        {
-        }
-
         public ChangeNamePage()
         {
         }
@@ -36,7 +32,8 @@ namespace OnlineExam.Pages.POM.UserDetails
         public NewsPage SaveNewName()
         {
             SaveButton.Click();
-            return new NewsPage(this.driver);
+            //return new NewsPage(this.driver);
+            throw new Exception("Rewrite using Page constructor");
         }
     }
 }

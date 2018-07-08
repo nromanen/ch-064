@@ -13,9 +13,6 @@ namespace OnlineExam.Pages.POM
         /// <summary>
         /// http://localhost:55842/Code/CodeReview
         /// </summary>
-
-        public CodeReviewPage(IWebDriver driver) : base(driver) { }
-
         [FindsBy(How = How.Id, Using = "result")]
         public IWebElement ResultBlock { get; set; }
 

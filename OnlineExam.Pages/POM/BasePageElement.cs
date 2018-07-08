@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using OnlineExam.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace OnlineExam.Pages.POM
 {
     public abstract class BasePageElement
     {
-        IWebDriver driver;
+        protected ExtendedWebDriver driver;
         public BasePageElement(IWebElement context)
         {
             PageFactory.InitElements(context, this);
@@ -21,7 +22,7 @@ namespace OnlineExam.Pages.POM
 
         }
 
-        internal void SetDriver(IWebDriver driver)
+        public void SetDriver(ExtendedWebDriver driver)
         {
             this.driver = driver;
         }

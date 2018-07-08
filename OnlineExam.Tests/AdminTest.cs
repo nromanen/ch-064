@@ -18,10 +18,11 @@ namespace OnlineExam.Tests
 
         public AdminTest()
         {
-            header = new Header(driver);
-            logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            adminPanelPage = new SideBar(driver).AdminPanelMenuItemClick();
+            //header = new Header(driver);
+            //logInPage = header.GoToLogInPage();
+            //logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+            //adminPanelPage = new SideBar(driver).AdminPanelMenuItemClick();
+            throw new Exception("Rewrite using Page constructor");
         }
 
         [Fact]

@@ -12,9 +12,6 @@ namespace OnlineExam.Pages.POM
 {
     public class TeacherNewsPage : NewsPage
     {
-        public TeacherNewsPage(IWebDriver driver) : base(driver)
-        {
-        }
 
         public TeacherNewsPage()
         {
@@ -42,16 +39,17 @@ namespace OnlineExam.Pages.POM
         
         public TeacherNewsPage CreateArticle()
         {
+            WaitWhileNotClickableWebElement(CreateArticleReference);
             CreateArticleReference.Click();
-            Thread.Sleep(1000);
+            WaitWhileNotClickableWebElement(ChooseFileInput);
             ChooseFileInput.Click();
-            Thread.Sleep(1000);
-            SendKeys.SendWait(@"D:\ch-064\OnlineExam.Pages\POM\Example.jpg");
+            SendKeys.SendWait(@"D:\ch-064\OnlineExam.Pages\Sources\Example.jpg");
             SendKeys.SendWait("{Enter}");
             Thread.Sleep(10000);
             CourseNameInput.SendKeys("New name");
             TitleTextArea.SendKeys("New title");
             ArticleTextArea.SendKeys("New article");
+            WaitWhileNotClickableWebElement(PublishInput);
             PublishInput.Click();
             return ConstructPage<TeacherNewsPage>();
         }

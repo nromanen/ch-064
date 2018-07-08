@@ -26,34 +26,44 @@ namespace OnlineExam.Pages.POM.CodeHistory.Favourites
         public void ClickOnTitle()
         {
             Title.Click();
+
         }
+
+        [FindsBy(How = How.CssSelector, Using = "save-changes-btn")]
+        public IWebElement SaveButton { get; set; }
+
+
+        [FindsBy(How = How.CssSelector, Using = ".form-control.col")]
+        public IWebElement TextArea { get; set; }
+
+        public string GetTextArea()
+        {
+            return TextArea.Text;
+        }
+
+        
+        [FindsBy(How = How.CssSelector, Using = ".date p")]
+        public IWebElement Date { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = ".checkbox_wrapper label")]
+        public IWebElement LikeButton { get; set; }
 
         public bool IsLiked()
         {
-            return !LikeButton.GetCssValue("color").Equals("rgba(51,51,51,1)");
+            return LikeButton.GetCssValue("color").Equals("rgba(255,0,0,1)");
         }
 
-        //[FindsBy(How = How.Id, Using = "code-example")]
-        //public IWebElement IndexersFieldText { get; set; }
+        [FindsBy(How = How.CssSelector, Using = ".btn-default")]
+        public IWebElement StartButton { get; set; }
 
-        //[FindsBy(How = How.Id, Using = "myBtn")]
-        //public IWebElement SaveButton{ get; set; }
+        public string GetId()
+        {
+            return LikeButton.GetAttribute("data-id");
+        }
 
-        //[FindsBy(How = How.ClassName, Using = "form-control col")]
-        //public IWebElement TaskField { get; set; }
-
-        //[FindsBy(How = How.ClassName, Using = "col-lg-12")]
-        //public IWebElement TaskTime { get; set; }
-
-        [FindsBy(How = How.Id, Using = "icon")]
-        public IWebElement LikeButton { get; set; }
-
-        //[FindsBy(How = How.ClassName, Using = "col-lg-1")]
-        //public IWebElement StartButton { get; set; }
-
-        //public void ReviewExecutedCode ()
+        //public void EditExecutedCode ()
         //{
-        //    IndexersField.Click();
+        //    Title.Click();
         //}
 
         //public CodeHistoryPage EditCodeText (string editCode)

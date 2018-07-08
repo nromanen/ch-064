@@ -10,9 +10,6 @@ namespace OnlineExam.Pages.POM.UserDetails
 {
     public class ChangeEmailPage : BasePage
     {
-        public ChangeEmailPage(IWebDriver driver) : base(driver)
-        {
-        }
 
         [FindsBy(How = How.Id, Using = "NewEmail")]
         public IWebElement NewEmailField { get; set; }
@@ -34,7 +31,8 @@ namespace OnlineExam.Pages.POM.UserDetails
             SaveButton.Click();
             try
             {
-                return new NewsPage(this.driver);
+                //return new NewsPage(this.driver);
+                throw new Exception("Rewrite using Page constructor");
             }
             catch (Exception e)
             {

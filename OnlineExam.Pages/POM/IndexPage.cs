@@ -9,10 +9,6 @@ namespace OnlineExam.Pages.POM
 {
     public class IndexPage : BasePage
     {
-        public IndexPage(IWebDriver driver) : base(driver)
-        {
-        }
-
         public IndexPage()
         {
 
@@ -20,8 +16,9 @@ namespace OnlineExam.Pages.POM
 
         public IndexPage GoToIndexPage()
         {
-            driver.Navigate().GoToUrl("http://localhost:55842");
-            return new IndexPage(driver);
+            //driver.Navigate().GoToUrl("http://localhost:55842");
+            //return new IndexPage(driver);
+            throw new Exception("Rewrite using Extebded driver");
         }
     }
 }

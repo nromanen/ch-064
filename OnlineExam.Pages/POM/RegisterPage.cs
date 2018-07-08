@@ -10,10 +10,6 @@ namespace OnlineExam.Pages.POM
 {
     public class RegisterPage : BasePage
     {
-        public RegisterPage(IWebDriver driver) : base(driver)
-        {
-        }
-
         public RegisterPage()
         {
         }
@@ -32,10 +28,10 @@ namespace OnlineExam.Pages.POM
 
         public IndexPage Registration(string email, string password, string passwordConfirm)
         {
-            driver.Navigate().GoToUrl("http://localhost:55842/Account/Register");
             EmailInput.SendKeys(email);
             PasswordInput.SendKeys(password);
             PasswordConfirmInput.SendKeys(passwordConfirm);
+            WaitWhileNotClickableWebElement(RegistrationButton);
             RegistrationButton.Click();
             return ConstructPage<IndexPage>();
         }
