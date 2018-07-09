@@ -10,14 +10,10 @@ namespace OnlineExam.Pages.POM
 {
     public class CreateCoursePage : BasePage
     {
+        // http://localhost:55842/CourseManagement/Create
+        public CreateCoursePage() { }
 
-        public CreateCoursePage()
-        {
-
-        }
-        /// <summary>
-        /// http://localhost:55842/CourseManagement/Create
-        /// </summary>
+        //public CreateCoursePage(IWebElement searchContext):base(searchContext) { }
 
         [FindsBy(How = How.Id, Using = "Name")]
         public IWebElement CourseNameInput { get; set; }
@@ -26,7 +22,7 @@ namespace OnlineExam.Pages.POM
         public IWebElement CourseDescriptionInput { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "input.btn")]
-        public IWebElement CourseOkBtn { get; set; }
+        public IWebElement BtnOk { get; set; }
 
         public void FillCourse(string name, string description)
         {
@@ -34,12 +30,12 @@ namespace OnlineExam.Pages.POM
             CourseDescriptionInput.SendKeys(description);
         }
 
-        public string GetName()
+        public string GetCourseName()
         {
             return CourseNameInput.GetAttribute("value");
         }
 
-        public string GetDescription()
+        public string GetCourseDescription()
         {
             return CourseDescriptionInput.GetAttribute("value");
         }

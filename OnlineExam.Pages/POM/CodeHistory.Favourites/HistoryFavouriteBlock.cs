@@ -10,10 +10,7 @@ namespace OnlineExam.Pages.POM.CodeHistory.Favourites
 {
     public class HistoryFavouriteBlock : BasePageElement
     {
-        public HistoryFavouriteBlock()
-        {
-        }
-
+        
 
         [FindsBy(How = How.CssSelector, Using = ".titlecode")]
         public IWebElement Title { get; set; }
@@ -61,45 +58,45 @@ namespace OnlineExam.Pages.POM.CodeHistory.Favourites
             return LikeButton.GetAttribute("data-id");
         }
 
-        //public void EditExecutedCode ()
-        //{
-        //    Title.Click();
-        //}
+        public void EditExecutedCode()
+        {
+            Title.Click();
+        }
 
-        //public CodeHistoryPage EditCodeText (string editCode)
+        //public HistoryFavouritesPage EditCodeText(string editCode)
         //{
         //    IndexersField.Click();
         //    IndexersFieldText.SendKeys(editCode);
         //    SaveButton.Click();
-        //    return new CodeHistoryPage(this.driver);
+        //    return ConstructPage<HistoryFavouritesPage>();
         //}
 
         //public TasksPage OpenEditTaskPage()
         //{
         //    StartButton.Click();
-        //    return new TasksPage(this.driver);
+        //    return ConstructPage<TasksPage>();
         //}
 
 
 
-        ////Must be review
-        //public void SaveToFavourites()
-        //{
-        //    string colorOfLikeButton = LikeButton.GetCssValue("style");
-        //    if (colorOfLikeButton == "color:black;")
-        //    {
-        //        LikeButton.Click();
-        //    }
+        //Must be review
+        public void SaveToFavourites()
+        {
+            string colorOfLikeButton = LikeButton.GetCssValue("style");
+            if (colorOfLikeButton == "color:black;")
+            {
+                LikeButton.Click();
+            }
 
-        //}
+        }
 
-        //public void DeleteFromFovourites()
-        //{
-        //    string colorOfLikeButton = LikeButton.GetCssValue("style");
-        //    if (colorOfLikeButton == "color:red;")
-        //    {
-        //        LikeButton.Click();
-        //    }
-        //}
+        public void DeleteFromFovourites()
+        {
+            string colorOfLikeButton = LikeButton.GetCssValue("style");
+            if (colorOfLikeButton == "color:red;")
+            {
+                LikeButton.Click();
+            }
+        }
     }
 }

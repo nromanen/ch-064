@@ -24,20 +24,23 @@ namespace OnlineExam.Pages.POM.UserDetails
         {
             NewEmailField.SendKeys(newEmail);
             PasswordField.SendKeys(password);
+            SaveButton.Click();
         }
 
-        public NewsPage SaveNewEmail()
-        {
-            SaveButton.Click();
-            try
-            {
-                //return new NewsPage(this.driver);
-                throw new Exception("Rewrite using Page constructor");
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
+        //public NewsPage SaveNewEmail()
+        //{
+        //    SaveButton.Click();
+        //    return ConstructPage<NewsPage>();
+            //try
+            //{
+
+            //    //return new NewsPage(this.driver);
+            //    throw new Exception("Rewrite using Page constructor");
+            //}
+            //catch (Exception e)
+            //{
+            //    return null;
+            //}
+        //}
     }
 }

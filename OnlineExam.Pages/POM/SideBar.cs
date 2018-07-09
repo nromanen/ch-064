@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using OnlineExam.Pages.POM.CodeHistory.Favourites;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
@@ -75,12 +76,12 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<CourseManagementPage>();
         }
 
-        public CodeHistoryPage GoToCodeHistoryPage()
+        public HistoryFavouritePage GoToCodeHistoryPage()
         {
             navBarElement.Click();
             WaitWhileNotClickableWebElement(codeHistoryMenuItemElement);
             codeHistoryMenuItemElement.Click();
-            return ConstructPage<CodeHistoryPage>();
+            return ConstructPage<HistoryFavouritePage>();
         }
 
         public MailBoxPage GoToMailBoxPage()

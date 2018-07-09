@@ -1,19 +1,22 @@
 ﻿using System;
+using AventStack.ExtentReports;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.PageObjects;
-using RelevantCodes.ExtentReports;
 using Xunit;
+using Xunit.Abstractions;
 using Xunit.Sdk;
 
 namespace OnlineExam.Tests
 {
     [Collection("MyTestCollection")]
-    public abstract class  BaseTest :IDisposable
+    public abstract class BaseTest : DatabaseHelper, IDisposable
         //, IClassFixture<BaseFixture>,ICollectionFixture<MyTestCollection>
     {
+        protected ITestOutput output;
+
         //protected IWebDriver driver;
         protected ExtendedWebDriver driver;
         protected BaseFixture fixture;
@@ -24,8 +27,10 @@ namespace OnlineExam.Tests
             driver = DriversFabric.InitChrome();
         }
 
+        //[SetUp]
         public BaseTest(BaseFixture fixture)
         {
+            //   BackupDatabase(); // <- Uncoment to create db backup
             driver = DriversFabric.InitChrome();
             this.fixture = fixture;
         }
@@ -36,7 +41,12 @@ namespace OnlineExam.Tests
             driver.GoToUrl(Constants.HOME_URL);
         }
 
-        public T ConstructPage<T>()where T: BasePage, new()
+        public void NavigateTo(string url)
+        {
+            driver.GoToUrl(url);
+        }
+
+        public T ConstructPage<T>() where T : BasePage, new()
         {
             var page = new T();
             page.SetDriver(driver);
@@ -45,7 +55,8 @@ namespace OnlineExam.Tests
             {
                 PageFactory.InitElements(driver.SeleniumContext, page);
                 return page;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 return null;
             }
@@ -71,34 +82,20 @@ namespace OnlineExam.Tests
             try
             {
                 action();
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
-                //driver.TakeScreenshot("");
+                driver.TakeScreenshot(Constants.ScreenShotPath);
+                var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(Constants.SCREEN_SHOT).Build();
+                fixture.test.Fail(e,mediaModel);
                 throw;
             }
         }
 
+        //[TearDown]
         public virtual void Dispose()
         {
-
-            // var status = TestContext.CurrentContext.Result.Outcome.Status;
-            var status = fixture.test.GetCurrentStatus();
-
-            //TestContext.CurrentContext.Result.StackTrace
-            var stackTrace = "<pre>" + "..." + "</pre>"; //TODO
-
-
-            //TestContext.CurrentContext.Result.Message;
-            var errorMessage = fixture.test.GetTest().Description;
-
-            if (status != LogStatus.Pass)
-            {
-                fixture.test.Log(status, stackTrace + errorMessage);
-            }
-
-
-            fixture.extent.EndTest(fixture.test);
-            driver?.Dispose();
+           driver?.Dispose();
         }
     }
 }

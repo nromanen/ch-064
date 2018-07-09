@@ -114,7 +114,7 @@ namespace OnlineExam.Pages.POM
 
         public string GetCourseLink(string courseName)
         {
-            //TODO: CHANGE OWNER follow link
+            
             string tmpLink = "";
             //var rows = driver.FindElements(By.TagName("tr"));
             //foreach (var row in rows)
