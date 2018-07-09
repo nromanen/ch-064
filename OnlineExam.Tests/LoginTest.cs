@@ -47,9 +47,9 @@ namespace OnlineExam.Tests
                 fixture.test = fixture.extentReports.CreateTest("SignInUsingInvalidEmailTest");
                 logInPage.SignIn(Constants.FAKE_EMAIL, Constants.FAKE_PASSWORD);
 
-                fixture.test.Log(Status.Fail, "User didn't sign in using invalid email.");
+                fixture.test.Log(Status.Pass, "User didn't sign in using invalid email.");
 
-                Assert.True(header.IsUserEmailPresentedInHeader(Constants.FAKE_EMAIL));
+                Assert.False(header.IsUserEmailPresentedInHeader(Constants.FAKE_EMAIL));
             });
         }
 
@@ -60,10 +60,8 @@ namespace OnlineExam.Tests
             {
                 fixture.test = fixture.extentReports.CreateTest("SignInUsingInvalidPasswordTest");
                 logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.FAKE_PASSWORD);
-
-                fixture.test.Log(Status.Fail, "User didn't sign in using invalid password.");
-
-                Assert.True(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+                fixture.test.Log(Status.Pass, "User didn't sign in using invalid password.");
+                Assert.False(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
             });
         }
 
