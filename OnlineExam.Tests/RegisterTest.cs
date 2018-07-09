@@ -30,7 +30,6 @@ namespace OnlineExam.Tests
                 logIn.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
                 var adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
                 Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.EXAMPLE_EMAIL));
-                adminPanelPage.DeleteUser(Constants.EXAMPLE_EMAIL);
             });
         }
 
@@ -48,9 +47,6 @@ namespace OnlineExam.Tests
             });
         }
 
-        public void Dispose()
-        {
-            driver.Dispose();
-        }
+        
     }
 }

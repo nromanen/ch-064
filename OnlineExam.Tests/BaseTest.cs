@@ -136,7 +136,6 @@ namespace OnlineExam.Tests
             //_extent.Flush();
 
          //   RollbackDatabase(); //<- uncoment to load db backup
-            fixture.extentReports.RemoveTest(fixture.test);
             driver?.Dispose();
         }
     }
