@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using RelevantCodes.ExtentReports;
 using Xunit;
 
 namespace OnlineExam.Tests
