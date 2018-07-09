@@ -33,7 +33,7 @@ namespace OnlineExam.Tests
                     firstblock.ClickOnTasksButton();
                     var TaskView = ConstructPage<TaskViewPage>();
                     TaskView.ClickOnStartButton();
-                    var title = this.driver.GetDriverTitle();
+                    var title = this.driver.GetCurrentTitle();
                     Assert.Equal(title, "- WebApp");
                 }
             }
@@ -59,7 +59,7 @@ namespace OnlineExam.Tests
                     firstblock.ClickOnTasksButton();
                     var TaskView = ConstructPage<TaskViewPage>();
                     TaskView.ClickOnOkButton();
-                    var current_url = this.driver.GetDriverURL();
+                    var current_url = this.driver.GetCurrentUrl();
                     Assert.Equal(current_url, "http://localhost:55842/CourseManagement/ShowExercise/1");
                 }
             }

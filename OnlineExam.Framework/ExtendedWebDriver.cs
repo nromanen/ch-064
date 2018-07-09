@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace OnlineExam.Framework
 {
     public class ExtendedWebDriver : IDisposable
     {
         private IWebDriver driver;
+        public static TimeSpan WAIT_TIME = new TimeSpan(0, 0, 100);
 
         public ExtendedWebDriver(IWebDriver driver)
         {
@@ -33,19 +35,30 @@ namespace OnlineExam.Framework
             ss.ToString();//same as string screenshot = ss.AsBase64EncodedString;
         }
 
-        public string GetDriverTitle()
-        {
-            return driver.Title;
-        }
-
-        public string GetDriverURL()
+        public string GetCurrentUrl()
         {
             return driver.Url;
         }
 
-        public void Refresh()
+        public string GetCurrentTitle()
+        {
+            return driver.Title;
+        }
+
+        public void WaitWhileNotClickableWebElement(IWebElement webElement)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+            wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
+        }
+
+        public void RefreshPage()
         {
             driver.Navigate().Refresh();
+        }
+
+        public void ExecuteJavaScript(string jsCode, IWebElement webElement0, IWebElement webElement1)
+        {
+            ((IJavaScriptExecutor)driver).ExecuteScript(jsCode, webElement0, webElement1);
         }
 
         public void Dispose()
