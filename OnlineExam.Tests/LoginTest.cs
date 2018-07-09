@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AventStack.ExtentReports;
 using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -14,23 +15,27 @@ namespace OnlineExam.Tests
     [Collection("MyTestCollection")]
     public class LoginTest : BaseTest
     {
-        public LoginTest()
+        private Header header;
+        private LogInPage logInPage;
+
+        public LoginTest(BaseFixture fixture) : base(fixture)
         {
+                BeginTest();
+                header = ConstructPage<Header>();
+                logInPage = header.GoToLogInPage();
         }
+
 
         [Fact]
         public void SignInTest()
         {
             UITest(() =>
             {
-                BeginTest();
-                var header = ConstructPage<Header>();
-                var logIn = header.GoToLogInPage();
-                logIn.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-                //fixture.test = fixture.extent.StartTest("SignInTest");
+                logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+                fixture.test = fixture.extentReports.CreateTest("SignInTest");
                 var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
                 Assert.True(result);
-                //fixture.test.Log(LogStatus.Pass, "User signed in.");
+                fixture.test.Log(Status.Pass, "User signed in.");
             });
         }
 
@@ -39,11 +44,10 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                BeginTest();
-                var header = ConstructPage<Header>();
-                var logIn = header.GoToLogInPage();
-                logIn.SignIn(Constants.FAKE_EMAIL, Constants.FAKE_PASSWORD);
+                fixture.test = fixture.extentReports.CreateTest("SignInUsingInvalidEmailTest");
+                logInPage.SignIn(Constants.FAKE_EMAIL, Constants.FAKE_PASSWORD);
                 Assert.True(header.IsUserEmailPresentedInHeader(Constants.FAKE_EMAIL));
+                fixture.test.Log(Status.Fail, "User didn't sign in using invalid email.");
             });
         }
 
@@ -52,11 +56,10 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                BeginTest();
-                var header = ConstructPage<Header>();
-                var logIn = header.GoToLogInPage();
-                logIn.SignIn(Constants.STUDENT_EMAIL, Constants.FAKE_PASSWORD);
+                fixture.test = fixture.extentReports.CreateTest("SignInUsingInvalidPasswordTest");
+                logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.FAKE_PASSWORD);
                 Assert.True(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+                fixture.test.Log(Status.Fail, "User didn't sign in using invalid password.");
             });
         }
 
@@ -65,14 +68,13 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                BeginTest();
-                var header = ConstructPage<Header>();
-                var logIn = header.GoToLogInPage();
-                logIn.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+                fixture.test = fixture.extentReports.CreateTest("SignOutTest");
+                logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
                 driver.RefreshPage();
                 header.SignOut();
                 driver.RefreshPage();
-                Assert.True(logIn.IsSignInPresentedInHeader());
+                Assert.True(logInPage.IsSignInPresentedInHeader());
+                fixture.test.Log(Status.Pass, "User signed out.");
             });
         }
 
