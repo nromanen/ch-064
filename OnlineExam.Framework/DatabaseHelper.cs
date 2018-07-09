@@ -9,7 +9,7 @@ namespace OnlineExam.Framework
 {
     public class DatabaseHelper
     {
-        private static string conection = "data source = (localdb)\\mssqllocaldb; initial catalog = Main; integrated security = True; MultipleActiveResultSets = True;";
+        private static string conection = "data source = DESKTOP-424095L\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;";
 
         public static void BackupDatabase()
         {

@@ -28,7 +28,7 @@ namespace OnlineExam.Tests
         //[SetUp]
         public BaseTest(BaseFixture fixture)
         {
-            //BackupDatabase(); // <- Uncoment to create db backup
+         //   BackupDatabase(); // <- Uncoment to create db backup
             driver = DriversFabric.InitChrome();
             this.fixture = fixture;
         }
@@ -135,7 +135,7 @@ namespace OnlineExam.Tests
             //_test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
             //_extent.Flush();
 
-            //RollbackDatabase(); //<- uncoment to load db backup
+         //   RollbackDatabase(); //<- uncoment to load db backup
             fixture.extentReports.RemoveTest(fixture.test);
             driver?.Dispose();
         }
