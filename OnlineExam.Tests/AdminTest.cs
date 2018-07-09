@@ -2,6 +2,7 @@
 using AventStack.ExtentReports;
 using OnlineExam.Pages.POM;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace OnlineExam.Tests
 {
@@ -14,7 +15,7 @@ namespace OnlineExam.Tests
 
 
         //[SetUp]
-        public AdminTest (BaseFixture fixture) : base(fixture)
+        public AdminTest (BaseFixture fixture ) : base(fixture)
         {
             BeginTest();
 

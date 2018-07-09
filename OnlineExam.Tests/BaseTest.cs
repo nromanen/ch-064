@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.PageObjects;
 using Xunit;
+using Xunit.Abstractions;
 using Xunit.Sdk;
 
 namespace OnlineExam.Tests
@@ -14,6 +15,7 @@ namespace OnlineExam.Tests
     public abstract class  BaseTest :IDisposable
         //, IClassFixture<BaseFixture>,ICollectionFixture<MyTestCollection>
     {
+        protected ITestOutput output;
         //protected IWebDriver driver;
         protected ExtendedWebDriver driver;
         protected BaseFixture fixture;
