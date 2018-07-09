@@ -21,9 +21,8 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-               
                 string courseName = ".NET FRAMEWORK", courseDescription = "Nice description";
-                fixture.test = fixture.extent.StartTest("CreateCourse_ValidData");
+                fixture.test = fixture.extentReports.CreateTest("CreateCourse_ValidData");
 
                 var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
                 var sidebar = ConstructPage<SideBar>();
