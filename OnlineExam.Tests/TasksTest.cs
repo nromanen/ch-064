@@ -10,9 +10,10 @@ using Xunit;
 
 namespace OnlineExam.Tests
 {
+    [Collection("MyTestCollection")]
     public class TasksTest : BaseTest
     {
-        public TasksTest()
+        public TasksTest(BaseFixture fixture) : base(fixture)
         {
         }
 

@@ -10,9 +10,22 @@ using Xunit;
 
 namespace OnlineExam.Tests
 {
+    [Collection("MyTestCollection")]
     public class TEMP_Test : BaseTest
     {
-        public TEMP_Test() { }
+
+        private Header header;
+        private SideBar TeacherTasksPage;
+
+        public TEMP_Test(BaseFixture fixture) : base(fixture)
+        {
+            BeginTest();
+
+            var header = ConstructPage<Header>();
+            var logInPage = header.GoToLogInPage();
+            logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+            var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
+        }
 
         [Fact]
         public void IsTaskAvailable()
@@ -20,10 +33,7 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Indexers";
-                var header = ConstructPage<Header>();
-                var logInPage = header.GoToLogInPage();
-                logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-                var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
+                fixture.test = fixture.extentReports.CreateTest("IsTaskAvailable?");
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -38,15 +48,12 @@ namespace OnlineExam.Tests
 
 
         [Fact]
-        public void Recover()
+        public void TaskRecover()
         {
             UITest(() =>
             {
-                string taskname = "Proba1";
-                var header = ConstructPage<Header>();
-                var logInPage = header.GoToLogInPage();
-                logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-                var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
+                string taskname = "Indexers";
+                fixture.test = fixture.extentReports.CreateTest("TaskRecover");
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -77,11 +84,9 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string CreationDate = "23/06/2018";
-                var header = ConstructPage<Header>();
-                var logInPage = header.GoToLogInPage();
-                logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-                var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
+                fixture.test = fixture.extentReports.CreateTest("TaskCreationDate");
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
+
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
                 {
@@ -98,40 +103,13 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string UpdateDate = "03/07/2018";
-                var header = ConstructPage<Header>();
-                var logInPage = header.GoToLogInPage();
-                logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-                var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
+                fixture.test = fixture.extentReports.CreateTest("TaskUpdateDate");
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
                 {
                     var allblock = blocks.Where(x => x.TEMP_GetCreationDate().Equals(UpdateDate, StringComparison.OrdinalIgnoreCase));
                     Assert.Equal(allblock.Count(), 2);
-                }
-            }
-);
-        }
-
-        [Fact]
-        public void TdsCount()
-        {
-            UITest(() =>
-            {
-                string TaskName = "Indexers";
-                var header = ConstructPage<Header>();
-                var logInPage = header.GoToLogInPage();
-                logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-                var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
-                var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
-                var blocks = ListOfTasks.GetBlocks();
-                var tds = ListOfTasks.GetCountOfTDs();
-                if (tds != null)
-                {
-                    MessageBox.Show("tds NOT NULL");
-                    var tdscount = tds.Count() - 79;
-                    MessageBox.Show(tdscount.ToString());
-                    Assert.Equal(tdscount, 0);
                 }
             }
 );
@@ -144,9 +122,7 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string NEWTASK = "newtask1";
-                var header = ConstructPage<Header>();
-                var logInPage = header.GoToLogInPage();
-                logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+                fixture.test = fixture.extentReports.CreateTest("AddNewTaskTest");
 
                 var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
                 var Tasks = ConstructPage<TeacherExerciseManagerPage>();
