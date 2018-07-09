@@ -85,9 +85,10 @@ namespace OnlineExam.Tests
             }
             catch (Exception e)
             {
-                driver.TakeScreenshot(Constants.ScreenShotPath);
-                var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(Constants.SCREEN_SHOT).Build();
-                fixture.test.Fail(e,mediaModel);
+                var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.ScreenShotPath,Constants.SCREEN_SHOT,ScreenshotImageFormat.Png);
+                var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
+                fixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
+                fixture.test.Fail(e);
                 throw;
             }
         }
@@ -95,7 +96,7 @@ namespace OnlineExam.Tests
         //[TearDown]
         public virtual void Dispose()
         {
-           driver?.Dispose();
+            driver?.Dispose();
         }
     }
 }
