@@ -41,9 +41,9 @@ namespace OnlineExam.Pages.POM
         {
             WaitWhileNotClickableWebElement(CreateArticleReference);
             CreateArticleReference.Click();
-            WaitWhileNotClickableWebElement(ChooseFileInput);
+            //WaitWhileNotClickableWebElement(ChooseFileInput);
             ChooseFileInput.Click();
-            SendKeys.SendWait(@"D:\ch-064\OnlineExam.Pages\Sources\Example.jpg");
+            SendKeys.SendWait(@"E:\SS\ch-064\OnlineExam.Pages\Sources\example.jpg");
             SendKeys.SendWait("{Enter}");
             Thread.Sleep(10000);
             CourseNameInput.SendKeys("New name");

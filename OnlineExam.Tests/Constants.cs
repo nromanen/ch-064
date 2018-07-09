@@ -33,6 +33,11 @@ namespace OnlineExam.Tests
         public const string EXAMPLE_PASSWORD = "Example_123";
         public const string FAKE_EMAIL = "fake@gmail.com";
         public const string FAKE_PASSWORD = "Fake_123";
-
+        public static string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+        public static  string actualPath = path.Substring(0, path.LastIndexOf("bin"));
+        public static string projectPath = new Uri(actualPath).LocalPath;
+        public static string reportPath = projectPath + "Reports\\MyOwnReport.html";
+        public static string ScreenShotPath = projectPath + "Reports\\screenshot.png";
+        public const string SCREEN_SHOT = "screenshot.png";
     }
 }
