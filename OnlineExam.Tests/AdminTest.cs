@@ -15,7 +15,7 @@ namespace OnlineExam.Tests
 
 
         //[SetUp]
-        public AdminTest (BaseFixture fixture ) : base(fixture)
+        public AdminTest(BaseFixture fixture) : base(fixture)
         {
             BeginTest();
 
@@ -28,54 +28,63 @@ namespace OnlineExam.Tests
         [Fact]
         public void IsUserPresentedInUserListTest()
         {
-            fixture.test = fixture.extentReports.CreateTest("IsUserPresentedInUserListTest");
-            Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL));
-            fixture.test.Log(Status.Pass, "User is presented in user list");
-            //fixture.test.Pass("User is presented in user list");
+            UITest(() =>
+            {
+                fixture.test = fixture.extentReports.CreateTest("IsUserPresentedInUserListTest");
+                Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL));
+                fixture.test.Log(Status.Pass, "User is presented in user list");
+                //fixture.test.Pass("User is presented in user list");
+            });
         }
 
         [Fact]
         public void DeleteUserTest()
         {
-            fixture.test = fixture.extentReports.CreateTest("Delete user test");
-            Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL),
-                "User is not presented in the system," +
-                "so we have not opportunity to delete this user");
-            adminPanelPage.DeleteUser(Constants.STUDENT_EMAIL);
-           
-            Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
-            Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL), "Error");
+            UITest(() =>
+            {
+                BackupDatabase();
+                fixture.test = fixture.extentReports.CreateTest("Delete user test");
+                Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL),
+                    "User is not presented in the system," +
+                    "so we have not opportunity to delete this user");
+                adminPanelPage.DeleteUser(Constants.STUDENT_EMAIL);
 
-            fixture.test.Log(Status.Pass, "User is deleted successfully");
-            //fixture.test.Pass("User is deleted successfully");
+                Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
+                Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL), "Error");
+
+                fixture.test.Log(Status.Pass, "User is deleted successfully");
+                RollbackDatabase();
+                //fixture.test.Pass("User is deleted successfully");
+            });
         }
 
         [Fact]
         public void ChangeUserRoleTest()
         {
-            fixture.test = fixture.extentReports.CreateTest("Change user role test");
-            var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.STUDENT_EMAIL);
-            changeRolePage.ChangeRole(Constants.STUDENT);
-            changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.STUDENT_EMAIL);
-            Assert.Equal(Constants.STUDENT, changeRolePage.CurrentRole());
-            fixture.test.Log(Status.Pass, "Role is changed successfully");
-           // fixture.test.Pass("Role is changed successfully");
+            UITest(() =>
+            {
+                BackupDatabase();
+                fixture.test = fixture.extentReports.CreateTest("Change user role test");
+                var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.STUDENT_EMAIL);
+                changeRolePage.ChangeRole(Constants.STUDENT);
+                changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.STUDENT_EMAIL);
+                Assert.Equal(Constants.STUDENT, changeRolePage.CurrentRole());
+                fixture.test.Log(Status.Pass, "Role is changed successfully");
+                RollbackDatabase();
+                // fixture.test.Pass("Role is changed successfully");
+            });
         }
 
         [Fact]
         public void IsUserListAvailableTest()
         {
-            fixture.test = fixture.extentReports.CreateTest("Is user list available test");
-            Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
-            fixture.test.Log(Status.Pass, "User list is available");
-           // fixture.test.Pass("User list is available");
+            UITest(() =>
+            {
+                fixture.test = fixture.extentReports.CreateTest("Is user list available test");
+                Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
+                fixture.test.Log(Status.Pass, "User list is available");
+                // fixture.test.Pass("User list is available");
+            });
         }
-
-
-        //[TearDown]
-        //public override void Dispose()
-        //{
-        //    base.Dispose();
-        //}
-    }
+        }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ namespace OnlineExam.Framework
 {
     public class ExtendedWebDriver : IDisposable
     {
+        static int ScreenCounter = 0; //Will be update per screenshot that we took
+        public const string str = "";
         private IWebDriver driver;
         public static TimeSpan WAIT_TIME = new TimeSpan(0, 0, 100);
 
@@ -26,14 +29,35 @@ namespace OnlineExam.Framework
 
         public ISearchContext SeleniumContext => driver;
 
-        public void TakeScreenshot(string path)
+        public string TakesScreenshotWithDate(string Path, string FileName, ScreenshotImageFormat Format)
         {
-            var ss = ((ITakesScreenshot)driver).GetScreenshot();
-            string screenshot = ss.AsBase64EncodedString;
-            byte[] screenshotAsByteArray = ss.AsByteArray;
-            ss.SaveAsFile(path, ScreenshotImageFormat.Png); //use any of the built in image formating
-            ss.ToString();//same as string screenshot = ss.AsBase64EncodedString;
+            ScreenCounter++; //Updates the number of screenshots that we took during the execution
+
+            StringBuilder TimeAndDate = new StringBuilder(DateTime.Now.ToString());
+            TimeAndDate.Replace("/", "_");
+            TimeAndDate.Replace(":", "_");
+
+            //Remember that we cannot save a file with '/' Or ':', but we still need a unique identifier, Therefore, we will make this simple replace.
+
+            //    Before: 12 / 06 / 2015 14:54:55
+            //After: 12_06_2015 14_54_55
+
+            DirectoryInfo Validation = new DirectoryInfo(Path); //System IO object
+            var ScreenShotPath = Path + ScreenCounter.ToString() + "." + FileName + TimeAndDate.ToString() + "." +
+                                 Format;
+            if (Validation.Exists == true) //Capture screen if the path is available
+            {
+                ((ITakesScreenshot) driver).GetScreenshot().SaveAsFile(ScreenShotPath, Format);
+            }
+            else //Create the folder and then Capture the screen
+            {
+                Validation.Create();
+                ((ITakesScreenshot) driver).GetScreenshot().SaveAsFile(ScreenShotPath, Format);
+            }
+
+            return ScreenShotPath;
         }
+
 
         public string GetCurrentUrl()
         {
@@ -53,7 +77,7 @@ namespace OnlineExam.Framework
 
         public void ExecuteJavaScript(string jsCode, IWebElement webElement0, IWebElement webElement1)
         {
-            ((IJavaScriptExecutor)driver).ExecuteScript(jsCode, webElement0, webElement1);
+            ((IJavaScriptExecutor) driver).ExecuteScript(jsCode, webElement0, webElement1);
         }
 
         public void Dispose()

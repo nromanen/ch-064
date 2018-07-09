@@ -14,22 +14,10 @@ namespace OnlineExam.Tests
         public ExtentReports extentReports;
         public ExtentTest test;
 
-
-        public string path;
-        public string actualPath;
-        public string projectPath;
-        public string reportPath;
-
         //[OneTimeSetUp]
         public BaseFixture()
         {
-            path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
-            actualPath = path.Substring(0, path.LastIndexOf("bin"));
-            projectPath = new Uri(actualPath).LocalPath;
-            reportPath = projectPath + "Reports\\MyOwnReport.html";
-
-
-            htmlReporter = new ExtentHtmlReporter(reportPath);
+            htmlReporter = new ExtentHtmlReporter(Constants.reportPath);
             extentReports = new ExtentReports();
             extentReports.AttachReporter(htmlReporter);
 
@@ -55,7 +43,7 @@ namespace OnlineExam.Tests
 
             //// theme - standard, dark
             //htmlReporter.Configuration().Theme = Theme.Dark;
-            
+
 
             //extent = new ExtentReports(reportPath, true);
             //extent
@@ -67,7 +55,6 @@ namespace OnlineExam.Tests
         //[OneTimeTearDown]
         public void Dispose()
         {
-          
             extentReports.Flush();
         }
     }

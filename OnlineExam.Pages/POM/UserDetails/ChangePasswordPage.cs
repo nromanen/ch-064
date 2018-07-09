@@ -31,12 +31,13 @@ namespace OnlineExam.Pages.POM.UserDetails
             OldPasswordField.SendKeys(oldPassword);
             NewPasswordField.SendKeys(newPassword);
             ConfirmNewPasswordField.SendKeys(confirmNewPassword);
+            SaveButton.Click();
         }
 
-        public NewsPage SaveNewPassword()
-        {
-            SaveButton.Click();
-            return ConstructPage<NewsPage>();
+        //public NewsPage SaveNewPassword()
+        //{
+        //    SaveButton.Click();
+        //    return ConstructPage<NewsPage>();
             //try
             //{
             //    //return new NewsPage(this.driver);
@@ -45,6 +46,6 @@ namespace OnlineExam.Pages.POM.UserDetails
             //{
             //    return null;
             //}
-        }
+        //}
     }
 }
