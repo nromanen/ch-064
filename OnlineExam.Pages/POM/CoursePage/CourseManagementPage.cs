@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using OnlineExam.Pages.POM.Tasks;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
@@ -12,24 +13,31 @@ namespace OnlineExam.Pages.POM
 {
     public class CourseManagementPage : BasePage
     {
-        /// <summary>
-        /// Course managment as teacher
         /// http://localhost:55842/CourseManagement
-        /// </summary>
-        public CourseManagementPage()
-        {
-
-        }
+        /// Created by Roma ༼ つ ◕_◕ ༽つ
+        public CourseManagementPage(){ }
 
         [FindsBy(How = How.CssSelector, Using = "a.btn:nth-child(1)")]
-        public IWebElement AddCourseBtn { get; set; }
+        public IWebElement BtnAddCourse { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "a.btn:nth-child(2)")]
-        public IWebElement MyCoursesBtn { get; set; }
+        public IWebElement BtnMyCourses { get; set; }
+
+        public void CreateCourse(string courseName, string courseDescription)
+        {
+            BtnAddCourse.Click();
+            var createPage = ConstructPage<CreateCoursePage>();
+            createPage.FillCourse(courseName,courseDescription);
+            createPage.BtnOk.Click();
+        }
 
         public bool IsExist(string CourseName)
         {
-            throw new Exception("Rewrite using Exteded driver");
+            var ListOfTasks = ConstructPage<CourseManagementPage>();
+            var blocks = ListOfTasks.GetBlocks();
+            var blocks1 = ListOfTasks.GetBlocks();
+            //throw new Exception("Rewrite using Exteded driver");
+
             //IWebElement table = driver.FindElement(By.TagName("tbody"));
 
             //IList<IWebElement> allRows = table.FindElements(By.TagName("tr"));
@@ -45,6 +53,22 @@ namespace OnlineExam.Pages.POM
             //    }
             //}
             //return false;
+            return true;
+            
+        }
+        [FindsBy(How = How.CssSelector, Using = ".table td:not(:first-of-type)")]
+        public IList<IWebElement> RowOfTrs { get; set; }
+
+        public IList<TasksPageRowItem> GetBlocks()
+        {
+            var blocks = new List<TasksPageRowItem>();
+            foreach (var tr in RowOfTrs)
+            {
+                var block = ConstructPageElement<TasksPageRowItem>(tr);
+                if (block != null)
+                    blocks.Add(block);
+            }
+            return blocks;
         }
 
         public void FollowLink()
@@ -60,7 +84,7 @@ namespace OnlineExam.Pages.POM
 
         public string ChangeOwner(string courseName)
         {
-            //TODO: CHANGE OWNER follow link
+           
             string tmpLink = "";
             //var rows = driver.FindElements(By.TagName("tr"));
             //foreach (var row in rows)

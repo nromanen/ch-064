@@ -11,8 +11,8 @@ using Xunit.Sdk;
 namespace OnlineExam.Tests
 {
     [Collection("MyTestCollection")]
-    public abstract class  BaseTest :IDisposable
-        //, IClassFixture<BaseFixture>,ICollectionFixture<MyTestCollection>
+    public abstract class  BaseTest :DatabaseHelper, IDisposable
+    //, IClassFixture<BaseFixture>,ICollectionFixture<MyTestCollection>
     {
         //protected IWebDriver driver;
         protected ExtendedWebDriver driver;
@@ -26,6 +26,7 @@ namespace OnlineExam.Tests
         //[SetUp]
         public BaseTest(BaseFixture fixture)
         {
+            //BackupDatabase(); // <- Uncoment to create db backup
             driver = DriversFabric.InitChrome();
             this.fixture = fixture;
         }
@@ -132,7 +133,8 @@ namespace OnlineExam.Tests
             //_test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
             //_extent.Flush();
 
-
+            //RollbackDatabase(); //<- uncoment to load db backup
+            fixture.extentReports.RemoveTest(fixture.test);
             driver?.Dispose();
         }
     }
