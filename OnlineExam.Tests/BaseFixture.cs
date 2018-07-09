@@ -9,7 +9,6 @@ namespace OnlineExam.Tests
 {
     public class BaseFixture : IDisposable
     {
-        public ExtendedWebDriver extendedDriver;
         public ExtentReports extent;
         public ExtentTest test;
      
@@ -27,9 +26,8 @@ namespace OnlineExam.Tests
             reportPath = projectPath + "Reports\\MyOwnReport.html";
             extent = new ExtentReports(reportPath, true);
             extent
-                .AddSystemInfo("Host Name", "Krishna")
-                .AddSystemInfo("Environment", "QA")
-                .AddSystemInfo("User Name", "Krishna Sakinala");
+                .AddSystemInfo("Host Name", "http://localhost:55842/")
+                .AddSystemInfo("Environment", "QA");
             extent.LoadConfig(projectPath + "extent-config.xml");
         }
 
