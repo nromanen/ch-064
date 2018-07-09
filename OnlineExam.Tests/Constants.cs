@@ -37,7 +37,7 @@ namespace OnlineExam.Tests
         public static  string actualPath = path.Substring(0, path.LastIndexOf("bin"));
         public static string projectPath = new Uri(actualPath).LocalPath;
         public static string reportPath = projectPath + "Reports\\MyOwnReport.html";
-        public static string ScreenShotPath = projectPath + "Reports\\screenshot.png";
-        public const string SCREEN_SHOT = "screenshot.png";
+        public static string ScreenShotPath = projectPath + "\\Reports\\";
+        public const string SCREEN_SHOT = "ScreenShot";
     }
 }
