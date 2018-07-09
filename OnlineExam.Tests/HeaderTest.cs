@@ -1,5 +1,5 @@
-﻿using OnlineExam.Pages.POM;
-using RelevantCodes.ExtentReports;
+﻿using AventStack.ExtentReports;
+using OnlineExam.Pages.POM;
 using Xunit;
 
 namespace OnlineExam.Tests
@@ -9,7 +9,7 @@ namespace OnlineExam.Tests
     {
         private Header header;
 
-        public HeaderTest(BaseFixture fixture) :base(fixture)
+        public HeaderTest(BaseFixture fixture) : base(fixture)
         {
             BeginTest();
             header = ConstructPage<Header>();
@@ -18,40 +18,41 @@ namespace OnlineExam.Tests
         [Fact]
         public void ChangeLanguageToEnglishTest()
         {
-            fixture.test = fixture.extent.StartTest("ChangeLanguageToEnglishTest");
+            fixture.test = fixture.extentReports.CreateTest("ChangeLanguageToEnglishTest");
             header.ChangeLanguage(Constants.ENGLISH);
             Assert.Equal(Constants.SIGN_IN_ENGLISH, header.GetSignInButtonText());
-            fixture.test.Log(LogStatus.Pass, "Language is changed to english successfully");
-
+            fixture.test.Log(Status.Pass, "Language is changed to english successfully");
+            //fixture.test.Pass("Language is changed to english successfully");
         }
 
         [Fact]
         public void ChangeLanguageToUkraineTest()
         {
-            fixture.test = fixture.extent.StartTest("ChangeLanguageToUkraineTest");
+            fixture.test = fixture.extentReports.CreateTest("ChangeLanguageToUkraineTest");
             header.ChangeLanguage(Constants.UKRAINE);
             Assert.Equal(Constants.SIGN_IN_UKRAINE, header.GetSignInButtonText());
-            fixture.test.Log(LogStatus.Pass, "Language is changed to ukraine successfully");
+            fixture.test.Log(Status.Pass, "Language is changed to ukraine successfully");
+            //fixture.test.Pass("Language is changed to ukraine successfully");
         }
 
         [Fact]
         public void SignInButtonTest()
         {
-            fixture.test = fixture.extent.StartTest("SignInButtonTest");
+            fixture.test = fixture.extentReports.CreateTest("SignInButtonTest");
             var logIn = header.GoToLogInPage();
             Assert.Contains(Constants.LOGIN_URL_CONTAINS, logIn.GetCurrentUrl());
-            fixture.test.Log(LogStatus.Pass, "Log in page is visible");
+            fixture.test.Log(Status.Pass, "Log in page is visible");
+            //fixture.test.Pass("Log in page is visible");
         }
 
         [Fact]
         public void SignUpButtonTest()
         {
-            fixture.test = fixture.extent.StartTest("SignUpButtonTest");
+            fixture.test = fixture.extentReports.CreateTest("SignUpButtonTest");
             var regPage = header.GoToRegistrationPage();
             Assert.Contains(Constants.REGISTRATION_URL_CONTAINS, regPage.GetCurrentUrl());
-            fixture.test.Log(LogStatus.Pass, "Register page is visible");
+            fixture.test.Log(Status.Pass, "Register page is visible");
+            //fixture.test.Pass("Register page is visible");
         }
-
-      
     }
 }

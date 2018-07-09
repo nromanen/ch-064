@@ -26,7 +26,7 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var userInfo = header.GoToUserAccountPage();
                         
-            var isOpened = driver.URL.EndsWith("/User");
+            var isOpened = driver.GetCurrentUrl().EndsWith("/User");
             Assert.True(isOpened);
 
             var userInfoPage = ConstructPage<UserInfoPage>();

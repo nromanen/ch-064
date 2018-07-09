@@ -1,10 +1,10 @@
 ﻿using System;
+using AventStack.ExtentReports;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.PageObjects;
-using RelevantCodes.ExtentReports;
 using Xunit;
 using Xunit.Sdk;
 
@@ -23,7 +23,7 @@ namespace OnlineExam.Tests
             //extendedDriver = DriversFabric.InitChrome();
             driver = DriversFabric.InitChrome();
         }
-
+        //[SetUp]
         public BaseTest(BaseFixture fixture)
         {
             //BackupDatabase(); // <- Uncoment to create db backup
@@ -77,31 +77,61 @@ namespace OnlineExam.Tests
             try
             {
                 action();
-               
             } catch (Exception e)
             {
                 //driver.TakeScreenshot("");
                 throw;
             }
         }
-
+        //[TearDown]
         public virtual void Dispose()
         {
 
             // var status = TestContext.CurrentContext.Result.Outcome.Status;
-            var status = fixture.test.GetCurrentStatus();
-
+             var status = fixture.test.Status;
             //TestContext.CurrentContext.Result.StackTrace
-            var stackTrace = "<pre>" + "..." + "</pre>"; //TODO
+            //   var stackTrace = "<pre>" + fixture.test.GetModel().ExceptionInfo.StackTrace.ToString() + "</pre>"; //TODO
 
 
             //TestContext.CurrentContext.Result.Message;
-            var errorMessage = fixture.test.GetTest().Description;
+            // var errorMessage = fixture.test.GetModel().ExceptionInfo.Exception.ToString();
 
-            if (status != LogStatus.Pass)
-            {
-                fixture.test.Log(status, stackTrace + errorMessage);
-            }
+            //     if (status != Status.Pass)
+            //    {
+            //  fixture.test.Log(status, "<><><><><><><><>");// stackTrace + errorMessage);
+            //   }
+
+
+            // fixture.extentReports.RemoveTest(fixture.test);
+
+            //var status = fixture.test.Status;
+            //var stacktrace = string.IsNullOrEmpty(fixture.test.GetModel().ExceptionInfo.StackTrace)
+            //    ? ""
+            //    : string.Format("{0}", fixture.test.GetModel().ExceptionInfo.StackTrace);
+            //Status logstatus = Status.Fail;
+            //if (status != Status.Pass)
+            //{
+            //    fixture.test.Log(logstatus, "Test ended with "); //+ logstatus + stacktrace);
+            //}
+
+            //switch (status)
+            //{
+            //    case TestStatus.Failed:
+            //        logstatus = Status.Fail;
+            //        break;
+            //    case TestStatus.Inconclusive:
+            //        logstatus = Status.Warning;
+            //        break;
+            //    case TestStatus.Skipped:
+            //        logstatus = Status.Skip;
+            //        break;
+            //    default:
+            //        logstatus = Status.Pass;
+            //        break;
+            //}
+
+            //_test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
+            //_extent.Flush();
 
             //RollbackDatabase(); //<- uncoment to load db backup
             fixture.extent.EndTest(fixture.test);

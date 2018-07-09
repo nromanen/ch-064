@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 using OnlineExam.Pages.POM;
 using Xunit;
 
+
 namespace OnlineExam.Tests
 {
-    public class MailTest : BaseTest, IDisposable
+    [Collection("MyTestCollection")]
+    public class MailTest : BaseTest
     {
         public MailTest()
         {
@@ -20,48 +22,60 @@ namespace OnlineExam.Tests
         [Fact]
         public void CheckIfContactUsMessageIsVisibleInInbox()
         {
-            var sideBar = ConstructPage<SideBar>();
-            var contactUs = sideBar.GoToContactUsPage();
-            contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Name", testMessage);
-            var header = ConstructPage<Header>();
-            header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            var mailBox = sideBar.GoToMailBoxPage();
-            var inbox = mailBox.InboxElementClick();
-            var blocks = inbox.GetInboxBlocksList();
-            var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
-            Assert.True(existMessage);
+            UITest(() =>
+            {
+                BeginTest();
+                var sideBar = ConstructPage<SideBar>();
+                var contactUs = sideBar.GoToContactUsPage();
+                contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Name", testMessage);
+                var header = ConstructPage<Header>();
+                header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+                var mailBox = sideBar.GoToMailBoxPage();
+                var inbox = mailBox.InboxElementClick();
+                var blocks = inbox.GetInboxBlocksList();
+                var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
+                Assert.True(existMessage);
+            });
         }
 
         [Fact]
         public void CheckIfSendEmailIsVisibleInOutBox()
         {
-            var sideBar = ConstructPage<SideBar>();
-            var header = ConstructPage<Header>();
-            header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            var mailBox = sideBar.GoToMailBoxPage();
-            var sendEmail = mailBox.SendMessageReferenceClick();
-            var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
-            Thread.Sleep(3000);
-            var outbox = mailBox.OutboxElementClick();
-            var blocks = outbox.GetOutboxBlocksList();
-            var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
-            Assert.True(existMessage);
+            UITest(() =>
+            {
+                BeginTest();
+                var sideBar = ConstructPage<SideBar>();
+                var header = ConstructPage<Header>();
+                header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+                var mailBox = sideBar.GoToMailBoxPage();
+                var sendEmail = mailBox.SendMessageReferenceClick();
+                var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
+                Thread.Sleep(3000);
+                var outbox = mailBox.OutboxElementClick();
+                var blocks = outbox.GetOutboxBlocksList();
+                var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
+                Assert.True(existMessage);
+            });
         }
 
         [Fact]
         public void CheckIfUserCanSendEmail()
         {
-            var sideBar = ConstructPage<SideBar>();
-            var header = ConstructPage<Header>();
-            header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            var mailBox = sideBar.GoToMailBoxPage();
-            var sendEmail = mailBox.SendMessageReferenceClick();
-            var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
-            Thread.Sleep(3000);
-            Assert.Equal("http://localhost:55842/EmailMessages", result.GetCurrentUrl());
+            UITest(() =>
+            {
+                BeginTest();
+                var sideBar = ConstructPage<SideBar>();
+                var header = ConstructPage<Header>();
+                header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+                var mailBox = sideBar.GoToMailBoxPage();
+                var sendEmail = mailBox.SendMessageReferenceClick();
+                var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
+                Thread.Sleep(3000);
+                Assert.True(result.UrlEndsWith("/EmailMessages"));
+            });
         }
 
-            public void Dispose()
+        public void Dispose()
         {
             driver.Dispose();
         }
