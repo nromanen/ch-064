@@ -79,7 +79,10 @@ namespace OnlineExam.Pages.POM.CodeHistory.Favourites
             return LikeButton.GetAttribute("data-id");
         }
 
-       
+       //public string GetName()
+       // {
+       //     return ;
+       // }
 
 
     }

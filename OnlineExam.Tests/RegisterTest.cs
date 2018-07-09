@@ -50,11 +50,9 @@ namespace OnlineExam.Tests
                 var signUp = header.GoToRegistrationPage();
                 signUp.Registration(Constants.STUDENT_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
                 header.GoToHomePage();
+                fixture.test.Log(Status.Pass, "Didn't sign up as used email.");
 
-                var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath("screenshot.png").Build();
-                fixture.test.Log(Status.Fail, "Didn't sign up as used email.", mediaModel);
-
-                Assert.True(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+                Assert.False(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
             });
         }
 
