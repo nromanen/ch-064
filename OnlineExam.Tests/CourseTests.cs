@@ -4,6 +4,7 @@ using OnlineExam.Pages.POM;
 using System.Threading;
 using Xunit.Abstractions;
 using OpenQA.Selenium.Support.UI;
+using System.Linq;
 
 namespace OnlineExam.Tests
 {
@@ -29,15 +30,94 @@ namespace OnlineExam.Tests
                 sidebar.GoToCourseManagementPage().CreateCourse(courseName, courseDescription);
                 var courseManagment = ConstructPage<CourseManagementPage>();
 
-                Assert.True(courseManagment.IsExist(courseName));
+                var tmp = courseManagment.GetBlocks();
+                if (tmp != null)
+                {
+                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                    Assert.Equal(courseName,firstBlock.GetCourseName());
+                    //System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseName());
+                    //System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseCreatinDate());
+                }
                 Thread.Sleep(1500);
             });
         }
 
+        [Fact]
+        public void CreateCourse_InvalidData()
+        {
+            UITest(() =>
+            {
+                fixture.test = fixture.extentReports.CreateTest("CreateCourse_InvalidData");
+                string courseName = String.Empty, courseDescription = "Description";
+
+                var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+                var sidebar = ConstructPage<SideBar>();
+                sidebar.GoToCourseManagementPage().CreateCourse(courseName,courseDescription);
+                var courseManagment = ConstructPage<CourseManagementPage>();
+
+                var tmp = courseManagment.GetBlocks();
+                if (tmp != null)
+                {
+                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                    Assert.Null(firstBlock);
+                   // System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseName());
+                   // System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseCreatinDate());
+                }
+                Thread.Sleep(1500);
+            });
+        }
+
+        /*[Fact]
+        public void tmp()
+        {
+            fixture.test = fixture.extentReports.CreateTest("CreateCourse_InvalidData");
+            string courseName = "C# Starter";
+
+            var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+            var sidebar = ConstructPage<SideBar>().GoToCourseManagementPage();
+            var courseManagment = ConstructPage<CourseManagementPage>();
+
+            var block = courseManagment.GetBlocks();
+            if (block != null)
+            {
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseName());
+                System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseCreatingDate());
+                System.Windows.Forms.MessageBox.Show(firstBlock.courseName.GetAttribute("href"));
+                if (firstBlock != null)
+                {
+                    firstBlock.ClickCourseLink();
+                }
+            }
+            Thread.Sleep(3000);
+        }*/
 
         [Fact]
         public void DeleteCourse_ShouldDeleteCourse()
         {
+            UITest(() =>
+            {
+                fixture.test = fixture.extentReports.CreateTest("CreateCourse_InvalidData");
+                string courseName = "Selenium .NET";
+
+                var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+                var sidebar = ConstructPage<SideBar>().GoToCourseManagementPage();
+                var courseManagment = ConstructPage<CourseManagementPage>();
+                courseManagment.BtnMyCourses.Click();
+                var courseView = ConstructPage<ViewCoursesPage>();
+                var tmp = courseView.GetBlocks();
+                if (tmp != null)
+                {
+                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                    //Assert.Null(firstBlock);
+                    if (firstBlock != null && firstBlock.GetBtnDeleteText() != null)
+                    {
+                        firstBlock.ClickBtnDelete();
+                    }
+                }
+                Thread.Sleep(1500);
+            });
+
             /*LoginAsTeacher();
             string CourseName = "NEW";
             var CourseMenegmentPage = ConstructPage<CourseManagementPage>();

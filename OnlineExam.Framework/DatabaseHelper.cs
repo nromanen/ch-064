@@ -15,9 +15,8 @@ namespace OnlineExam.Framework
         {
             string backupLocation = System.IO.Path.Combine(Environment.CurrentDirectory, "Backup", "Main.bak");
             System.IO.File.Delete(backupLocation);
-            //var command = "BACKUP DATABASE Main TO DISK='"+ backupLocation + "'";
+            
             var sqlConStrBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(conection);
-            //var backupFileName = String.Format("{0}.bak", sqlConStrBuilder.InitialCatalog);
             
 
             using (var connection = new System.Data.SqlClient.SqlConnection(sqlConStrBuilder.ConnectionString))
@@ -57,12 +56,6 @@ namespace OnlineExam.Framework
             {
 
             }
-        }
-
-        public static void tmp()
-        {
-            string tmp = Environment.CurrentDirectory;
-            string tmp2 = Environment.CurrentDirectory;
         }
     }
 }
