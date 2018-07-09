@@ -262,3 +262,6 @@ __pycache__/
 
 OnlineExam.Console/
 /CLI/results.xml
+
+OnlineExam.Tests/
+/Reports/MyOwnReport.html
