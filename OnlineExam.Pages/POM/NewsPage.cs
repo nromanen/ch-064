@@ -31,19 +31,14 @@ namespace OnlineExam.Pages.POM
 
         public bool IsNewsPresentedInNewsList(string title)
         {
-            //if (!driver.Url.Contains("/News"))
-            //{
-            //    return true;
-            //}
-            //foreach (var row in rowOfDivsNewsListElements)
-            //{
-            //    var text = row.FindElement(By.TagName("p")).Text;
-            //    if (text.Equals(title))
-            //    {
-            //        return true;
-            //    }
-            //}
-            throw new Exception("Rewrite using Extended driver");
+            foreach (var row in rowOfDivsNewsListElements)
+            {
+                var text = row.FindElement(By.TagName("p")).Text;
+                if (text.Equals(title))
+                {
+                    return true;
+                }
+            }
             return false;
         }
     }

@@ -10,6 +10,9 @@ namespace OnlineExam.Pages.POM.UserDetails
 {
     public class ChangePasswordPage : BasePage
     {
+        public ChangePasswordPage()
+        {
+        }
 
         [FindsBy(How = How.Id, Using = "OldPassword")]
         public IWebElement OldPasswordField { get; set; }
@@ -33,14 +36,15 @@ namespace OnlineExam.Pages.POM.UserDetails
         public NewsPage SaveNewPassword()
         {
             SaveButton.Click();
-            try
-            {
-                //return new NewsPage(this.driver);
-                throw new Exception("Rewrite using Page constructor");
-            } catch (Exception e)
-            {
-                return null;
-            }
+            return ConstructPage<NewsPage>();
+            //try
+            //{
+            //    //return new NewsPage(this.driver);
+            //    throw new Exception("Rewrite using Page constructor");
+            //} catch (Exception e)
+            //{
+            //    return null;
+            //}
         }
     }
 }

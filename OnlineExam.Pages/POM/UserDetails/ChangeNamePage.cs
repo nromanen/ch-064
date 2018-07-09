@@ -32,8 +32,10 @@ namespace OnlineExam.Pages.POM.UserDetails
         public NewsPage SaveNewName()
         {
             SaveButton.Click();
+            return ConstructPage<NewsPage>();
             //return new NewsPage(this.driver);
-            throw new Exception("Rewrite using Page constructor");
+            //throw new Exception("Rewrite using Page constructor");
+
         }
     }
 }

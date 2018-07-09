@@ -61,14 +61,16 @@ namespace OnlineExam.Pages.POM
             driver.WaitWhileNotClickableWebElement(webElement);
         }
 
-        public string GetText(IWebElement element)
-        {
-            throw new Exception("Avoid using this logic");
-        }
-
         public string GetCurrentUrl()
         {
             return driver.GetCurrentUrl();
         }
+
+        public bool UrlEndsWith(string end)
+        {
+            string url = GetCurrentUrl();
+            return url.EndsWith(end);
+        }
     }
+
 }

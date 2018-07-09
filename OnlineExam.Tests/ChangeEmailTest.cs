@@ -18,8 +18,9 @@ namespace OnlineExam.Tests
         [Fact]
         public void TestChangeEmail()
         {
+            
             BeginTest();
-            //driver.Navigate().GoToUrl("http://localhost:55842/Account/Login");
+            NavigateTo("http://localhost:55842/Account/Login");
             System.Threading.Thread.Sleep(1000);
             var loginPage = ConstructPage<LogInPage>();
             var indexPage = loginPage.SignIn("teacher@gmail.com", Constants.TEACHER_PASSWORD);
@@ -41,8 +42,8 @@ namespace OnlineExam.Tests
             header = ConstructPage<Header>();
             header.SignOut();
 
-            //driver.Navigate().GoToUrl("http://localhost:55842/Account/Login");
-            throw new Exception("Rewrite using new approach");
+            
+            NavigateTo("http://localhost:55842/Account/Login");
             System.Threading.Thread.Sleep(1000);
             var newLoginPage = ConstructPage<LogInPage>();
 

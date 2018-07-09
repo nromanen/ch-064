@@ -37,7 +37,7 @@ namespace OnlineExam.Framework
 
         public string GetCurrentUrl()
         {
-           return driver.Url;
+            return driver.Url;
         }
 
         public void WaitWhileNotClickableWebElement(IWebElement webElement)
@@ -51,7 +51,7 @@ namespace OnlineExam.Framework
             driver.Navigate().Refresh();
         }
 
-        public void ExecuteJavaScript(string jsCode,IWebElement webElement0,IWebElement webElement1)
+        public void ExecuteJavaScript(string jsCode, IWebElement webElement0, IWebElement webElement1)
         {
             ((IJavaScriptExecutor)driver).ExecuteScript(jsCode, webElement0, webElement1);
         }
