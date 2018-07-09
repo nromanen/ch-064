@@ -13,8 +13,6 @@ namespace OnlineExam.Pages.POM
         // http://localhost:55842/CourseManagement/Create
         public CreateCoursePage() { }
 
-        //public CreateCoursePage(IWebElement searchContext):base(searchContext) { }
-
         [FindsBy(How = How.Id, Using = "Name")]
         public IWebElement CourseNameInput { get; set; }
 

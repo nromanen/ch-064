@@ -52,5 +52,21 @@ namespace OnlineExam.Pages.POM
             createPage.FillCourse(courseName, courseDescription);
             createPage.BtnOk.Click();
         }
+
+        public void GoToCourse(string courseName)
+        {
+            var block = this.GetBlocks();
+            if (block != null)
+            {
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseName());
+                System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseCreatingDate());
+                if (firstBlock != null)
+                {
+                    firstBlock.ClickOnCourseTitle();
+                    
+                }
+            }
+        }
     }
 }

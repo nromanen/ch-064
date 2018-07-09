@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using OnlineExam.Pages.POM.CoursePage;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
@@ -21,6 +22,27 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = ".container > a:nth-child(1)")]
         public IWebElement BtnAddCourse { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = ".table tr:not(:first-of-type)")]
+        public IList<IWebElement> RowOfTrs { get; set; }
+
+        public IList<ViewCoursesPageItem> RowItems { get; set; }
+
+        public ViewCoursesPageItem GetByName(string name)
+        {
+            return RowItems.FirstOrDefault(x => String.Equals(x.GetCourseName(), name, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public IList<ViewCoursesPageItem> GetBlocks()
+        {
+            var blocks = new List<ViewCoursesPageItem>();
+            foreach (var tr in RowOfTrs)
+            {
+                var block = ConstructPageElement<ViewCoursesPageItem>(tr);
+                if (block != null)
+                    blocks.Add(block);
+            }
+            return blocks;
+        }
         #region trash
         /* public void DeleteCourse(string courseName)
          {
