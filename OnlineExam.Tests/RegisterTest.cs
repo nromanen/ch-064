@@ -28,6 +28,7 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
+                BackupDatabase();
                 fixture.test = fixture.extentReports.CreateTest("CheckIfUserIsPresentedInUserListAfterSignUp");
                 var signUp = header.GoToRegistrationPage();
                 signUp.Registration(Constants.EXAMPLE_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
@@ -36,6 +37,7 @@ namespace OnlineExam.Tests
                 logIn.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
                 var adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
                 Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.EXAMPLE_EMAIL));
+                RollbackDatabase();
             });
         }
 
@@ -48,8 +50,11 @@ namespace OnlineExam.Tests
                 var signUp = header.GoToRegistrationPage();
                 signUp.Registration(Constants.STUDENT_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
                 header.GoToHomePage();
+
+                var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath("screenshot.png").Build();
+                fixture.test.Log(Status.Fail, "Didn't sign up as used email.", mediaModel);
+
                 Assert.True(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
-                fixture.test.Log(Status.Fail, "Didn't sign up as used email.");
             });
         }
 
