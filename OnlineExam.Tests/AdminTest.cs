@@ -2,6 +2,7 @@
 using AventStack.ExtentReports;
 using OnlineExam.Pages.POM;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace OnlineExam.Tests
 {
@@ -14,7 +15,7 @@ namespace OnlineExam.Tests
 
 
         //[SetUp]
-        public AdminTest (BaseFixture fixture) : base(fixture)
+        public AdminTest (BaseFixture fixture ) : base(fixture)
         {
             BeginTest();
 
@@ -37,13 +38,13 @@ namespace OnlineExam.Tests
         public void DeleteUserTest()
         {
             fixture.test = fixture.extentReports.CreateTest("Delete user test");
-            Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.VIKTOR_EMAIL),
+            Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL),
                 "User is not presented in the system," +
                 "so we have not opportunity to delete this user");
-            adminPanelPage.DeleteUser(Constants.VIKTOR_EMAIL);
+            adminPanelPage.DeleteUser(Constants.STUDENT_EMAIL);
            
             Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
-            Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.VIKTOR_EMAIL), "Error");
+            Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL), "Error");
 
             fixture.test.Log(Status.Pass, "User is deleted successfully");
             //fixture.test.Pass("User is deleted successfully");

@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.PageObjects;
 using Xunit;
+using Xunit.Abstractions;
 using Xunit.Sdk;
 
 namespace OnlineExam.Tests
@@ -14,6 +15,7 @@ namespace OnlineExam.Tests
     public abstract class  BaseTest :DatabaseHelper, IDisposable
     //, IClassFixture<BaseFixture>,ICollectionFixture<MyTestCollection>
     {
+        protected ITestOutput output;
         //protected IWebDriver driver;
         protected ExtendedWebDriver driver;
         protected BaseFixture fixture;
@@ -26,7 +28,7 @@ namespace OnlineExam.Tests
         //[SetUp]
         public BaseTest(BaseFixture fixture)
         {
-            //BackupDatabase(); // <- Uncoment to create db backup
+         //   BackupDatabase(); // <- Uncoment to create db backup
             driver = DriversFabric.InitChrome();
             this.fixture = fixture;
         }
@@ -133,7 +135,7 @@ namespace OnlineExam.Tests
             //_test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
             //_extent.Flush();
 
-            //RollbackDatabase(); //<- uncoment to load db backup
+         //   RollbackDatabase(); //<- uncoment to load db backup
             fixture.extentReports.RemoveTest(fixture.test);
             driver?.Dispose();
         }
