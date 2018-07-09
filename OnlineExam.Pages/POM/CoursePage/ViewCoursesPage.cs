@@ -13,31 +13,28 @@ namespace OnlineExam.Pages.POM
 {
     public class ViewCoursesPage : BasePage
     {
-        /// <summary>
+        // Created by Roma ༼ つ ◕_◕ ༽つ
         /// http://localhost:55842/CourseManagement/ViewCourses
-        /// </summary>
-        /// 
-        public ViewCoursesPage()
-        {
-                
-        }
+
+        public ViewCoursesPage() { }
 
         [FindsBy(How = How.CssSelector, Using = ".container > a:nth-child(1)")]
-        public IWebElement AddCourseBtn { get; set; }
+        public IWebElement BtnAddCourse { get; set; }
 
-        public void DeleteCourse(string courseName)
-        {
-            var List = FindCourse(courseName);
-            foreach (var item in List)
-            {
-                //MessageBox.Show(item.Text);
-                if (item.Text.Equals("Видалити") || item.Text.Equals("Delete"))
-                    item.Click();
-            }
+        #region trash
+        /* public void DeleteCourse(string courseName)
+         {
+             var List = FindCourse(courseName);
+             foreach (var item in List)
+             {
+                 //MessageBox.Show(item.Text);
+                 if (item.Text.Equals("Видалити") || item.Text.Equals("Delete"))
+                     item.Click();
+             }
 
-        }
+         }*/
 
-        public bool IsCourseDeleted(string courseName)
+        /*public bool IsCourseDeleted(string courseName)
         {
             var List = FindCourse(courseName);
             foreach (var item in List)
@@ -47,9 +44,9 @@ namespace OnlineExam.Pages.POM
                     return true;
             }
             return false;
-        }
+        }*/
 
-        public void RestoreCourse(string courseName)
+        /*public void RestoreCourse(string courseName)
         {
             var List = FindCourse(courseName);
             foreach (var item in List)
@@ -57,9 +54,9 @@ namespace OnlineExam.Pages.POM
                 if (item.Text.Equals("Відновити") || item.Text.Equals("Recover"))
                     item.Click();
             }
-        }
+        }*/
 
-        public bool IsCourseRestored(string courseName)
+        /*public bool IsCourseRestored(string courseName)
         {
             var List = FindCourse(courseName);
             foreach (var item in List)
@@ -69,9 +66,9 @@ namespace OnlineExam.Pages.POM
                     return true;
             }
             return false;
-        }
+        }*/
 
-        public IList<IWebElement> FindCourse(string courseName)
+        /*public IList<IWebElement> FindCourse(string courseName)
         {
             //var rows = driver.FindElements(By.TagName("tr"));
             //foreach (var row in rows)
@@ -84,35 +81,10 @@ namespace OnlineExam.Pages.POM
             //    }
             //}
             return null;
-        }
+        }*/
 
-        public void ChangeCourse(string courseName)
-        {
-            var List = FindCourse(courseName);
-            foreach (var item in List)
-            {
-                MessageBox.Show(item.Text);
-                if (item.Text.Equals("Редагувати") || item.Text.Equals("Change"))
-                {
-                    #region trash
-                    //IWait<IWebDriver> wait = new WebDriverWait(driver, TimeSpan.FromMilliseconds(60000));
-                    //var link = item.GetAttribute("href");
-                    //wait.Until(ExpectedConditions.ElementIsVisible(By.PartialLinkText(link)));
-                    //string link = item.GetAttribute("href");
-                    //MessageBox.Show(link);
-                    //item.Click();
-                    //MessageBox.Show(item.Text);
-                    //MessageBox.Show(link);
-                    WaitWhileNotClickableWebElement(item);
-                    item.Click();
-                    // driver.FindElement(By.PartialLinkText(link)).Click();
-                    #endregion
-                }
 
-            }
-        }
-
-        public string GetCourseLink(string courseName)
+        /*public string GetCourseLink(string courseName)
         {
             
             string tmpLink = "";
@@ -138,7 +110,10 @@ namespace OnlineExam.Pages.POM
             //    }
             //}
             return tmpLink;
-        }
+        }*/
+        #endregion
+
+
     }
 }
 

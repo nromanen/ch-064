@@ -107,8 +107,8 @@
     <Compile Include="POM\CodeHistory.Favourites\HistoryFavouritePage.cs" />
     <Compile Include="POM\CoursePage\ChangeCourseOwnerPage.cs" />
     <Compile Include="POM\ChangeRolePage.cs" />
-    <Compile Include="POM\CoursePage\CodePage.cs" />
-    <Compile Include="POM\CoursePage\CodeReviewPage.cs" />
+    <Compile Include="POM\CoursePage\CreateCoursePageRowItem.cs" />
+    <Compile Include="POM\CoursePage\ViewCoursesPageItem.cs" />
     <Compile Include="POM\Mail\ContactUsPage.cs" />
     <Compile Include="POM\CoursePage\CourseManagementPage.cs" />
     <Compile Include="POM\CoursePage\CreateCoursePage.cs" />
