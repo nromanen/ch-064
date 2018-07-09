@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DriversFabric.cs" />
     <Compile Include="ExtendedWebDriver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
