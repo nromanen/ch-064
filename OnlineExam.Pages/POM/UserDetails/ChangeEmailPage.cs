@@ -24,12 +24,13 @@ namespace OnlineExam.Pages.POM.UserDetails
         {
             NewEmailField.SendKeys(newEmail);
             PasswordField.SendKeys(password);
+            SaveButton.Click();
         }
 
-        public NewsPage SaveNewEmail()
-        {
-            SaveButton.Click();
-            return ConstructPage<NewsPage>();
+        //public NewsPage SaveNewEmail()
+        //{
+        //    SaveButton.Click();
+        //    return ConstructPage<NewsPage>();
             //try
             //{
 
@@ -40,6 +41,6 @@ namespace OnlineExam.Pages.POM.UserDetails
             //{
             //    return null;
             //}
-        }
+        //}
     }
 }

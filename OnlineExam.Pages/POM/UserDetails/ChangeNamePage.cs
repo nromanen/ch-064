@@ -27,15 +27,16 @@ namespace OnlineExam.Pages.POM.UserDetails
         {
             NewUserNameField.SendKeys(newName);
             PasswordField.SendKeys(password);
-        }
-
-        public NewsPage SaveNewName()
-        {
             SaveButton.Click();
-            return ConstructPage<NewsPage>();
-            //return new NewsPage(this.driver);
-            //throw new Exception("Rewrite using Page constructor");
-
         }
+
+        //public NewsPage SaveNewName()
+        //{
+        //    SaveButton.Click();
+        //    return ConstructPage<NewsPage>();
+        //    //return new NewsPage(this.driver);
+        //    //throw new Exception("Rewrite using Page constructor");
+
+        //}
     }
 }
