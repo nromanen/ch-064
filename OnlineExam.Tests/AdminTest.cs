@@ -42,7 +42,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                BackupDatabase();
                 fixture.test = fixture.extentReports.CreateTest("Delete user test");
                 Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL),
                     "User is not presented in the system," +
@@ -63,7 +62,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                BackupDatabase();
                 fixture.test = fixture.extentReports.CreateTest("Change user role test");
                 var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.STUDENT_EMAIL);
                 changeRolePage.ChangeRole(Constants.STUDENT);

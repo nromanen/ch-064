@@ -13,10 +13,12 @@ namespace OnlineExam.Tests
         public ExtentHtmlReporter htmlReporter;
         public ExtentReports extentReports;
         public ExtentTest test;
+        
 
         //[OneTimeSetUp]
         public BaseFixture()
         {
+            DatabaseHelper.BackupDatabase();
             htmlReporter = new ExtentHtmlReporter(Constants.reportPath);
             extentReports = new ExtentReports();
             extentReports.AttachReporter(htmlReporter);
