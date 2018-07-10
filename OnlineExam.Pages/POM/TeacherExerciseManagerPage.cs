@@ -30,35 +30,6 @@ namespace OnlineExam.Pages.POM
             return blocks;
         }
 
-        public IList<TeacherExerciseManagerPageRowItem> GetCountOfTDs()
-        {
-            var buttons = new List<TeacherExerciseManagerPageRowItem>();
-            foreach (var tds in RowOfTds)
-            {
-                var td = ConstructPageElement<TeacherExerciseManagerPageRowItem>(tds);
-                if (td != null)
-                    buttons.Add(td);
-            }
-            return buttons;
-        }
-
-
-        public int GetCountOfTDs11()
-        {
-            var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
-            var blocks = ListOfTasks.GetBlocks();
-
-            var buttons = new List<TeacherExerciseManagerPageRowItem>(); int i = 0;
-            var hz = blocks[0];
-            MessageBox.Show(hz.ToString());
-            foreach (var tds in blocks)
-            {
-                i++;
-                MessageBox.Show(tds.ToString());
-            }
-            return i;
-        }
-
 
         [FindsBy(How = How.CssSelector, Using = ".table tr:not(:first-of-type)")]
         public IList<IWebElement> RowOfTrs { get; set; }

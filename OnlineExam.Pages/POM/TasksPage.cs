@@ -31,6 +31,11 @@ namespace OnlineExam.Pages.POM
             return blocks;
         }
 
+        public TasksPageRowItem GetStarsCount(int countstars)
+        {
+            return RowItems.FirstOrDefault(x => String.Equals(x.GetStarsss(), countstars.ToString(), StringComparison.OrdinalIgnoreCase));
+        }
+
         [FindsBy(How = How.CssSelector, Using = ".table tr:not(:first-of-type)")]
         public IList<IWebElement> RowOfTrs { get; set; }
 
