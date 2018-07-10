@@ -28,7 +28,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                BackupDatabase();
                 fixture.test = fixture.extentReports.CreateTest("CheckIfUserIsPresentedInUserListAfterSignUp");
                 var signUp = header.GoToRegistrationPage();
                 signUp.Registration(Constants.EXAMPLE_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
@@ -37,7 +36,6 @@ namespace OnlineExam.Tests
                 logIn.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
                 var adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
                 Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.EXAMPLE_EMAIL));
-                RollbackDatabase();
             });
         }
 

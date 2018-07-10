@@ -25,7 +25,6 @@ namespace OnlineExam.Tests
                 header.ChangeLanguage(Constants.ENGLISH);
                 Assert.Equal(Constants.SIGN_IN_ENGLISH, header.GetSignInButtonText());
                 fixture.test.Log(Status.Pass, "Language is changed to english successfully");
-                //fixture.test.Pass("Language is changed to english successfully");
             });
         }
 
@@ -38,7 +37,6 @@ namespace OnlineExam.Tests
                 header.ChangeLanguage(Constants.UKRAINE);
                 Assert.Equal(Constants.SIGN_IN_UKRAINE, header.GetSignInButtonText());
                 fixture.test.Log(Status.Pass, "Language is changed to ukraine successfully");
-                //fixture.test.Pass("Language is changed to ukraine successfully");
             });
         }
 
@@ -51,7 +49,6 @@ namespace OnlineExam.Tests
                 var logIn = header.GoToLogInPage();
                 Assert.Contains(Constants.LOGIN_URL_CONTAINS, logIn.GetCurrentUrl());
                 fixture.test.Log(Status.Pass, "Log in page is visible");
-                //fixture.test.Pass("Log in page is visible");
             });
         }
 
@@ -64,7 +61,6 @@ namespace OnlineExam.Tests
                 var regPage = header.GoToRegistrationPage();
                 Assert.Contains(Constants.REGISTRATION_URL_CONTAINS, regPage.GetCurrentUrl());
                 fixture.test.Log(Status.Pass, "Register page is visible");
-                //fixture.test.Pass("Register page is visible");
             });
         }
     }

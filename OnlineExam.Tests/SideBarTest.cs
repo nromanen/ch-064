@@ -24,7 +24,6 @@ namespace OnlineExam.Tests
                 var ratingPage = sideBar.GoToRatingPage();
                 Assert.Contains(Constants.RATING_URL_CONTAINS, ratingPage.GetCurrentUrl());
                 fixture.test.Log(Status.Pass, "Rating page is presented");
-                //fixture.test.Pass("Rating page is presented");
             });
         }
 
@@ -37,7 +36,6 @@ namespace OnlineExam.Tests
                 var coursesPage = sideBar.GoToCourseManagementPage();
                 Assert.Contains(Constants.COURSEMANAGEMENT_URL_CONTAINS, coursesPage.GetCurrentUrl());
                 fixture.test.Log(Status.Pass, "Courses page is presented");
-                //fixture.test.Pass("Courses page is presented");
             });
         }
 
@@ -50,7 +48,6 @@ namespace OnlineExam.Tests
                 var contactUsPage = sideBar.GoToContactUsPage();
                 Assert.Contains(Constants.CONTACTUS_URL_CONTAINS, contactUsPage.GetCurrentUrl());
                 fixture.test.Log(Status.Pass, "Contact us page is presented");
-                //fixture.test.Pass("Contact us page is presented");
             });
         }
     }

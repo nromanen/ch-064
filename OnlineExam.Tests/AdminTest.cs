@@ -33,7 +33,6 @@ namespace OnlineExam.Tests
                 fixture.test = fixture.extentReports.CreateTest("IsUserPresentedInUserListTest");
                 Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL));
                 fixture.test.Log(Status.Pass, "User is presented in user list");
-                //fixture.test.Pass("User is presented in user list");
             });
         }
 
@@ -43,17 +42,15 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 fixture.test = fixture.extentReports.CreateTest("Delete user test");
-                Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL),
+                Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL),
                     "User is not presented in the system," +
                     "so we have not opportunity to delete this user");
-                adminPanelPage.DeleteUser(Constants.STUDENT_EMAIL);
+                adminPanelPage.DeleteUser(Constants.USER_FOR_DELETE_EMAIL);
 
                 Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
-                Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL), "Error");
+                Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL), "Error");
 
                 fixture.test.Log(Status.Pass, "User is deleted successfully");
-                RollbackDatabase();
-                //fixture.test.Pass("User is deleted successfully");
             });
         }
 
@@ -68,8 +65,6 @@ namespace OnlineExam.Tests
                 changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.STUDENT_EMAIL);
                 Assert.Equal(Constants.STUDENT, changeRolePage.CurrentRole());
                 fixture.test.Log(Status.Pass, "Role is changed successfully");
-                RollbackDatabase();
-                // fixture.test.Pass("Role is changed successfully");
             });
         }
 
@@ -81,7 +76,6 @@ namespace OnlineExam.Tests
                 fixture.test = fixture.extentReports.CreateTest("Is user list available test");
                 Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
                 fixture.test.Log(Status.Pass, "User list is available");
-                // fixture.test.Pass("User list is available");
             });
         }
         }
