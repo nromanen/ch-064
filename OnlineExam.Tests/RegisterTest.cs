@@ -51,8 +51,8 @@ namespace OnlineExam.Tests
                 signUp.Registration(Constants.STUDENT_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
                 header.GoToHomePage();
                 fixture.test.Log(Status.Pass, "Didn't sign up as used email.");
-
                 Assert.False(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+
             });
         }
 

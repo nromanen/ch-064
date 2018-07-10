@@ -45,7 +45,7 @@ namespace OnlineExam.Pages.POM
             ChooseFileInput.Click();
             SendKeys.SendWait(@"E:\SS\ch-064\OnlineExam.Pages\Sources\example.jpg");
             SendKeys.SendWait("{Enter}");
-            Thread.Sleep(10000);
+            Thread.Sleep(5000);
             CourseNameInput.SendKeys("New name");
             TitleTextArea.SendKeys("New title");
             ArticleTextArea.SendKeys("New article");
