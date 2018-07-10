@@ -12,7 +12,6 @@ namespace OnlineExam.Framework
     {
         public static ExtendedWebDriver InitChrome()
         {
-            
             IWebDriver driver = new ChromeDriver();
             return  new ExtendedWebDriver(driver);
         }
