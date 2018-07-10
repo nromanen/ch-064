@@ -17,7 +17,7 @@ namespace OnlineExam.Tests
     {
         private Header header;
         private LogInPage logInPage;
-        private UserInfoPage userInfo;
+        private SideBar sideBar;
 
 
         public TestSaveExecutedTestToCodeHistory(BaseFixture fixture) : base(fixture)
@@ -26,8 +26,9 @@ namespace OnlineExam.Tests
 
             header = ConstructPage<Header>();
             logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            userInfo = header.GoToUserAccountPage();
+            logInPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
+            sideBar = ConstructPage<SideBar>();
+            
         }
 
         [Fact]
@@ -38,43 +39,52 @@ namespace OnlineExam.Tests
             {
                 fixture.test = fixture.extentReports.CreateTest("TestChangePassword");
 
-                string TaskName = "Simple addition";
-                var header = ConstructPage<Header>();
-                var logInPage = header.GoToLogInPage();
-                logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-                NavigateTo("http://localhost:55842/CourseManagement/ShowExercise/1");
-                var ListOfTasks = ConstructPage<TasksPage>();
-                string nameOfExecutedTask = "";
+                sideBar.GoToTasksPage();
+                string TaskName = "Indexers";
+                //var header = ConstructPage<Header>();
+                //var logInPage = header.GoToLogInPage();
+                //logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+               // NavigateTo("http://localhost:55842/CourseManagement/ShowExercise/2");
+                //var nameOfExecutedTask = "";
 
+
+                var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
+
                 if (blocks != null)
                 {
+
                     var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                    nameOfExecutedTask = firstblock.GetName();
+                    //var nameOfExecutedTask = firstblock.GetName();
                     firstblock.ClickOnTasksButton();
-                    Thread.Sleep(2000);
+                  
                     var TaskView = ConstructPage<TaskViewPage>();
                     TaskView.ClickOnStartButton();
-                    Thread.Sleep(2000);
+                    
                     var Code = ConstructPage<SolutionCodePage>();
                     Code.ClickOnExecuteButton();
-                    Thread.Sleep(2000);
+                    
                 }
                 var historyPage = ConstructPage<HistoryFavouritePage>();
-                var blocksHistory = historyPage.GetHistoryBlocks();
+                var blockHistory = historyPage.GetHistoryBlocks();
 
-                //bool blockOfExecutedCode = false;
+                bool blockOfExecutedCode = false;
 
-                //foreach (var block in blocksHistory)
+                foreach (var block in blockHistory)
+                {
+                    if (block.GetTitle() == TaskName)
+                    {
+                        blockOfExecutedCode = true;
+                        break;
+                    }
+                }
+                //if (blocks != null)
                 //{
-                //    if (block.GetName == nameOfExecutedTask)
-                //    {
-                //        blockOfExecutedCode = true;
-                //        break;
-                //    }
+                //    var blHistory = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 //}
-                //Assert.True(blockOfExecutedCode);
-                //fixture.test.Log(Status.Pass, "Code ia saved to history");
+
+                Assert.True(blockOfExecutedCode);
+                fixture.test.Log(Status.Pass, "Code ia saved to history");
             });
         }
     }
