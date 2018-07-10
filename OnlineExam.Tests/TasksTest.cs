@@ -13,8 +13,30 @@ namespace OnlineExam.Tests
     [Collection("MyTestCollection")]
     public class TasksTest : BaseTest
     {
+        private Header header;
+        private SideBar CoursesPage;
+        private CourseManagementPage CoursesList;
+      
         public TasksTest(BaseFixture fixture) : base(fixture)
         {
+            BeginTest();
+
+            string courseName = "C# Starter";
+            var header = ConstructPage<Header>();
+            var logInPage = header.GoToLogInPage();
+            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+            var CoursesPage = ConstructPage<SideBar>().GoToCourseManagementPage();
+            var CoursesList = ConstructPage<CourseManagementPage>();
+            var block = CoursesList.GetBlocks();
+            if (block != null)
+            {
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+
+                if (firstBlock != null)
+                {
+                    firstBlock.ClickCourseLink();
+                }
+            }
         }
 
         [Fact]
@@ -22,12 +44,10 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                string TaskName = "Proba3";
-                var header = ConstructPage<Header>();
-                var logInPage = header.GoToLogInPage();
-                logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-                this.driver.GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+                string TaskName = "Simple addition";
+                fixture.test = fixture.extentReports.CreateTest("IsTaskAvailable?");
                 var ListOfTasks = ConstructPage<TasksPage>();
+
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
                 {
@@ -44,21 +64,16 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                string TaskName = "Proba2";
-                var header = ConstructPage<Header>();
-                var logInPage = header.GoToLogInPage();
-                logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-                this.driver.GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+                string TaskName = "Simple addition";
+                fixture.test = fixture.extentReports.CreateTest("ClickOnTasksButton");
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
                 {
                     var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                    MessageBox.Show(firstBlock.GetButtonText());
                     firstBlock.ClickOnTasksButton();
-                    Thread.Sleep(3000);
-                    //var title = driver.Title;
-                    //Assert.Equal("Task View - WebApp", title);
+                    var title = driver.GetCurrentTitle();
+                    Assert.Equal("Task View - WebApp", title);
                 }
             }
         );
@@ -71,16 +86,14 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Simple addition";
-                var header = ConstructPage<Header>();
-                var logInPage = header.GoToLogInPage();
-                logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-                this.driver.GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
+                fixture.test = fixture.extentReports.CreateTest("ClickOnTasksButton");
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
                 {
                     var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-
+                    var count = firstBlock.GetStarsss();
+                    Assert.Equal(count.ToString(), "0");
                 }
 
             }

@@ -27,6 +27,12 @@ namespace OnlineExam.Pages.POM.Tasks
         [FindsBy(How =How.CssSelector, Using =":nth-child(3) > span")]
         public IWebElement Stars { get; set; }
 
+        public string GetStarsss()
+        {
+            var count = Stars.GetAttribute("data-default-rating");
+            return count.ToString();
+        }
+
         public string GetName()
         {
             return Name.Text;

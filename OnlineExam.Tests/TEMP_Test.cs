@@ -52,7 +52,7 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                string taskname = "Indexers";
+                string taskname = "Elevator modeling";
                 fixture.test = fixture.extentReports.CreateTest("TaskRecover");
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
@@ -61,17 +61,16 @@ namespace OnlineExam.Tests
                     var myblock = blocks.FirstOrDefault(x => x.Get_DELETED_TaskName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
                     myblock.ClickOnRecoverButton();
                 }
-                else Assert.True(false);
 
-                var NewListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
-                var newblocks = NewListOfTasks.GetBlocks();
-                if (newblocks != null)
+                ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
+                blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
                 {
-                    var myblock = newblocks.FirstOrDefault(x => x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
+                    var myblock = blocks.FirstOrDefault(x => x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
                     Assert.Equal(myblock.TEMP_GetName(), taskname);
+                    myblock.ClickOnDeleteButton();
                 }
-                else Assert.True(false);
-
+                
             }
         );
         }
@@ -83,7 +82,7 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                string CreationDate = "23/06/2018";
+                string CreationDate = "10/07/2018";
                 fixture.test = fixture.extentReports.CreateTest("TaskCreationDate");
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
 
@@ -91,7 +90,7 @@ namespace OnlineExam.Tests
                 if (blocks != null)
                 {
                     var allblock = blocks.Where(x => x.TEMP_GetCreationDate().Equals(CreationDate, StringComparison.OrdinalIgnoreCase));
-                    Assert.Equal(allblock.Count(), 3);
+                    Assert.Equal(allblock.Count(), 2);
                 }
             }
     );
@@ -102,7 +101,7 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                string UpdateDate = "03/07/2018";
+                string UpdateDate = "10/07/2018";
                 fixture.test = fixture.extentReports.CreateTest("TaskUpdateDate");
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
@@ -121,10 +120,9 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                string NEWTASK = "newtask1";
+                string NEWTASK = "NewTaskkkkk";
                 fixture.test = fixture.extentReports.CreateTest("AddNewTaskTest");
 
-                var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
                 var Tasks = ConstructPage<TeacherExerciseManagerPage>();
                 Tasks.ClickOnAddTaskbutton();
                 var AddTaskPage = ConstructPage<AddTaskAsTeacherPage>();
@@ -135,13 +133,22 @@ namespace OnlineExam.Tests
                                     //AddTaskPage.AddDescriptionForNewTask("New description tratata blablabla");
                                     //AddTaskPage.AddBaseCodeForNewTask("yo maaaaaaaaaan");
 
-                                    AddTaskPage.ClickOnAddButton();
+                AddTaskPage.ClickOnAddButton();               
+
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
                 {
                     var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(NEWTASK, StringComparison.OrdinalIgnoreCase));
                     Assert.Equal(firstblock.GetName(), NEWTASK);
+                }
+
+                var NewTasks = ConstructPage<TeacherExerciseManagerPage>();
+                var allblock = NewTasks.GetBlocks();
+                if (allblock != null)
+                {
+                    var firstblock = allblock.FirstOrDefault(x => x.TEMP_GetName().Equals(NEWTASK, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnDeleteButton();
                 }
             }
 );
