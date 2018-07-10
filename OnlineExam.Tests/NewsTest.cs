@@ -50,6 +50,7 @@ namespace OnlineExam.Tests
                 var result = newsPage.CreateArticle();
                 Assert.True(result.UrlEndsWith("AddNews/News"));
                 fixture.test.Log(Status.Pass, "News Created.");
+                RollbackDatabase();
             });
         }
 

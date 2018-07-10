@@ -41,6 +41,7 @@ namespace OnlineExam.Tests
                 var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
                 Assert.True(existMessage);
                 fixture.test.Log(Status.Pass, "Contact Us Message Is Visible In Inbox.");
+                RollbackDatabase();
             });
         }
 
@@ -54,12 +55,12 @@ namespace OnlineExam.Tests
                 var mailBox = sideBar.GoToMailBoxPage();
                 var sendEmail = mailBox.SendMessageReferenceClick();
                 var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
-                Thread.Sleep(3000);
                 var outbox = mailBox.OutboxElementClick();
                 var blocks = outbox.GetOutboxBlocksList();
                 var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
                 Assert.True(existMessage);
                 fixture.test.Log(Status.Pass, "Send Email Is Visible In OutBox.");
+                RollbackDatabase();
             });
         }
 
@@ -73,9 +74,9 @@ namespace OnlineExam.Tests
                 var mailBox = sideBar.GoToMailBoxPage();
                 var sendEmail = mailBox.SendMessageReferenceClick();
                 var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
-                Thread.Sleep(3000);
                 Assert.True(result.UrlEndsWith("/EmailMessages"));
                 fixture.test.Log(Status.Pass, "User Can Send Email.");
+                RollbackDatabase();
             });
         }
 
