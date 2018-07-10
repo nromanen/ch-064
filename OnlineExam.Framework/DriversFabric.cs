@@ -13,6 +13,7 @@ namespace OnlineExam.Framework
         public static ExtendedWebDriver InitChrome()
         {
             IWebDriver driver = new ChromeDriver();
+            driver.Manage().Window.Maximize();
             return  new ExtendedWebDriver(driver);
         }
     }
