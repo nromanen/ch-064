@@ -21,10 +21,8 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("ChangeLanguageToEnglishTest");
                 header.ChangeLanguage(Constants.ENGLISH);
                 Assert.Equal(Constants.SIGN_IN_ENGLISH, header.GetSignInButtonText());
-                fixture.test.Log(Status.Pass, "Language is changed to english successfully");
             });
         }
 
@@ -33,10 +31,8 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("ChangeLanguageToUkraineTest");
                 header.ChangeLanguage(Constants.UKRAINE);
                 Assert.Equal(Constants.SIGN_IN_UKRAINE, header.GetSignInButtonText());
-                fixture.test.Log(Status.Pass, "Language is changed to ukraine successfully");
             });
         }
 
@@ -45,10 +41,8 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("SignInButtonTest");
                 var logIn = header.GoToLogInPage();
                 Assert.Contains(Constants.LOGIN_URL_CONTAINS, logIn.GetCurrentUrl());
-                fixture.test.Log(Status.Pass, "Log in page is visible");
             });
         }
 
@@ -57,10 +51,8 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("SignUpButtonTest");
                 var regPage = header.GoToRegistrationPage();
                 Assert.Contains(Constants.REGISTRATION_URL_CONTAINS, regPage.GetCurrentUrl());
-                fixture.test.Log(Status.Pass, "Register page is visible");
             });
         }
     }

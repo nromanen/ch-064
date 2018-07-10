@@ -22,7 +22,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string courseName = ".NET FRAMEWORK", courseDescription = "Description";
-                fixture.test = fixture.extentReports.CreateTest("CreateCourse_ValidData");
 
                 var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
                 var sidebar = ConstructPage<SideBar>();
@@ -43,7 +42,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("CreateCourse_InvalidData");
                 string courseName = String.Empty, courseDescription = "Description";
 
                 var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
@@ -65,7 +63,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("DeleteCourse_ShouldDeleteCourse");
                 string courseName = "Selenium";
                 bool flag = false;
                 var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
@@ -92,7 +89,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("RestoreCourse_ShouldRestoreCourse");
                 string courseName = "CLR example";
                 bool flag = false;
                 var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
@@ -121,7 +117,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("ChangeCourse_ShouldChangeCourseData");
                 string courseName = "ChangeMe", newCourseName = "WebDriver";
                 
                 bool flag = false;
@@ -154,7 +149,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("ChangeCourseOwner_ShouldChangeOwner");
                 string courseName = "Owner";
                 string owner = "";
                 var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);

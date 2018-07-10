@@ -45,7 +45,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Simple addition";
-                fixture.test = fixture.extentReports.CreateTest("IsTaskAvailable?");
                 var ListOfTasks = ConstructPage<TasksPage>();
 
                 var blocks = ListOfTasks.GetBlocks();
@@ -65,7 +64,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Simple addition";
-                fixture.test = fixture.extentReports.CreateTest("ClickOnTasksButton");
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -86,7 +84,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Simple addition";
-                fixture.test = fixture.extentReports.CreateTest("ClickOnTasksButton");
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)

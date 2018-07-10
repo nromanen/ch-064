@@ -30,12 +30,10 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("CheckIfNewsArePresent");
                 var signInAsStudent = header.GoToLogInPage().SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
                 driver.RefreshPage();
                 var newsPage = ConstructPage<SideBar>().GoToTeacherNewsPage();
                 Assert.True(newsPage.IsNewsPresentedInNewsList("C# Starter"));
-                fixture.test.Log(Status.Pass, "News Are Present.");
             });
         }
 
@@ -44,12 +42,10 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("CreateNewsTest");
                 var signIn = header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
                 var newsPage = ConstructPage<SideBar>().GoToTeacherNewsPage();
                 var result = newsPage.CreateArticle();
                 Assert.True(result.UrlEndsWith("AddNews/News"));
-                fixture.test.Log(Status.Pass, "News Created.");
             });
         }
 

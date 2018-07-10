@@ -33,7 +33,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Indexers";
-                fixture.test = fixture.extentReports.CreateTest("IsTaskAvailable?");
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -53,7 +52,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string taskname = "Elevator modeling";
-                fixture.test = fixture.extentReports.CreateTest("TaskRecover");
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -83,7 +81,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string CreationDate = "10/07/2018";
-                fixture.test = fixture.extentReports.CreateTest("TaskCreationDate");
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
 
                 var blocks = ListOfTasks.GetBlocks();
@@ -102,7 +99,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string UpdateDate = "10/07/2018";
-                fixture.test = fixture.extentReports.CreateTest("TaskUpdateDate");
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -121,7 +117,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string NEWTASK = "NewTaskkkkk";
-                fixture.test = fixture.extentReports.CreateTest("AddNewTaskTest");
 
                 var Tasks = ConstructPage<TeacherExerciseManagerPage>();
                 Tasks.ClickOnAddTaskbutton();

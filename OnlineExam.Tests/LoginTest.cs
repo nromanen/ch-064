@@ -32,10 +32,10 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-                fixture.test = fixture.extentReports.CreateTest("SignInTest");
+                //fixture.test = fixture.extentReports.CreateTest("SignInTest");
                 var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
                 Assert.True(result);
-                fixture.test.Log(Status.Pass, "User signed in.");
+                //fixture.test.Log(Status.Pass, "User signed in.");
             });
         }
 

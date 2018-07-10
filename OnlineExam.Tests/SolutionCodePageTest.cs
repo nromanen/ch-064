@@ -46,7 +46,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Simple addition";
-                fixture.test = fixture.extentReports.CreateTest("TaskExecuting");
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -69,7 +68,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Simple addition";
-                fixture.test = fixture.extentReports.CreateTest("ClickOnDoeneButton");
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -91,7 +89,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Simple addition";
-                fixture.test = fixture.extentReports.CreateTest("ClickOnExitButton");
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -117,7 +114,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Simple addition";
-                fixture.test = fixture.extentReports.CreateTest("IsCompilationTrue?");
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)

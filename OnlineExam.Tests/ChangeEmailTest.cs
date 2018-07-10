@@ -34,7 +34,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("TestChangeEmail");
 
                 //BeginTest();
                 //NavigateTo("http://localhost:55842/Account/Login");
@@ -60,7 +59,6 @@ namespace OnlineExam.Tests
                 header.GoToUserAccountPage();
                 var isEqualAfterRepeatLogIn = string.Equals(userInfo.GetEmail(), newEmail);
                 Assert.True(isEqualAfterRepeatLogIn);
-                fixture.test.Log(Status.Pass, "Email is changed");
 
 
                 //userInfo = header.GoToUserAccountPage();

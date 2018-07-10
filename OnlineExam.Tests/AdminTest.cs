@@ -30,9 +30,7 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("IsUserPresentedInUserListTest");
                 Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL));
-                fixture.test.Log(Status.Pass, "User is presented in user list");
             });
         }
 
@@ -41,7 +39,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("Delete user test");
                 Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL),
                     "User is not presented in the system," +
                     "so we have not opportunity to delete this user");
@@ -50,7 +47,6 @@ namespace OnlineExam.Tests
                 Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
                 Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL), "Error");
 
-                fixture.test.Log(Status.Pass, "User is deleted successfully");
             });
         }
 
@@ -59,12 +55,10 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("Change user role test");
                 var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
                 changeRolePage.ChangeRole(Constants.TEACHER);
                 changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
                 Assert.Equal(Constants.TEACHER, changeRolePage.CurrentRole());
-                fixture.test.Log(Status.Pass, "Role is changed successfully");
             });
         }
 
@@ -73,9 +67,7 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("Is user list available test");
                 Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
-                fixture.test.Log(Status.Pass, "User list is available");
             });
         }
         }

@@ -33,7 +33,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("TestChangePassword");
                 //BeginTest();
                 //NavigateTo("http://localhost:55842/Account/Login");
                 //System.Threading.Thread.Sleep(1000);
@@ -53,7 +52,6 @@ namespace OnlineExam.Tests
                 var userEmail = userInfoPage.GetEmail();
                 var isEqual = String.Equals(userEmail, "teacher@gmail.com");
                 Assert.True(isEqual);
-                fixture.test.Log(Status.Pass, "Content is full");
             });
         }
     }

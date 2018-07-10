@@ -31,7 +31,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("CheckIfContactUsMessageIsVisibleInInbox");
                 var contactUs = sideBar.GoToContactUsPage();
                 contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Name", testMessage);
                 header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
@@ -40,7 +39,6 @@ namespace OnlineExam.Tests
                 var blocks = inbox.GetInboxBlocksList();
                 var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
                 Assert.True(existMessage);
-                fixture.test.Log(Status.Pass, "Contact Us Message Is Visible In Inbox.");
             });
         }
 
@@ -49,7 +47,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("CheckIfSendEmailIsVisibleInOutBox");
                 header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
                 var mailBox = sideBar.GoToMailBoxPage();
                 var sendEmail = mailBox.SendMessageReferenceClick();
@@ -58,7 +55,6 @@ namespace OnlineExam.Tests
                 var blocks = outbox.GetOutboxBlocksList();
                 var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
                 Assert.True(existMessage);
-                fixture.test.Log(Status.Pass, "Send Email Is Visible In OutBox.");
             });
         }
 
@@ -67,13 +63,11 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("CheckIfUserCanSendEmail");
                 header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
                 var mailBox = sideBar.GoToMailBoxPage();
                 var sendEmail = mailBox.SendMessageReferenceClick();
                 var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
                 Assert.True(result.UrlEndsWith("/EmailMessages"));
-                fixture.test.Log(Status.Pass, "User Can Send Email.");
             });
         }
 

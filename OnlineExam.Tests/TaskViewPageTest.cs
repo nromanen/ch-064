@@ -47,7 +47,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Indexers";
-                fixture.test = fixture.extentReports.CreateTest("ClickOnStartButton");
 
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
@@ -71,7 +70,6 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Indexers";
-                fixture.test = fixture.extentReports.CreateTest("Simple addition");
 
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
@@ -96,7 +94,6 @@ namespace OnlineExam.Tests
             {
                 string TaskName = "Indexers";
                 string email = "student@gmail.com";
-                fixture.test = fixture.extentReports.CreateTest("EmailFromComment");
 
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
@@ -124,7 +121,6 @@ namespace OnlineExam.Tests
             {
                 string TaskName = "Indexers";
                 string coment = "First comment";
-                fixture.test = fixture.extentReports.CreateTest("TextFromComment");
 
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
@@ -153,7 +149,6 @@ namespace OnlineExam.Tests
                 string TaskName = "Indexers";
                 string email = "student@gmail.com";
 
-                fixture.test = fixture.extentReports.CreateTest("DateFromComment");
 
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
@@ -182,7 +177,6 @@ namespace OnlineExam.Tests
                 string TaskName = "Indexers";
                 string coment = "one more comment";
 
-                fixture.test = fixture.extentReports.CreateTest("ShowHideCommentsButton");
 
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
@@ -208,7 +202,6 @@ namespace OnlineExam.Tests
                 string TaskName = "Indexers";
                 string email = "student@gmail.com";
 
-                fixture.test = fixture.extentReports.CreateTest("StarsCount");
 
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
@@ -240,7 +233,6 @@ namespace OnlineExam.Tests
                 string TaskName = "Indexers";
                 string coment = "rate 4 stars";
 
-                fixture.test = fixture.extentReports.CreateTest("CreateNewComment");
 
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();

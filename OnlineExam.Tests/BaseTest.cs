@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using AventStack.ExtentReports;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
@@ -74,18 +75,29 @@ namespace OnlineExam.Tests
             }
         }
 
+
+
         public void UITest(Action action)
         {
             try
             {
+                StackFrame frame = new StackFrame(1);
+                var method = frame.GetMethod();
+                var type = method.DeclaringType;
+                var name = method.Name;
+                fixture.test = fixture.extentReports.CreateTest($"{name}");
+
                 action();
+
+                fixture.test.Log(Status.Pass, $"{name} test successfully executed");
+
             }
             catch (Exception e)
             {
                 var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,Constants.SCREEN_SHOT,ScreenshotImageFormat.Png);
                 var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
                 fixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
-                fixture.test.Fail(e);
+                fixture.test.Fail(e.Message);
                 throw;
             }
         }

@@ -20,62 +20,62 @@ namespace OnlineExam.Tests
         private UserInfoPage userInfo;
 
 
-        public TestSaveExecutedTestToCodeHistory(BaseFixture fixture) : base(fixture)
-        {
-            BeginTest();
+        //public TestSaveExecutedTestToCodeHistory(BaseFixture fixture) : base(fixture)
+        //{
+        //    BeginTest();
 
-            header = ConstructPage<Header>();
-            logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            userInfo = header.GoToUserAccountPage();
-        }
+        //    header = ConstructPage<Header>();
+        //    logInPage = header.GoToLogInPage();
+        //    logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+        //    userInfo = header.GoToUserAccountPage();
+        //}
 
-        [Fact]
-          public void SaveExecutedTestToCodeHistory()
-            {
+        //[Fact]
+        //  public void SaveExecutedTestToCodeHistory()
+        //    {
 
-            UITest(() =>
-            {
-                fixture.test = fixture.extentReports.CreateTest("TestChangePassword");
+        //    UITest(() =>
+        //    {
+        //        fixture.test = fixture.extentReports.CreateTest("TestChangePassword");
 
-                string TaskName = "Simple addition";
-                var header = ConstructPage<Header>();
-                var logInPage = header.GoToLogInPage();
-                logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-                NavigateTo("http://localhost:55842/CourseManagement/ShowExercise/1");
-                var ListOfTasks = ConstructPage<TasksPage>();
-                string nameOfExecutedTask = "";
+        //        string TaskName = "Simple addition";
+        //        var header = ConstructPage<Header>();
+        //        var logInPage = header.GoToLogInPage();
+        //        logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+        //        NavigateTo("http://localhost:55842/CourseManagement/ShowExercise/1");
+        //        var ListOfTasks = ConstructPage<TasksPage>();
+        //        string nameOfExecutedTask = "";
 
-                var blocks = ListOfTasks.GetBlocks();
-                if (blocks != null)
-                {
-                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                    nameOfExecutedTask = firstblock.GetName();
-                    firstblock.ClickOnTasksButton();
-                    Thread.Sleep(2000);
-                    var TaskView = ConstructPage<TaskViewPage>();
-                    TaskView.ClickOnStartButton();
-                    Thread.Sleep(2000);
-                    var Code = ConstructPage<SolutionCodePage>();
-                    Code.ClickOnExecuteButton();
-                    Thread.Sleep(2000);
-                }
-                var historyPage = ConstructPage<HistoryFavouritePage>();
-                var blocksHistory = historyPage.GetHistoryBlocks();
+        //        var blocks = ListOfTasks.GetBlocks();
+        //        if (blocks != null)
+        //        {
+        //            var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+        //            nameOfExecutedTask = firstblock.GetName();
+        //            firstblock.ClickOnTasksButton();
+        //            Thread.Sleep(2000);
+        //            var TaskView = ConstructPage<TaskViewPage>();
+        //            TaskView.ClickOnStartButton();
+        //            Thread.Sleep(2000);
+        //            var Code = ConstructPage<SolutionCodePage>();
+        //            Code.ClickOnExecuteButton();
+        //            Thread.Sleep(2000);
+        //        }
+        //        var historyPage = ConstructPage<HistoryFavouritePage>();
+        //        var blocksHistory = historyPage.GetHistoryBlocks();
 
-                //bool blockOfExecutedCode = false;
+        //        //bool blockOfExecutedCode = false;
 
-                //foreach (var block in blocksHistory)
-                //{
-                //    if (block.GetName == nameOfExecutedTask)
-                //    {
-                //        blockOfExecutedCode = true;
-                //        break;
-                //    }
-                //}
-                //Assert.True(blockOfExecutedCode);
-                //fixture.test.Log(Status.Pass, "Code ia saved to history");
-            });
-        }
+        //        //foreach (var block in blocksHistory)
+        //        //{
+        //        //    if (block.GetName == nameOfExecutedTask)
+        //        //    {
+        //        //        blockOfExecutedCode = true;
+        //        //        break;
+        //        //    }
+        //        //}
+        //        //Assert.True(blockOfExecutedCode);
+        //        //fixture.test.Log(Status.Pass, "Code ia saved to history");
+        //    });
+        //}
     }
 }

@@ -34,7 +34,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("TestChangeName");
                 //BeginTest();
                 //NavigateTo("http://localhost:55842/Account/Login");
                 //System.Threading.Thread.Sleep(1000);
@@ -49,7 +48,6 @@ namespace OnlineExam.Tests
                 var newUserName = header.GetHeaderUserName();
                 var isEqual = String.Equals(Constants.TEACHER_EMAIL, newUserName, StringComparison.InvariantCultureIgnoreCase);
                 Assert.True(isEqual);
-                fixture.test.Log(Status.Pass, "Name is changed");
             });
         }
     }

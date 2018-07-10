@@ -28,7 +28,6 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("CheckIfUserIsPresentedInUserListAfterSignUp");
                 var signUp = header.GoToRegistrationPage();
                 signUp.Registration(Constants.EXAMPLE_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
                 header.SignOut();
@@ -44,11 +43,9 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("SignUpAsUsedEmail");
                 var signUp = header.GoToRegistrationPage();
                 signUp.Registration(Constants.STUDENT_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
                 header.GoToHomePage();
-                fixture.test.Log(Status.Pass, "Didn't sign up as used email.");
                 Assert.False(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
 
             });
