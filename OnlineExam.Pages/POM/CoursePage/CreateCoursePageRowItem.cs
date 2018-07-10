@@ -29,6 +29,9 @@ namespace OnlineExam.Pages.POM.CoursePage
         [FindsBy(How = How.CssSelector, Using = "a:nth-child(1)")]
         public IWebElement link { get; set; }
 
+        
+
+
         public void ClickOnCourseTitle()
         {
             //System.Windows.Forms.MessageBox.Show(courseName.GetAttribute("href").ToString());

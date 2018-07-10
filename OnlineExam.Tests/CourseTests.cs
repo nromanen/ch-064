@@ -11,7 +11,6 @@ namespace OnlineExam.Tests
     [Collection("MyTestCollection")]
     public class CourseTests : BaseTest
     {
-        private Framework.DatabaseHelper helper;
         public CourseTests(BaseFixture fixture) : base(fixture)
         {
             BeginTest();
@@ -22,7 +21,7 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                string courseName = ".NET FRAMEWORK", courseDescription = "Nice description";
+                string courseName = ".NET FRAMEWORK", courseDescription = "Description";
                 fixture.test = fixture.extentReports.CreateTest("CreateCourse_ValidData");
 
                 var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
@@ -35,10 +34,7 @@ namespace OnlineExam.Tests
                 {
                     var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
                     Assert.Equal(courseName,firstBlock.GetCourseName());
-                    //System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseName());
-                    //System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseCreatinDate());
                 }
-                Thread.Sleep(1500);
             });
         }
 
@@ -60,46 +56,45 @@ namespace OnlineExam.Tests
                 {
                     var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
                     Assert.Null(firstBlock);
-                   // System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseName());
-                   // System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseCreatinDate());
                 }
-                Thread.Sleep(1500);
             });
         }
-
-        /*[Fact]
-        public void tmp()
-        {
-            fixture.test = fixture.extentReports.CreateTest("CreateCourse_InvalidData");
-            string courseName = "C# Starter";
-
-            var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            var sidebar = ConstructPage<SideBar>().GoToCourseManagementPage();
-            var courseManagment = ConstructPage<CourseManagementPage>();
-
-            var block = courseManagment.GetBlocks();
-            if (block != null)
-            {
-                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
-                System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseName());
-                System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseCreatingDate());
-                System.Windows.Forms.MessageBox.Show(firstBlock.courseName.GetAttribute("href"));
-                if (firstBlock != null)
-                {
-                    firstBlock.ClickCourseLink();
-                }
-            }
-            Thread.Sleep(3000);
-        }*/
 
         [Fact]
         public void DeleteCourse_ShouldDeleteCourse()
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("CreateCourse_InvalidData");
-                string courseName = "Selenium .NET";
+                fixture.test = fixture.extentReports.CreateTest("DeleteCourse_ShouldDeleteCourse");
+                string courseName = "Selenium";
+                bool flag = false;
+                var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+                var sidebar = ConstructPage<SideBar>().GoToCourseManagementPage();
+                var courseManagment = ConstructPage<CourseManagementPage>();
+                courseManagment.BtnMyCourses.Click();
+                var courseView = ConstructPage<ViewCoursesPage>();
+                var tmp = courseView.GetBlocks();
+                if (tmp != null)
+                {
+                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));                
+                    if (firstBlock != null && (firstBlock.GetBtnDeleteText().Equals("Delete") || firstBlock.GetBtnDeleteText().Equals("Видалити")))
+                    {
+                        firstBlock.ClickBtnDelete();
+                        flag = true;
+                    }
+                }
+                Assert.True(flag);
+            });
+        }
 
+        [Fact]
+        public void RestoreCourse_ShouldRestoreCourse()
+        {
+            UITest(() =>
+            {
+                fixture.test = fixture.extentReports.CreateTest("RestoreCourse_ShouldRestoreCourse");
+                string courseName = "CLR example";
+                bool flag = false;
                 var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
                 var sidebar = ConstructPage<SideBar>().GoToCourseManagementPage();
                 var courseManagment = ConstructPage<CourseManagementPage>();
@@ -109,51 +104,14 @@ namespace OnlineExam.Tests
                 if (tmp != null)
                 {
                     var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
-                    //Assert.Null(firstBlock);
-                    if (firstBlock != null && firstBlock.GetBtnDeleteText() != null)
+                    if (firstBlock != null && (firstBlock.GetBtnDeleteText().Equals("Recover") || firstBlock.GetBtnDeleteText().Equals("Відновити")))
                     {
                         firstBlock.ClickBtnDelete();
+                        flag = true;
                     }
                 }
-                Thread.Sleep(1500);
+                Assert.True(flag);
             });
-
-            /*LoginAsTeacher();
-            string CourseName = "NEW";
-            var CourseMenegmentPage = ConstructPage<CourseManagementPage>();
-            if (CourseMenegmentPage != null)
-            {
-              //  CourseMenegmentPage.MyCoursesBtn.Click();
-            }
-
-            var ViewCoursePage = ConstructPage<ViewCoursesPage>();
-            if (ViewCoursePage != null)
-            {
-                ViewCoursePage.DeleteCourse(CourseName);
-                Assert.True(ViewCoursePage.IsCourseDeleted(CourseName));
-            }*/
-        }
-
-
-
-        [Fact]
-        public void RestoreCourse_ShouldRestoreCourse()
-        {
-            /*
-            string CourseName = "NEW";
-            var CourseMenegmentPage = ConstructPage<CourseManagementPage>();
-            if (CourseMenegmentPage != null)
-            {
-                //CourseMenegmentPage.MyCoursesBtn.Click();
-            }
-
-            var ViewCoursePage = ConstructPage<ViewCoursesPage>();
-            if (ViewCoursePage != null)
-            {
-                Assert.True(ViewCoursePage.IsCourseDeleted(CourseName));
-                ViewCoursePage.RestoreCourse(CourseName);
-                Assert.True(ViewCoursePage.IsCourseRestored(CourseName));
-            }*/
         }
 
 
@@ -161,36 +119,32 @@ namespace OnlineExam.Tests
         [Fact]
         public void ChangeCourse_ShouldChangeCourseData()
         {
-            //LoginAsTeacher();
-            //string courseName = "NEW";
-            //var courseMenegmentPage = ConstructPage<CourseManagementPage>();
-            //if (courseMenegmentPage != null)
-            //{
-            //    courseMenegmentPage.MyCoursesBtn.Click();
-            //}
-            //var viewCoursePage = ConstructPage<ViewCoursesPage>();
-            //if (viewCoursePage != null)
-            //{
-            //    
-            //    var href = viewCoursePage.GetCourseLink(courseName);
-            //    driver.Navigate().GoToUrl(href);
-            //}
-
-            //var editCoursePage = ConstructPage<CreateCoursePage>();
-            //if (editCoursePage != null)
-            //{
-            //    var oldName = editCoursePage.GetName();
-            //    var oldDescription = editCoursePage.GetDescription();
-            //    string newName = "asda", newDescription = "asda";
-            //    editCoursePage.EditCourse(newName, newDescription);
-            //    editCoursePage.CourseOkBtn.Click();
-            //    
-            //    var newHref = viewCoursePage.GetCourseLink(newName);
-            //    driver.Navigate().GoToUrl(newHref);
-            //    Assert.Equal(newName, editCoursePage.GetName());
-            //    Assert.Equal(newDescription, editCoursePage.GetDescription());
-            //}
-            throw new Exception("Rewrite using Page constructor");
+            UITest(() =>
+            {
+                fixture.test = fixture.extentReports.CreateTest("ChangeCourse_ShouldChangeCourseData");
+                string courseName = "ChangeMe", newCourseName = "WebDriver";
+                
+                bool flag = false;
+                var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+                var sidebar = ConstructPage<SideBar>().GoToCourseManagementPage();
+                var courseManagment = ConstructPage<CourseManagementPage>();
+                courseManagment.BtnMyCourses.Click();
+                var courseView = ConstructPage<ViewCoursesPage>();
+                var tmp = courseView.GetBlocks();
+                if (tmp != null)
+                {
+                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                    if (firstBlock != null)
+                    {
+                        firstBlock.ClickBtnChange();
+                        var editPage = ConstructPage<CreateCoursePage>();
+                        editPage.EditCourse(newCourseName, "New Description");
+                        editPage.BtnOk.Click();
+                        flag = true;
+                    }
+                }
+                Assert.True(flag);
+            });
         }
 
 
@@ -198,27 +152,45 @@ namespace OnlineExam.Tests
         [Fact]
         public void ChangeCourseOwner_ShouldChangeOwner()
         {
-            //LoginAsAdmin();
-            //string CourseName = "C# Starter";
-            //var CourseMenegmentPage = ConstructPage<CourseManagementPage>();
-            //var tmp = CourseMenegmentPage.ChangeOwner(CourseName);
-            //if (CourseMenegmentPage != null)
-            //{
-            //    
-            //    driver.Navigate().GoToUrl(tmp);
-            //}
+            UITest(() =>
+            {
+                fixture.test = fixture.extentReports.CreateTest("ChangeCourseOwner_ShouldChangeOwner");
+                string courseName = "Owner";
+                string owner = "";
+                var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+                var sidebar = ConstructPage<SideBar>().GoToCourseManagementPage();
+                var courseManagment = ConstructPage<CourseManagementPage>();
+                var courseView = ConstructPage<ViewCoursesPage>();
+                var tmp = courseView.GetBlocks();
+                
+                if (tmp != null)
+                {
+                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                    if (firstBlock != null)
+                    {
+                        firstBlock.ClickBtnChangeOwner();
+                        var changeOwner = ConstructPage<ChangeCourseOwnerPage>();
+                        owner = changeOwner.GetOwner();
+                        changeOwner.ChangeOwner();
+                    }
+                }
+                this.driver.RefreshPage();
 
-            //var ChangeOwner = ConstructPage<ChangeCourseOwnerPage>();
-            //if (ChangeOwner != null)
-            //{
-            //    string oldOwner = ChangeOwner.GetOwner();
-            //    ChangeOwner.ChangeOwner();
+                courseView = ConstructPage<ViewCoursesPage>();
+                tmp = courseView.GetBlocks();
 
-            //    driver.Navigate().GoToUrl(tmp);
-            //    string newOwner = ChangeOwner.GetOwner();
-            //    Assert.NotEqual(oldOwner, newOwner);
-            //}  
-            throw new Exception("Rewrite using Page constructor");
+                if (tmp != null)
+                {
+                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                    if (firstBlock != null)
+                    {
+                        firstBlock.ClickBtnChangeOwner();
+                        var changeOwner = ConstructPage<ChangeCourseOwnerPage>();
+                        var currenOwner = changeOwner.GetOwner();
+                        Assert.NotEqual(owner,currenOwner);
+                    }
+                }
+            });
         }
     }
 }
