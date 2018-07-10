@@ -34,7 +34,6 @@ namespace OnlineExam.Pages.POM
         public string GetOwner()
         {
             string result = OwnerParser(CurrentOwner.Text);
-            MessageBox.Show(result);
             return result;
         }
 
@@ -50,7 +49,6 @@ namespace OnlineExam.Pages.POM
             SelectElement value = new SelectElement(TeacherSelect);
             string teacher1 = "teacher@gmail.com";
             string teacher2 = "teacher2@gmail.com";
-            System.Windows.Forms.MessageBox.Show(CurrentOwner.Text);
             string result = OwnerParser(CurrentOwner.Text);
             if (result.Contains(teacher1))
             {

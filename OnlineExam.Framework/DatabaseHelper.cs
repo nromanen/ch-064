@@ -32,7 +32,7 @@ namespace OnlineExam.Framework
             }
         }
 
-        public void RollbackDatabase()
+        public static void RollbackDatabase()
         {
             SqlConnection con = new SqlConnection(conection);
             string database = con.Database.ToString();

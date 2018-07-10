@@ -54,7 +54,6 @@ namespace OnlineExam.Tests
                 var mailBox = sideBar.GoToMailBoxPage();
                 var sendEmail = mailBox.SendMessageReferenceClick();
                 var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
-                Thread.Sleep(3000);
                 var outbox = mailBox.OutboxElementClick();
                 var blocks = outbox.GetOutboxBlocksList();
                 var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
@@ -73,7 +72,6 @@ namespace OnlineExam.Tests
                 var mailBox = sideBar.GoToMailBoxPage();
                 var sendEmail = mailBox.SendMessageReferenceClick();
                 var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
-                Thread.Sleep(3000);
                 Assert.True(result.UrlEndsWith("/EmailMessages"));
                 fixture.test.Log(Status.Pass, "User Can Send Email.");
             });

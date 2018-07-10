@@ -36,6 +36,10 @@ namespace OnlineExam.Pages.POM.CoursePage
         [FindsBy(How = How.CssSelector, Using = ".btn-primary")]
         public IWebElement BtnRecover{ get; set; }
 
+        //body > div > div > table > tbody > tr:nth-child(2) > td:nth-child(3) > form > a:nth-child(2)
+        [FindsBy(How = How.CssSelector, Using = "a:nth-child(2)")]
+        public IWebElement BtnChangeOwner { get; set; }
+
         public string GetCourseName()
         {
             return courseName.Text;
@@ -61,6 +65,11 @@ namespace OnlineExam.Pages.POM.CoursePage
             return BtnRecover.Text;
         }
 
+        public string GetBtnChangeOwnerText()
+        {
+            return BtnChangeOwner.Text;
+        }
+
         public void ClickBtnChange()
         {
             BtnChange.Click();
@@ -74,6 +83,11 @@ namespace OnlineExam.Pages.POM.CoursePage
         public void ClickBtnRecover()
         {
             BtnRecover.Click();
+        }
+
+        public void ClickBtnChangeOwner()
+        {
+            BtnChangeOwner.Click();
         }
     }
 }
