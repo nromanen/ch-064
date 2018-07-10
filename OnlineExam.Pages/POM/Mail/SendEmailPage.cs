@@ -31,6 +31,13 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "#reused_form > input.btn.btn-primary.btn-send-email")]
         public IWebElement SubmitInput { get; set; }
 
+        /// <summary>
+        /// Sends Email from Admin or Teacher to any user.
+        /// </summary>
+        /// <param name="subject"></param>
+        /// <param name="email"></param>
+        /// <param name="message"></param>
+        /// <returns>MailBoxPage</returns>
         public MailBoxPage SendEmail(string subject, string email, string message)
         {
             SubjectInput.SendKeys(subject);
@@ -40,6 +47,9 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<MailBoxPage>();
         }
 
+        /// <summary>
+        /// Returns user to Mailbox
+        /// </summary>
         public void GoBackToMailbox()
         {
             BackToMailboxReference.Click();

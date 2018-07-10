@@ -29,6 +29,10 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "#OutBoxMEssages > p")]
         public IList<IWebElement> OutboxMailList { get; set; }
 
+        /// <summary>
+        /// Opens Inbox mail.
+        /// </summary>
+        /// <returns></returns>
         public MailBoxPage InboxElementClick()
         {
             WaitWhileNotClickableWebElement(InboxElement);
@@ -36,6 +40,10 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<MailBoxPage>();
         }
 
+        /// <summary>
+        /// Opens Outbox mail.
+        /// </summary>
+        /// <returns></returns>
         public MailBoxPage OutboxElementClick()
         {
             WaitWhileNotClickableWebElement(OutboxElement);
@@ -43,6 +51,10 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<MailBoxPage>();
         }
 
+        /// <summary>
+        /// Opens Send Message page.
+        /// </summary>
+        /// <returns></returns>
         public SendEmailPage SendMessageReferenceClick()
         {
             WaitWhileNotClickableWebElement(SendMessageReference);
@@ -50,6 +62,10 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<SendEmailPage>();
         }
 
+        /// <summary>
+        /// Get blocks of Inbox mail as list.
+        /// </summary>
+        /// <returns></returns>
         public IList<InboxBlock> GetInboxBlocksList()
         {
             var inboxBlocksList = new List<InboxBlock>();
@@ -64,6 +80,11 @@ namespace OnlineExam.Pages.POM
             return inboxBlocksList;
         }
 
+        /// <summary>
+        /// Check if Mail(by header) is presented in Inbox
+        /// </summary>
+        /// <param name="header"></param>
+        /// <returns></returns>
         public bool IsMailPresentedInInbox(string header)
         {
             var inboxBlocksList = GetInboxBlocksList();
@@ -77,6 +98,11 @@ namespace OnlineExam.Pages.POM
             return false;
         }
 
+        /// <summary>
+        /// Check if Mail(by header) is presented in Outbox
+        /// </summary>
+        /// <param name="header"></param>
+        /// <returns></returns>
         public bool IsMailPresentedInOutbox(string header)
         {
             var outboxBlocksList = GetOutboxBlocksList();
@@ -90,6 +116,10 @@ namespace OnlineExam.Pages.POM
             return false;
         }
 
+        /// <summary>
+        /// Get blocks of Outbox mail as list.
+        /// </summary>
+        /// <returns></returns>
         public IList<OutboxBlock> GetOutboxBlocksList()
         {
             var outboxBlocksList = new List<OutboxBlock>();
