@@ -13,7 +13,6 @@ namespace OnlineExam.Framework
     public class ExtendedWebDriver : IDisposable
     {
         static int ScreenCounter = 0; //Will be update per screenshot that we took
-        public const string str = "";
         private IWebDriver driver;
         public static TimeSpan WAIT_TIME = new TimeSpan(0, 0, 100);
 

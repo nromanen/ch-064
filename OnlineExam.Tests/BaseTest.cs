@@ -12,25 +12,22 @@ using Xunit.Sdk;
 namespace OnlineExam.Tests
 {
     [Collection("MyTestCollection")]
-    public abstract class BaseTest : DatabaseHelper, IDisposable
+    public abstract class BaseTest : IDisposable
         //, IClassFixture<BaseFixture>,ICollectionFixture<MyTestCollection>
     {
         protected ITestOutput output;
 
-        //protected IWebDriver driver;
         protected ExtendedWebDriver driver;
         protected BaseFixture fixture;
 
         public BaseTest()
         {
-            //extendedDriver = DriversFabric.InitChrome();
             driver = DriversFabric.InitChrome();
         }
 
         //[SetUp]
         public BaseTest(BaseFixture fixture)
         {
-            //   BackupDatabase(); // <- Uncoment to create db backup
             driver = DriversFabric.InitChrome();
             this.fixture = fixture;
         }
@@ -85,7 +82,7 @@ namespace OnlineExam.Tests
             }
             catch (Exception e)
             {
-                var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.ScreenShotPath,Constants.SCREEN_SHOT,ScreenshotImageFormat.Png);
+                var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,Constants.SCREEN_SHOT,ScreenshotImageFormat.Png);
                 var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
                 fixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
                 fixture.test.Fail(e);
