@@ -63,6 +63,11 @@ namespace OnlineExam.Framework
             return driver.Url;
         }
 
+        public string GetCurrentTitle()
+        {
+            return driver.Title;
+        }
+
         public void WaitWhileNotClickableWebElement(IWebElement webElement)
         {
             WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);

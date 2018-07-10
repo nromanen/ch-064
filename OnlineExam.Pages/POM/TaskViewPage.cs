@@ -47,6 +47,12 @@ namespace OnlineExam.Pages.POM
             return DivItems.FirstOrDefault(x => String.Equals(x.GetCommentDate(), Email, StringComparison.OrdinalIgnoreCase));
         }
 
+        public TaskViewPageDivItem GetStarsCount(int countstars)
+        {
+            return DivItems.FirstOrDefault(x => String.Equals(x.GetStarsss(), countstars.ToString(), StringComparison.OrdinalIgnoreCase));
+        }
+
+
         [FindsBy(How =How.Id, Using = "textField")]
         public IWebElement commenttext { get; set; }
 
@@ -70,6 +76,38 @@ namespace OnlineExam.Pages.POM
 
         [FindsBy(How = How.Id, Using = "buttn")]
         public IWebElement CommentButton { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#rateField > span > span")]
+        public IWebElement StarsComment_4 { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#rateField > span")]
+        public IWebElement StarsComment_3 { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#rateField > span > span > span > span")]
+        public IWebElement StarsComment_5 { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#rateField > span > span.::before")]
+        public IWebElement StarsComment_ { get; set; }
+
+        public void Click__Star()
+        {
+            StarsComment_.Click();
+        }
+
+        public void Click_4_Star()
+        {
+            StarsComment_4.Click();
+        }
+
+        public void Click_3_Star()
+        {
+            StarsComment_3.Click();
+        }
+
+        public void Click_5_Star()
+        {
+            StarsComment_5.Click();
+        }
 
         public void ClickOnCommentButton()
         {

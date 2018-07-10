@@ -10,150 +10,159 @@ using Xunit;
 
 namespace OnlineExam.Tests
 {
-    public class SolutionCodePageTest: BaseTest
+    [Collection("MyTestCollection")]
+    public class SolutionCodePageTest : BaseTest
     {
+        private Header header;
+        private SideBar CoursesPage;
+        private CourseManagementPage CoursesList;
 
-        public SolutionCodePageTest() { }
+        public SolutionCodePageTest(BaseFixture fixture) : base(fixture)
+        {
+            BeginTest();
+
+            string courseName = "C# Starter";
+            var header = ConstructPage<Header>();
+            var logInPage = header.GoToLogInPage();
+            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+            var CoursesPage = ConstructPage<SideBar>().GoToCourseManagementPage();
+            var CoursesList = ConstructPage<CourseManagementPage>();
+            var block = CoursesList.GetBlocks();
+            if (block != null)
+            {
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+
+                if (firstBlock != null)
+                {
+                    firstBlock.ClickCourseLink();
+                }
+            }
+        }
+
 
         [Fact]
         public void TaskExecuting()
         {
-            string TaskName = "Simple addition";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                Thread.Sleep(2000);
-                var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.ClickOnStartButton();
-                Thread.Sleep(2000);
-                var Code = ConstructPage<SolutionCodePage>();
-                Code.ClickOnExecuteButton();
-                Thread.Sleep(2000);
+                string TaskName = "Simple addition";
+                fixture.test = fixture.extentReports.CreateTest("TaskExecuting");
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnTasksButton();
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    TaskView.ClickOnStartButton();
+                    var Code = ConstructPage<SolutionCodePage>();
+                    Code.ClickOnExecuteButton();                    
+                }
             }
+            );
         }
 
 
         [Fact]
         public void TaskDone()
         {
-            string TaskName = "Proba2";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            throw new Exception("Rewrite using new approach");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                Thread.Sleep(2000);
-                var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.ClickOnStartButton();
-                Thread.Sleep(2000);
-                var Code = ConstructPage<SolutionCodePage>();
-                Code.ClickOnDoneButton();
-                Thread.Sleep(2000);
+                string TaskName = "Simple addition";
+                fixture.test = fixture.extentReports.CreateTest("ClickOnDoeneButton");
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnTasksButton();
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    TaskView.ClickOnStartButton();
+                    var Code = ConstructPage<SolutionCodePage>();
+                    Code.ClickOnDoneButton();
+                }
             }
+            );
         }
 
         [Fact]
         public void ExitButton()
         {
-            string TaskName = "Proba2";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            throw new Exception("Rewrite using Page constructor");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                Thread.Sleep(2000);
-                var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.ClickOnStartButton();
-                Thread.Sleep(2000);
-                var Code = ConstructPage<SolutionCodePage>();
-                Code.ClickOnExitButton();
-                //var url = driver.Url;
-                throw new Exception("Rewrite using Page constructor");
-                //Assert.Equal(url, "http://localhost:55842/");
-                Thread.Sleep(2000);
+                string TaskName = "Simple addition";
+                fixture.test = fixture.extentReports.CreateTest("ClickOnExitButton");
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnTasksButton();
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    TaskView.ClickOnStartButton();
+                    var Code = ConstructPage<SolutionCodePage>();
+                    Code.ClickOnExitButton();
+                    var url = driver.GetCurrentUrl();
+                    Assert.Equal(url, "http://localhost:55842/");
+                }
             }
+        );
 
         }
-
-
-        [Fact]
-        public void Review()
-        {
-            string TaskName = "Simple addition";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            throw new Exception("Rewrite using Page constructor");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
-            {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                Thread.Sleep(2000);
-                var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.ClickOnStartButton();
-                Thread.Sleep(2000);
-                var Code = ConstructPage<SolutionCodePage>();
-                var review = Code.MessageAboutreviewingSolution.Text;
-                MessageBox.Show(review);
-                Assert.NotEmpty(review);
-            }
-
-        }
-
 
 
         [Fact]
         public void Compilation()
         {
-            string TaskName = "Proba1";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            //driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            throw new Exception("Rewrite using Page constructor");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                Thread.Sleep(2000);
-                var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.ClickOnStartButton();
-                Thread.Sleep(2000);
-                var Code = ConstructPage<SolutionCodePage>();
-                Code.ClickOnExecuteButton();
-                Thread.Sleep(10000);
-                Code = ConstructPage<SolutionCodePage>();
-                var result = Code.FieldWithResultOfCompilationCode.Text;
-                MessageBox.Show(result);
-                Assert.NotEmpty(result);
+                string TaskName = "Simple addition";
+                fixture.test = fixture.extentReports.CreateTest("IsCompilationTrue?");
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnTasksButton();
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    TaskView.ClickOnStartButton();
+                    var Code = ConstructPage<SolutionCodePage>();
+                    Code.ClickOnExecuteButton();
+                    Code = ConstructPage<SolutionCodePage>();
+                    var result = Code.FieldWithResultOfCompilationCode.Text;
+                    Thread.Sleep(3000);
+                    Assert.Empty(result);
+                }
             }
+);
 
         }
+
+
+
+        //    [Fact]
+        //    public void Review()
+        //    {
+        //        UITest(() =>
+        //        {
+        //            string TaskName = "Simple addition";
+        //            fixture.test = fixture.extentReports.CreateTest("IsOnReview?");
+        //            var ListOfTasks = ConstructPage<TasksPage>();
+        //            var blocks = ListOfTasks.GetBlocks();
+        //            if (blocks != null)
+        //            {
+        //                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+        //                firstblock.ClickOnTasksButton();
+        //                var TaskView = ConstructPage<TaskViewPage>();
+        //                TaskView.ClickOnStartButton();
+        //                var Code = ConstructPage<SolutionCodePage>();
+        //                var review = Code.MessageAboutreviewingSolution.Text;
+        //                Assert.NotEmpty(review);
+        //            }
+        //        }
+        //);
+
+        //    }
 
 
 

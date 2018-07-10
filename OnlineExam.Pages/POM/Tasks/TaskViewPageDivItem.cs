@@ -18,25 +18,19 @@ namespace OnlineExam.Pages.POM.Tasks
         [FindsBy(How = How.CssSelector, Using = ".panel-heading")]
         public IWebElement Email { get; set; }
 
-        [FindsBy(How=How.CssSelector, Using = ".panel-body")]
+        [FindsBy(How = How.CssSelector, Using = ".panel-body")]
         public IWebElement CommentText { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".panel-footer")]
         public IWebElement CommentDate { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".panel-heading > span")]
-        public IList<IWebElement> Stars { get; set; }
+        public IWebElement Starss { get; set; }
 
-        public int GetStars()
+        public string GetStarsss()
         {
-            int i = 0;
-            foreach (var active in Stars)
-            {
-                var hz = active.GetCssValue("star active"); 
-                if (hz.Equals("star active"))
-                    i++;
-            }
-            return i;
+            var count = Starss.GetAttribute("data-default-rating");
+            return count.ToString();
         }
 
         public string GetCommentDate()

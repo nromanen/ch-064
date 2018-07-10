@@ -10,178 +10,224 @@ using Xunit;
 
 namespace OnlineExam.Tests
 {
+    [Collection("MyTestCollection")]
     public class TaskViewPageTest : BaseTest
     {
-        public TaskViewPageTest() { }
+        private Header header;
+        private SideBar CoursesPage;
+        private CourseManagementPage CoursesList;
+
+
+        public TaskViewPageTest(BaseFixture fixture) : base(fixture)
+        {
+            BeginTest();
+
+            string courseName = "C# Essential";
+            var header = ConstructPage<Header>();
+            var logInPage = header.GoToLogInPage();
+            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+            var CoursesPage = ConstructPage<SideBar>().GoToCourseManagementPage();
+            var CoursesList = ConstructPage<CourseManagementPage>();
+            var block = CoursesList.GetBlocks();
+            if (block != null)
+            {
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+
+                if (firstBlock != null)
+                {
+                    firstBlock.ClickCourseLink();
+                }
+            }
+        }
 
 
         [Fact]
         public void ClickOnStartButton()
         {
-            string TaskName = "Simple addition";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.ClickOnStartButton();
-                Assert.Equal(driver.Title, "- WebApp");
+                string TaskName = "Indexers";
+                fixture.test = fixture.extentReports.CreateTest("ClickOnStartButton");
+
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnTasksButton();
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    TaskView.ClickOnStartButton();
+                    var title = this.driver.GetCurrentTitle();
+                    Assert.Equal(title, "- WebApp");
+                }
             }
+            );
         }
 
 
         [Fact]
         public void ClickOnOkButton()
         {
-            string TaskName = "Simple addition";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.ClickOnOkButton();
-                Assert.Equal(driver.Url, "http://localhost:55842/CourseManagement/ShowExercise/1");
+                string TaskName = "Indexers";
+                fixture.test = fixture.extentReports.CreateTest("Simple addition");
+
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnTasksButton();
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    TaskView.ClickOnOkButton();
+                    var current_url = this.driver.GetCurrentUrl();
+                    Assert.Equal(current_url, "http://localhost:55842/CourseManagement/ShowExercise/2");
+                }
             }
+        );
         }
 
 
         [Fact]
         public void EmailFromComment()
         {
-            string TaskName = "Simple addition";
-            string email = "student@gmail.com";
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                var divs = TaskView.GetDivs();
-                if (divs != null)
+                string TaskName = "Indexers";
+                string email = "student@gmail.com";
+                fixture.test = fixture.extentReports.CreateTest("EmailFromComment");
+
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
                 {
-                    var anyblock = divs.Any(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    Assert.True(anyblock);
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnTasksButton();
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    var divs = TaskView.GetDivs();
+                    if (divs != null)
+                    {
+                        var anyblock = divs.Any(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
+                        Assert.True(anyblock);
+                    }
                 }
             }
+    );
         }
 
 
         [Fact]
         public void TextFromComment()
         {
-            string TaskName = "Simple addition";
-            string email = "student@gmail.com";
-
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                var divs = TaskView.GetDivs();
-                if (divs != null)
+                string TaskName = "Indexers";
+                string coment = "First comment";
+                fixture.test = fixture.extentReports.CreateTest("TextFromComment");
+
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
                 {
-                    var anyblock = divs.FirstOrDefault(x => x.GetCommentText().Equals("e-yo", StringComparison.OrdinalIgnoreCase));
-                    var comment = anyblock.GetCommentText();
-                    Assert.Equal(comment.ToString(), "e-yo!");
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnTasksButton();
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    var divs = TaskView.GetDivs();
+                    if (divs != null)
+                    {
+                        var b = divs.FirstOrDefault(x => x.GetCommentText().Equals(coment, StringComparison.OrdinalIgnoreCase));
+                        MessageBox.Show(b.GetCommentText());
+                        Assert.Equal(b.GetCommentText(), coment);
+                    }
                 }
             }
+);
         }
 
         [Fact]
         public void DateFromComment()
         {
-            string TaskName = "Simple addition";
-            string coment = "one more comment";
-            string email = "student@gmail.com";
-            
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                var divs = TaskView.GetDivs();
-                if (divs != null)
+                string TaskName = "Indexers";
+                string email = "student@gmail.com";
+
+                fixture.test = fixture.extentReports.CreateTest("DateFromComment");
+
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
                 {
-                    var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    var date = anyblock.GetCommentDate();
-                    Assert.Equal(date.ToString(), "6/25/2018 8:08:04 PM");
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnTasksButton();
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    var divs = TaskView.GetDivs();
+                    if (divs != null)
+                    {
+                        var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
+                        var date = anyblock.GetCommentDate();
+                        Assert.Equal(date.ToString(), "7/10/2018 5:05:39 PM");
+                    }
                 }
             }
+);
         }
 
         [Fact]
         public void ShowHideComments()
         {
-            string TaskName = "Simple addition";
-            string coment = "one more comment";
-
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.ClickOnShowHideCommentsButton();
-                Thread.Sleep(3000);
-                TaskView.ClickOnShowHideCommentsButton();
+                string TaskName = "Indexers";
+                string coment = "one more comment";
+
+                fixture.test = fixture.extentReports.CreateTest("ShowHideCommentsButton");
+
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnTasksButton();
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    TaskView.ClickOnShowHideCommentsButton();
+                    Thread.Sleep(1000);
+                    TaskView.ClickOnShowHideCommentsButton();
+                }
             }
+);
         }
 
 
         [Fact]
         public void StarsCount()
         {
-            string TaskName = "Simple addition";
-            string coment = "one more comment";
-
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                //TaskView.GetStarS
+                string TaskName = "Indexers";
+                string email = "student@gmail.com";
 
+                fixture.test = fixture.extentReports.CreateTest("StarsCount");
+
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnTasksButton();
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    var divs = TaskView.GetDivs();
+                    if (divs != null)
+                    {
+                        var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
+                        var count = anyblock.GetStarsss();
+                        MessageBox.Show(count.ToString());
+                        Assert.Equal(count.ToString(), "5");
+                    }
+                }
             }
+);
         }
 
 
@@ -189,41 +235,39 @@ namespace OnlineExam.Tests
         [Fact]
         public void CreateNewComment()
         {
-            string TaskName = "Simple addition";
-            string coment = "one more comment bro";
-
-            var header = ConstructPage<Header>();
-            var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.Navigate().GoToUrl("http://localhost:55842/CourseManagement/ShowExercise/1");
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
+            UITest(() =>
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.CreateCommentText(coment);
-                TaskView.ClickOnCommentButton();
-                Thread.Sleep(2000);
-                TaskView = ConstructPage<TaskViewPage>();
-                var divs = TaskView.GetDivs();
-                if (divs != null)
+                string TaskName = "Indexers";
+                string coment = "rate 4 stars";
+
+                fixture.test = fixture.extentReports.CreateTest("CreateNewComment");
+
+                var ListOfTasks = ConstructPage<TasksPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
                 {
-                    var anyblock = divs.FirstOrDefault(x => x.GetCommentText().Equals(coment, StringComparison.OrdinalIgnoreCase));
-                    var comment = anyblock.GetCommentText();
-                    Assert.Equal(comment.ToString(), coment);
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    firstblock.ClickOnTasksButton();
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    TaskView.CreateCommentText(coment);
+                    TaskView.Click_4_Star();
+                    Thread.Sleep(3000);
+                    TaskView.ClickOnCommentButton();
+                    Thread.Sleep(2000);
+                    driver.RefreshPage();
+                    TaskView = ConstructPage<TaskViewPage>();
+                    var divs = TaskView.GetDivs();
+                    if (divs != null)
+                    {
+                        var anyblock = divs.FirstOrDefault(x => x.GetCommentText().Equals(coment, StringComparison.OrdinalIgnoreCase));
+                        var comment = anyblock.GetCommentText();
+                        Assert.Equal(comment.ToString(), coment);
+                    }                    
                 }
-
             }
+);
         }
-
-
-
-
-
-
     }
 }
 
-    
+
