@@ -25,6 +25,13 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div:nth-child(1) > div.col-lg-5 > a > img")]
         public IWebElement MapWithLink { get; set; }
 
+        /// <summary>
+        /// Send Contact us message to exact email and name with exact text
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="name"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public ContactUsPage ContactUs(string email, string name, string text)
         {
             NameInput.SendKeys(name);

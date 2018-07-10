@@ -27,8 +27,12 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.Id, Using = "submitLogin")]
         public IWebElement signInInputSubmit;
 
-      
-
+        /// <summary>
+        /// Sugns in as given email and password.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public IndexPage SignIn(string email, string password)
         {
             emailInput.SendKeys(email);
@@ -42,8 +46,10 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<IndexPage>();
         }
 
-        
-
+        /// <summary>
+        /// Checks if "Sign In" label is presented in Header.
+        /// </summary>
+        /// <returns></returns>
         public bool IsSignInPresentedInHeader()
         {
             Header header = ConstructPage<Header>();

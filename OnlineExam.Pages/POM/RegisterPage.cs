@@ -26,6 +26,13 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div:nth-child(4) > button")]
         public IWebElement RegistrationButton { get; set; }
 
+        /// <summary>
+        /// Does registration using given email, password and password confirm.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="passwordConfirm"></param>
+        /// <returns></returns>
         public IndexPage Registration(string email, string password, string passwordConfirm)
         {
             EmailInput.SendKeys(email);

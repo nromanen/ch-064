@@ -28,7 +28,11 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = ".row")]//
         private IList<IWebElement> rowOfDivsNewsListElements;
 
-
+        /// <summary>
+        /// Checks if New(by title) is presented in list of news.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
         public bool IsNewsPresentedInNewsList(string title)
         {
             foreach (var row in rowOfDivsNewsListElements)
