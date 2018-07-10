@@ -17,7 +17,8 @@ namespace OnlineExam.Tests
     {
         private Header header;
         private LogInPage logInPage;
-        
+        private SideBar sideBar;
+
 
 
         public AddToFavouriteTest(BaseFixture fixture) : base(fixture)
@@ -26,8 +27,8 @@ namespace OnlineExam.Tests
 
             header = ConstructPage<Header>();
             logInPage = header.GoToLogInPage();
-            //logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            
+            logInPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
+            sideBar = ConstructPage<SideBar>();
         }
 
         [Fact]
@@ -35,29 +36,19 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-            fixture.test = fixture.extentReports.CreateTest("TestAddToFavourites");
-            //BeginTest();
-            //NavigateTo("http://localhost:55842/Account/Login");
-            //System.Threading.Thread.Sleep(1000);
-            //var loginPage = ConstructPage<LogInPage>();
-            //var indexPage = loginPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
-
-            //var goToHistoryPage = new SideBar(driver).CodeHistoryMenuItemClick();
-            //var goToHistoryPage = ConstructPage<SideBar>().CodeHistoryMenuItemClick();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            var historyPage = ConstructPage<HistoryFavouritePage>();
-            var blocks = historyPage.GetHistoryBlocks();
-            string id = "";
-            if (blocks.Any())
-            {
-                var firstBlock = blocks[0];
-                id = firstBlock.GetId();
-                firstBlock.IsLiked();
-                historyPage.SwitchToFavourites();
-            }
-            var favouritesPage = ConstructPage<HistoryFavouritePage>();
-            var favouritesBlocks = favouritesPage.GetFavouriteBlocks();
-            bool likedBlockFound = false;
+                var historyPage = sideBar.GoToCodeHistoryPage();
+                var blocks = historyPage.GetHistoryBlocks();
+                string id = "";
+                if (blocks.Any())
+                {
+                    var firstBlock = blocks[0];
+                    id = firstBlock.GetId();
+                    firstBlock.IsLiked();
+                    historyPage.SwitchToFavourites();
+                }
+                var favouritesPage = ConstructPage<HistoryFavouritePage>();
+                var favouritesBlocks = favouritesPage.GetFavouriteBlocks();
+                bool likedBlockFound = false;
 
                 if (favouritesBlocks.Any())
                 {
@@ -71,9 +62,8 @@ namespace OnlineExam.Tests
                     }
                 }
                 Assert.True(likedBlockFound);
-                fixture.test.Log(Status.Pass, "Code ia added to favourites");
             });
-            
+
         }
     }
 }

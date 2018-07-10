@@ -23,6 +23,11 @@ namespace OnlineExam.Pages.POM.UserDetails
         [FindsBy(How = How.CssSelector, Using = "input[value=Save]")]
         public IWebElement SaveButton { get; set; }
 
+        /// <summary>
+        /// Sets New Name to Name field, sets Confirm Password and clicks Save button.
+        /// </summary>
+        /// <param name="newName"></param>
+        /// <param name="password"></param>
         public void SetNewName( string newName, string password)
         {
             NewUserNameField.SendKeys(newName);
@@ -30,13 +35,5 @@ namespace OnlineExam.Pages.POM.UserDetails
             SaveButton.Click();
         }
 
-        //public NewsPage SaveNewName()
-        //{
-        //    SaveButton.Click();
-        //    return ConstructPage<NewsPage>();
-        //    //return new NewsPage(this.driver);
-        //    //throw new Exception("Rewrite using Page constructor");
-
-        //}
     }
 }

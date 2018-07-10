@@ -20,6 +20,11 @@ namespace OnlineExam.Pages.POM.UserDetails
         [FindsBy(How = How.CssSelector, Using = "input[value=Save]")]
         public IWebElement SaveButton { get; set; }
 
+        /// <summary>
+        /// Sets New Email to Email field, sets Confirm Password and clicks Save button.
+        /// </summary>
+        /// <param name="newEmail"></param>
+        /// <param name="password"></param>
         public void SetNewEmail(string newEmail, string password)
         {
             NewEmailField.SendKeys(newEmail);
@@ -27,20 +32,5 @@ namespace OnlineExam.Pages.POM.UserDetails
             SaveButton.Click();
         }
 
-        //public NewsPage SaveNewEmail()
-        //{
-        //    SaveButton.Click();
-        //    return ConstructPage<NewsPage>();
-            //try
-            //{
-
-            //    //return new NewsPage(this.driver);
-            //    throw new Exception("Rewrite using Page constructor");
-            //}
-            //catch (Exception e)
-            //{
-            //    return null;
-            //}
-        //}
     }
 }
