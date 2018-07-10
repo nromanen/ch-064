@@ -63,23 +63,6 @@ namespace OnlineExam.Pages.POM.CodeHistory.Favourites
             Title.Click();
         }
 
-        //public HistoryFavouritesPage EditCodeText(string editCode)
-        //{
-        //    IndexersField.Click();
-        //    IndexersFieldText.SendKeys(editCode);
-        //    SaveButton.Click();
-        //    return ConstructPage<HistoryFavouritesPage>();
-        //}
-
-        //public TasksPage OpenEditTaskPage()
-        //{
-        //    StartButton.Click();
-        //    return ConstructPage<TasksPage>();
-        //}
-
-
-
-        //Must be review
         public void SaveToFavourites()
         {
             string colorOfLikeButton = LikeButton.GetCssValue("style");

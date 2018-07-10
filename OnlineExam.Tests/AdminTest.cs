@@ -61,7 +61,7 @@ namespace OnlineExam.Tests
             {
                 fixture.test = fixture.extentReports.CreateTest("Change user role test");
                 var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
-                changeRolePage.ChangeRole(Constants.TEACHER);
+                //changeRolePage.ChangeRole(Constants.TEACHER);
                 changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
                 Assert.Equal(Constants.TEACHER, changeRolePage.CurrentRole());
                 fixture.test.Log(Status.Pass, "Role is changed successfully");
