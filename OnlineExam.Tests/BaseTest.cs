@@ -76,7 +76,6 @@ namespace OnlineExam.Tests
         }
 
 
-
         public void UITest(Action action)
         {
             try
@@ -90,14 +89,14 @@ namespace OnlineExam.Tests
                 action();
 
                 fixture.test.Log(Status.Pass, $"{name} test successfully executed");
-
             }
             catch (Exception e)
             {
-                var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,Constants.SCREEN_SHOT,ScreenshotImageFormat.Png);
+                var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,
+                    Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
                 var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
                 fixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
-                fixture.test.Fail($"Message: {e.Message}  \n StackTrace: {e.StackTrace}");
+                fixture.test.Fail($"Message: {e.Message} " + "\n<br>\n<br>" + $"StackTrace: {e.StackTrace}");
                 throw;
             }
         }
