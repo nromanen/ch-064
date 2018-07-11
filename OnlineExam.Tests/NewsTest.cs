@@ -26,18 +26,6 @@ namespace OnlineExam.Tests
         }
 
         [Fact]
-        public void CheckIfNewsArePresent()
-        {
-            UITest(() =>
-            {
-                var signInAsStudent = header.GoToLogInPage().SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-                driver.RefreshPage();
-                var newsPage = ConstructPage<SideBar>().GoToTeacherNewsPage();
-                Assert.False(newsPage.IsNewsPresentedInNewsList("C# Starter"));
-            });
-        }
-
-        [Fact]
         public void CreateNewsTest()
         {
             UITest(() =>
