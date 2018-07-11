@@ -30,6 +30,7 @@ namespace OnlineExam.Tests
         public BaseTest(BaseFixture fixture)
         {
             driver = DriversFabric.InitChrome();
+            driver.Maximize();
             this.fixture = fixture;
         }
 
