@@ -97,7 +97,7 @@ namespace OnlineExam.Tests
                 var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,Constants.SCREEN_SHOT,ScreenshotImageFormat.Png);
                 var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
                 fixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
-                fixture.test.Fail(e.Message);
+                fixture.test.Fail($"Message: {e.Message}  \n StackTrace: {e.StackTrace}");
                 throw;
             }
         }
