@@ -13,7 +13,7 @@ namespace OnlineExam.Tests
         public ExtentHtmlReporter htmlReporter;
         public ExtentReports extentReports;
         public ExtentTest test;
-        
+
 
         //[OneTimeSetUp]
         public BaseFixture()
@@ -22,9 +22,6 @@ namespace OnlineExam.Tests
             htmlReporter = new ExtentHtmlReporter(Constants.REPORT_PATH);
             extentReports = new ExtentReports();
             extentReports.AttachReporter(htmlReporter);
-
-
-            
         }
 
         //[OneTimeTearDown]

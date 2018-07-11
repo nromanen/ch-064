@@ -14,7 +14,6 @@ namespace OnlineExam.Tests
 {
     [Collection("MyTestCollection")]
     public abstract class BaseTest : IDisposable
-        //, IClassFixture<BaseFixture>,ICollectionFixture<MyTestCollection>
     {
         protected ITestOutput output;
 
