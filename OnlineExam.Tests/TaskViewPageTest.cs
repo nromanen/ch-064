@@ -133,7 +133,6 @@ namespace OnlineExam.Tests
                     if (divs != null)
                     {
                         var b = divs.FirstOrDefault(x => x.GetCommentText().Equals(coment, StringComparison.OrdinalIgnoreCase));
-                        MessageBox.Show(b.GetCommentText());
                         Assert.Equal(b.GetCommentText(), coment);
                     }
                 }
@@ -213,7 +212,6 @@ namespace OnlineExam.Tests
                     {
                         var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
                         var count = anyblock.GetStarsss();
-                        MessageBox.Show(count.ToString());
                         Assert.Equal(count.ToString(), "5");
                     }
                 }

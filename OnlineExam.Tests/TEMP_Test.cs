@@ -76,11 +76,62 @@ namespace OnlineExam.Tests
 
 
         [Fact]
+        public void TaskDelete()
+        {
+            UITest(() =>
+            {
+                string taskname = "Simple addition";
+                var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var myblock = blocks.FirstOrDefault(x => x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
+                    myblock.ClickOnDeleteButton();
+                }
+
+                ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
+                blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var myblock = blocks.FirstOrDefault(x => x.Get_DELETED_TaskName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
+                    Assert.Equal(myblock.Get_DELETED_TaskName(), taskname);
+                    myblock.ClickOnRecoverButton();
+                }
+
+            }
+        );
+        }
+
+
+
+        [Fact]
+        public void TaskSolution()
+        {
+            UITest(() =>
+            {
+                string taskname = "Indexers";
+                var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var myblock = blocks.FirstOrDefault(x => x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
+                    myblock.ClickOnSolutionButton();
+                }
+                var url = driver.GetCurrentUrl();
+                Assert.Equal(url, "http://localhost:55842/ExerciseManagement/ExerciseSolutionsIndex/2");
+            }
+        );
+        }
+
+
+
+
+        [Fact]
         public void TaskCreationDate()
         {
             UITest(() =>
             {
-                string CreationDate = "10/07/2018";
+                string CreationDate = "11/07/2018";
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
 
                 var blocks = ListOfTasks.GetBlocks();
@@ -98,7 +149,7 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                string UpdateDate = "10/07/2018";
+                string UpdateDate = "11/07/2018";
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)

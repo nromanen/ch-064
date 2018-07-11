@@ -14,7 +14,10 @@ namespace OnlineExam.Pages.POM
     public class TaskViewPage : BasePage
     {
         public TaskViewPage() { }
-
+        /// <summary>
+        /// all "div" blocks will be placed in the list
+        /// </summary>
+        /// <returns></returns>
         public IList<TaskViewPageDivItem> GetDivs()
         {
             var blocks = new List<TaskViewPageDivItem>();
@@ -31,22 +34,38 @@ namespace OnlineExam.Pages.POM
         public IList<IWebElement> RowOfDiv { get; set; }
 
         public IList<TaskViewPageDivItem> DivItems { get; set; }
-
+        /// <summary>
+        /// Searching first Item from list and it's email with needed email
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <returns></returns>
         public TaskViewPageDivItem GetByEmail(string Email)
         {
             return DivItems.FirstOrDefault(x => String.Equals(x.GetEmail(), Email, StringComparison.OrdinalIgnoreCase));
         }
-
+        /// <summary>
+        /// Searching first Item from list and it's comment text with needed email
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <returns></returns>
         public TaskViewPageDivItem GetByCommentText(string Email)
         {
             return DivItems.FirstOrDefault(x => String.Equals(x.GetCommentText(), Email, StringComparison.OrdinalIgnoreCase));
         }
-
+        /// <summary>
+        /// Searching first Item from list and it's comment date with needed email
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <returns></returns>
         public TaskViewPageDivItem GetByCommentDate(string Email)
         {
             return DivItems.FirstOrDefault(x => String.Equals(x.GetCommentDate(), Email, StringComparison.OrdinalIgnoreCase));
         }
-
+        /// <summary>
+        /// Searching first Item from list and it's rating (stars) with needed email
+        /// </summary>
+        /// <param name="countstars"></param>
+        /// <returns></returns>
         public TaskViewPageDivItem GetStarsCount(int countstars)
         {
             return DivItems.FirstOrDefault(x => String.Equals(x.GetStarsss(), countstars.ToString(), StringComparison.OrdinalIgnoreCase));
@@ -93,48 +112,68 @@ namespace OnlineExam.Pages.POM
         {
             StarsComment_.Click();
         }
-
+        /// <summary>
+        /// rate task in your comment for 4 stars
+        /// </summary>
         public void Click_4_Star()
         {
             StarsComment_4.Click();
         }
-
+        /// <summary>
+        /// rate task in your comment for 3 stars
+        /// </summary>
         public void Click_3_Star()
         {
             StarsComment_3.Click();
         }
-
+        /// <summary>
+        /// rate task in your comment for 5 stars
+        /// </summary>
         public void Click_5_Star()
         {
             StarsComment_5.Click();
         }
-
+        /// <summary>
+        /// "Comment" button will be clicked on
+        /// </summary>
         public void ClickOnCommentButton()
         {
             CommentButton.Click();
         }
-
+        /// <summary>
+        /// Field for text will be filled by your text
+        /// </summary>
+        /// <param name="text"></param>
         public void CreateCommentText(string text)
         {
             commenttext.SendKeys(text);
         }
-
+        /// <summary>
+        /// Code in field will be cleared and fill your text code
+        /// </summary>
+        /// <param name="code"></param>
         public void FillCode(string code)
         {
             TaskCode.Clear();
             TaskCode.SendKeys(code);
         }
-
+        /// <summary>
+        /// "ok" button will be clicked on
+        /// </summary>
         public void ClickOnOkButton()
         {
             OkButton.Click();
         }
-
+        /// <summary>
+        /// "start" button will be clicked on
+        /// </summary>
         public void ClickOnStartButton()
         {
             StartButton.Click();
         }
-
+        /// <summary>
+        /// "ShowHide" button will be clicked on
+        /// </summary>
         public void ClickOnShowHideCommentsButton()
         {
             ShowHideCommentsButton.Click();

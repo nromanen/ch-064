@@ -21,7 +21,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.Id, Using = "tinymce")]
         public IWebElement TaskDescription { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "CodeMirror-code")] //body > div > div > div.row.block2 > div > div > div > div.col-md-9 > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div > div > div.CodeMirror-code
+        [FindsBy(How = How.CssSelector, Using = "CodeMirror-code")]
         public IWebElement FieldForCode { get; set; }
 
         [FindsBy(How = How.Id, Using = "result")]
@@ -36,23 +36,33 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.Id, Using = "done")]
         public IWebElement DoneButton { get; set; }
 
-
+        /// <summary>
+        /// Clear field for code and write your text
+        /// </summary>
+        /// <param name="CodeText"></param>
         public void FillingInFieldForCode(string CodeText)
         {
             FieldForCode.Clear();
             FieldForCode.SendKeys(CodeText);
         }
 
+        /// <summary>
+        /// Execute Button will be clicked on 
+        /// </summary>
         public void ClickOnExecuteButton()
         {
             ExecuteButton.Click();
         }
-
+        /// <summary>
+        /// Exit button will be clicked on
+        /// </summary>
         public void ClickOnExitButton()
         {
             ExitButton.Click();
         }
-
+        /// <summary>
+        /// Done button will be clicked on
+        /// </summary>
         public void ClickOnDoneButton()
         {
             DoneButton.Click();
