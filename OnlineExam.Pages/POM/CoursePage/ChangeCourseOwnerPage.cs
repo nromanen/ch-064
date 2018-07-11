@@ -13,10 +13,7 @@ namespace OnlineExam.Pages.POM
 {
     public class ChangeCourseOwnerPage : BasePage
     {
-        /// <summary>
-        /// http://localhost:55842/CourseManagement/ChangeOwner/1
-        /// </summary>
-        /// 
+      
         public ChangeCourseOwnerPage()
         {
                 

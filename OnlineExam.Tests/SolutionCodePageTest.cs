@@ -109,7 +109,7 @@ namespace OnlineExam.Tests
                     var Code = ConstructPage<SolutionCodePage>();
                     Code.ClickOnExitButton();
                     var url = driver.GetCurrentUrl();
-                    Assert.Equal(url, "http://localhost:55842/");
+                    Assert.Equal("http://localhost:55842/", url);
                 }
             }
         );
@@ -135,66 +135,13 @@ namespace OnlineExam.Tests
                     Code.ClickOnExecuteButton();
                     Code = ConstructPage<SolutionCodePage>();
                     var result = Code.FieldWithResultOfCompilationCode.Text;
-                    Thread.Sleep(3000);
+					Wait(3000);
                     Assert.Empty(result);
                 }
             }
 );
 
         }
-
-
-
-    //    [Fact]
-    //    public void Review()
-    //    {
-    //        UITest(() =>
-    //        {
-    //            string TaskName = "Simple addition";
-    //            fixture.test = fixture.extentReports.CreateTest("IsOnReview?");
-    //            var ListOfTasks = ConstructPage<TasksPage>();
-    //            var blocks = ListOfTasks.GetBlocks();
-    //            if (blocks != null)
-    //            {
-    //                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-    //                firstblock.ClickOnTasksButton();
-    //                var TaskView = ConstructPage<TaskViewPage>();
-    //                TaskView.ClickOnStartButton();
-    //                var Code = ConstructPage<SolutionCodePage>();
-    //                var review = Code.MessageAboutreviewingSolution.Text;
-    //                Assert.NotEmpty(review);
-    //            }
-    //        }
-    //);
-
-    //    }
-
-
-
-
-        //[Fact]
-        //public void TaskExecuting()
-        //{
-        //    UITest(() =>
-        //    {
-        //        string TaskName = "Simple addition";
-        //        var ListOfTasks = ConstructPage<TasksPage>();
-        //        var blocks = ListOfTasks.GetBlocks();
-        //        if (blocks != null)
-        //        {
-        //            var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-        //            firstblock.ClickOnTasksButton();
-        //            var TaskView = ConstructPage<TaskViewPage>();
-        //            TaskView.ClickOnStartButton();
-        //            var Code = ConstructPage<SolutionCodePage>();
-        //            Code.ClickOnExecuteButton();
-        //        }
-        //    }
-        //    );
-        //}
-
-
-
 
     }
 }

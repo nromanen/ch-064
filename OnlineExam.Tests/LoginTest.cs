@@ -32,10 +32,8 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-                //fixture.test = fixture.extentReports.CreateTest("SignInTest");
                 var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
                 Assert.True(result);
-                //fixture.test.Log(Status.Pass, "User signed in.");
             });
         }
 
@@ -44,9 +42,7 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("SignInUsingInvalidEmailTest");
                 logInPage.SignIn(Constants.FAKE_EMAIL, Constants.FAKE_PASSWORD);
-                fixture.test.Log(Status.Pass, "User didn't sign in using invalid email.");
                 Assert.False(header.IsUserEmailPresentedInHeader(Constants.FAKE_EMAIL));
             });
         }
@@ -56,9 +52,7 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("SignInUsingInvalidPasswordTest");
                 logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.FAKE_PASSWORD);
-                fixture.test.Log(Status.Pass, "User didn't sign in using invalid password.");
                 Assert.False(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
             });
         }
@@ -68,19 +62,12 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                fixture.test = fixture.extentReports.CreateTest("SignOutTest");
                 logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
                 driver.RefreshPage();
                 header.SignOut();
                 driver.RefreshPage();
                 Assert.True(logInPage.IsSignInPresentedInHeader());
-                fixture.test.Log(Status.Pass, "User signed out.");
             });
-        }
-
-        public void Dispose()
-        {
-            driver.Dispose();
         }
     }
 }

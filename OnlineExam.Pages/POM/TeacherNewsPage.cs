@@ -41,11 +41,10 @@ namespace OnlineExam.Pages.POM
         {
             WaitWhileNotClickableWebElement(CreateArticleReference);
             CreateArticleReference.Click();
-            //WaitWhileNotClickableWebElement(ChooseFileInput);
             ChooseFileInput.Click();
-            SendKeys.SendWait(@"E:\SS\ch-064\OnlineExam.Pages\Sources\example.jpg");
+            SendKeys.SendWait(@"C:\Users\hmeln\Documents\ATQC_Net\Demo 2\ch-064\OnlineExam.Pages\Sources\Example.jpg");
             SendKeys.SendWait("{Enter}");
-            Thread.Sleep(5000);
+			Wait(5000);
             CourseNameInput.SendKeys("New name");
             TitleTextArea.SendKeys("New title");
             ArticleTextArea.SendKeys("New article");
