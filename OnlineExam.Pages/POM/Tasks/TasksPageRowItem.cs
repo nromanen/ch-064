@@ -26,28 +26,33 @@ namespace OnlineExam.Pages.POM.Tasks
         public IWebElement Button { get; set; }
         [FindsBy(How =How.CssSelector, Using =":nth-child(3) > span")]
         public IWebElement Stars { get; set; }
-
+        /// <summary>
+        /// return count of stars (rating)
+        /// </summary>
+        /// <returns></returns>
         public string GetStarsss()
         {
             var count = Stars.GetAttribute("data-default-rating");
             return count.ToString();
         }
-
+        /// <summary>
+        /// return task name
+        /// </summary>
+        /// <returns></returns>
         public string GetName()
         {
             return Name.Text;
         }
-
-        public string GetButtonText()
-        {
-            return Button.Text;
-        }
-
+        /// <summary>
+        /// "tasks" button will be clicked on
+        /// </summary>
         public void ClickOnTasksButton()
         {
             Button.Click();
         }
-
+        /// <summary>
+        /// return property of stars
+        /// </summary>
         public void StarsCount()
         {
             Stars.GetProperty("star active");

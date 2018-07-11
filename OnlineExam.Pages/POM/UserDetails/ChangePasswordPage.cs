@@ -26,6 +26,12 @@ namespace OnlineExam.Pages.POM.UserDetails
         [FindsBy(How = How.CssSelector, Using = "input[value=Save]")]
         public IWebElement SaveButton { get; set; }
 
+        /// <summary>
+        /// Sets Old Password, New Password, Confirm Password and clicks Save button.
+        /// </summary>
+        /// <param name="oldPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <param name="confirmNewPassword"></param>
         public void SetNewPassword (string oldPassword, string newPassword, string confirmNewPassword)
         {
             OldPasswordField.SendKeys(oldPassword);
@@ -34,18 +40,5 @@ namespace OnlineExam.Pages.POM.UserDetails
             SaveButton.Click();
         }
 
-        //public NewsPage SaveNewPassword()
-        //{
-        //    SaveButton.Click();
-        //    return ConstructPage<NewsPage>();
-            //try
-            //{
-            //    //return new NewsPage(this.driver);
-            //    throw new Exception("Rewrite using Page constructor");
-            //} catch (Exception e)
-            //{
-            //    return null;
-            //}
-        //}
     }
 }

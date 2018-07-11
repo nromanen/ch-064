@@ -133,7 +133,6 @@ namespace OnlineExam.Tests
                     if (divs != null)
                     {
                         var b = divs.FirstOrDefault(x => x.GetCommentText().Equals(coment, StringComparison.OrdinalIgnoreCase));
-                        MessageBox.Show(b.GetCommentText());
                         Assert.Equal(b.GetCommentText(), coment);
                     }
                 }
@@ -162,7 +161,7 @@ namespace OnlineExam.Tests
                     {
                         var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
                         var date = anyblock.GetCommentDate();
-                        Assert.Equal(date.ToString(), "7/10/2018 5:05:39 PM");
+                        Assert.Equal(date.ToString(), "7/11/2018 11:26:28 AM");
                     }
                 }
             }
@@ -175,9 +174,7 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string TaskName = "Indexers";
-                string coment = "one more comment";
-
-
+            
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
@@ -215,7 +212,6 @@ namespace OnlineExam.Tests
                     {
                         var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
                         var count = anyblock.GetStarsss();
-                        MessageBox.Show(count.ToString());
                         Assert.Equal(count.ToString(), "5");
                     }
                 }

@@ -17,7 +17,10 @@ namespace OnlineExam.Pages.POM
     {
         public TeacherExerciseManagerPage() { }
 
-
+        /// <summary>
+        /// all "tr" row will be placed in the list
+        /// </summary>
+        /// <returns></returns>
         public IList<TeacherExerciseManagerPageRowItem> GetBlocks()
         {
             var blocks = new List<TeacherExerciseManagerPageRowItem>();
@@ -42,22 +45,37 @@ namespace OnlineExam.Pages.POM
 
         public IList<TeacherExerciseManagerPageRowItem> RowItems { get; set; }
 
-
+        /// <summary>
+        /// Searching first Row Item and it's name (from list of rows) with needed task name
+        /// </summary>
+        /// <param name="TaskName"></param>
+        /// <returns></returns>
         public TeacherExerciseManagerPageRowItem GetByName(string TaskName)
         {
             return RowItems.FirstOrDefault(x => String.Equals(x.TEMP_GetName(), TaskName, StringComparison.OrdinalIgnoreCase));
         }
-
+        /// <summary>
+        /// Searching first Row Item and it's creation date (from list of rows) with needed task name
+        /// </summary>
+        /// <param name="TaskName"></param>
+        /// <returns></returns>
         public TeacherExerciseManagerPageRowItem GetCreationDate(string TaskName)
         {
             return RowItems.FirstOrDefault(x => String.Equals(x.TEMP_GetCreationDate(), TaskName, StringComparison.OrdinalIgnoreCase));
         }
-
+        /// <summary>
+        /// Searching first Row Item and it's update date (from list of rows) with needed task name
+        /// </summary>
+        /// <param name="TaskName"></param>
+        /// <returns></returns>
         public TeacherExerciseManagerPageRowItem GetUpgradeDate(string TaskName)
         {
             return RowItems.FirstOrDefault(x => String.Equals(x.TEMP_GetUpdateDate(), TaskName, StringComparison.OrdinalIgnoreCase));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public TeacherExerciseManagerPageRowItem deleted ()
         {
             return RowItems.First(x => String.IsNullOrEmpty(x.TEMP_GetCourseName()));
@@ -67,7 +85,9 @@ namespace OnlineExam.Pages.POM
 
         [FindsBy( How = How.CssSelector, Using = "body > div > div > h4 > a")]
         public IWebElement AddTaskButton { get; set; }
-
+        /// <summary>
+        /// "Add" button will be clicked on
+        /// </summary>
         public void ClickOnAddTaskbutton()
         {
            AddTaskButton.Click();
