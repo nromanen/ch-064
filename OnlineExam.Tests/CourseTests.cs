@@ -22,17 +22,17 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string courseName = ".NET FRAMEWORK", courseDescription = "Description";
-
-                var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+                var header = ConstructPage<Header>();
+                header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
                 var sidebar = ConstructPage<SideBar>();
                 sidebar.GoToCourseManagementPage().CreateCourse(courseName, courseDescription);
                 var courseManagment = ConstructPage<CourseManagementPage>();
 
-                var tmp = courseManagment.GetBlocks();
-                if (tmp != null)
+                var blockList = courseManagment.GetBlocks();
+                if (blockList != null)
                 {
-                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
-                    Assert.Equal(courseName,firstBlock.GetCourseName());
+                    var singleBlock = blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                    Assert.Equal(courseName, singleBlock.GetCourseName());
                 }
             });
         }
@@ -43,17 +43,17 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 string courseName = String.Empty, courseDescription = "Description";
-
-                var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+                var header = ConstructPage<Header>();
+                header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
                 var sidebar = ConstructPage<SideBar>();
                 sidebar.GoToCourseManagementPage().CreateCourse(courseName,courseDescription);
                 var courseManagment = ConstructPage<CourseManagementPage>();
 
-                var tmp = courseManagment.GetBlocks();
-                if (tmp != null)
+                var blockList = courseManagment.GetBlocks();
+                if (blockList != null)
                 {
-                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
-                    Assert.Null(firstBlock);
+                    var singleBlock = blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                    Assert.Null(singleBlock);
                 }
             });
         }
@@ -65,18 +65,20 @@ namespace OnlineExam.Tests
             {
                 string courseName = "Selenium";
                 bool flag = false;
-                var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-                var sidebar = ConstructPage<SideBar>().GoToCourseManagementPage();
+                var header = ConstructPage<Header>();
+                header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+                var sidebar = ConstructPage<SideBar>();
+                sidebar.GoToCourseManagementPage();
                 var courseManagment = ConstructPage<CourseManagementPage>();
                 courseManagment.BtnMyCourses.Click();
                 var courseView = ConstructPage<ViewCoursesPage>();
-                var tmp = courseView.GetBlocks();
-                if (tmp != null)
+                var blockList = courseView.GetBlocks();
+                if (blockList != null)
                 {
-                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));                
-                    if (firstBlock != null && (firstBlock.GetBtnDeleteText().Equals("Delete") || firstBlock.GetBtnDeleteText().Equals("Видалити")))
+                    var singleBlock = blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));                
+                    if (singleBlock != null && (singleBlock.GetBtnDeleteText().Equals("Delete") || singleBlock.GetBtnDeleteText().Equals("Видалити")))
                     {
-                        firstBlock.ClickBtnDelete();
+                        singleBlock.ClickBtnDelete();
                         flag = true;
                     }
                 }
@@ -91,18 +93,20 @@ namespace OnlineExam.Tests
             {
                 string courseName = "CLR example";
                 bool flag = false;
-                var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-                var sidebar = ConstructPage<SideBar>().GoToCourseManagementPage();
+                var header = ConstructPage<Header>();
+                header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+                var sidebar = ConstructPage<SideBar>();
+                sidebar.GoToCourseManagementPage();
                 var courseManagment = ConstructPage<CourseManagementPage>();
                 courseManagment.BtnMyCourses.Click();
                 var courseView = ConstructPage<ViewCoursesPage>();
-                var tmp = courseView.GetBlocks();
-                if (tmp != null)
+                var blockList = courseView.GetBlocks();
+                if (blockList != null)
                 {
-                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
-                    if (firstBlock != null && (firstBlock.GetBtnDeleteText().Equals("Recover") || firstBlock.GetBtnDeleteText().Equals("Відновити")))
+                    var singleBlock = blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                    if (singleBlock != null && (singleBlock.GetBtnDeleteText().Equals("Recover") || singleBlock.GetBtnDeleteText().Equals("Відновити")))
                     {
-                        firstBlock.ClickBtnDelete();
+                        singleBlock.ClickBtnDelete();
                         flag = true;
                     }
                 }
@@ -120,18 +124,19 @@ namespace OnlineExam.Tests
                 string courseName = "ChangeMe", newCourseName = "WebDriver";
                 
                 bool flag = false;
-                var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+                var header = ConstructPage<Header>();
+                header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
                 var sidebar = ConstructPage<SideBar>().GoToCourseManagementPage();
                 var courseManagment = ConstructPage<CourseManagementPage>();
                 courseManagment.BtnMyCourses.Click();
                 var courseView = ConstructPage<ViewCoursesPage>();
-                var tmp = courseView.GetBlocks();
-                if (tmp != null)
+                var blockList = courseView.GetBlocks();
+                if (blockList != null)
                 {
-                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
-                    if (firstBlock != null)
+                    var singleBlock = blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                    if (singleBlock != null)
                     {
-                        firstBlock.ClickBtnChange();
+                        singleBlock.ClickBtnChange();
                         var editPage = ConstructPage<CreateCoursePage>();
                         editPage.EditCourse(newCourseName, "New Description");
                         editPage.BtnOk.Click();
@@ -151,18 +156,20 @@ namespace OnlineExam.Tests
             {
                 string courseName = "Owner";
                 string owner = "";
-                var header = ConstructPage<Header>().GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-                var sidebar = ConstructPage<SideBar>().GoToCourseManagementPage();
+                var header = ConstructPage<Header>();
+                header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+                var sidebar = ConstructPage<SideBar>();
+                sidebar.GoToCourseManagementPage();
                 var courseManagment = ConstructPage<CourseManagementPage>();
                 var courseView = ConstructPage<ViewCoursesPage>();
-                var tmp = courseView.GetBlocks();
+                var blockList = courseView.GetBlocks();
                 
-                if (tmp != null)
+                if (blockList != null)
                 {
-                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
-                    if (firstBlock != null)
+                    var singleBlock = blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                    if (singleBlock != null)
                     {
-                        firstBlock.ClickBtnChangeOwner();
+                        singleBlock.ClickBtnChangeOwner();
                         var changeOwner = ConstructPage<ChangeCourseOwnerPage>();
                         owner = changeOwner.GetOwner();
                         changeOwner.ChangeOwner();
@@ -171,14 +178,14 @@ namespace OnlineExam.Tests
                 this.driver.RefreshPage();
 
                 courseView = ConstructPage<ViewCoursesPage>();
-                tmp = courseView.GetBlocks();
+                blockList = courseView.GetBlocks();
 
-                if (tmp != null)
+                if (blockList != null)
                 {
-                    var firstBlock = tmp.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
-                    if (firstBlock != null)
+                    var singleBlock = blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                    if (singleBlock != null)
                     {
-                        firstBlock.ClickBtnChangeOwner();
+                        singleBlock.ClickBtnChangeOwner();
                         var changeOwner = ConstructPage<ChangeCourseOwnerPage>();
                         var currenOwner = changeOwner.GetOwner();
                         Assert.NotEqual(owner,currenOwner);
