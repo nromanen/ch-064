@@ -17,65 +17,64 @@ namespace OnlineExam.Tests
     {
         private Header header;
         private LogInPage logInPage;
-        private UserInfoPage userInfo;
+        private SideBar sideBar;
 
 
-        //public TestSaveExecutedTestToCodeHistory(BaseFixture fixture) : base(fixture)
-        //{
-        //    BeginTest();
 
-        //    header = ConstructPage<Header>();
-        //    logInPage = header.GoToLogInPage();
-        //    logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-        //    userInfo = header.GoToUserAccountPage();
-        //}
+        public TestSaveExecutedTestToCodeHistory(BaseFixture fixture) : base(fixture)
+        {
+            BeginTest();
+            header = ConstructPage<Header>();
+        }
 
-        //[Fact]
-        //  public void SaveExecutedTestToCodeHistory()
-        //    {
+        [Fact]
+        public void SaveExecutedTestToCodeHistory()
+        {
 
-        //    UITest(() =>
-        //    {
-        //        fixture.test = fixture.extentReports.CreateTest("TestChangePassword");
+            UITest(() =>
+            {
+                var logInPage = header.GoToLogInPage();
+                logInPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
+                sideBar = ConstructPage<SideBar>();
+                var courseManagment = sideBar.GoToCourseManagementPage();
+                var coursesBlocks = courseManagment.GetBlocks();
+                var courseItem = coursesBlocks.FirstOrDefault(x => x.GetCourseName().Equals("C# Essential", StringComparison.OrdinalIgnoreCase));
+                courseItem.ClickCourseLink();
 
-        //        string TaskName = "Simple addition";
-        //        var header = ConstructPage<Header>();
-        //        var logInPage = header.GoToLogInPage();
-        //        logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-        //        NavigateTo("http://localhost:55842/CourseManagement/ShowExercise/1");
-        //        var ListOfTasks = ConstructPage<TasksPage>();
-        //        string nameOfExecutedTask = "";
+                var ListOfTasks = ConstructPage<TasksPage>();
+                string TaskName = "Indexers";
+                string nameOfExecutedTask = "";
 
-        //        var blocks = ListOfTasks.GetBlocks();
-        //        if (blocks != null)
-        //        {
-        //            var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-        //            nameOfExecutedTask = firstblock.GetName();
-        //            firstblock.ClickOnTasksButton();
-        //            Thread.Sleep(2000);
-        //            var TaskView = ConstructPage<TaskViewPage>();
-        //            TaskView.ClickOnStartButton();
-        //            Thread.Sleep(2000);
-        //            var Code = ConstructPage<SolutionCodePage>();
-        //            Code.ClickOnExecuteButton();
-        //            Thread.Sleep(2000);
-        //        }
-        //        var historyPage = ConstructPage<HistoryFavouritePage>();
-        //        var blocksHistory = historyPage.GetHistoryBlocks();
 
-        //        //bool blockOfExecutedCode = false;
+                var blocks = ListOfTasks.GetBlocks();
+                if (blocks != null)
+                {
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    nameOfExecutedTask = firstblock.GetName();
+                    firstblock.ClickOnTasksButton();
 
-        //        //foreach (var block in blocksHistory)
-        //        //{
-        //        //    if (block.GetName == nameOfExecutedTask)
-        //        //    {
-        //        //        blockOfExecutedCode = true;
-        //        //        break;
-        //        //    }
-        //        //}
-        //        //Assert.True(blockOfExecutedCode);
-        //        //fixture.test.Log(Status.Pass, "Code ia saved to history");
-        //    });
-        //}
+                    var TaskView = ConstructPage<TaskViewPage>();
+                    TaskView.ClickOnStartButton();
+
+                    var Code = ConstructPage<SolutionCodePage>();
+                    Code.ClickOnExecuteButton();
+
+                }
+                var historyPage = sideBar.GoToCodeHistoryPage();
+                var blocksHistory = historyPage.GetHistoryBlocks();
+
+                bool blockOfExecutedCode = false;
+
+                foreach (var block in blocksHistory)
+                {
+                    if (block.GetTitle() == nameOfExecutedTask)
+                    {
+                        blockOfExecutedCode = true;
+                        break;
+                    }
+                }
+                Assert.True(blockOfExecutedCode);
+            });
+        }
     }
 }
