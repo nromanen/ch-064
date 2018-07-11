@@ -90,7 +90,7 @@ namespace OnlineExam.Tests
                 {
                     var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                     var count = firstBlock.GetStarsss();
-                    Assert.Equal(count.ToString(), "0");
+                    Assert.Equal("4" , count.ToString());
                 }
 
             }
