@@ -14,7 +14,7 @@ namespace OnlineExam.Tests
     public class TaskViewPageTest : BaseTest
     {
         private Header header;
-        private SideBar CoursesPage;
+        private SideBar sidebar;
         private CourseManagementPage CoursesList;
 
 
@@ -26,7 +26,8 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            var CoursesPage = ConstructPage<SideBar>().GoToCourseManagementPage();
+            var sidebar = ConstructPage<SideBar>();
+            sidebar.GoToCourseManagementPage();
             var CoursesList = ConstructPage<CourseManagementPage>();
             var block = CoursesList.GetBlocks();
             if (block != null)
@@ -189,7 +190,7 @@ namespace OnlineExam.Tests
                     if (blocks != null)
                     {
                         var firstblock = blocks.FirstOrDefault(x =>
-                            x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                        x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                         firstblock.ClickOnTasksButton();
                         var TaskView = ConstructPage<TaskViewPage>();
                         TaskView.ClickOnShowHideCommentsButton();

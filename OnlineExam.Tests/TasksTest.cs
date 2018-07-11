@@ -14,7 +14,7 @@ namespace OnlineExam.Tests
     public class TasksTest : BaseTest
     {
         private Header header;
-        private SideBar CoursesPage;
+        private SideBar sidebar;
         private CourseManagementPage CoursesList;
       
         public TasksTest(BaseFixture fixture) : base(fixture)
@@ -25,7 +25,9 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            var CoursesPage = ConstructPage<SideBar>().GoToCourseManagementPage();
+            var sidebar = ConstructPage<SideBar>();
+            sidebar.GoToCourseManagementPage();
+
             var CoursesList = ConstructPage<CourseManagementPage>();
             var block = CoursesList.GetBlocks();
             if (block != null)
