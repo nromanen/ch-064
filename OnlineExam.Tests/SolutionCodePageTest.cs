@@ -14,7 +14,7 @@ namespace OnlineExam.Tests
     public class SolutionCodePageTest : BaseTest
     {
         private Header header;
-        private SideBar CoursesPage;
+        private SideBar sidebar;
         private CourseManagementPage CoursesList;
 
         public SolutionCodePageTest(BaseFixture fixture) : base(fixture)
@@ -25,7 +25,8 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            var CoursesPage = ConstructPage<SideBar>().GoToCourseManagementPage();
+            var sidebar = ConstructPage<SideBar>();
+            sidebar.GoToCourseManagementPage();
             var CoursesList = ConstructPage<CourseManagementPage>();
             var block = CoursesList.GetBlocks();
             if (block != null)
@@ -40,26 +41,6 @@ namespace OnlineExam.Tests
         }
 
 
-        [Fact]
-        public void TaskExecuting()
-        {
-            UITest(() =>
-            {
-                string TaskName = "Simple addition";
-                var ListOfTasks = ConstructPage<TasksPage>();
-                var blocks = ListOfTasks.GetBlocks();
-                if (blocks != null)
-                {
-                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                    firstblock.ClickOnTasksButton();
-                    var TaskView = ConstructPage<TaskViewPage>();
-                    TaskView.ClickOnStartButton();
-                    var Code = ConstructPage<SolutionCodePage>();
-                    Code.ClickOnExecuteButton();                    
-                }
-            }
-            );
-        }
 
 
         [Fact]
@@ -77,8 +58,36 @@ namespace OnlineExam.Tests
                     var TaskView = ConstructPage<TaskViewPage>();
                     TaskView.ClickOnStartButton();
                     var Code = ConstructPage<SolutionCodePage>();
+                    Code.ClickOnExecuteButton();
                     Code.ClickOnDoneButton();
+
                 }
+                var CoursesPage = ConstructPage<SideBar>().GoToCourseManagementPage();
+                var CoursesList = ConstructPage<CourseManagementPage>();
+                var block = CoursesList.GetBlocks();
+                if (block != null)
+                {
+                    var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals("C# Starter", StringComparison.OrdinalIgnoreCase));
+
+                    if (firstBlock != null)
+                    {
+                        firstBlock.ClickCourseLink();
+                    }
+                    ListOfTasks = ConstructPage<TasksPage>();
+                    blocks = ListOfTasks.GetBlocks();
+                    if (blocks != null)
+                    {
+                        var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                        firstblock.ClickOnTasksButton();
+                        var TaskView = ConstructPage<TaskViewPage>();
+                        TaskView.ClickOnStartButton();
+                        var Code = ConstructPage<SolutionCodePage>();
+                        var review = Code.MessageAboutreviewingSolution.Text;
+                        Assert.NotEmpty(review);
+                    }
+                }
+
+
             }
             );
         }
@@ -136,33 +145,53 @@ namespace OnlineExam.Tests
 
 
 
-        //    [Fact]
-        //    public void Review()
+    //    [Fact]
+    //    public void Review()
+    //    {
+    //        UITest(() =>
+    //        {
+    //            string TaskName = "Simple addition";
+    //            fixture.test = fixture.extentReports.CreateTest("IsOnReview?");
+    //            var ListOfTasks = ConstructPage<TasksPage>();
+    //            var blocks = ListOfTasks.GetBlocks();
+    //            if (blocks != null)
+    //            {
+    //                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+    //                firstblock.ClickOnTasksButton();
+    //                var TaskView = ConstructPage<TaskViewPage>();
+    //                TaskView.ClickOnStartButton();
+    //                var Code = ConstructPage<SolutionCodePage>();
+    //                var review = Code.MessageAboutreviewingSolution.Text;
+    //                Assert.NotEmpty(review);
+    //            }
+    //        }
+    //);
+
+    //    }
+
+
+
+
+        //[Fact]
+        //public void TaskExecuting()
+        //{
+        //    UITest(() =>
         //    {
-        //        UITest(() =>
+        //        string TaskName = "Simple addition";
+        //        var ListOfTasks = ConstructPage<TasksPage>();
+        //        var blocks = ListOfTasks.GetBlocks();
+        //        if (blocks != null)
         //        {
-        //            string TaskName = "Simple addition";
-        //            fixture.test = fixture.extentReports.CreateTest("IsOnReview?");
-        //            var ListOfTasks = ConstructPage<TasksPage>();
-        //            var blocks = ListOfTasks.GetBlocks();
-        //            if (blocks != null)
-        //            {
-        //                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-        //                firstblock.ClickOnTasksButton();
-        //                var TaskView = ConstructPage<TaskViewPage>();
-        //                TaskView.ClickOnStartButton();
-        //                var Code = ConstructPage<SolutionCodePage>();
-        //                var review = Code.MessageAboutreviewingSolution.Text;
-        //                Assert.NotEmpty(review);
-        //            }
+        //            var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+        //            firstblock.ClickOnTasksButton();
+        //            var TaskView = ConstructPage<TaskViewPage>();
+        //            TaskView.ClickOnStartButton();
+        //            var Code = ConstructPage<SolutionCodePage>();
+        //            Code.ClickOnExecuteButton();
         //        }
-        //);
-
         //    }
-
-
-
-
+        //    );
+        //}
 
 
 

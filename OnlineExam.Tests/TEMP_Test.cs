@@ -15,7 +15,8 @@ namespace OnlineExam.Tests
     {
 
         private Header header;
-        private SideBar TeacherTasksPage;
+        private SideBar sidebar;
+
 
         public TEMP_Test(BaseFixture fixture) : base(fixture)
         {
@@ -24,7 +25,8 @@ namespace OnlineExam.Tests
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            var TeacherTasksPage = ConstructPage<SideBar>().GoToTasksPage();
+            var sidebar = ConstructPage<SideBar>();
+            sidebar.GoToTasksPage();
         }
 
         [Fact]
@@ -167,20 +169,14 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                string NEWTASK = "NewTaskkkkk";
+                string NEWTASK = "NewTask";
 
                 var Tasks = ConstructPage<TeacherExerciseManagerPage>();
                 Tasks.ClickOnAddTaskbutton();
                 var AddTaskPage = ConstructPage<AddTaskAsTeacherPage>();
                 AddTaskPage.ChooseCourse("C# Essential");
                 AddTaskPage.AddTaskNameForNewTask(NEWTASK);
-
-                                    //AddTaskPage.AddTestCasesCode("Tratataaa case code blalala");
-                                    //AddTaskPage.AddDescriptionForNewTask("New description tratata blablabla");
-                                    //AddTaskPage.AddBaseCodeForNewTask("yo maaaaaaaaaan");
-
                 AddTaskPage.ClickOnAddButton();               
-
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
