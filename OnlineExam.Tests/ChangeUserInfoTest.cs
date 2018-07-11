@@ -24,8 +24,7 @@ namespace OnlineExam.Tests
 
             header = ConstructPage<Header>();
             logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            userInfo = header.GoToUserAccountPage();
+           
         }
 
         [Fact]
@@ -33,6 +32,8 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
+                logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+                userInfo = header.GoToUserAccountPage();
                 var isOpened = driver.GetCurrentUrl().EndsWith("/User");
                 Assert.True(isOpened);
 
@@ -42,7 +43,7 @@ namespace OnlineExam.Tests
                 Assert.True(userInfoPage.HasChangeEmailButton());
 
                 var userEmail = userInfoPage.GetEmail();
-                var isEqual = String.Equals(userEmail, "teacher@gmail.com");
+                var isEqual = String.Equals(userEmail, Constants.TEACHER_EMAIL);
                 Assert.True(isEqual);
 
             });
@@ -53,18 +54,23 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                var changeEmailPage = userInfo.OpenChangeEmailPage();
-                string newEmail = "teacher@gmail.com";
+                logInPage.SignIn(Constants.USER_FOR_CHANGE_EMAIL, Constants.USER_PASSWORD);
+                userInfo = header.GoToUserAccountPage();
 
-                changeEmailPage.SetNewEmail(newEmail, Constants.TEACHER_PASSWORD);
+                var changeEmailPage = userInfo.OpenChangeEmailPage();
+                string newEmail = "NewEmail@gmail.com";
+
+                changeEmailPage.SetNewEmail(newEmail, Constants.USER_PASSWORD);
                 var email = header.GoToUserAccountPage().GetEmail();
                 var isEqual = String.Equals(email, newEmail);
                 Assert.True(isEqual);
 
                 header.SignOut();
-                header.GoToLogInPage().SignIn(newEmail, Constants.TEACHER_PASSWORD);
+                header.GoToLogInPage().SignIn("NewEmail@gmail.com", Constants.USER_PASSWORD);
+                var flag = header.GetCurrentUrl().Contains(Constants.LOGIN_URL_CONTAINS);
+                Assert.False(flag,"Email was changed on UI but not in DB");
                 header.GoToUserAccountPage();
-                var isEqualAfterRepeatLogIn = string.Equals(userInfo.GetEmail(), newEmail);
+                var isEqualAfterRepeatLogIn = string.Equals(userInfo.GetEmail(), newEmail,StringComparison.InvariantCulture);
                 Assert.True(isEqualAfterRepeatLogIn);
 
             });
@@ -75,12 +81,13 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                var userInfo = header.GoToUserAccountPage();
+                logInPage.SignIn(Constants.USER_FOR_CHANGE_NAME, Constants.USER_PASSWORD);
+                userInfo = header.GoToUserAccountPage();
                 var changeNamePage = userInfo.OpenChangeNamePage();
-
-                changeNamePage.SetNewName("teacher@gmail.com", Constants.TEACHER_PASSWORD);
-                var newUserName = header.GetHeaderUserName();
-                var isEqual = String.Equals(Constants.TEACHER_EMAIL, newUserName, StringComparison.InvariantCultureIgnoreCase);
+                var newName = "NewName";
+                changeNamePage.SetNewName(newName, Constants.USER_PASSWORD);
+                var newUserNameFromHeader = header.GetHeaderUserName();
+                var isEqual = String.Equals(newName, newUserNameFromHeader, StringComparison.InvariantCultureIgnoreCase);
                 Assert.True(isEqual);
 
             });
@@ -91,18 +98,20 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
+                logInPage.SignIn(Constants.USER_FOR_CHANGE_PASSWORD, Constants.USER_PASSWORD);
+                userInfo = header.GoToUserAccountPage();
                 var changePasswordPage = userInfo.OpenChangePasswordPage();
-                var newPassword = "Teacher_123";
+                var newPassword = "NewNewNew_123";
                 var confirmNewPassword = newPassword;
-                changePasswordPage.SetNewPassword("Teacher_123", newPassword, confirmNewPassword);
+                changePasswordPage.SetNewPassword(Constants.USER_PASSWORD, newPassword, confirmNewPassword);
 
                 header.SignOut();
 
-                header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, newPassword);
+                header.GoToLogInPage().SignIn(Constants.USER_FOR_CHANGE_PASSWORD, newPassword);
                 header.GoToUserAccountPage();
 
                 var newUserName = header.GetHeaderUserName();
-                var isEqual = String.Equals("teacher@gmail.com", newUserName, StringComparison.InvariantCultureIgnoreCase);
+                var isEqual = String.Equals(Constants.USER_FOR_CHANGE_PASSWORD, newUserName, StringComparison.InvariantCultureIgnoreCase);
 
                 Assert.True(isEqual);
 

@@ -57,7 +57,9 @@ namespace OnlineExam.Tests
                     TaskView.ClickOnStartButton();
 
                     var Code = ConstructPage<SolutionCodePage>();
+
                     Code.ClickOnExecuteButton();
+                    Thread.Sleep(5000);
 
                 }
                 var historyPage = sideBar.GoToCodeHistoryPage();
