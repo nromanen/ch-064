@@ -33,7 +33,7 @@ namespace OnlineExam.Tests
                 var signInAsStudent = header.GoToLogInPage().SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
                 driver.RefreshPage();
                 var newsPage = ConstructPage<SideBar>().GoToTeacherNewsPage();
-                Assert.True(newsPage.IsNewsPresentedInNewsList("C# Starter"));
+                Assert.False(newsPage.IsNewsPresentedInNewsList("C# Starter"));
             });
         }
 
