@@ -1,12 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OnlineExam.Framework;
-using OpenQA.Selenium.Support.UI;
+using System.Threading;
 
 namespace OnlineExam.Pages.POM
 {
@@ -54,9 +50,13 @@ namespace OnlineExam.Pages.POM
             }
         }
 
+		public void Wait(int time)
+		{
+			Thread.Sleep(time);
+		}
 
 
-        public void WaitWhileNotClickableWebElement(IWebElement webElement)
+		public void WaitWhileNotClickableWebElement(IWebElement webElement)
         {
            driver.WaitWhileNotClickableWebElement(webElement);
         }

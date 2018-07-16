@@ -25,7 +25,6 @@ namespace OnlineExam.Pages.POM.CoursePage
         public IWebElement createDate { get; set; }
 
         //.table > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > a:nth-child(1)
-        //.table > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > a:nth-child(1)
         [FindsBy(How = How.CssSelector, Using = "a:nth-child(1)")]
         public IWebElement link { get; set; }
 
@@ -34,11 +33,7 @@ namespace OnlineExam.Pages.POM.CoursePage
 
         public void ClickOnCourseTitle()
         {
-            //System.Windows.Forms.MessageBox.Show(courseName.GetAttribute("href").ToString());
-            //System.Windows.Forms.MessageBox.Show(courseName.GetAttribute("value").ToString());
-           // var tmp = courseName.GetAttribute("href");
-            
-            
+           
             courseName.Click();
         }
 

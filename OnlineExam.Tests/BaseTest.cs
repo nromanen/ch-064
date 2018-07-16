@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using AventStack.ExtentReports;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
@@ -101,8 +102,13 @@ namespace OnlineExam.Tests
             }
         }
 
-        //[TearDown]
-        public virtual void Dispose()
+		public void Wait(int time)
+		{
+			Thread.Sleep(time);
+		}
+
+		//[TearDown]
+		public virtual void Dispose()
         {
             driver?.Dispose();
         }

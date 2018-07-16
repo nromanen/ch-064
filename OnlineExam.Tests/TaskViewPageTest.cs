@@ -194,7 +194,7 @@ namespace OnlineExam.Tests
                         firstblock.ClickOnTasksButton();
                         var TaskView = ConstructPage<TaskViewPage>();
                         TaskView.ClickOnShowHideCommentsButton();
-                        Thread.Sleep(1000);
+						Wait(1000);
                         TaskView.ClickOnShowHideCommentsButton();
                     }
                 }
@@ -252,9 +252,7 @@ namespace OnlineExam.Tests
                         var TaskView = ConstructPage<TaskViewPage>();
                         TaskView.CreateCommentText(coment);
                         TaskView.Click_4_Star();
-                        Thread.Sleep(3000);
                         TaskView.ClickOnCommentButton();
-                        Thread.Sleep(2000);
                         driver.RefreshPage();
                         TaskView = ConstructPage<TaskViewPage>();
                         var divs = TaskView.GetDivs();

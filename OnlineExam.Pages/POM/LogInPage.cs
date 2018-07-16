@@ -39,9 +39,9 @@ namespace OnlineExam.Pages.POM
             passwordInput.SendKeys(password);
             rememberMeCheckBox.Click();
             signInInputSubmit.Click();
-            Thread.Sleep(1000);
-            driver.RefreshPage();
-            Thread.Sleep(1000);
+			Wait(1000);
+			driver.RefreshPage();
+			Wait(1000);
             driver.RefreshPage();
             return ConstructPage<IndexPage>();
         }

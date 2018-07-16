@@ -112,7 +112,6 @@
     <Compile Include="POM\Mail\ContactUsPage.cs" />
     <Compile Include="POM\CoursePage\CourseManagementPage.cs" />
     <Compile Include="POM\CoursePage\CreateCoursePage.cs" />
-    <Compile Include="POM\ExerciseSolutionsIndex.cs" />
     <Compile Include="POM\Header.cs" />
     <Compile Include="POM\IndexPage.cs" />
     <Compile Include="POM\LogInPage.cs" />

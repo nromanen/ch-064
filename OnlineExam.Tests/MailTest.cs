@@ -71,9 +71,5 @@ namespace OnlineExam.Tests
             });
         }
 
-        public void Dispose()
-        {
-            driver.Dispose();
-        }
     }
 }

@@ -120,7 +120,7 @@ namespace OnlineExam.Tests
                     myblock.ClickOnSolutionButton();
                 }
                 var url = driver.GetCurrentUrl();
-                Assert.Equal(url, "http://localhost:55842/ExerciseManagement/ExerciseSolutionsIndex/2");
+                Assert.Contains("ExerciseManagement/ExerciseSolutionsIndex/2", url);
             }
         );
         }
@@ -140,7 +140,7 @@ namespace OnlineExam.Tests
                 if (blocks != null)
                 {
                     var allblock = blocks.Where(x => x.TEMP_GetCreationDate().Equals(CreationDate, StringComparison.OrdinalIgnoreCase));
-                    Assert.Equal(allblock.Count(), 2);
+                    Assert.Equal(2,allblock.Count());
                 }
             }
     );
@@ -157,7 +157,7 @@ namespace OnlineExam.Tests
                 if (blocks != null)
                 {
                     var allblock = blocks.Where(x => x.TEMP_GetCreationDate().Equals(UpdateDate, StringComparison.OrdinalIgnoreCase));
-                    Assert.Equal(allblock.Count(), 2);
+                    Assert.Equal(2, allblock.Count());
                 }
             }
 );
