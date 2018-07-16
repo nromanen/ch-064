@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
+using NUnit.Framework;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
@@ -9,24 +12,41 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.Tests
 {
-    public abstract class BaseTest : IDisposable
+    [TestFixture]
+    public abstract class BaseTest
     {
-       
-
         protected ExtendedWebDriver driver;
+        public ExtentHtmlReporter htmlReporter;
+        public ExtentReports extentReports;
+        public ExtentTest test;
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            DatabaseHelper.BackupDatabase();
+            htmlReporter = new ExtentHtmlReporter(Constants.REPORT_PATH);
+            extentReports = new ExtentReports();
+            extentReports.AttachReporter(htmlReporter);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            extentReports.Flush();
+            DatabaseHelper.RollbackDatabase();
+        }
 
         public BaseTest()
         {
             driver = DriversFabric.InitChrome();
         }
 
-        ////[SetUp]
-        //public BaseTest(BaseFixture fixture)
-        //{
-        //    driver = DriversFabric.InitChrome();
-        //    driver.Maximize();
-        //    this.fixture = fixture;
-        //}
+        [SetUp]
+        public void SetUp()
+        {
+            driver = DriversFabric.InitChrome();
+            driver.Maximize();
+        }
 
 
         public void BeginTest()
@@ -79,30 +99,30 @@ namespace OnlineExam.Tests
                 var method = frame.GetMethod();
                 var type = method.DeclaringType;
                 var name = method.Name;
-            //    fixture.test = fixture.extentReports.CreateTest($"{name}");
+                //    fixture.test = fixture.extentReports.CreateTest($"{name}");
 
                 action();
 
-          //      fixture.test.Log(Status.Pass, $"{name} test successfully executed");
+                //      fixture.test.Log(Status.Pass, $"{name} test successfully executed");
             }
             catch (Exception e)
             {
                 var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,
                     Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
-          //      var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
-          //      fixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
-         //       fixture.test.Fail($"Message: {e.Message} " + "\n<br>\n<br>" + $"StackTrace: {e.StackTrace}");
+                //      var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
+                //      fixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
+                //       fixture.test.Fail($"Message: {e.Message} " + "\n<br>\n<br>" + $"StackTrace: {e.StackTrace}");
                 throw;
             }
         }
 
         public void Wait(int time)
-		{
-			Thread.Sleep(time);
-		}
+        {
+            Thread.Sleep(time);
+        }
 
-		//[TearDown]
-		public virtual void Dispose()
+        [TearDown]
+        public virtual void TearDown()
         {
             driver?.Dispose();
         }

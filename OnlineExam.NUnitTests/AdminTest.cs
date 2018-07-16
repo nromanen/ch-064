@@ -5,7 +5,6 @@ using OnlineExam.Pages.POM;
 
 namespace OnlineExam.Tests
 {
-    //[Collection("MyTestCollection")]
     [TestFixture]
     public class AdminTest : BaseTest
     {

@@ -43,7 +43,7 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 var logIn = header.GoToLogInPage();
-          //      Assert.Contains(Constants.LOGIN_URL_CONTAINS, logIn.GetCurrentUrl());
+                StringAssert.Contains(Constants.LOGIN_URL_CONTAINS, logIn.GetCurrentUrl());
             });
         }
 
@@ -53,7 +53,7 @@ namespace OnlineExam.Tests
             UITest(() =>
             {
                 var regPage = header.GoToRegistrationPage();
-           //     Assert.Contains(Constants.REGISTRATION_URL_CONTAINS, regPage.GetCurrentUrl());
+                StringAssert.Contains(Constants.REGISTRATION_URL_CONTAINS, regPage.GetCurrentUrl());
             });
         }
     }
