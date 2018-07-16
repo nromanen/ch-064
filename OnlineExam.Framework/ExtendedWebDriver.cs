@@ -74,6 +74,12 @@ namespace OnlineExam.Framework
             wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
         }
 
+        public void WaitUntilElementExists(IWebElement webElement, string expectedStr)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+            wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));//  ElementExists(By.CssSelector(webElement)));
+        }
+
         public void RefreshPage()
         {
             driver.Navigate().Refresh();

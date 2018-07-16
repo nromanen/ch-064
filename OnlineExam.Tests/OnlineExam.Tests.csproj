@@ -103,7 +103,6 @@
     <Compile Include="SaveExecutedTaskToCodeHistoryTest.cs" />
     <Compile Include="BaseFixture.cs" />
     <Compile Include="TasksTest.cs" />
-    <Compile Include="CheckAnyInFavourites.cs" />
     <Compile Include="AdminTest.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="HeaderTest.cs" />

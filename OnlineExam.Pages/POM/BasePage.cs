@@ -61,6 +61,12 @@ namespace OnlineExam.Pages.POM
            driver.WaitWhileNotClickableWebElement(webElement);
         }
 
+        public void WaitUntilElementExists(IWebElement webElement, string expectedStr)
+        {
+            driver.WaitUntilElementExists(webElement, expectedStr);
+        }
+
+
         public string GetCurrentUrl()
         {
             return driver.GetCurrentUrl();
