@@ -12,6 +12,9 @@ namespace OnlineExam.DatabaseHelper
         {
             Console.WriteLine("Type 'help' for more info.");
             Console.Write(">");
+            Helper.BackupDatabase(@"C:\Users\FeareD\Desktop\Test.bak");
+            Helper.RestoreDatabase(@"C:\Users\FeareD\Desktop\Test.bak","Main");
+
             Console.ReadKey();
         }
     }
