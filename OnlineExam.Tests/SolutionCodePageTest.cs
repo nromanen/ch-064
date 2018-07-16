@@ -58,7 +58,7 @@ namespace OnlineExam.Tests
                     var TaskView = ConstructPage<TaskViewPage>();
                     TaskView.ClickOnStartButton();
                     var Code = ConstructPage<SolutionCodePage>();
-                    Code.ClickOnExecuteButton();
+                    Code.ClickOnExecuteButton("Total");
                     Code.ClickOnDoneButton();
 
                 }
@@ -132,11 +132,10 @@ namespace OnlineExam.Tests
                     var TaskView = ConstructPage<TaskViewPage>();
                     TaskView.ClickOnStartButton();
                     var Code = ConstructPage<SolutionCodePage>();
-                    Code.ClickOnExecuteButton();
+                    Code.ClickOnExecuteButton("Total");
                     Code = ConstructPage<SolutionCodePage>();
                     var result = Code.FieldWithResultOfCompilationCode.Text;
-					Wait(3000);
-                    Assert.Empty(result);
+                    Assert.NotEmpty(result);
                 }
             }
 );

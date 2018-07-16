@@ -14,7 +14,7 @@ namespace OnlineExam.Framework
     {
         static int ScreenCounter = 0; //Will be update per screenshot that we took
         private IWebDriver driver;
-        public static TimeSpan WAIT_TIME = new TimeSpan(0, 0, 100);
+        public static TimeSpan WAIT_TIME = new TimeSpan(0,0,10);
 
         public ExtendedWebDriver(IWebDriver driver)
         {
@@ -66,6 +66,12 @@ namespace OnlineExam.Framework
         public string GetCurrentTitle()
         {
             return driver.Title;
+        }
+
+        public void WaitWhileTextToBePresentInElement(IWebElement webElement,string text)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+            wait.Until(ExpectedConditions.TextToBePresentInElement(webElement,text));
         }
 
         public void WaitWhileNotClickableWebElement(IWebElement webElement)

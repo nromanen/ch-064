@@ -49,9 +49,10 @@ namespace OnlineExam.Pages.POM
         /// <summary>
         /// Execute Button will be clicked on 
         /// </summary>
-        public void ClickOnExecuteButton()
+        public void ClickOnExecuteButton(string text)
         {
             ExecuteButton.Click();
+            WaitWhileTextToBePresentInElement(FieldWithResultOfCompilationCode,text);
         }
         /// <summary>
         /// Exit button will be clicked on

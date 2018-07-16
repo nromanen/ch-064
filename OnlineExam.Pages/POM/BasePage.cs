@@ -55,6 +55,11 @@ namespace OnlineExam.Pages.POM
 			Thread.Sleep(time);
 		}
 
+        public void WaitWhileTextToBePresentInElement(IWebElement webElement,string text)
+        {
+            driver.WaitWhileTextToBePresentInElement(webElement,text);
+        }
+
 
 		public void WaitWhileNotClickableWebElement(IWebElement webElement)
         {
