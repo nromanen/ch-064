@@ -58,8 +58,7 @@ namespace OnlineExam.Tests
 
                     var Code = ConstructPage<SolutionCodePage>();
 
-                    Code.ClickOnExecuteButton();
-					Wait(5000);
+                    Code.ClickOnExecuteButton("Total");
 
                 }
                 var historyPage = sideBar.GoToCodeHistoryPage();

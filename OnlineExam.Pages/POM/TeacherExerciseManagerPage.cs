@@ -38,9 +38,6 @@ namespace OnlineExam.Pages.POM
         public IList<IWebElement> RowOfTrs { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".table tr td")]
-        public IList<IWebElement> RowOfTds { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = ".table tr td")]
         public IWebElement Tds { get; set; }
 
         public IList<TeacherExerciseManagerPageRowItem> RowItems { get; set; }

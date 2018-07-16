@@ -109,6 +109,7 @@
     <Compile Include="POM\ChangeRolePage.cs" />
     <Compile Include="POM\CoursePage\CreateCoursePageRowItem.cs" />
     <Compile Include="POM\CoursePage\ViewCoursesPageItem.cs" />
+    <Compile Include="POM\ExerciseSolutionsIndexPage.cs" />
     <Compile Include="POM\Mail\ContactUsPage.cs" />
     <Compile Include="POM\CoursePage\CourseManagementPage.cs" />
     <Compile Include="POM\CoursePage\CreateCoursePage.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="POM\SideBar.cs" />
     <Compile Include="POM\SolutionCodePage.cs" />
     <Compile Include="POM\TasksPage.cs" />
+    <Compile Include="POM\Tasks\ExerciseSolutionsIndexPageItem.cs" />
     <Compile Include="POM\Tasks\TasksPageRowItem.cs" />
     <Compile Include="POM\Tasks\TaskViewPageDivItem.cs" />
     <Compile Include="POM\Tasks\TeacherExerciseManagerPageRowItem.cs" />

@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
+using System.Collections;
 using OnlineExam.Framework;
 using System.Threading;
 
@@ -54,6 +55,11 @@ namespace OnlineExam.Pages.POM
 		{
 			Thread.Sleep(time);
 		}
+
+        public void WaitWhileTextToBePresentInElement(IWebElement webElement,string text)
+        {
+            driver.WaitWhileTextToBePresentInElement(webElement,text);
+        }
 
 
 		public void WaitWhileNotClickableWebElement(IWebElement webElement)
