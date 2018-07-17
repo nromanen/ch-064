@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminNTest.cs" />
+    <Compile Include="BaseNFixture.cs" />
     <Compile Include="BaseNTest.cs" />
     <Compile Include="HeaderNTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,9 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Backup\Main.bak">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Backup\Main.bak" />
     <None Include="license" />
     <None Include="packages.config" />
   </ItemGroup>

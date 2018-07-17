@@ -107,7 +107,6 @@
     <Compile Include="AdminTest.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="HeaderTest.cs" />
-    <Compile Include="Constants.cs" />
     <Compile Include="CourseTests.cs" />
     <Compile Include="LoginTest.cs" />
     <Compile Include="MailTest.cs" />

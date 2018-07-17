@@ -5,6 +5,7 @@ using System.Threading;
 using Xunit.Abstractions;
 using OpenQA.Selenium.Support.UI;
 using System.Linq;
+using OnlineExam.Framework;
 
 namespace OnlineExam.Tests
 {

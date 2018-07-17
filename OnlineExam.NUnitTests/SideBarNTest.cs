@@ -1,49 +1,42 @@
 ﻿using NUnit.Framework;
+using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 
 
-namespace OnlineExam.Tests
+namespace OnlineExam.NUnitTests
 {
-    public class SideBarTest : BaseTest
+    [TestFixture]
+    public class SideBarNTest : BaseNTest
     {
         private SideBar sideBar;
 
 
         [SetUp]
-        public void SetUp()
+        public override void SetUp()
         {
-            BeginTest();
+            base.SetUp();
             sideBar = ConstructPage<SideBar>();
         }
 
         [Test]
         public void GoToRatingsPageTest()
         {
-            UITest(() =>
-            {
-                var ratingPage = sideBar.GoToRatingPage();
-                StringAssert.Contains(Constants.RATING_URL_CONTAINS, ratingPage.GetCurrentUrl());
-            });
+            var ratingPage = sideBar.GoToRatingPage();
+            StringAssert.Contains(Constants.RATING_URL_CONTAINS, ratingPage.GetCurrentUrl());
         }
 
         [Test]
         public void GoToCoursesPageTest()
         {
-            UITest(() =>
-            {
-                var coursesPage = sideBar.GoToCourseManagementPage();
-                StringAssert.Contains(Constants.COURSEMANAGEMENT_URL_CONTAINS, coursesPage.GetCurrentUrl());
-            });
+            var coursesPage = sideBar.GoToCourseManagementPage();
+            StringAssert.Contains(Constants.COURSEMANAGEMENT_URL_CONTAINS, coursesPage.GetCurrentUrl());
         }
 
         [Test]
         public void GoToContactUsPageTest()
         {
-            UITest(() =>
-            {
-                var contactUsPage = sideBar.GoToContactUsPage();
-                StringAssert.Contains(Constants.CONTACTUS_URL_CONTAINS, contactUsPage.GetCurrentUrl());
-            });
+            var contactUsPage = sideBar.GoToContactUsPage();
+            StringAssert.Contains(Constants.CONTACTUS_URL_CONTAINS, contactUsPage.GetCurrentUrl());
         }
     }
 }
