@@ -15,6 +15,18 @@ namespace OnlineExam.NUnitTests
         private Header header;
         private LogInPage logInPage;
 
+        public LoginTest()
+        {
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            BeginTest();
+
+            header = ConstructPage<Header>();
+            logInPage = header.GoToLogInPage();
+        }
 
         [Test]
         public void SignInTest()
@@ -58,6 +70,12 @@ namespace OnlineExam.NUnitTests
                 driver.RefreshPage();
                 Assert.True(logInPage.IsSignInPresentedInHeader());
             });
+        }
+
+        [TearDown]
+        public void Dispose()
+        {
+            driver.Dispose();
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using NUnit.Framework;
+using OnlineExam.Framework;
 
 namespace OnlineExam.NUnitTests
 {
