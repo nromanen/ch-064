@@ -96,8 +96,12 @@
     <Compile Include="CheckAnyInFavouritesN.cs" />
     <Compile Include="CourseNTests.cs" />
     <Compile Include="HeaderNTest.cs" />
+    <Compile Include="LoginNTest.cs" />
+    <Compile Include="MailNTest.cs" />
+    <Compile Include="NewsNTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaveExecutedTaskToCodeHistoryN.cs" />
+    <Compile Include="RegistrationNTest.cs" />
     <Compile Include="SideBarNTest.cs" />
   </ItemGroup>
   <ItemGroup>
