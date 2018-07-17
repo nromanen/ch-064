@@ -5,6 +5,7 @@ using OnlineExam.Pages.POM;
 
 namespace OnlineExam.NUnitTests
 {
+    [Parallelizable(ParallelScope.Fixtures)]
     [TestFixture]
     public class SideBarNTest : BaseNTest
     {

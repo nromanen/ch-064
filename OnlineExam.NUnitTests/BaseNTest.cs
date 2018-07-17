@@ -21,7 +21,7 @@ namespace OnlineExam.NUnitTests
             driver = DriversFabric.InitChrome();
             driver.Maximize();
             driver.GoToUrl(Constants.HOME_URL);
-            BaseNFixture.test = BaseNFixture.extentReports.CreateTest(TestContext.CurrentContext.Test.Name);
+          //  BaseNFixture.test = BaseNFixture.extentReports.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
 
