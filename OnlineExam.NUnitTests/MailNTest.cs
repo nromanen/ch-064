@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExam.NUnitTests
 {
+    //[Parallelizable(ParallelScope.Self)]
     [TestFixture]
     public class MailNTest : BaseNTest
     {
@@ -28,46 +29,37 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void CheckIfContactUsMessageIsVisibleInInbox()
         {
-            UITest(() =>
-            {
-                var contactUs = sideBar.GoToContactUsPage();
-                contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Name", testMessage);
-                header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-                var mailBox = sideBar.GoToMailBoxPage();
-                var inbox = mailBox.InboxElementClick();
-                var blocks = inbox.GetInboxBlocksList();
-                var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
-                Assert.True(existMessage);
-            });
+            var contactUs = sideBar.GoToContactUsPage();
+            contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Name", testMessage);
+            header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+            var mailBox = sideBar.GoToMailBoxPage();
+            var inbox = mailBox.InboxElementClick();
+            var blocks = inbox.GetInboxBlocksList();
+            var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
+            Assert.True(existMessage);
         }
 
         [Test]
         public void CheckIfSendEmailIsVisibleInOutBox()
         {
-            UITest(() =>
-            {
-                header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-                var mailBox = sideBar.GoToMailBoxPage();
-                var sendEmail = mailBox.SendMessageReferenceClick();
-                var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
-                var outbox = mailBox.OutboxElementClick();
-                var blocks = outbox.GetOutboxBlocksList();
-                var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
-                Assert.True(existMessage);
-            });
+            header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+            var mailBox = sideBar.GoToMailBoxPage();
+            var sendEmail = mailBox.SendMessageReferenceClick();
+            var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
+            var outbox = mailBox.OutboxElementClick();
+            var blocks = outbox.GetOutboxBlocksList();
+            var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
+            Assert.True(existMessage);
         }
 
         [Test]
         public void CheckIfUserCanSendEmail()
         {
-            UITest(() =>
-            {
-                header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-                var mailBox = sideBar.GoToMailBoxPage();
-                var sendEmail = mailBox.SendMessageReferenceClick();
-                var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
-                Assert.True(result.UrlEndsWith("/EmailMessages"));
-            });
+            header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+            var mailBox = sideBar.GoToMailBoxPage();
+            var sendEmail = mailBox.SendMessageReferenceClick();
+            var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
+            Assert.True(result.UrlEndsWith("/EmailMessages"));
         }
     }
 }

@@ -265,3 +265,6 @@ OnlineExam.Console/
 
 OnlineExam.Tests/
 /.Reports
+
+OnlineExam.NUnitTests/
+/.Reports
