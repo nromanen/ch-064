@@ -1,32 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using AventStack.ExtentReports;
+﻿using NUnit.Framework;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
-using Xunit;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace OnlineExam.Tests
+namespace OnlineExam.NUnitTests
 {
-    [Collection("MyTestCollection")]
+    [TestFixture]
     public class NewsTest : BaseTest
     {
         private Header header;
         private SideBar sideBar;
 
-        public NewsTest(BaseFixture fixture) : base(fixture)
+        [SetUp]
+        public void SetUp()
         {
             BeginTest();
             header = ConstructPage<Header>();
             sideBar = ConstructPage<SideBar>();
         }
 
-        [Fact]
+        [Test]
         public void CreateNewsTest()
         {
             UITest(() =>
@@ -38,5 +35,10 @@ namespace OnlineExam.Tests
             });
         }
 
+        [TearDown]
+        public void Dispose()
+        {
+            driver.Dispose();
+        }
     }
 }

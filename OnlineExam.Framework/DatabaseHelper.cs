@@ -12,7 +12,7 @@ namespace OnlineExam.Framework
         private static string conection = "data source = DESKTOP-424095L\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;";
         public static void BackupDatabase()
         {
-            string backupLocation = System.IO.Path.Combine(Environment.CurrentDirectory, "Backup", "Main.bak");
+            string backupLocation = System.IO.Path.Combine(Constants.PROJECT_PATH, "Backup", "Main.bak");
             System.IO.File.Delete(backupLocation);
             
             var sqlConStrBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(conection);

@@ -1,30 +1,29 @@
-﻿using System;
+﻿using NUnit.Framework;
+using OnlineExam.Framework;
+using OnlineExam.Pages.POM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using AventStack.ExtentReports;
-using OnlineExam.Framework;
-using OnlineExam.Pages.POM;
-using Xunit;
 
-namespace OnlineExam.Tests
+namespace OnlineExam.NUnitTests
 {
-    [Collection("MyTestCollection")]
-    public class RegisterTest : BaseTest
+    [TestFixture]
+    public class RegistrationTest : BaseTest
     {
         private Header header;
         private SideBar sideBar;
 
-        public RegisterTest(BaseFixture fixture) : base(fixture)
+        [SetUp]
+        public void SetUp()
         {
             BeginTest();
             header = ConstructPage<Header>();
             sideBar = ConstructPage<SideBar>();
         }
 
-        [Fact]
+        [Test]
         public void CheckIfUserIsPresentedInUserListAfterSignUp()
         {
             UITest(() =>
@@ -39,7 +38,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        [Test]
         public void SignUpAsUsedEmail()
         {
             UITest(() =>
@@ -52,6 +51,10 @@ namespace OnlineExam.Tests
             });
         }
 
-        
+        [TearDown]
+        public void Dispose()
+        {
+            driver.Dispose();
+        }
     }
 }
