@@ -34,38 +34,46 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DnsClient, Version=1.1.1.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnsClient.1.1.1\lib\net45\DnsClient.dll</HintPath>
+    </Reference>
     <Reference Include="ExtentReports, Version=3.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ExtentReports.3.1.3\lib\ExtentReports.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.8.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Bson, Version=2.4.0.70, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Bson.2.4.0\lib\net45\MongoDB.Bson.dll</HintPath>
+    <Reference Include="MongoDB.Bson, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.7.0\lib\net45\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver, Version=2.4.0.70, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Driver.2.4.0\lib\net45\MongoDB.Driver.dll</HintPath>
+    <Reference Include="MongoDB.Driver, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.7.0\lib\net45\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver.Core, Version=2.4.0.70, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Driver.Core.2.4.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    <Reference Include="MongoDB.Driver.Core, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.7.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="RazorEngine, Version=3.9.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
-      <HintPath>..\packages\RazorEngine.3.9.0\lib\net45\RazorEngine.dll</HintPath>
+    <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -84,20 +92,26 @@
     <Compile Include="AdminNTest.cs" />
     <Compile Include="BaseNFixture.cs" />
     <Compile Include="BaseNTest.cs" />
-    <Compile Include="ConstantsN.cs" />
+    <Compile Include="CourseNTests.cs" />
     <Compile Include="HeaderNTest.cs" />
+    <Compile Include="LoginNTest.cs" />
+    <Compile Include="MailNTest.cs" />
+    <Compile Include="NewsNTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SolutionCodePageNTest.cs" />
-    <Compile Include="TasksNTest.cs" />
-    <Compile Include="TaskViewPageNTest.cs" />
-    <Compile Include="TEMP_NTest.cs" />
+    <Compile Include="RegistrationNTest.cs" />
+    <Compile Include="SideBarNTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Backup\Main.bak" />
     <None Include="license" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OnlineExam.DatabaseHelper\OnlineExam.DatabaseHelper.csproj">
+      <Project>{d6e144f0-df48-4130-9c8d-45c1a795bde5}</Project>
+      <Name>OnlineExam.DatabaseHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnlineExam.Framework\OnlineExam.Framework.csproj">
       <Project>{bd4e4a4b-6275-458f-99ca-f541d6eecb7e}</Project>
       <Name>OnlineExam.Framework</Name>
@@ -117,9 +131,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.10.1\build\NUnit.props'))" />
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props'))" />
-    <Error Condition="!Exists('..\packages\Selenium.Chrome.WebDriver.2.40\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Chrome.WebDriver.2.40\build\Selenium.Chrome.WebDriver.targets'))" />
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.40.0\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.2.40.0\build\Selenium.WebDriver.ChromeDriver.targets'))" />
   </Target>
-  <Import Project="..\packages\Selenium.Chrome.WebDriver.2.40\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.40\build\Selenium.Chrome.WebDriver.targets')" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.40.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.40.0\build\Selenium.WebDriver.ChromeDriver.targets')" />
 </Project>

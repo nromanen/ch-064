@@ -54,5 +54,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineExam.Framework\OnlineExam.Framework.csproj">
+      <Project>{bd4e4a4b-6275-458f-99ca-f541d6eecb7e}</Project>
+      <Name>OnlineExam.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
