@@ -18,16 +18,16 @@ namespace OnlineExam.NUnitTests
         public void OneTimeSetUp()
         {
             DatabaseHelper.Helper.BackupDatabase();
-            htmlReporter = new ExtentHtmlReporter(Constants.REPORT_PATH);
-            extentReports = new ExtentReports();
-            extentReports.AttachReporter(htmlReporter);
+            //htmlReporter = new ExtentHtmlReporter(Constants.REPORT_PATH);
+            //extentReports = new ExtentReports();
+            //extentReports.AttachReporter(htmlReporter);
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             DatabaseHelper.Helper.RestoreDatabase();
-            extentReports.Flush();
+            //extentReports.Flush();
         }
     }
 }

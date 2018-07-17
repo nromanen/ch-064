@@ -70,34 +70,36 @@ namespace OnlineExam.NUnitTests
         [TearDown]
         public virtual void TearDown()
         {
-            var status = TestContext.CurrentContext.Result.Outcome.Status;
-            var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
-                ? ""
-                : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
-            Status logstatus;
+            //var status = TestContext.CurrentContext.Result.Outcome.Status;
+            //var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
+            //    ? ""
+            //    : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
+            //var errorMessage = TestContext.CurrentContext.Result.Message;
+            //Status logstatus;
 
-            switch (status)
-            {
-                case TestStatus.Failed:
-                    logstatus = Status.Fail;
-                    var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,
-                        Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
-                    var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
-                    BaseNFixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
-                    break;
-                case TestStatus.Inconclusive:
-                    logstatus = Status.Warning;
-                    break;
-                case TestStatus.Skipped:
-                    logstatus = Status.Skip;
-                    break;
-                default:
-                    logstatus = Status.Pass;
-                    break;
-            }
+            //switch (status)
+            //{
+            //    case TestStatus.Failed:
+            //        logstatus = Status.Fail;
+            //        var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,
+            //            Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
+            //        var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
+            //        BaseNFixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
+            //        break;
+            //    case TestStatus.Inconclusive:
+            //        logstatus = Status.Warning;
+            //        break;
+            //    case TestStatus.Skipped:
+            //        logstatus = Status.Skip;
+            //        break;
+            //    default:
+            //        logstatus = Status.Pass;
+            //        break;
+            //}
+            //BaseNFixture.test.Log(logstatus, "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage);
 
-            BaseNFixture.test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
-            //extentReports.Flush();
+
+            //BaseNFixture.extentReports.Flush();
 
             driver?.Dispose();
         }
