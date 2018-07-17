@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
-    public abstract class BaseNTest //: BaseNFixture
+    public abstract class BaseNTest 
     {
         protected ExtendedWebDriver driver;
 
@@ -61,31 +61,6 @@ namespace OnlineExam.NUnitTests
             }
         }
 
-
-        public void UITest(Action action)
-        {
-            //try
-            //{
-            //    StackFrame frame = new StackFrame(1);
-            //    var method = frame.GetMethod();
-            //    var type = method.DeclaringType;
-            //    var name = method.Name;
-            //    test = extentReports.CreateTest($"{name}");
-
-            //    action();
-
-            //    test.Log(Status.Pass, $"{name} test successfully executed");
-            //}
-            //catch (Exception e)
-            //{
-            //    var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,
-            //        Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
-            //    var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
-            //    test.AddScreenCaptureFromPath(screenshotPathWithDate);
-            //    test.Fail($"Message: {e.Message} " + "\n<br>\n<br>" + $"StackTrace: {e.StackTrace}");
-            //    throw;
-            //}
-        }
 
         public void Wait(int time)
         {
