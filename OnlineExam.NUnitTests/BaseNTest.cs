@@ -12,7 +12,6 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.Tests
 {
-    [TestFixture]
     public abstract class BaseTest
     {
         protected ExtendedWebDriver driver;
@@ -36,21 +35,19 @@ namespace OnlineExam.Tests
             DatabaseHelper.RollbackDatabase();
         }
 
-        public BaseTest()
-        {
-            driver = DriversFabric.InitChrome();
-        }
+     
 
-        [SetUp]
-        public void SetUp()
-        {
-            driver = DriversFabric.InitChrome();
-            driver.Maximize();
-        }
+        //[SetUp]
+        //public void SetUp()
+        //{
+            
+        //}
 
 
         public void BeginTest()
         {
+            driver = DriversFabric.InitChrome();
+            driver.Maximize();
             driver.GoToUrl(Constants.HOME_URL);
         }
 
