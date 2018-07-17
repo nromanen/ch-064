@@ -1,16 +1,15 @@
 ﻿using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineExam.DatabaseHelper
 {
     public class Helper
     {
-        public static void BackupDatabase(string backupDestinationFilePath)
+        // ༼ つ ಥ_ಥ ༽つ
+        //default server connection: @"(LocalDb)\MSSQLLocalDB"
+        //default database name: Main
+        public static void BackupDatabase(string backupDestinationFilePath, string databaseName, string serverConnection)
         {
             try
             {
@@ -18,10 +17,10 @@ namespace OnlineExam.DatabaseHelper
                 Backup backup = new Backup();
                 backup.Action = BackupActionType.Database;
                 backup.BackupSetName = "Backup";
-                backup.Database = "Main";
+                backup.Database = databaseName;
                 BackupDeviceItem deviceItem = new BackupDeviceItem(backupDestinationFilePath, DeviceType.File);
                 backup.Devices.Add(deviceItem);
-                ServerConnection connection = new ServerConnection(@"(LocalDb)\MSSQLLocalDB");
+                ServerConnection connection = new ServerConnection(serverConnection);
                 connection.LoginSecure = true;
                 //connection.Login = "testuser";
                 //connection.Password = "testuser";
@@ -40,7 +39,7 @@ namespace OnlineExam.DatabaseHelper
             }
         }
 
-        public static void RestoreDatabase(string backUpFilePath, string databaseName)
+        public static void RestoreDatabase(string backUpFilePath, string databaseName, string serverConnection)
         {
             try
             {
@@ -51,9 +50,10 @@ namespace OnlineExam.DatabaseHelper
                 restore.Devices.AddDevice(backUpFilePath, DeviceType.File);
                 restore.ReplaceDatabase = true;
                 restore.NoRecovery = false;
-                ServerConnection connection = new ServerConnection(@"(LocalDb)\MSSQLLocalDB");
+                ServerConnection connection = new ServerConnection(serverConnection);
                 connection.LoginSecure = true;
-                Server sqlServer = new Server(connection);        
+                Server sqlServer = new Server(connection);
+                sqlServer.KillAllProcesses("Main");
                 restore.SqlRestore(sqlServer);
                 Console.WriteLine("Restore operation succeeded");
             }
@@ -63,6 +63,5 @@ namespace OnlineExam.DatabaseHelper
                 Console.WriteLine(ex.Message);
             }
         }
-
     }
 }

@@ -23,7 +23,6 @@ namespace OnlineExam.Tests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            DatabaseHelper.BackupDatabase();
             htmlReporter = new ExtentHtmlReporter(Constants.REPORT_PATH);
             extentReports = new ExtentReports();
             extentReports.AttachReporter(htmlReporter);
@@ -33,7 +32,6 @@ namespace OnlineExam.Tests
         public void OneTimeTearDown()
         {
             extentReports.Flush();
-            DatabaseHelper.RollbackDatabase();
         }
 
         public BaseTest()

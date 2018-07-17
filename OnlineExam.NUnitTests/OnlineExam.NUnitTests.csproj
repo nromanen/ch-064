@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="AdminTest.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="CourseTests.cs" />
     <Compile Include="HeaderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SideBarTest.cs" />
@@ -102,6 +103,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OnlineExam.DatabaseHelper\OnlineExam.DatabaseHelper.csproj">
+      <Project>{d6e144f0-df48-4130-9c8d-45c1a795bde5}</Project>
+      <Name>OnlineExam.DatabaseHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnlineExam.Framework\OnlineExam.Framework.csproj">
       <Project>{bd4e4a4b-6275-458f-99ca-f541d6eecb7e}</Project>
       <Name>OnlineExam.Framework</Name>
