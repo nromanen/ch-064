@@ -3,6 +3,7 @@ using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using System;
 using System.Linq;
+using System.Threading;
 
 namespace OnlineExam.NUnitTests
 {
@@ -20,7 +21,7 @@ namespace OnlineExam.NUnitTests
             string courseName = "C# Starter";
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(ConstantsN.STUDENT_EMAIL, ConstantsN.STUDENT_PASSWORD);
+            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             var sidebar = ConstructPage<SideBar>();
             sidebar.GoToCourseManagementPage();
             var CoursesList = ConstructPage<CourseManagementPage>();
