@@ -28,7 +28,7 @@ namespace OnlineExam.NUnitTests
             var sidebar = ConstructPage<SideBar>();
             sidebar.GoToTasksPage();
         }
-
+        
         [Test]
         public void IsTaskAvailable()
         {

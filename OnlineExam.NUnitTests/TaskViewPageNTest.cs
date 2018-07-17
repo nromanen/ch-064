@@ -233,8 +233,7 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void CreateNewComment()
         {
-            UITest(() =>
-            {
+          
                 string TaskName = "Indexers";
                 string coment = "rate 4 stars";
 
@@ -259,8 +258,7 @@ namespace OnlineExam.NUnitTests
                         Assert.AreEqual(comment.ToString(), coment);
                     }
                 }
-            }
-            );
+            
         }
     }
 }
