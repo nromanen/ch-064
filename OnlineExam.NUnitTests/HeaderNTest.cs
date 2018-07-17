@@ -10,7 +10,6 @@ namespace OnlineExam.NUnitTests
     {
         private Header header;
 
-    
 
         [SetUp]
         public void SetUp()

@@ -23,7 +23,7 @@ namespace OnlineExam.NUnitTests
             UITest(() =>
             {
                 var ratingPage = sideBar.GoToRatingPage();
-     //           Assert.Contains(Constants.RATING_URL_CONTAINS, ratingPage.GetCurrentUrl());
+                StringAssert.Contains(Constants.RATING_URL_CONTAINS, ratingPage.GetCurrentUrl());
             });
         }
 
@@ -33,7 +33,7 @@ namespace OnlineExam.NUnitTests
             UITest(() =>
             {
                 var coursesPage = sideBar.GoToCourseManagementPage();
-   //             Assert.Contains(Constants.COURSEMANAGEMENT_URL_CONTAINS, coursesPage.GetCurrentUrl());
+                StringAssert.Contains(Constants.COURSEMANAGEMENT_URL_CONTAINS, coursesPage.GetCurrentUrl());
             });
         }
 
@@ -43,7 +43,7 @@ namespace OnlineExam.NUnitTests
             UITest(() =>
             {
                 var contactUsPage = sideBar.GoToContactUsPage();
-          //      Assert.Contains(Constants.CONTACTUS_URL_CONTAINS, contactUsPage.GetCurrentUrl());
+                StringAssert.Contains(Constants.CONTACTUS_URL_CONTAINS, contactUsPage.GetCurrentUrl());
             });
         }
     }
