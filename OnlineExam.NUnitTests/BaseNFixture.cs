@@ -14,25 +14,20 @@ namespace OnlineExam.NUnitTests
         public static ExtentReports extentReports;
         public static ExtentTest test;
 
-        private string PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            DatabaseHelper.Helper.BackupDatabase(PATH + @"\MainBackup.bak", "OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
+            DatabaseHelper.Helper.BackupDatabase();
             htmlReporter = new ExtentHtmlReporter(Constants.REPORT_PATH);
             extentReports = new ExtentReports();
             extentReports.AttachReporter(htmlReporter);
-
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
+            DatabaseHelper.Helper.RestoreDatabase();
             extentReports.Flush();
-            DatabaseHelper.Helper.RestoreDatabase(PATH + @"\MainBackup.bak", "OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
-            //DatabaseHelper.RollbackDatabase();
         }
     }
 }

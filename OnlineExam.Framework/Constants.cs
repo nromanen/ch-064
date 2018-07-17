@@ -39,6 +39,7 @@ namespace OnlineExam.Framework
         public static string PROJECT_PATH = new Uri(ACTUAL_PATH).LocalPath;
         public static string REPORT_PATH = PROJECT_PATH + "Reports\\MyOwnReport.html";
         public static string SCREEN_SHOT_PATH = PROJECT_PATH + "\\Reports\\";
+        public static string BACKUP_PATH = PROJECT_PATH + @"Backup\MainBackup.bak";
         public const string SCREEN_SHOT = "ScreenShot";
         public const string USER_FOR_DELETE_EMAIL = "UserForDelete@gmail.com";
         public const string USER_FOR_CHANGE_ROLE_EMAIL = "UserForChangeRole@gmail.com";
