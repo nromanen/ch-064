@@ -11,9 +11,22 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
-    public abstract class BaseNTest 
+    public class BaseNTest
     {
         protected ExtendedWebDriver driver;
+
+        [OneTimeSetUp]
+        public void test1()
+        {
+            ExtentTestManager.CreateParentTest(GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void test2()
+        {
+            ExtentManager.Instance.Flush();
+        }
+
 
         [SetUp]
         public virtual void SetUp()
@@ -21,7 +34,7 @@ namespace OnlineExam.NUnitTests
             driver = DriversFabric.InitChrome();
             driver.Maximize();
             driver.GoToUrl(Constants.HOME_URL);
-          //  BaseNFixture.test = BaseNFixture.extentReports.CreateTest(TestContext.CurrentContext.Test.Name);
+            ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
 
@@ -70,36 +83,36 @@ namespace OnlineExam.NUnitTests
         [TearDown]
         public virtual void TearDown()
         {
-            //var status = TestContext.CurrentContext.Result.Outcome.Status;
-            //var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
-            //    ? ""
-            //    : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
-            //var errorMessage = TestContext.CurrentContext.Result.Message;
-            //Status logstatus;
+            var status = TestContext.CurrentContext.Result.Outcome.Status;
+            var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
+                ? ""
+                : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
+            var errorMessage = TestContext.CurrentContext.Result.Message;
+            Status logstatus;
 
-            //switch (status)
-            //{
-            //    case TestStatus.Failed:
-            //        logstatus = Status.Fail;
-            //        var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,
-            //            Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
-            //        var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
-            //        BaseNFixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
-            //        break;
-            //    case TestStatus.Inconclusive:
-            //        logstatus = Status.Warning;
-            //        break;
-            //    case TestStatus.Skipped:
-            //        logstatus = Status.Skip;
-            //        break;
-            //    default:
-            //        logstatus = Status.Pass;
-            //        break;
-            //}
-            //BaseNFixture.test.Log(logstatus, "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage);
+            switch (status)
+            {
+                case TestStatus.Failed:
+                    logstatus = Status.Fail;
+                    var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,
+                        Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
+                    var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
+                    ExtentTestManager.GetTest().AddScreenCaptureFromPath(screenshotPathWithDate);
+                    break;
+                case TestStatus.Inconclusive:
+                    logstatus = Status.Warning;
+                    break;
+                case TestStatus.Skipped:
+                    logstatus = Status.Skip;
+                    break;
+                default:
+                    logstatus = Status.Pass;
+                    break;
+            }
 
+            ExtentTestManager.GetTest().Log(logstatus,
+                "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage);
 
-            //BaseNFixture.extentReports.Flush();
 
             driver?.Dispose();
         }

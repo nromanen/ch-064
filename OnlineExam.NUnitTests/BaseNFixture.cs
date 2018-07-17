@@ -10,9 +10,10 @@ namespace OnlineExam.NUnitTests
     [SetUpFixture]
     public class BaseNFixture
     {
-        public static ExtentHtmlReporter htmlReporter;
-        public static ExtentReports extentReports;
-        public static ExtentTest test;
+        //public static ExtentHtmlReporter htmlReporter;
+        //public static ExtentReports extentReports;
+        //public static ExtentTest test;
+     
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -21,6 +22,7 @@ namespace OnlineExam.NUnitTests
             //htmlReporter = new ExtentHtmlReporter(Constants.REPORT_PATH);
             //extentReports = new ExtentReports();
             //extentReports.AttachReporter(htmlReporter);
+            
         }
 
         [OneTimeTearDown]

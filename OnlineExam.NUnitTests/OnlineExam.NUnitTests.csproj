@@ -95,6 +95,8 @@
     <Compile Include="ChangeUserInfoNTest.cs" />
     <Compile Include="CheckAnyInFavouritesN.cs" />
     <Compile Include="CourseNTests.cs" />
+    <Compile Include="ExtentManager.cs" />
+    <Compile Include="ExtentTestManager.cs" />
     <Compile Include="HeaderNTest.cs" />
     <Compile Include="LoginNTest.cs" />
     <Compile Include="MailNTest.cs" />
