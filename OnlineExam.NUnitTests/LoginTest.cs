@@ -15,10 +15,6 @@ namespace OnlineExam.NUnitTests
         private Header header;
         private LogInPage logInPage;
 
-        public LoginTest()
-        {
-        }
-
         [SetUp]
         public void SetUp()
         {
