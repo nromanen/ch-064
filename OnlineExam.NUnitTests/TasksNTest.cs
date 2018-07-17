@@ -5,26 +5,26 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Windows.Forms;
-using Xunit;
+using NUnit.Framework;
 
-namespace OnlineExam.Tests
+namespace OnlineExam.NUnitTests
 {
-    [Collection("MyTestCollection")]
-    public class TasksTest : BaseTest
+    [TestFixture]
+    public class TasksNTest : BaseTest
     {
         private Header header;
         private SideBar sidebar;
         private CourseManagementPage CoursesList;
-      
-        public TasksTest(BaseFixture fixture) : base(fixture)
+
+        [SetUp]
+        public void SetUp()
         {
             BeginTest();
 
             string courseName = "C# Starter";
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+            logInPage.SignIn(ConstantsN.STUDENT_EMAIL, ConstantsN.STUDENT_PASSWORD);
             var sidebar = ConstructPage<SideBar>();
             sidebar.GoToCourseManagementPage();
 
@@ -41,7 +41,7 @@ namespace OnlineExam.Tests
             }
         }
 
-        [Fact]
+        [Test]
         public void IsTaskAvailable()
         {
             UITest(() =>
@@ -53,14 +53,15 @@ namespace OnlineExam.Tests
                 if (blocks != null)
                 {
                     var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                    Assert.Equal(firstblock.GetName(), TaskName);
+                    Assert.AreEqual(firstblock.GetName(), TaskName);
                 }
             }
             );
 
         }
 
-        [Fact]
+
+        [Test]
         public void ClickOnTasksButton()
         {
             UITest(() =>
@@ -73,14 +74,14 @@ namespace OnlineExam.Tests
                     var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                     firstBlock.ClickOnTasksButton();
                     var title = driver.GetCurrentTitle();
-                    Assert.Equal("Task View - WebApp", title);
+                    Assert.AreEqual("Task View - WebApp", title);
                 }
             }
         );
         }
 
 
-        [Fact]
+        [Test]
         public void StarsCount()
         {
             UITest(() =>
@@ -92,7 +93,7 @@ namespace OnlineExam.Tests
                 {
                     var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                     var count = firstBlock.GetStarsss();
-                    Assert.Equal("0" , count.ToString());
+                    Assert.AreEqual("0", count.ToString());
                 }
 
             }

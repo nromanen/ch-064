@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 
-namespace OnlineExam.Tests
+namespace OnlineExam.NUnitTests
 {
     [TestFixture]
     public class TEMP_NTest : BaseTest
@@ -16,14 +16,14 @@ namespace OnlineExam.Tests
         private Header header;
         private SideBar sidebar;
 
-        
-        public TEMP_NTest()
+        [SetUp]
+        public void SetUp()
         {
             BeginTest();
 
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
-            logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+            logInPage.SignIn(ConstantsN.STUDENT_EMAIL, ConstantsN.STUDENT_PASSWORD);
             var sidebar = ConstructPage<SideBar>();
             sidebar.GoToTasksPage();
         }
@@ -134,7 +134,7 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                string CreationDate = "09/07/2018";
+                string CreationDate = "11/07/2018";
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
 
                 var blocks = ListOfTasks.GetBlocks();
@@ -152,7 +152,7 @@ namespace OnlineExam.Tests
         {
             UITest(() =>
             {
-                string UpdateDate = "09/07/2018";
+                string UpdateDate = "11/07/2018";
                 var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
                 var blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)

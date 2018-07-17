@@ -52,7 +52,7 @@ namespace OnlineExam.Pages.POM
         public void ClickOnExecuteButton(string text)
         {
             ExecuteButton.Click();
-            WaitWhileTextToBePresentInElement(FieldWithResultOfCompilationCode,text);
+           // WaitWhileTextToBePresentInElement(FieldWithResultOfCompilationCode,text);
         }
         /// <summary>
         /// Exit button will be clicked on
