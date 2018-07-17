@@ -18,9 +18,9 @@ namespace OnlineExam.NUnitTests
         private SideBar sidebar;
 
         [SetUp]
-        public void SetUp()
+        public override void SetUp()
         {
-            BeginTest();
+            base.SetUp();
 
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();

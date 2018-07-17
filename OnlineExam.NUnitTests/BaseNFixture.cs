@@ -17,22 +17,22 @@ namespace OnlineExam.NUnitTests
         private string PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            DatabaseHelper.Helper.BackupDatabase(PATH + @"\MainBackup.bak", "OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
-            htmlReporter = new ExtentHtmlReporter(Constants.REPORT_PATH);
-            extentReports = new ExtentReports();
-            extentReports.AttachReporter(htmlReporter);
+        //[OneTimeSetUp]
+        //public void OneTimeSetUp()
+        //{
+        //    DatabaseHelper.Helper.BackupDatabase(PATH + @"\MainBackup.bak", "OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
+        //    htmlReporter = new ExtentHtmlReporter(Constants.REPORT_PATH);
+        //    extentReports = new ExtentReports();
+        //    extentReports.AttachReporter(htmlReporter);
 
-        }
+        //}
 
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            extentReports.Flush();
-            DatabaseHelper.Helper.RestoreDatabase(PATH + @"\MainBackup.bak", "OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
-            //DatabaseHelper.RollbackDatabase();
-        }
+        //[OneTimeTearDown]
+        //public void OneTimeTearDown()
+        //{
+        //    extentReports.Flush();
+        //    DatabaseHelper.Helper.RestoreDatabase(PATH + @"\MainBackup.bak", "OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
+        //    //DatabaseHelper.RollbackDatabase();
+        //}
     }
 }

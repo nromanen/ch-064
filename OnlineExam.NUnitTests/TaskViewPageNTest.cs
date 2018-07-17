@@ -18,9 +18,9 @@ namespace OnlineExam.NUnitTests
 
 
         [SetUp]
-        public void SetUp()
+        public override void SetUp()
         {
-            BeginTest();
+            base.SetUp();
 
             string courseName = "C# Essential";
             var header = ConstructPage<Header>();

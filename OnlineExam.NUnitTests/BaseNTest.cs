@@ -1,37 +1,29 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading;
+using AventStack.ExtentReports;
+using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-
 namespace OnlineExam.NUnitTests
 {
-    public abstract class BaseNTest : IDisposable
+    [TestFixture]
+    public abstract class BaseNTest //: BaseNFixture
     {
-      
         protected ExtendedWebDriver driver;
 
-        public BaseNTest()
+        [SetUp]
+        public virtual void SetUp()
         {
             driver = DriversFabric.InitChrome();
+            driver.Maximize();
+            driver.GoToUrl(Constants.HOME_URL);
+            BaseNFixture.test = BaseNFixture.extentReports.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
-        ////[SetUp]
-        //public BaseTest(BaseFixture fixture)
-        //{
-        //    driver = DriversFabric.InitChrome();
-        //    driver.Maximize();
-        //    this.fixture = fixture;
-        //}
-
-
-        public void BeginTest()
-        {
-            driver.GoToUrl(ConstantsN.HOME_URL);
-        }
 
         public void NavigateTo(string url)
         {
@@ -72,37 +64,66 @@ namespace OnlineExam.NUnitTests
 
         public void UITest(Action action)
         {
-            try
-            {
-                StackFrame frame = new StackFrame(1);
-                var method = frame.GetMethod();
-                var type = method.DeclaringType;
-                var name = method.Name;
-            //    fixture.test = fixture.extentReports.CreateTest($"{name}");
+            //try
+            //{
+            //    StackFrame frame = new StackFrame(1);
+            //    var method = frame.GetMethod();
+            //    var type = method.DeclaringType;
+            //    var name = method.Name;
+            //    test = extentReports.CreateTest($"{name}");
 
-                action();
+            //    action();
 
-          //      fixture.test.Log(Status.Pass, $"{name} test successfully executed");
-            }
-            catch (Exception e)
-            {
-                var screenshotPathWithDate = driver.TakesScreenshotWithDate(ConstantsN.SCREEN_SHOT_PATH,
-                    ConstantsN.SCREEN_SHOT, ScreenshotImageFormat.Png);
-          //      var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
-          //      fixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
-         //       fixture.test.Fail($"Message: {e.Message} " + "\n<br>\n<br>" + $"StackTrace: {e.StackTrace}");
-                throw;
-            }
+            //    test.Log(Status.Pass, $"{name} test successfully executed");
+            //}
+            //catch (Exception e)
+            //{
+            //    var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,
+            //        Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
+            //    var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
+            //    test.AddScreenCaptureFromPath(screenshotPathWithDate);
+            //    test.Fail($"Message: {e.Message} " + "\n<br>\n<br>" + $"StackTrace: {e.StackTrace}");
+            //    throw;
+            //}
         }
 
         public void Wait(int time)
-		{
-			Thread.Sleep(time);
-		}
-
-		//[TearDown]
-		public virtual void Dispose()
         {
+            Thread.Sleep(time);
+        }
+
+        [TearDown]
+        public virtual void TearDown()
+        {
+            var status = TestContext.CurrentContext.Result.Outcome.Status;
+            var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
+                ? ""
+                : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
+            Status logstatus;
+
+            switch (status)
+            {
+                case TestStatus.Failed:
+                    logstatus = Status.Fail;
+                    var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,
+                        Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
+                    var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
+                    BaseNFixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
+                    break;
+                case TestStatus.Inconclusive:
+                    logstatus = Status.Warning;
+                    break;
+                case TestStatus.Skipped:
+                    logstatus = Status.Skip;
+                    break;
+                default:
+                    logstatus = Status.Pass;
+                    break;
+            }
+
+            BaseNFixture.test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
+            //extentReports.Flush();
+
             driver?.Dispose();
         }
     }

@@ -17,10 +17,9 @@ namespace OnlineExam.NUnitTests
         private CourseManagementPage CoursesList;
 
         [SetUp]
-        public void SetUp()
+        public override void SetUp()
         {
-            BeginTest();
-
+            base.SetUp();
             string courseName = "C# Starter";
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();

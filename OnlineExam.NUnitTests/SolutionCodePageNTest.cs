@@ -1,11 +1,8 @@
-﻿using OnlineExam.Pages.POM;
-using OnlineExam.Pages.POM.Tasks;
+﻿using NUnit.Framework;
+using OnlineExam.Framework;
+using OnlineExam.Pages.POM;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using NUnit.Framework;
 
 namespace OnlineExam.NUnitTests
 {
@@ -17,10 +14,9 @@ namespace OnlineExam.NUnitTests
         private CourseManagementPage CoursesList;
 
         [SetUp]
-        public void SetUp()
+        public override void SetUp()
         {
-            BeginTest();
-
+            base.SetUp();
             string courseName = "C# Starter";
             var header = ConstructPage<Header>();
             var logInPage = header.GoToLogInPage();
@@ -46,11 +42,33 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void TaskDone()
         {
-            UITest(() =>
+            string TaskName = "Simple addition";
+            var ListOfTasks = ConstructPage<TasksPage>();
+            var blocks = ListOfTasks.GetBlocks();
+            if (blocks != null)
             {
-                string TaskName = "Simple addition";
-                var ListOfTasks = ConstructPage<TasksPage>();
-                var blocks = ListOfTasks.GetBlocks();
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                firstblock.ClickOnTasksButton();
+                var TaskView = ConstructPage<TaskViewPage>();
+                TaskView.ClickOnStartButton();
+                var Code = ConstructPage<SolutionCodePage>();
+                Code.ClickOnExecuteButton("Total");
+                Code.ClickOnDoneButton();
+
+            }
+            var CoursesPage = ConstructPage<SideBar>().GoToCourseManagementPage();
+            var CoursesList = ConstructPage<CourseManagementPage>();
+            var block = CoursesList.GetBlocks();
+            if (block != null)
+            {
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals("C# Starter", StringComparison.OrdinalIgnoreCase));
+
+                if (firstBlock != null)
+                {
+                    firstBlock.ClickCourseLink();
+                }
+                ListOfTasks = ConstructPage<TasksPage>();
+                blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
                 {
                     var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
@@ -58,45 +76,16 @@ namespace OnlineExam.NUnitTests
                     var TaskView = ConstructPage<TaskViewPage>();
                     TaskView.ClickOnStartButton();
                     var Code = ConstructPage<SolutionCodePage>();
-                    Code.ClickOnExecuteButton("Total");
-                    Code.ClickOnDoneButton();
-
+                    var review = Code.MessageAboutreviewingSolution.Text;
+                    Assert.IsNotEmpty(review);
                 }
-                var CoursesPage = ConstructPage<SideBar>().GoToCourseManagementPage();
-                var CoursesList = ConstructPage<CourseManagementPage>();
-                var block = CoursesList.GetBlocks();
-                if (block != null)
-                {
-                    var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals("C# Starter", StringComparison.OrdinalIgnoreCase));
-
-                    if (firstBlock != null)
-                    {
-                        firstBlock.ClickCourseLink();
-                    }
-                    ListOfTasks = ConstructPage<TasksPage>();
-                    blocks = ListOfTasks.GetBlocks();
-                    if (blocks != null)
-                    {
-                        var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                        firstblock.ClickOnTasksButton();
-                        var TaskView = ConstructPage<TaskViewPage>();
-                        TaskView.ClickOnStartButton();
-                        var Code = ConstructPage<SolutionCodePage>();
-                        var review = Code.MessageAboutreviewingSolution.Text;
-                        Assert.IsNotEmpty(review);
-                    }
-                }
-
-
             }
-            );
         }
 
         [Test]
         public void ExitButton()
         {
-            UITest(() =>
-            {
+            
                 string TaskName = "Simple addition";
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
@@ -112,16 +101,12 @@ namespace OnlineExam.NUnitTests
                     Assert.AreEqual("http://localhost:55842/", url);
                 }
             }
-        );
-
-        }
 
 
         [Test]
         public void Compilation()
         {
-            UITest(() =>
-            {
+            
                 string TaskName = "Simple addition";
                 var ListOfTasks = ConstructPage<TasksPage>();
                 var blocks = ListOfTasks.GetBlocks();
@@ -138,9 +123,6 @@ namespace OnlineExam.NUnitTests
                     Assert.IsNotEmpty(result);
                 }
             }
-);
-
-        }
 
     }
 }
