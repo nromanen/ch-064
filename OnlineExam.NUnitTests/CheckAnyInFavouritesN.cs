@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExam.NUnitTests
 {
-    [SetUpFixture]
+    [TestFixture]
     public class CheckAnyInFavouritesN : BaseNTest
     {
 
