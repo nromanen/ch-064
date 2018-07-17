@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace OnlineExam.Framework
-{ 
+{
     public static class Constants
     {
         public const string HOME_URL = "http://localhost:55842";

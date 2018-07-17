@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AventStack.ExtentReports;
+using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using Xunit;
 

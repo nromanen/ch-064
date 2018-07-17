@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using OnlineExam.Framework;
 using Xunit;
 
 namespace OnlineExam.Tests
