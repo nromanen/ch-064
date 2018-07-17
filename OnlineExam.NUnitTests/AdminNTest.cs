@@ -31,33 +31,33 @@ namespace OnlineExam.NUnitTests
                 Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL));
         }
 
-        //[Test]
-        //public void DeleteUserTest()
-        //{
-        //    UITest(() =>
-        //    {
-        //        Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL),
-        //            "User is not presented in the system," +
-        //            "so we have not opportunity to delete this user");
-        //        adminPanelPage.DeleteUser(Constants.USER_FOR_DELETE_EMAIL);
+        [Test]
+        public void DeleteUserTest()
+        {
+            UITest(() =>
+            {
+                Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL),
+                    "User is not presented in the system," +
+                    "so we have not opportunity to delete this user");
+                adminPanelPage.DeleteUser(Constants.USER_FOR_DELETE_EMAIL);
 
-        //        Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
-        //        Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL), "Error");
+                Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
+                Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL), "Error");
 
-        //    });
-        //}
+            });
+        }
 
-        //[Test]
-        //public void ChangeUserRoleTest()
-        //{
-        //    UITest(() =>
-        //    {
-        //        var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
-        //        changeRolePage.ChangeRole(Constants.TEACHER);
-        //        changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
-        //        Assert.AreEqual(Constants.TEACHER, changeRolePage.CurrentRole());
-        //    });
-        //}
+        [Test]
+        public void ChangeUserRoleTest()
+        {
+            UITest(() =>
+            {
+                var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
+                changeRolePage.ChangeRole(Constants.TEACHER);
+                changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
+                Assert.AreEqual(Constants.TEACHER, changeRolePage.CurrentRole());
+            });
+        }
 
         [Test]
         public void IsUserListAvailableTest()
