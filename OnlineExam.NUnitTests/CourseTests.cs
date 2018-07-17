@@ -30,16 +30,23 @@ namespace OnlineExam.NUnitTests
         }
 
         [Test]
-        public void tmp()
+        public void CreateCourse_ValidData()
         {
-            DatabaseHelper.Helper.BackupDatabase(PATH+@"\MainBackup.bak","Main", @"(LocalDb)\MSSQLLocalDB");
+            //DatabaseHelper.Helper.BackupDatabase(PATH+@"\MainBackup.bak","Main", @"(LocalDb)\MSSQLLocalDB");
             var courseManagment = ConstructPage<CourseManagementPage>();
             courseManagment.BtnAddCourse.Click();
             var createCourse = ConstructPage<CreateCoursePage>();
             createCourse.FillCourse("tmp","tmp");
             createCourse.BtnOk.Click();
+            courseManagment.GetByName("tmp");
             Thread.Sleep(2000);
-            DatabaseHelper.Helper.RestoreDatabase(PATH + @"\MainBackup.bak", "Main", @"(LocalDb)\MSSQLLocalDB");
+            //DatabaseHelper.Helper.RestoreDatabase(PATH + @"\MainBackup.bak", "Main", @"(LocalDb)\MSSQLLocalDB");
+        }
+
+        [Test]
+        public void CreateCourse_InvalidData()
+        {
+
         }
     }
 }

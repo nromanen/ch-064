@@ -53,7 +53,7 @@ namespace OnlineExam.DatabaseHelper
                 ServerConnection connection = new ServerConnection(serverConnection);
                 connection.LoginSecure = true;
                 Server sqlServer = new Server(connection);
-                sqlServer.KillAllProcesses("Main");
+                sqlServer.KillAllProcesses(databaseName);
                 restore.SqlRestore(sqlServer);
                 Console.WriteLine("Restore operation succeeded");
             }
