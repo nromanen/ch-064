@@ -34,7 +34,7 @@ namespace OnlineExam.NUnitTests
             var courseManagment = ConstructPage<CourseManagementPage>();
             courseManagment.BtnAddCourse.Click();
             var createCourse = ConstructPage<CreateCoursePage>();
-            createCourse.FillCourse("tmp1","tmp1");
+            createCourse.FillCourse("tmp11","tmp1");
             createCourse.BtnOk.Click();
             
             Thread.Sleep(2000);
