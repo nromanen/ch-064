@@ -92,6 +92,7 @@
     <Compile Include="AdminNTest.cs" />
     <Compile Include="BaseNFixture.cs" />
     <Compile Include="BaseNTest.cs" />
+    <Compile Include="CourseNTests.cs" />
     <Compile Include="HeaderNTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SideBarNTest.cs" />
