@@ -82,7 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseFixtureN.cs" />
-    <Compile Include="BaseTest.cs" />
+    <Compile Include="BaseNTest.cs" />
     <Compile Include="ConstantsN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolutionCodePageNTest.cs" />

@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
-    public class TasksNTest : BaseTest
+    public class TasksNTest : BaseNTest
     {
         private Header header;
         private SideBar sidebar;

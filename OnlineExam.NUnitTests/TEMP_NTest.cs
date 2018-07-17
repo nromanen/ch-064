@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
-    public class TEMP_NTest : BaseTest
+    public class TEMP_NTest : BaseNTest
     {
 
         private Header header;

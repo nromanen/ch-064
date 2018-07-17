@@ -9,12 +9,12 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.NUnitTests
 {
-    public abstract class BaseTest : IDisposable
+    public abstract class BaseNTest : IDisposable
     {
       
         protected ExtendedWebDriver driver;
 
-        public BaseTest()
+        public BaseNTest()
         {
             driver = DriversFabric.InitChrome();
         }
