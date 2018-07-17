@@ -1,4 +1,5 @@
-﻿using AventStack.ExtentReports;
+﻿using System;
+using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using NUnit.Framework;
 using NUnit.Framework.Internal.Commands;
@@ -13,20 +14,24 @@ namespace OnlineExam.NUnitTests
         public static ExtentReports extentReports;
         public static ExtentTest test;
 
+        private string PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            //DatabaseHelper.BackupDatabase();
+            DatabaseHelper.Helper.BackupDatabase(PATH + @"\MainBackup.bak", "OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
             htmlReporter = new ExtentHtmlReporter(Constants.REPORT_PATH);
             extentReports = new ExtentReports();
             extentReports.AttachReporter(htmlReporter);
+
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             extentReports.Flush();
+            DatabaseHelper.Helper.RestoreDatabase(PATH + @"\MainBackup.bak", "OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
             //DatabaseHelper.RollbackDatabase();
         }
     }

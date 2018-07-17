@@ -14,7 +14,6 @@ namespace OnlineExam.NUnitTests
     [TestFixture]
     public class CourseNTests: BaseNTest
     {
-        private string PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         private Header header;
         private LogInPage logInPage;
         private CourseManagementPage adminPanelPage;
@@ -32,7 +31,6 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void CreateCourse_ValidData()
         {
-            DatabaseHelper.Helper.BackupDatabase(PATH+@"\MainBackup.bak","Main", @"(LocalDb)\MSSQLLocalDB");
             var courseManagment = ConstructPage<CourseManagementPage>();
             courseManagment.BtnAddCourse.Click();
             var createCourse = ConstructPage<CreateCoursePage>();
@@ -40,7 +38,6 @@ namespace OnlineExam.NUnitTests
             createCourse.BtnOk.Click();
             
             Thread.Sleep(2000);
-            DatabaseHelper.Helper.RestoreDatabase(PATH + @"\MainBackup.bak", "Main", @"(LocalDb)\MSSQLLocalDB");
         }
 
         [Test]
