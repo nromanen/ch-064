@@ -1,13 +1,7 @@
-﻿using AventStack.ExtentReports;
-using OnlineExam.Pages.POM;
-using OnlineExam.Pages.POM.CodeHistory.Favourites;
-using OnlineExam.Pages.POM.UserDetails;
+﻿using OnlineExam.Pages.POM;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using OnlineExam.Framework;
 using Xunit;
 
 namespace OnlineExam.Tests

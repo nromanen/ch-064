@@ -1,24 +1,22 @@
-﻿using System;
+﻿using NUnit.Framework;
+using OnlineExam.Framework;
+using OnlineExam.Pages.POM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using AventStack.ExtentReports;
-using OnlineExam.Framework;
-using OnlineExam.Pages.POM;
-using Xunit;
 
-
-namespace OnlineExam.Tests
+namespace OnlineExam.NUnitTests
 {
-    [Collection("MyTestCollection")]
+    [TestFixture]
     public class MailTest : BaseTest
     {
         private Header header;
         private SideBar sideBar;
 
-        public MailTest(BaseFixture fixture) : base(fixture)
+        [SetUp]
+        public void SetUp()
         {
             BeginTest();
             header = ConstructPage<Header>();
@@ -27,7 +25,7 @@ namespace OnlineExam.Tests
 
         string testMessage = $"{Guid.NewGuid()} Hola from Natasha";
 
-        [Fact]
+        [Test]
         public void CheckIfContactUsMessageIsVisibleInInbox()
         {
             UITest(() =>
@@ -43,7 +41,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        [Test]
         public void CheckIfSendEmailIsVisibleInOutBox()
         {
             UITest(() =>
@@ -59,7 +57,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        [Test]
         public void CheckIfUserCanSendEmail()
         {
             UITest(() =>
@@ -72,5 +70,10 @@ namespace OnlineExam.Tests
             });
         }
 
+        [TearDown]
+        public void Dispose()
+        {
+            driver.Dispose();
+        }
     }
 }

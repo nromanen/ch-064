@@ -1,41 +1,37 @@
-﻿using System;
-using AventStack.ExtentReports;
+﻿using NUnit.Framework;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
-using Xunit;
-using Xunit.Abstractions;
 
-namespace OnlineExam.Tests
+
+namespace OnlineExam.NUnitTests
 {
-    [Collection("MyTestCollection")]
-    public class AdminTest : BaseTest
+    [TestFixture]
+    public class AdminNTest : BaseNTest
     {
         private Header header;
         private LogInPage logInPage;
         private AdminPanelPage adminPanelPage;
 
 
-        //[SetUp]
-        public AdminTest(BaseFixture fixture) : base(fixture)
+        [SetUp]
+        public override void SetUp()
         {
-            BeginTest();
-
+            base.SetUp();
             header = ConstructPage<Header>();
             logInPage = header.GoToLogInPage();
             logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
-        }
-
-        [Fact]
+        } 
+        
+   
+        [Test]
         public void IsUserPresentedInUserListTest()
         {
-            UITest(() =>
-            {
+            
                 Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL));
-            });
         }
 
-        [Fact]
+        [Test]
         public void DeleteUserTest()
         {
             UITest(() =>
@@ -51,7 +47,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        [Test]
         public void ChangeUserRoleTest()
         {
             UITest(() =>
@@ -59,17 +55,15 @@ namespace OnlineExam.Tests
                 var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
                 changeRolePage.ChangeRole(Constants.TEACHER);
                 changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
-                Assert.Equal(Constants.TEACHER, changeRolePage.CurrentRole());
+                Assert.AreEqual(Constants.TEACHER, changeRolePage.CurrentRole());
             });
         }
 
-        [Fact]
+        [Test]
         public void IsUserListAvailableTest()
         {
-            UITest(() =>
-            {
+            
                 Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
-            });
         }
         }
 }

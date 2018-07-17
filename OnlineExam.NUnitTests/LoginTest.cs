@@ -1,33 +1,30 @@
-﻿using System;
+﻿using NUnit.Framework;
+using OnlineExam.Pages.POM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using AventStack.ExtentReports;
 using OnlineExam.Framework;
-using OnlineExam.Pages.POM;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
-using Xunit;
 
-namespace OnlineExam.Tests
+namespace OnlineExam.NUnitTests
 {
-    [Collection("MyTestCollection")]
+    [TestFixture]
     public class LoginTest : BaseTest
     {
         private Header header;
         private LogInPage logInPage;
 
-        public LoginTest(BaseFixture fixture) : base(fixture)
+        [SetUp]
+        public void SetUp()
         {
-                BeginTest();
-                header = ConstructPage<Header>();
-                logInPage = header.GoToLogInPage();
+            BeginTest();
+
+            header = ConstructPage<Header>();
+            logInPage = header.GoToLogInPage();
         }
 
-
-        [Fact]
+        [Test]
         public void SignInTest()
         {
             UITest(() =>
@@ -38,7 +35,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        [Test]
         public void SignInUsingInvalidEmailTest()
         {
             UITest(() =>
@@ -48,7 +45,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        [Test]
         public void SignInUsingInvalidPasswordTest()
         {
             UITest(() =>
@@ -58,7 +55,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        [Test]
         public void SignOutTest()
         {
             UITest(() =>
@@ -69,6 +66,12 @@ namespace OnlineExam.Tests
                 driver.RefreshPage();
                 Assert.True(logInPage.IsSignInPresentedInHeader());
             });
+        }
+
+        [TearDown]
+        public void Dispose()
+        {
+            driver.Dispose();
         }
     }
 }
