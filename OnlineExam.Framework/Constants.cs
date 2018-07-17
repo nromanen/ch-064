@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineExam.Tests
-{
+namespace OnlineExam.Framework
+{ 
     public static class Constants
     {
         public const string HOME_URL = "http://localhost:55842";

@@ -2,8 +2,9 @@
 using OnlineExam.Pages.POM;
 
 
-namespace OnlineExam.Tests
+namespace OnlineExam.NUnitTests
 {
+    [TestFixture]
     public class HeaderTest : BaseTest
     {
         private Header header;

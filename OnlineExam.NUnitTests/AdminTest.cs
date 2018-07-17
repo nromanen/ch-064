@@ -3,7 +3,7 @@ using NUnit.Framework;
 using OnlineExam.Pages.POM;
 
 
-namespace OnlineExam.Tests
+namespace OnlineExam.NUnitTests
 {
     [TestFixture]
     public class AdminTest : BaseTest

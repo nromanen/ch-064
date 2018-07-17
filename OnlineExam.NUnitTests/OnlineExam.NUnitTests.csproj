@@ -92,6 +92,7 @@
     <Compile Include="AdminTest.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="HeaderTest.cs" />
+    <Compile Include="LoginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SideBarTest.cs" />
     <Compile Include="TEMP_NTest.cs" />

@@ -10,7 +10,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 
-namespace OnlineExam.Tests
+namespace OnlineExam.NUnitTests
 {
     [TestFixture]
     public abstract class BaseTest

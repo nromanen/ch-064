@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 
-namespace OnlineExam.Tests
+namespace OnlineExam.NUnitTests
 {
     [TestFixture]
     public class TEMP_NTest : BaseTest
