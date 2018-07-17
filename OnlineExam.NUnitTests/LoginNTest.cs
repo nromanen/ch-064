@@ -9,6 +9,7 @@ using OnlineExam.Framework;
 
 namespace OnlineExam.NUnitTests
 {
+    //[Parallelizable(ParallelScope.Self)]
     [TestFixture]
     public class LoginNTest : BaseNTest
     {
