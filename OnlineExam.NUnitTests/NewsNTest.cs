@@ -26,13 +26,11 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void CreateNewsTest()
         {
-            UITest(() =>
-            {
+         
                 var signIn = header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
                 var newsPage = ConstructPage<SideBar>().GoToTeacherNewsPage();
                 var result = newsPage.CreateArticle();
                 Assert.True(result.UrlEndsWith("AddNews/News"));
-            });
         }
     }
 }

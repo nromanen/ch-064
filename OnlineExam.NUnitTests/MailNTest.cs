@@ -28,8 +28,7 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void CheckIfContactUsMessageIsVisibleInInbox()
         {
-            UITest(() =>
-            {
+            
                 var contactUs = sideBar.GoToContactUsPage();
                 contactUs.ContactUs(Constants.EXAMPLE_EMAIL, "Name", testMessage);
                 header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
@@ -38,14 +37,12 @@ namespace OnlineExam.NUnitTests
                 var blocks = inbox.GetInboxBlocksList();
                 var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
                 Assert.True(existMessage);
-            });
         }
 
         [Test]
         public void CheckIfSendEmailIsVisibleInOutBox()
         {
-            UITest(() =>
-            {
+            
                 header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
                 var mailBox = sideBar.GoToMailBoxPage();
                 var sendEmail = mailBox.SendMessageReferenceClick();
@@ -54,20 +51,17 @@ namespace OnlineExam.NUnitTests
                 var blocks = outbox.GetOutboxBlocksList();
                 var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
                 Assert.True(existMessage);
-            });
         }
 
         [Test]
         public void CheckIfUserCanSendEmail()
         {
-            UITest(() =>
-            {
+            
                 header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
                 var mailBox = sideBar.GoToMailBoxPage();
                 var sendEmail = mailBox.SendMessageReferenceClick();
                 var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
                 Assert.True(result.UrlEndsWith("/EmailMessages"));
-            });
         }
     }
 }
