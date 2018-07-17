@@ -65,7 +65,7 @@ namespace OnlineExam.NUnitTests
             header.SignOut();
             header.GoToLogInPage().SignIn("NewEmail@gmail.com", Constants.USER_PASSWORD);
             var flag = header.GetCurrentUrl().Contains(Constants.LOGIN_URL_CONTAINS);
-            Assert.False(flag, "Email was changed on UI but not in DB");
+            Assert.False(flag, "User must input email instead name");
             header.GoToUserAccountPage();
             var isEqualAfterRepeatLogIn = string.Equals(userInfo.GetEmail(), newEmail, StringComparison.InvariantCulture);
             Assert.True(isEqualAfterRepeatLogIn);
