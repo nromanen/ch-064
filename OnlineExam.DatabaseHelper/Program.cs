@@ -15,6 +15,7 @@ namespace OnlineExam.DatabaseHelper
                 Helper.RestoreDatabase();
                 Console.WriteLine("roma molodez");
             }
+            Helper.RestoreDatabase("Main", @"(LocalDb)\MSSQLLocalDB");
         }
     }
 }
