@@ -17,7 +17,7 @@ namespace OnlineExam.NUnitTests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            DatabaseHelper.Helper.BackupDatabase();
+            //DatabaseHelper.Helper.BackupDatabase();
             htmlReporter = new ExtentHtmlReporter(Constants.REPORT_PATH);
             extentReports = new ExtentReports();
             extentReports.AttachReporter(htmlReporter);
@@ -26,7 +26,7 @@ namespace OnlineExam.NUnitTests
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            DatabaseHelper.Helper.RestoreDatabase();
+            //DatabaseHelper.Helper.RestoreDatabase();
             extentReports.Flush();
         }
     }
