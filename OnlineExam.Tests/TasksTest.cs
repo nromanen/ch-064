@@ -42,7 +42,7 @@ namespace OnlineExam.Tests
             }
         }
 
-        [Fact]
+        //[Fact]
         public void IsTaskAvailable()
         {
             UITest(() =>
@@ -61,7 +61,7 @@ namespace OnlineExam.Tests
 
         }
 
-        [Fact]
+        //[Fact]
         public void ClickOnTasksButton()
         {
             UITest(() =>
@@ -81,7 +81,7 @@ namespace OnlineExam.Tests
         }
 
 
-        [Fact]
+        //[Fact]
         public void StarsCount()
         {
             UITest(() =>

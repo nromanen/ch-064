@@ -28,7 +28,7 @@ namespace OnlineExam.Tests
            
         }
 
-        [Fact]
+        //[Fact]
         public void CheckContentUserInfoPageTest()
         {
             UITest(() =>
@@ -50,7 +50,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void TestChangeEmail()
         {
             UITest(() =>
@@ -77,7 +77,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void TestChangeName()
         {
             UITest(() =>
@@ -94,7 +94,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void TestChangePassword()
         {
             UITest(() =>

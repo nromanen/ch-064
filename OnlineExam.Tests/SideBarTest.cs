@@ -16,7 +16,7 @@ namespace OnlineExam.Tests
             sideBar = ConstructPage<SideBar>();
         }
 
-        [Fact]
+        //[Fact]
         public void GoToRatingsPageTest()
         {
             UITest(() =>
@@ -26,7 +26,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void GoToCoursesPageTest()
         {
             UITest(() =>
@@ -36,7 +36,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void GoToContactUsPageTest()
         {
             UITest(() =>

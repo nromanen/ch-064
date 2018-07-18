@@ -14,7 +14,7 @@ namespace OnlineExam.NUnitTests
         private AdminPanelPage adminPanelPage;
 
 
-        [SetUp]
+        //[SetUp]
         public override void SetUp()
         {
             base.SetUp();
@@ -25,13 +25,13 @@ namespace OnlineExam.NUnitTests
         }
 
 
-        [Test]
+        //[Test]
         public void IsUserPresentedInUserListTest()
         {
             Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL));
         }
 
-        [Test]
+        //[Test]
         public void DeleteUserTest()
         {
             Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL),
@@ -43,7 +43,7 @@ namespace OnlineExam.NUnitTests
             Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL), "Error");
         }
 
-        [Test]
+        //[Test]
         public void ChangeUserRoleTest()
         {
             var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
@@ -52,7 +52,7 @@ namespace OnlineExam.NUnitTests
             Assert.AreEqual(Constants.TEACHER, changeRolePage.CurrentRole());
         }
 
-        [Test]
+        //[Test]
         public void IsUserListAvailableTest()
         {
             Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());

@@ -44,7 +44,7 @@ namespace OnlineExam.Tests
         }
 
 
-        [Fact]
+        //[Fact]
         public void ClickOnStartButton()
         {
             UITest(() =>
@@ -68,7 +68,7 @@ namespace OnlineExam.Tests
         }
 
 
-        [Fact]
+        //[Fact]
         public void ClickOnOkButton()
         {
             UITest(() =>
@@ -92,7 +92,7 @@ namespace OnlineExam.Tests
         }
 
 
-        [Fact]
+        //[Fact]
         public void EmailFromComment()
         {
             UITest(() =>
@@ -121,7 +121,7 @@ namespace OnlineExam.Tests
         }
 
 
-        [Fact]
+        //[Fact]
         public void TextFromComment()
         {
             UITest(() =>
@@ -149,7 +149,7 @@ namespace OnlineExam.Tests
             );
         }
 
-        [Fact]
+        //[Fact]
         public void DateFromComment()
         {
             UITest(() =>
@@ -179,7 +179,7 @@ namespace OnlineExam.Tests
             );
         }
 
-        [Fact]
+        //[Fact]
         public void ShowHideComments()
         {
             UITest(() =>
@@ -203,7 +203,7 @@ namespace OnlineExam.Tests
         }
 
 
-        [Fact]
+        //[Fact]
         public void StarsCount()
         {
             UITest(() =>
@@ -234,7 +234,7 @@ namespace OnlineExam.Tests
         }
 
 
-        [Fact]
+        //[Fact]
         public void CreateNewComment()
         {
             UITest(() =>

@@ -26,7 +26,7 @@ namespace OnlineExam.Tests
             adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
         }
 
-        [Fact]
+        //[Fact]
         public void IsUserPresentedInUserListTest()
         {
             UITest(() =>
@@ -35,7 +35,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void DeleteUserTest()
         {
             UITest(() =>
@@ -51,7 +51,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void ChangeUserRoleTest()
         {
             UITest(() =>
@@ -63,7 +63,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void IsUserListAvailableTest()
         {
             UITest(() =>
@@ -71,5 +71,5 @@ namespace OnlineExam.Tests
                 Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
             });
         }
-        }
+    }
 }

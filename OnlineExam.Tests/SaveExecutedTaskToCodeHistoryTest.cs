@@ -21,7 +21,7 @@ namespace OnlineExam.Tests
             header = ConstructPage<Header>();
         }
 
-        [Fact]
+        //[Fact]
         public void SaveExecutedTestToCodeHistory()
         {
 

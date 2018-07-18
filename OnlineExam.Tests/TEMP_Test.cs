@@ -30,7 +30,7 @@ namespace OnlineExam.Tests
             sidebar.GoToTasksPage();
         }
 
-        [Fact]
+        //[Fact]
         public void IsTaskAvailable()
         {
             UITest(() =>
@@ -49,7 +49,7 @@ namespace OnlineExam.Tests
 
 
 
-        [Fact]
+        //[Fact]
         public void TaskRecover()
         {
             UITest(() =>
@@ -78,7 +78,7 @@ namespace OnlineExam.Tests
 
 
 
-        [Fact]
+        //[Fact]
         public void TaskDelete()
         {
             UITest(() =>
@@ -107,7 +107,7 @@ namespace OnlineExam.Tests
 
 
 
-        [Fact]
+        //[Fact]
         public void TaskSolution()
         {
             UITest(() =>
@@ -129,7 +129,7 @@ namespace OnlineExam.Tests
 
 
 
-        [Fact]
+        //[Fact]
         public void TaskCreationDate()
         {
             UITest(() =>
@@ -147,7 +147,7 @@ namespace OnlineExam.Tests
     );
         }
 
-        [Fact]
+        //[Fact]
         public void TaskUpdateDate()
         {
             UITest(() =>
@@ -165,7 +165,7 @@ namespace OnlineExam.Tests
         }
 
 
-        [Fact]
+        //[Fact]
         public void AddNewTaskTest()
         {
             UITest(() =>

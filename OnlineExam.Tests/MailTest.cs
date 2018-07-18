@@ -27,7 +27,7 @@ namespace OnlineExam.Tests
 
         string testMessage = $"{Guid.NewGuid()} Hola from Natasha";
 
-        [Fact]
+        //[Fact]
         public void CheckIfContactUsMessageIsVisibleInInbox()
         {
             UITest(() =>
@@ -43,7 +43,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void CheckIfSendEmailIsVisibleInOutBox()
         {
             UITest(() =>
@@ -59,7 +59,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void CheckIfUserCanSendEmail()
         {
             UITest(() =>

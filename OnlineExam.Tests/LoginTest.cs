@@ -26,8 +26,7 @@ namespace OnlineExam.Tests
                 logInPage = header.GoToLogInPage();
         }
 
-
-        [Fact]
+        //[Fact]
         public void SignInTest()
         {
             UITest(() =>
@@ -38,7 +37,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void SignInUsingInvalidEmailTest()
         {
             UITest(() =>
@@ -48,7 +47,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void SignInUsingInvalidPasswordTest()
         {
             UITest(() =>
@@ -58,7 +57,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void SignOutTest()
         {
             UITest(() =>

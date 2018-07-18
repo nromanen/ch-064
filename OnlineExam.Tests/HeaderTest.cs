@@ -17,7 +17,7 @@ namespace OnlineExam.Tests
             header = ConstructPage<Header>();
         }
 
-        [Fact]
+        //[Fact]
         public void ChangeLanguageToEnglishTest()
         {
             UITest(() =>
@@ -27,7 +27,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void ChangeLanguageToUkraineTest()
         {
             UITest(() =>
@@ -37,7 +37,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void SignInButtonTest()
         {
             UITest(() =>
@@ -47,7 +47,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void SignUpButtonTest()
         {
             UITest(() =>

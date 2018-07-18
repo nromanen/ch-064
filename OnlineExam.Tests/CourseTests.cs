@@ -17,7 +17,7 @@ namespace OnlineExam.Tests
             BeginTest();
         }
         
-        [Fact]
+        //[Fact]
         public void CreateCourse_ValidData()
         {
             UITest(() =>
@@ -38,7 +38,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void CreateCourse_InvalidData()
         {
             UITest(() =>
@@ -59,7 +59,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void DeleteCourse_ShouldDeleteCourse()
         {
             UITest(() =>
@@ -87,7 +87,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void RestoreCourse_ShouldRestoreCourse()
         {
             UITest(() =>
@@ -115,9 +115,7 @@ namespace OnlineExam.Tests
             });
         }
 
-
-
-        [Fact]
+        //[Fact]
         public void ChangeCourse_ShouldChangeCourseData()
         {
             UITest(() =>
@@ -148,9 +146,7 @@ namespace OnlineExam.Tests
             });
         }
 
-
-
-        [Fact]
+        //[Fact]
         public void ChangeCourseOwner_ShouldChangeOwner()
         {
             UITest(() =>

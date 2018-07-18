@@ -41,10 +41,7 @@ namespace OnlineExam.Tests
             }
         }
 
-
-
-
-        [Fact]
+        //[Fact]
         public void TaskDone()
         {
             UITest(() =>
@@ -87,13 +84,10 @@ namespace OnlineExam.Tests
                         Assert.NotEmpty(review);
                     }
                 }
-
-
-            }
-            );
+            });
         }
 
-        [Fact]
+        //[Fact]
         public void ExitButton()
         {
             UITest(() =>
@@ -112,13 +106,10 @@ namespace OnlineExam.Tests
                     var url = driver.GetCurrentUrl();
                     Assert.Equal("http://localhost:55842/", url);
                 }
-            }
-        );
-
+            });
         }
 
-
-        [Fact]
+        //[Fact]
         public void Compilation()
         {
             UITest(() =>
@@ -138,8 +129,7 @@ namespace OnlineExam.Tests
                     var result = Code.FieldWithResultOfCompilationCode.Text;
                     Assert.NotEmpty(result);
                 }
-            }
-);
+            });
 
         }
 

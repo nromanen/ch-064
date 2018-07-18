@@ -24,7 +24,7 @@ namespace OnlineExam.Tests
             sideBar = ConstructPage<SideBar>();
         }
 
-        [Fact]
+        //[Fact]
         public void CheckIfUserIsPresentedInUserListAfterSignUp()
         {
             UITest(() =>
@@ -39,7 +39,7 @@ namespace OnlineExam.Tests
             });
         }
 
-        [Fact]
+        //[Fact]
         public void SignUpAsUsedEmail()
         {
             UITest(() =>
@@ -51,7 +51,5 @@ namespace OnlineExam.Tests
 
             });
         }
-
-        
     }
 }

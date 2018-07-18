@@ -33,7 +33,7 @@ namespace OnlineExam.Tests
             sideBar = ConstructPage<SideBar>();
         }
 
-        [Fact]
+        //[Fact]
         public void CheckAnyInFavouritesTest()
         {
             UITest(() =>
