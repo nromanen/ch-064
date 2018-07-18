@@ -5,6 +5,7 @@ using OnlineExam.Pages.POM;
 
 namespace OnlineExam.NUnitTests
 {
+    [Parallelizable(ParallelScope.Self)]
     [TestFixture]
     public class AdminNTest : BaseNTest
     {
