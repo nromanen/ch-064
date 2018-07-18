@@ -13,6 +13,7 @@ namespace OnlineExam.DatabaseHelper
             if (args.Contains("restore"))
             {
                 Helper.RestoreDatabase();
+                Console.WriteLine("roma molodez");
             }
         }
     }
