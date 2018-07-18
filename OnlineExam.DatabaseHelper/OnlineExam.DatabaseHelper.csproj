@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Backup\MainBackup.bak" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineExam.Framework\OnlineExam.Framework.csproj">
