@@ -13,8 +13,11 @@ namespace OnlineExam.DatabaseHelper
             if (args.Contains("restore"))
             {
                 Helper.RestoreDatabase();
-                Console.WriteLine("roma molodez");
+                Console.WriteLine("roma ne molodez");
             }
+
+            Helper.RestoreDatabase();
+            Console.Read();
         }
     }
 }

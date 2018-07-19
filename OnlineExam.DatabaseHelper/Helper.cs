@@ -78,7 +78,7 @@ namespace OnlineExam.DatabaseHelper
                 Console.WriteLine("Restore operation started");
                 Restore restore = new Restore();
                 restore.Database = databaseName;
-                restore.Action = RestoreActionType.Database;       
+                restore.Action = RestoreActionType.Database;
                 restore.Devices.AddDevice(Constants.BACKUP_PATH, DeviceType.File);
                 restore.ReplaceDatabase = true;
                 restore.NoRecovery = false;
@@ -99,6 +99,7 @@ namespace OnlineExam.DatabaseHelper
         public static void RestoreDatabase()
         {
             try
+
             {
                 Console.WriteLine("Restore operation started");
                 Restore restore = new Restore();
@@ -110,16 +111,7 @@ namespace OnlineExam.DatabaseHelper
                 ServerConnection connection = new ServerConnection(@"DESKTOP-424095L\SQLEXPRESS");
                 connection.LoginSecure = true;
                 Server sqlServer = new Server(connection);
-                //sqlServer.KillAllProcesses("OnlineExamDB");
-                /*string sqlCommandText = @"USE master; 
-                ALTER DATABASE [" + db.Name + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; 
-                DROP DATABASE[" + db.Name + "]";  
-                dbServer.ConnectionContext.ExecuteNonQuery(sqlCommandText);
-*/
-                sqlServer.ConnectionContext.ExecuteNonQuery("ALTER DATABASE [OnlineExamDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
-                sqlServer.ConnectionContext.ExecuteNonQuery("USE MASTER RESTORE DATABASE [OnlineExamDB] FROM DISK="+ Constants.BACKUP_PATH +" WITH REPLACE; ");
-                sqlServer.ConnectionContext.ExecuteNonQuery("ALTER DATABASE [OnlineExamDB] SET MULTI_USER");
-
+                sqlServer.KillAllProcesses("OnlineExamDB");
                 restore.SqlRestore(sqlServer);
                 Console.WriteLine("Restore operation succeeded");
             }
@@ -129,7 +121,5 @@ namespace OnlineExam.DatabaseHelper
                 Console.WriteLine(ex.Message);
             }
         }
-
-       
     }
 }
