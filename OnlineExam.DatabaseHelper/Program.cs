@@ -16,8 +16,8 @@ namespace OnlineExam.DatabaseHelper
                 Console.WriteLine("roma ne molodez");
             }
 
-            Helper.RestoreDatabase();
-            Console.Read();
+           // Helper.RestoreDatabase();
+            //Console.Read();
         }
     }
 }
