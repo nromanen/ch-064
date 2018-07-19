@@ -110,7 +110,7 @@ namespace OnlineExam.DatabaseHelper
                 connection.LoginSecure = true;
                 Server sqlServer = new Server(connection);
 
-                sqlServer.KillAllProcesses("OnlineExamDB");
+              //  sqlServer.KillAllProcesses("OnlineExamDB");
                 sqlServer.ConnectionContext.ExecuteNonQuery(
                     "ALTER DATABASE [OnlineExamDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
                 sqlServer.ConnectionContext.ExecuteNonQuery("USE MASTER RESTORE DATABASE [OnlineExamDB] FROM DISK=" +
