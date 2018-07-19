@@ -96,25 +96,54 @@ namespace OnlineExam.DatabaseHelper
             }
         }
 
+        private static string conection = "data source = DESKTOP-424095L\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;";
+
+
         public static void RestoreDatabase()
         {
-            try
+            //try
 
+            //{
+            //    Console.WriteLine("Restore operation started");
+            //    Restore restore = new Restore();
+            //    ServerConnection connection = new ServerConnection(@"DESKTOP-424095L\SQLEXPRESS");
+            //    connection.LoginSecure = true;
+            //    Server sqlServer = new Server(connection);
+
+            //    sqlServer.KillAllProcesses("OnlineExamDB");
+            //    sqlServer.ConnectionContext.ExecuteNonQuery(
+            //        "ALTER DATABASE [OnlineExamDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
+            //    sqlServer.ConnectionContext.ExecuteNonQuery("USE MASTER RESTORE DATABASE [OnlineExamDB] FROM DISK=" +
+            //                                                Constants.BACKUP_PATH + " WITH REPLACE; ");
+            //    sqlServer.ConnectionContext.ExecuteNonQuery("ALTER DATABASE [OnlineExamDB] SET MULTI_USER");
+
+
+            //    sqlServer.KillAllProcesses("OnlineExamDB");
+            //    restore.SqlRestore(sqlServer);
+            //    Console.WriteLine("Restore operation succeeded");
+            //}
+            SqlConnection con = new SqlConnection(conection);
+            string database = con.Database.ToString();
+            if (con.State != System.Data.ConnectionState.Open)
+            {
+                con.Open();
+            }
+            try
             {
                 Console.WriteLine("Restore operation started");
-                Restore restore = new Restore();
-                restore.Database = "OnlineExamDB";
-                restore.Action = RestoreActionType.Database;
-                restore.Devices.AddDevice(Constants.BACKUP_PATH, DeviceType.File);
-                restore.ReplaceDatabase = true;
-                restore.NoRecovery = false;
-                ServerConnection connection = new ServerConnection(@"DESKTOP-424095L\SQLEXPRESS");
-                connection.LoginSecure = true;
-                Server sqlServer = new Server(connection);
-                sqlServer.KillAllProcesses("OnlineExamDB");
-                restore.SqlRestore(sqlServer);
+
+                SqlCommand singleUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE", con);
+                singleUserQuery.ExecuteNonQuery();
+
+                SqlCommand restoreDatabaseQuery = new SqlCommand("USE MASTER RESTORE DATABASE [" + database + "] FROM DISK='" + Constants.BACKUP_PATH + "' WITH REPLACE;", con);
+                restoreDatabaseQuery.ExecuteNonQuery();
+
+                SqlCommand multiUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET MULTI_USER", con);
+                multiUserQuery.ExecuteNonQuery();
+                con.Close();
                 Console.WriteLine("Restore operation succeeded");
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine("Restore operation failed");
