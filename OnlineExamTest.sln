@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExam.Pages", "OnlineExam.Pages\OnlineExam.Pages.csproj", "{F6046EDD-9C1E-4460-B1B4-69DE5F3D3004}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExam.Tests", "OnlineExam.Tests\OnlineExam.Tests.csproj", "{F59F8485-4C2B-46CC-876D-10191FCDE686}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExam.Framework", "OnlineExam.Framework\OnlineExam.Framework.csproj", "{BD4E4A4B-6275-458F-99CA-F541D6EECB7E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExam.NUnitTests", "OnlineExam.NUnitTests\OnlineExam.NUnitTests.csproj", "{A43954D9-09B2-4AFB-8D0B-246A89D4AC21}"
@@ -29,14 +27,6 @@ Global
 		{F6046EDD-9C1E-4460-B1B4-69DE5F3D3004}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F6046EDD-9C1E-4460-B1B4-69DE5F3D3004}.Release|x86.ActiveCfg = Release|Any CPU
 		{F6046EDD-9C1E-4460-B1B4-69DE5F3D3004}.Release|x86.Build.0 = Release|Any CPU
-		{F59F8485-4C2B-46CC-876D-10191FCDE686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F59F8485-4C2B-46CC-876D-10191FCDE686}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F59F8485-4C2B-46CC-876D-10191FCDE686}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F59F8485-4C2B-46CC-876D-10191FCDE686}.Debug|x86.Build.0 = Debug|Any CPU
-		{F59F8485-4C2B-46CC-876D-10191FCDE686}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F59F8485-4C2B-46CC-876D-10191FCDE686}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F59F8485-4C2B-46CC-876D-10191FCDE686}.Release|x86.ActiveCfg = Release|Any CPU
-		{F59F8485-4C2B-46CC-876D-10191FCDE686}.Release|x86.Build.0 = Release|Any CPU
 		{BD4E4A4B-6275-458F-99CA-F541D6EECB7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BD4E4A4B-6275-458F-99CA-F541D6EECB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD4E4A4B-6275-458F-99CA-F541D6EECB7E}.Debug|x86.ActiveCfg = Debug|Any CPU
