@@ -18,6 +18,8 @@ namespace OnlineExam.DatabaseHelper
 
            // Helper.RestoreDatabase();
             //Console.Read();
+
+            //problem with db
         }
     }
 }
