@@ -118,7 +118,7 @@ namespace OnlineExam.DatabaseHelper
                 sqlServer.ConnectionContext.ExecuteNonQuery("ALTER DATABASE [OnlineExamDB] SET MULTI_USER");
 
 
-                sqlServer.KillAllProcesses("OnlineExamDB");
+                //sqlServer.KillAllProcesses("OnlineExamDB");
                 restore.SqlRestore(sqlServer);
                 Console.WriteLine("Restore operation succeeded");
             }
