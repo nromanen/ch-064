@@ -23,13 +23,13 @@ namespace OnlineExam.Tests
 
         public BaseTest()
         {
-            driver = DriversFabric.InitChrome();
+            driver = DriversFabric.Init();
         }
 
         //[SetUp]
         public BaseTest(BaseFixture fixture)
         {
-            driver = DriversFabric.InitChrome();
+            driver = DriversFabric.Init();
             driver.Maximize();
             this.fixture = fixture;
         }
@@ -37,7 +37,7 @@ namespace OnlineExam.Tests
 
         public void BeginTest()
         {
-            driver.GoToUrl(Constants.HOME_URL);
+            driver.GoToUrl(DriversFabric.GetHomeUrl());
         }
 
         public void NavigateTo(string url)

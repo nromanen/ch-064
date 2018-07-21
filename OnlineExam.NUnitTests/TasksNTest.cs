@@ -11,6 +11,7 @@ using OnlineExam.Framework;
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
+    [Category("Misha")]
     public class TasksNTest : BaseNTest
     {
         private Header header;
@@ -43,8 +44,7 @@ namespace OnlineExam.NUnitTests
 
         [Test]
         public void IsTaskAvailable()
-        {
-           
+        {           
                 string TaskName = "Simple addition";
                 var ListOfTasks = ConstructPage<TasksPage>();
 
@@ -53,8 +53,7 @@ namespace OnlineExam.NUnitTests
                 {
                     var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                     Assert.AreEqual(firstblock.GetName(), TaskName);
-                }
-            
+                }            
         }
 
 

@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OnlineExam.Framework
 {
+
     public static class Constants
     {
-        public const string HOME_URL = "http://localhost:55842";
+        //public const string HOME_URL = "http://localhost:55842";
         public const string ADMIN_EMAIL = "admin@gmail.com";
         public const string ADMIN_PASSWORD = "Admin_123";
         public const string TEACHER_EMAIL = "teacher@gmail.com";

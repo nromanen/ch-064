@@ -10,17 +10,18 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.NUnitTests
 {
+
     [TestFixture]
     public abstract class BaseNTest //: BaseNFixture
     {
-        protected ExtendedWebDriver driver;
+        protected ExtendedWebDriver driver;       
 
         [SetUp]
         public virtual void SetUp()
-        {
-            driver = DriversFabric.InitChrome();
+        {           
+            driver = DriversFabric.Init();
             driver.Maximize();
-            driver.GoToUrl(Constants.HOME_URL);
+            driver.GoToUrl(DriversFabric.GetHomeUrl());
             BaseNFixture.test = BaseNFixture.extentReports.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
