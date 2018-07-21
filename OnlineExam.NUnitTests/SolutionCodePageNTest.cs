@@ -42,6 +42,7 @@ namespace OnlineExam.NUnitTests
 
 
         [Test]
+        [Category("Misha")]
         public void TaskDone()
         {
             string TaskName = "Simple addition";
@@ -85,6 +86,7 @@ namespace OnlineExam.NUnitTests
         }
 
         [Test]
+        [Category("Misha")]
         public void ExitButton()
         {
             
@@ -106,6 +108,7 @@ namespace OnlineExam.NUnitTests
 
 
         [Test]
+        [Category("Misha")]
         public void Compilation()
         {
             
