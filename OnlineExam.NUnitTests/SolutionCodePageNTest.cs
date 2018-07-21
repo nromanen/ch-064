@@ -8,6 +8,7 @@ using System.Threading;
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
+    [Category("Misha")]
     public class SolutionCodePageNTest : BaseNTest
     {
         private Header header;
