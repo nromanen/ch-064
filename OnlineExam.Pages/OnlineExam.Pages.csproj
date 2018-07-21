@@ -155,14 +155,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\packages\PhantomJS.2.1.1\tools\phantomjs\phantomjs.exe">
-      <Link>phantomjs.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="extent-config.xml" />
-    <Content Include="phantomjs-license.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Sources\Example.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

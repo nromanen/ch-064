@@ -1,4 +1,4 @@
 {
-  "browser": "Phantom",
+  "browser": "Chrome",
   "url": "http://localhost:55842/"
 }

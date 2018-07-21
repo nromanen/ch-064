@@ -115,14 +115,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\packages\PhantomJS.2.1.1\tools\phantomjs\phantomjs.exe">
-      <Link>phantomjs.exe</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="extent-config.xml" />
-    <Content Include="phantomjs-license.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />

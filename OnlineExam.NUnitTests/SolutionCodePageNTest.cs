@@ -39,8 +39,6 @@ namespace OnlineExam.NUnitTests
         }
 
 
-
-
         [Test]
         [Category("Misha")]
         public void TaskDone()
