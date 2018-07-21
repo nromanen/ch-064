@@ -8,7 +8,7 @@ using System.Threading;
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
-    [Category("Misha")]
+    [Category("SolutionCodePage")]
     public class SolutionCodePageNTest : BaseNTest
     {
         private Header header;
@@ -40,7 +40,7 @@ namespace OnlineExam.NUnitTests
 
 
         [Test]
-        [Category("Misha")]
+        [Category("TaskDone")]
         public void TaskDone()
         {
             string TaskName = "Simple addition";
@@ -84,7 +84,7 @@ namespace OnlineExam.NUnitTests
         }
 
         [Test]
-        [Category("Misha")]
+        [Category("ExitButton")]
         public void ExitButton()
         {
             
@@ -106,7 +106,7 @@ namespace OnlineExam.NUnitTests
 
 
         [Test]
-        [Category("Misha")]
+        [Category("Compilation")]
         public void Compilation()
         {
             
