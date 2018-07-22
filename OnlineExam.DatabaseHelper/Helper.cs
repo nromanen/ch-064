@@ -51,7 +51,7 @@ namespace OnlineExam.DatabaseHelper
                 backup.Database = "OnlineExamDB";
                 BackupDeviceItem deviceItem = new BackupDeviceItem(Constants.BACKUP_PATH, DeviceType.File);
                 backup.Devices.Add(deviceItem);
-                ServerConnection connection = new ServerConnection(@"DESKTOP-424095L\SQLEXPRESS");
+                ServerConnection connection = new ServerConnection(@"Ch784\SQLEXPRESS");
                 connection.LoginSecure = true;
                 //connection.Login = "testuser";
                 //connection.Password = "testuser";
@@ -106,7 +106,7 @@ namespace OnlineExam.DatabaseHelper
                 restore.Devices.AddDevice(Constants.BACKUP_PATH, DeviceType.File);
                 restore.ReplaceDatabase = true;
                 restore.NoRecovery = false;
-                ServerConnection connection = new ServerConnection(@"DESKTOP-424095L\SQLEXPRESS");
+                ServerConnection connection = new ServerConnection(@"CH784\SQLEXPRESS");
                 connection.LoginSecure = true;
                 Server sqlServer = new Server(connection);
                 sqlServer.KillAllProcesses("OnlineExamDB");

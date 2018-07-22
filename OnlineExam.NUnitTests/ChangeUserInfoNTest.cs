@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
+    [Category("UserInfoTests")]
     public class ChangeUserInfoNTest : BaseNTest
     {
         private Header header;
