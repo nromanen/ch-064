@@ -94,7 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminNTest.cs" />
-    <Compile Include="APICommentsClient.cs" />
+    <Compile Include="APIClients\APICommentsClient.cs" />
     <Compile Include="BaseNTest.cs" />
     <Compile Include="ChangeUserInfoNTest.cs" />
     <Compile Include="CheckAnyInFavouritesN.cs" />
