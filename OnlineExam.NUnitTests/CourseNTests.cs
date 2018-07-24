@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
+using OnlineExam.DatabaseHelper;
 
 
 namespace OnlineExam.NUnitTests
@@ -43,7 +44,7 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void CreateCourse_InvalidData()
         {
-
+            DataModel tmp = new DataModel();
         }
     }
 }
