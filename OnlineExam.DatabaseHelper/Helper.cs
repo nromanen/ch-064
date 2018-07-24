@@ -2,6 +2,7 @@
 using Microsoft.SqlServer.Management.Smo;
 using OnlineExam.Framework;
 using System;
+using System.Data.SqlClient;
 
 namespace OnlineExam.DatabaseHelper
 {
@@ -77,7 +78,7 @@ namespace OnlineExam.DatabaseHelper
                 Console.WriteLine("Restore operation started");
                 Restore restore = new Restore();
                 restore.Database = databaseName;
-                restore.Action = RestoreActionType.Database;       
+                restore.Action = RestoreActionType.Database;
                 restore.Devices.AddDevice(Constants.BACKUP_PATH, DeviceType.File);
                 restore.ReplaceDatabase = true;
                 restore.NoRecovery = false;
@@ -98,6 +99,7 @@ namespace OnlineExam.DatabaseHelper
         public static void RestoreDatabase()
         {
             try
+
             {
                 Console.WriteLine("Restore operation started");
                 Restore restore = new Restore();
