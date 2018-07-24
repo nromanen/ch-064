@@ -10,19 +10,31 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace OnlineExam.NUnitTests
 {
-
     [TestFixture]
-    public abstract class BaseNTest //: BaseNFixture
+    public class BaseNTest
     {
-        protected ExtendedWebDriver driver;       
+        protected ExtendedWebDriver driver;
+
+        [OneTimeSetUp]
+        public void test1()
+        {
+            ExtentTestManager.CreateParentTest(GetType().Name);
+        }
+
+        [OneTimeTearDown]
+        public void test2()
+        {
+            ExtentManager.Instance.Flush();
+        }
+
 
         [SetUp]
         public virtual void SetUp()
-        {           
+        {
             driver = DriversFabric.Init();
             driver.Maximize();
             driver.GoToUrl(DriversFabric.GetHomeUrl());
-            BaseNFixture.test = BaseNFixture.extentReports.CreateTest(TestContext.CurrentContext.Test.Name);
+            ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
 
@@ -62,6 +74,7 @@ namespace OnlineExam.NUnitTests
             }
         }
 
+
         public void Wait(int time)
         {
             Thread.Sleep(time);
@@ -74,6 +87,7 @@ namespace OnlineExam.NUnitTests
             var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
                 ? ""
                 : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
+            var errorMessage = TestContext.CurrentContext.Result.Message;
             Status logstatus;
 
             switch (status)
@@ -83,7 +97,7 @@ namespace OnlineExam.NUnitTests
                     var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,
                         Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
                     var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
-                    BaseNFixture.test.AddScreenCaptureFromPath(screenshotPathWithDate);
+                    ExtentTestManager.GetTest().AddScreenCaptureFromPath(screenshotPathWithDate);
                     break;
                 case TestStatus.Inconclusive:
                     logstatus = Status.Warning;
@@ -96,8 +110,9 @@ namespace OnlineExam.NUnitTests
                     break;
             }
 
-            BaseNFixture.test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
-            //extentReports.Flush();
+            ExtentTestManager.GetTest().Log(logstatus,
+                "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage);
+
 
             driver?.Dispose();
         }
