@@ -86,6 +86,15 @@ namespace OnlineExam.DatabaseHelper
                 connection.LoginSecure = true;
                 Server sqlServer = new Server(connection);
                 sqlServer.KillAllProcesses(databaseName);
+
+                sqlServer.ConnectionContext.ExecuteNonQuery(
+                    "ALTER DATABASE [OnlineExamDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
+                sqlServer.ConnectionContext.ExecuteNonQuery("USE MASTER RESTORE DATABASE [OnlineExamDB] FROM DISK=" +
+                                                            Constants.BACKUP_PATH + " WITH REPLACE; ");
+                sqlServer.ConnectionContext.ExecuteNonQuery("ALTER DATABASE [OnlineExamDB] SET MULTI_USER");
+
+
+
                 restore.SqlRestore(sqlServer);
                 connection.Disconnect();
                 Console.WriteLine("Restore operation succeeded");
