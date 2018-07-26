@@ -87,6 +87,7 @@ namespace OnlineExam.DatabaseHelper
                 Server sqlServer = new Server(connection);
                 sqlServer.KillAllProcesses(databaseName);
                 restore.SqlRestore(sqlServer);
+                connection.Disconnect();
                 Console.WriteLine("Restore operation succeeded");
             }
             catch (Exception ex)
@@ -96,11 +97,12 @@ namespace OnlineExam.DatabaseHelper
             }
         }
 
-       // private static string conection = "data source = DESKTOP-424095L\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;";
+        // private static string conection = "data source = DESKTOP-424095L\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;";
 
 
         public static void RestoreDatabase()
         {
+
             try
 
             {
@@ -110,7 +112,7 @@ namespace OnlineExam.DatabaseHelper
                 connection.LoginSecure = true;
                 Server sqlServer = new Server(connection);
 
-              //  sqlServer.KillAllProcesses("OnlineExamDB");
+                //  sqlServer.KillAllProcesses("OnlineExamDB");
                 sqlServer.ConnectionContext.ExecuteNonQuery(
                     "ALTER DATABASE [OnlineExamDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
                 sqlServer.ConnectionContext.ExecuteNonQuery("USE MASTER RESTORE DATABASE [OnlineExamDB] FROM DISK=" +

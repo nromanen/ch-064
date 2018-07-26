@@ -12,11 +12,9 @@ namespace OnlineExam.DatabaseHelper
         {
             if (args.Contains("restore"))
             {
-                Helper.RestoreDatabase();
+                Helper.RestoreDatabase("OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
                 Console.WriteLine("roma ne molodez");
             }
-
-            //Helper.RestoreDatabase();
             //Console.Read();
 
             //problem with db
