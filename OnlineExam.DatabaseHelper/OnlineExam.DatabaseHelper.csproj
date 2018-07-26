@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="Model\AspNetRoleClaims.cs" />
     <Compile Include="Model\AspNetRoles.cs" />
     <Compile Include="Model\AspNetUserClaims.cs" />
@@ -92,7 +93,9 @@
     <Compile Include="Model\UsersCode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Backup\MainBackup.bak" />
     <None Include="packages.config" />
   </ItemGroup>
