@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\CommentDAL.cs" />
     <Compile Include="Model\AspNetRoleClaims.cs" />
     <Compile Include="Model\AspNetRoles.cs" />
     <Compile Include="Model\AspNetUserClaims.cs" />
