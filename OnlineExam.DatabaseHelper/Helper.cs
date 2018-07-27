@@ -94,7 +94,7 @@ namespace OnlineExam.DatabaseHelper
                 {
                     
                     ctx.Database.ExecuteSqlCommandAsync(
-                        "ALTER DATABASE [OnlineExamDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;" +
+                        "ALTER DATABASE [OnlineExamDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE" +
                         "USE MASTER RESTORE DATABASE [OnlineExamDB] FROM DISK=" +
                         Constants.BACKUP_PATH + " WITH REPLACE; " +
                         "ALTER DATABASE [OnlineExamDB] SET MULTI_USER");
