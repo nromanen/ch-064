@@ -15,7 +15,7 @@ namespace OnlineExam.DatabaseHelper
                 Helper.RestoreDatabase("OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
                 Console.WriteLine("roma ne molodez");
             }
-           // Helper.RestoreDatabase("OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
+            //Helper.RestoreDatabase("OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
 
             //Console.Read();
 

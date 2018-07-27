@@ -76,22 +76,23 @@ namespace OnlineExam.DatabaseHelper
             try
             {
                 Console.WriteLine("Restore operation started");
-                Restore restore = new Restore();
-                restore.Database = databaseName;
-                restore.Action = RestoreActionType.Database;
-                restore.Devices.AddDevice(Constants.BACKUP_PATH, DeviceType.File);
-                restore.ReplaceDatabase = true;
-                restore.NoRecovery = false;
-                ServerConnection connection = new ServerConnection(serverConnection);
-                connection.LoginSecure = true;
-                Server sqlServer = new Server(connection);
-                sqlServer.KillAllProcesses(databaseName);
+                //Restore restore = new Restore();
+                //restore.Database = databaseName;
+                //restore.Action = RestoreActionType.Database;
+                //restore.Devices.AddDevice(Constants.BACKUP_PATH, DeviceType.File);
+                //restore.ReplaceDatabase = true;
+                //restore.NoRecovery = false;
+                //ServerConnection connection = new ServerConnection(serverConnection);
+                //connection.LoginSecure = true;
+                //Server sqlServer = new Server(connection);
+                //sqlServer.KillAllProcesses(databaseName);
 
                 string conection =
                     "data source = DESKTOP-424095L\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;";
 
                 using (var ctx = new DataModel(conection))
                 {
+                    
                     ctx.Database.ExecuteSqlCommandAsync(
                         "ALTER DATABASE [OnlineExamDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE" +
                         "USE MASTER RESTORE DATABASE [OnlineExamDB] FROM DISK=" +
@@ -112,8 +113,8 @@ namespace OnlineExam.DatabaseHelper
                 //sqlServer.ConnectionContext.ExecuteNonQuery("ALTER DATABASE [OnlineExamDB] SET MULTI_USER");
 
 
-                restore.SqlRestore(sqlServer);
-                connection.Disconnect();
+                //restore.SqlRestore(sqlServer);
+                //connection.Disconnect();
                 Console.WriteLine("Restore operation succeeded");
             }
             catch (Exception ex)
