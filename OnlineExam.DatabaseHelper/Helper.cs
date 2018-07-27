@@ -87,12 +87,29 @@ namespace OnlineExam.DatabaseHelper
                 Server sqlServer = new Server(connection);
                 sqlServer.KillAllProcesses(databaseName);
 
-                sqlServer.ConnectionContext.ExecuteNonQuery(
-                    "ALTER DATABASE [OnlineExamDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
-                sqlServer.ConnectionContext.ExecuteNonQuery("USE MASTER RESTORE DATABASE [OnlineExamDB] FROM DISK=" +
-                                                            Constants.BACKUP_PATH + " WITH REPLACE; ");
-                sqlServer.ConnectionContext.ExecuteNonQuery("ALTER DATABASE [OnlineExamDB] SET MULTI_USER");
+                string conection =
+                    "data source = DESKTOP-424095L\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;";
 
+                using (var ctx = new DataModel(conection))
+                {
+                    ctx.Database.ExecuteSqlCommandAsync(
+                        "ALTER DATABASE [OnlineExamDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE" +
+                        "USE MASTER RESTORE DATABASE [OnlineExamDB] FROM DISK=" +
+                        Constants.BACKUP_PATH + " WITH REPLACE; " +
+                        "ALTER DATABASE [OnlineExamDB] SET MULTI_USER");
+                    //ctx.Database.ExecuteSqlCommand(
+                    //    "ALTER DATABASE [OnlineExamDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
+
+                    //ctx.Database.ExecuteSqlCommand("USE MASTER RESTORE DATABASE [OnlineExamDB] FROM DISK=" +
+                    //                               Constants.BACKUP_PATH + " WITH REPLACE; ");
+                    //ctx.Database.ExecuteSqlCommand("ALTER DATABASE [OnlineExamDB] SET MULTI_USER");
+                }
+
+                //sqlServer.ConnectionContext.ExecuteNonQuery(
+                //    "ALTER DATABASE [OnlineExamDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
+                //sqlServer.ConnectionContext.ExecuteNonQuery("USE MASTER RESTORE DATABASE [OnlineExamDB] FROM DISK=" +
+                //                                            Constants.BACKUP_PATH + " WITH REPLACE; ");
+                //sqlServer.ConnectionContext.ExecuteNonQuery("ALTER DATABASE [OnlineExamDB] SET MULTI_USER");
 
 
                 restore.SqlRestore(sqlServer);
@@ -111,7 +128,6 @@ namespace OnlineExam.DatabaseHelper
 
         public static void RestoreDatabase()
         {
-
             try
 
             {
