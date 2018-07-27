@@ -109,6 +109,10 @@
     <Compile Include="SaveExecutedTaskToCodeHistoryN.cs" />
     <Compile Include="RegistrationNTest.cs" />
     <Compile Include="SideBarNTest.cs" />
+    <Compile Include="SolutionCodePageNTest.cs" />
+    <Compile Include="TasksNTest.cs" />
+    <Compile Include="TaskViewPageNTest.cs" />
+    <Compile Include="Temp_NTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
