@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OnlineExam.DatabaseHelper.DAL;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,13 @@ namespace OnlineExam.NUnitTests
         RestClient client = new RestClient($"http://localhost:55842/swagger/index.html?url=/swagger/v1/swagger.json#/");
 
         [Test]
-        public void GetComment(int taskId)
+        public void GetComment(int commentId)
         {
             var request = new RestRequest("/api/CommentApi", Method.GET);
-            request.AddUrlSegment("id", taskId);
             var response = client.Execute(request);
             var result = response.Content;
-            Assert.NotNull(result);
+            var actual = new CommentDAL().GetCommentById(commentId.ToString());
+            Assert.True(result.StartsWith(actual.UserName));
         }
 
         [Test]
@@ -28,16 +29,18 @@ namespace OnlineExam.NUnitTests
         {
             var request = new RestRequest("/api/CommentApi", Method.POST);
             request.AddHeader("content-type", "application/json");
-            string json = @"{
-                                ""id"": 1,
-                                ""userId"": 1,
-                                ""userName"": ""Name"",
-                                ""commentText"": ""Comment"",
-                                ""creationDateTime"": 12.06.2018,
-                                ""exerciseId"": 2,
-                                ""rating"": 3,
-                            }";
-
+            var obj = new
+            {
+                id = 1,
+                userId = 1,
+                userName = "Name",
+                commentText = "Comment",
+                creationDateTime = new DateTime(12, 06, 2018),
+                exerciseId = 2,
+                rating = 3,
+            };
+            var actual = new CommentDAL().GetCommentById(obj.id.ToString());
+            Assert.AreEqual(actual.UserName, obj.userName);
             request.AddParameter("text/json", json, ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
             var result = response.Content;

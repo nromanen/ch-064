@@ -12,6 +12,9 @@ namespace OnlineExam.DatabaseHelper
         {
         }
 
+        public DataModel(string connectionString) : base(connectionString)
+        { }
+
         public virtual DbSet<C__EFMigrationsHistory> C__EFMigrationsHistory { get; set; }
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }

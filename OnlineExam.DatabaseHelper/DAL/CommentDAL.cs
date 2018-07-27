@@ -14,7 +14,6 @@ namespace OnlineExam.DatabaseHelper.DAL
         {
             using (var ctx = new DataModel(conection))
             {
-                //var result = ctx.AspNetUsers.Where(searchUser => searchUser.Id.Equals(id)).First();
                 var result = ctx.Comments.Find(id);
                 return result;
 
