@@ -11,7 +11,8 @@ namespace OnlineExam.DatabaseHelper
         // ༼ つ ಥ_ಥ ༽つ
         //default server connection: @"(LocalDb)\MSSQLLocalDB"
         //default database name: Main
-        private static string conection = "data source = (LocalDb)\\MSSQLLocalDB; initial catalog = Main; User Id=admin; Password=admin;";
+        //connection string="data source=(localdb)\mssqllocaldb;initial catalog=Main;user id=admin;password=***********;MultipleActiveResultSets=True;App=EntityFramework"
+        private static string conection = "data source = (LocalDb)\\MSSQLLocalDB; initial catalog = Main;user id=admin; password=admin; MultipleActiveResultSets=True;";
         public static void BackupDatabase(string databaseName, string serverConnection)
         {
             try
@@ -125,6 +126,7 @@ namespace OnlineExam.DatabaseHelper
 
         public static void RollBack()
         {
+            Console.WriteLine("Restore operation started");
             SqlConnection con = new SqlConnection(conection);
             string database = con.Database.ToString();
             if (con.State != System.Data.ConnectionState.Open)
@@ -132,8 +134,7 @@ namespace OnlineExam.DatabaseHelper
                 con.Open();
             }
             try
-            {
-                Console.WriteLine("Restore operation started");
+            {            
                 SqlCommand singleUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE", con);
                 singleUserQuery.ExecuteNonQuery();
 
