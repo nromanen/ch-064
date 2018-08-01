@@ -12,9 +12,11 @@ namespace OnlineExam.DatabaseHelper
         {
             if (args.Contains("restore"))
             {
-                Helper.RestoreDatabase("Main", @"(LocalDb)\MSSQLLocalDB");
-                Console.WriteLine("roma ne molodez");
+                //Helper.RestoreDatabase("Main", @"(LocalDb)\MSSQLLocalDB");
+                Helper.RollBack();
             }
+            //Helper.RestoreDatabase("Main", @"(LocalDb)\MSSQLLocalDB");
+            //Helper.RollBack();
         }
     }
 }

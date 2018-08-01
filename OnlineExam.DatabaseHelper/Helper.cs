@@ -11,6 +11,7 @@ namespace OnlineExam.DatabaseHelper
         // ༼ つ ಥ_ಥ ༽つ
         //default server connection: @"(LocalDb)\MSSQLLocalDB"
         //default database name: Main
+        private static string conection = "data source = (LocalDb)\\MSSQLLocalDB; initial catalog = Main; integrated security = True; MultipleActiveResultSets = True;";
         public static void BackupDatabase(string databaseName, string serverConnection)
         {
             try
@@ -119,6 +120,38 @@ namespace OnlineExam.DatabaseHelper
             {
                 Console.WriteLine("Restore operation failed");
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        public static void RollBack()
+        {
+            SqlConnection con = new SqlConnection(conection);
+            string database = con.Database.ToString();
+            if (con.State != System.Data.ConnectionState.Open)
+            {
+                con.Open();
+            }
+            try
+            {
+                Console.WriteLine("Restore operation started");
+                SqlCommand singleUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE", con);
+                singleUserQuery.ExecuteNonQuery();
+
+                SqlCommand restoreDatabaseQuery = new SqlCommand("USE MASTER RESTORE DATABASE [" + database + "] FROM DISK='" + Constants.BACKUP_PATH +"' WITH REPLACE;", con);
+                restoreDatabaseQuery.ExecuteNonQuery();
+
+                SqlCommand multiUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET MULTI_USER", con);
+                multiUserQuery.ExecuteNonQuery();
+                con.Close();
+                Console.WriteLine("Restore operation succeeded");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Restore operation failed");
+                Console.WriteLine(ex.Message);
+                SqlCommand multiUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET MULTI_USER", con);
+                multiUserQuery.ExecuteNonQuery();
+                con.Close();
             }
         }
     }
