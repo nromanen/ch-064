@@ -11,7 +11,7 @@ namespace OnlineExam.DatabaseHelper
         // ༼ つ ಥ_ಥ ༽つ
         //default server connection: @"(LocalDb)\MSSQLLocalDB"
         //default database name: Main
-        private static string conection = "data source = (LocalDb)\\MSSQLLocalDB; initial catalog = Main; integrated security = True; MultipleActiveResultSets = True;";
+        private static string conection = "data source = (LocalDb)\\MSSQLLocalDB; initial catalog = Main; User Id=admin; Password=admin;";
         public static void BackupDatabase(string databaseName, string serverConnection)
         {
             try
