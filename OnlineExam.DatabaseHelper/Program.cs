@@ -12,11 +12,16 @@ namespace OnlineExam.DatabaseHelper
         {
             if (args.Contains("restore"))
             {
-                //Helper.RestoreDatabase("Main", @"(LocalDb)\MSSQLLocalDB");
-                Helper.RollBack();
+                Helper.RollbackDatabase();
             }
-            //Helper.RestoreDatabase("Main", @"(LocalDb)\MSSQLLocalDB");
+
+            if (args.Contains("backup"))
+            {
+                Helper.BackupDatabase();
+            }
             //Helper.RollBack();
+            //Helper.RollbackDatabase();
+            Helper.BackupDatabase();
         }
     }
 }
