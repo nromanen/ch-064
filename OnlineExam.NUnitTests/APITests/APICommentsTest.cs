@@ -22,10 +22,11 @@ namespace OnlineExam.NUnitTests
         }
 
         [Test]
-        public void GetComment(int commentId)
+        public void GetComment()
         {
+            var commentId = 1;
             client = new APICommentsClient();
-            client.Get();
+            client.Get(commentId);
             var actual = new CommentDAL().GetCommentById(commentId.ToString());
             Assert.Equals(actual.Id, commentId);
         }
@@ -35,17 +36,16 @@ namespace OnlineExam.NUnitTests
         {
             var obj = new
             {
-                id = 1,
                 userId = 1,
                 userName = "Name",
-                commentText = "Comment",
-                creationDateTime = new DateTime(12, 06, 2018),
+                commentText = $"Comment {new Guid()}",
+                creationDateTime = new DateTime(2001, 06, 01, 00, 00, 00),
                 exerciseId = 2,
                 rating = 3,
             };
             client = new APICommentsClient();
             client.Post(obj);
-            var actual = new CommentDAL().GetCommentById(obj.id.ToString());
+            var actual = new CommentDAL().GetCommentByCommentText(obj.commentText.ToString());
             Assert.AreEqual(actual.UserName, obj.userName);
         }
     }

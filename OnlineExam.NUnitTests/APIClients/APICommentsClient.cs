@@ -11,9 +11,9 @@ namespace OnlineExam.NUnitTests.APIClients
     {
         RestClient client = new RestClient("http://localhost:55842");
 
-        public void Get()
+        public void Get(int commentId)
         {
-            var request = new RestRequest("/api/CommentApi", Method.GET);
+            var request = new RestRequest($"/api/CommentApi/{commentId}", Method.GET);
             var response = client.Execute(request);
         }
 
