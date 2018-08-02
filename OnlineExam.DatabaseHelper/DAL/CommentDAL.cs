@@ -10,7 +10,7 @@ namespace OnlineExam.DatabaseHelper.DAL
     {
         private static string conection = "data source = DESKTOP-7VG2H7M\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;";
                                             //"Server=(localdb)\\mssqllocaldb;Database=Main;Trusted_Connection=True;MultipleActiveResultSets=true";
-        public Comments GetCommentById(string id)
+        public Comments GetCommentById(int id)
         {
             using (var ctx = new DataModel(conection))
             {
