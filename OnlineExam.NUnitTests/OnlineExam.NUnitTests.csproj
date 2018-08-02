@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="AdminNTest.cs" />
     <Compile Include="APIClients\APICommentsClient.cs" />
+    <Compile Include="APITests\APICommentsTest.cs" />
     <Compile Include="BaseNTest.cs" />
     <Compile Include="ChangeUserInfoNTest.cs" />
     <Compile Include="CheckAnyInFavouritesN.cs" />
@@ -133,6 +134,7 @@
   <ItemGroup>
     <Content Include="extent-config.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

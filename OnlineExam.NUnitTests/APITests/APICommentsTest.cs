@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OnlineExam.DatabaseHelper.DAL;
+using OnlineExam.NUnitTests.APIClients;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -12,23 +13,26 @@ namespace OnlineExam.NUnitTests
     [TestFixture]
     public class CommentClient
     {
-        RestClient client = new RestClient($"http://localhost:55842/swagger/index.html?url=/swagger/v1/swagger.json#/");
+        private APICommentsClient client;
+
+        [SetUp]
+        public void SetUp()
+        {
+            client = new APICommentsClient();
+        }
 
         [Test]
         public void GetComment(int commentId)
         {
-            var request = new RestRequest("/api/CommentApi", Method.GET);
-            var response = client.Execute(request);
-            var result = response.Content;
+            client = new APICommentsClient();
+            client.Get();
             var actual = new CommentDAL().GetCommentById(commentId.ToString());
-            Assert.True(result.StartsWith(actual.UserName));
+            Assert.Equals(actual.Id, commentId);
         }
 
         [Test]
         public void Post()
         {
-            var request = new RestRequest("/api/CommentApi", Method.POST);
-            request.AddHeader("content-type", "application/json");
             var obj = new
             {
                 id = 1,
@@ -39,13 +43,10 @@ namespace OnlineExam.NUnitTests
                 exerciseId = 2,
                 rating = 3,
             };
+            client = new APICommentsClient();
+            client.Post(obj);
             var actual = new CommentDAL().GetCommentById(obj.id.ToString());
             Assert.AreEqual(actual.UserName, obj.userName);
-            request.AddParameter("text/json", json, ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);
-            var result = response.Content;
-            Assert.NotNull(result);
-            //123
         }
     }
 }
