@@ -9,38 +9,51 @@ namespace OnlineExam.DatabaseHelper
         // ༼ つ ಥ_ಥ ༽つ
         // Created by Roma Bahlai
         //private static string conection = "Server = DESKTOP-ELQ4B0J\\SQLEXPRESS; Database = OnlineExamDB; integrated security = True;";
-        private static string conection = $"Server = {DriversFabric.GetServerName()}; Database = {DriversFabric.GetDatabaseName()}; integrated security = True;";
+        private static string conection =
+            $"Server = {DriversFabric.GetServerName()}; Database = {DriversFabric.GetDatabaseName()}; integrated security = True; MultipleActiveResultSets = True;";
 
         public static void RollbackDatabase()
         {
+            string database = DriversFabric.GetDatabaseName();
+
+
+            using (var ctx = new DataModel(conection))
+            {
+                ctx.Database.ExecuteSqlCommandAsync(
+                    "ALTER DATABASE [" + database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE" +
+                    "USE MASTER RESTORE DATABASE [" + database + "] FROM DISK=" +
+                    Constants.BACKUP_PATH + " WITH REPLACE; " +
+                    "ALTER DATABASE [" + database + "] SET MULTI_USER");
+            }
+
+
             Console.WriteLine("Restore operation started");
-            SqlConnection con = new SqlConnection(conection);
-            string database = con.Database.ToString();
-            if (con.State != System.Data.ConnectionState.Open)
-            {
-                con.Open();
-            }
-            try
-            {            
-                SqlCommand singleUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE", con);
-                singleUserQuery.ExecuteNonQuery();
+            //SqlConnection con = new SqlConnection(conection);
+            //if (con.State != System.Data.ConnectionState.Open)
+            //{
+            //    con.Open();
+            //}
+            //try
+            //{            
+            //    SqlCommand singleUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE", con);
+            //    singleUserQuery.ExecuteNonQuery();
 
-                SqlCommand restoreDatabaseQuery = new SqlCommand("USE MASTER RESTORE DATABASE [" + database + "] FROM DISK='" + Constants.BACKUP_PATH +"' WITH REPLACE;", con);
-                restoreDatabaseQuery.ExecuteNonQuery();
+            //    SqlCommand restoreDatabaseQuery = new SqlCommand("USE MASTER RESTORE DATABASE [" + database + "] FROM DISK='" + Constants.BACKUP_PATH +"' WITH REPLACE;", con);
+            //    restoreDatabaseQuery.ExecuteNonQuery();
 
-                SqlCommand multiUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET MULTI_USER", con);
-                multiUserQuery.ExecuteNonQuery();
-                con.Close();
-                Console.WriteLine("Restore operation succeeded");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Restore operation failed");
-                Console.WriteLine(ex.Message);
-                SqlCommand multiUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET MULTI_USER", con);
-                multiUserQuery.ExecuteNonQuery();
-                con.Close();
-            }
+            //    SqlCommand multiUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET MULTI_USER", con);
+            //    multiUserQuery.ExecuteNonQuery();
+            //    con.Close();
+            //    Console.WriteLine("Restore operation succeeded");
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Restore operation failed");
+            //    Console.WriteLine(ex.Message);
+            //    SqlCommand multiUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET MULTI_USER", con);
+            //    multiUserQuery.ExecuteNonQuery();
+            //    con.Close();
+            //}
         }
 
         public static void BackupDatabase()
@@ -53,13 +66,15 @@ namespace OnlineExam.DatabaseHelper
                 var sqlConStrBuilder = new SqlConnectionStringBuilder(conection);
                 using (var connection = new SqlConnection(sqlConStrBuilder.ConnectionString))
                 {
-                    var query = String.Format("BACKUP DATABASE {0} TO DISK='{1}'", sqlConStrBuilder.InitialCatalog, backupLocation);
+                    var query = String.Format("BACKUP DATABASE {0} TO DISK='{1}'", sqlConStrBuilder.InitialCatalog,
+                        backupLocation);
                     using (var command = new SqlCommand(query, connection))
                     {
                         connection.Open();
                         command.ExecuteNonQuery();
                     }
                 }
+
                 Console.WriteLine("Backup operation succeeded");
             }
             catch (Exception ex)
