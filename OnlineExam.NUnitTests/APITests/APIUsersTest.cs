@@ -28,7 +28,7 @@ namespace OnlineExam.NUnitTests.APITests
         {
             var obj = new
             {
-                id = "7a72f372-b3bd-4391-b075-1510e34b98da",
+                id = "4ca71f95-ffc0-43e7-9294-635717d03905",
                 email = "UserForChangeNameAPI@gmail.com",
                 password = "User_123",
                 newUserName = "ApiTestNew"
@@ -44,7 +44,7 @@ namespace OnlineExam.NUnitTests.APITests
         {
             var obj = new
             {
-                id = "6734ae72-eb95-46f0-82fe-4bf62ea52210",
+                id = "8e5f2be9-037a-4e66-9980-d416284bd5d8",
                 oldEmail = "UserForChangeEmailAPI@gmail.com",
                 password = "User_123",
                 newEmail = "UserTestAPI@gmail.com"

@@ -19,7 +19,8 @@ namespace OnlineExam.DatabaseHelper
             {
                 Helper.BackupDatabase();
             }
-           // Helper.RollbackDatabase();
+            
+            Helper.RollbackDatabase();
         }
     }
 }
