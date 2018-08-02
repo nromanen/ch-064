@@ -15,45 +15,34 @@ namespace OnlineExam.DatabaseHelper
         public static void RollbackDatabase()
         {
             string database = DriversFabric.GetDatabaseName();
-
-
-            using (var ctx = new DataModel(conection))
-            {
-                ctx.Database.ExecuteSqlCommandAsync(
-                    "ALTER DATABASE [" + database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE" +
-                    "USE MASTER RESTORE DATABASE [" + database + "] FROM DISK=" +
-                    Constants.BACKUP_PATH + " WITH REPLACE; " +
-                    "ALTER DATABASE [" + database + "] SET MULTI_USER");
-            }
-
-
+            
             Console.WriteLine("Restore operation started");
-            //SqlConnection con = new SqlConnection(conection);
-            //if (con.State != System.Data.ConnectionState.Open)
-            //{
-            //    con.Open();
-            //}
-            //try
-            //{            
-            //    SqlCommand singleUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE", con);
-            //    singleUserQuery.ExecuteNonQuery();
+            SqlConnection con = new SqlConnection(conection);
+            if (con.State != System.Data.ConnectionState.Open)
+            {
+                con.Open();
+            }
+            try
+            {
+                SqlCommand singleUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE", con);
+                singleUserQuery.ExecuteNonQuery();
 
-            //    SqlCommand restoreDatabaseQuery = new SqlCommand("USE MASTER RESTORE DATABASE [" + database + "] FROM DISK='" + Constants.BACKUP_PATH +"' WITH REPLACE;", con);
-            //    restoreDatabaseQuery.ExecuteNonQuery();
+                SqlCommand restoreDatabaseQuery = new SqlCommand("USE MASTER RESTORE DATABASE [" + database + "] FROM DISK='" + Constants.BACKUP_PATH + "' WITH REPLACE;", con);
+                restoreDatabaseQuery.ExecuteNonQuery();
 
-            //    SqlCommand multiUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET MULTI_USER", con);
-            //    multiUserQuery.ExecuteNonQuery();
-            //    con.Close();
-            //    Console.WriteLine("Restore operation succeeded");
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine("Restore operation failed");
-            //    Console.WriteLine(ex.Message);
-            //    SqlCommand multiUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET MULTI_USER", con);
-            //    multiUserQuery.ExecuteNonQuery();
-            //    con.Close();
-            //}
+                SqlCommand multiUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET MULTI_USER", con);
+                multiUserQuery.ExecuteNonQuery();
+                con.Close();
+                Console.WriteLine("Restore operation succeeded");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Restore operation failed");
+                Console.WriteLine(ex.Message);
+                SqlCommand multiUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET MULTI_USER", con);
+                multiUserQuery.ExecuteNonQuery();
+                con.Close();
+            }
         }
 
         public static void BackupDatabase()
