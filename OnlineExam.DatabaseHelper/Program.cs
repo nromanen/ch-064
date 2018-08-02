@@ -12,14 +12,13 @@ namespace OnlineExam.DatabaseHelper
         {
             if (args.Contains("restore"))
             {
-                Helper.RestoreDatabase("OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
-                Console.WriteLine("roma ne molodez");
+                Helper.RollbackDatabase();
             }
-            Helper.RestoreDatabase("OnlineExamDB", @"DESKTOP-424095L\SQLEXPRESS");
 
-            //Console.Read();
-
-            //problem with db
+            if (args.Contains("backup"))
+            {
+                Helper.BackupDatabase();
+            }
         }
     }
 }

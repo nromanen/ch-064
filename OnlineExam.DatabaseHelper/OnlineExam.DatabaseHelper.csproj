@@ -99,6 +99,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Backup\MainBackup.bak" />
+    <None Include="Backup\OnlineExamDB.bak" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
