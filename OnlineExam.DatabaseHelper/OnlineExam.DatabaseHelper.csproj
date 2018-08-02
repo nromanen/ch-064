@@ -94,6 +94,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Backup\MainBackup.bak" />
+    <None Include="Backup\OnlineExamDB.bak" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

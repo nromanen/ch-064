@@ -14,7 +14,8 @@ namespace OnlineExam.DatabaseHelper
         //connection string="data source=(localdb)\mssqllocaldb;initial catalog=Main;user id=admin;password=***********;MultipleActiveResultSets=True;App=EntityFramework"
         //private static string conection = "data source = (LocalDb)\\MSSQLLocalDB; initial catalog = Main;user id=admin; password=admin; MultipleActiveResultSets=True;";
         //"data source = DESKTOP-424095L\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;";
-        private static string conection = "Server = (LocalDb)\\MSSQLLocalDB; Database = Main;user id=admin; password=admin;";
+        //private static string conection = "Server = (LocalDb)\\MSSQLLocalDB; Database = Main;user id=admin; password=admin;";
+        private static string conection = "Server = DESKTOP-ELQ4B0J\\SQLEXPRESS; Database = OnlineExamDB; integrated security = True;";
         public static void BackupDatabase(string databaseName, string serverConnection)
         {
             try
