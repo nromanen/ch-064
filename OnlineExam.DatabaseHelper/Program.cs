@@ -12,14 +12,13 @@ namespace OnlineExam.DatabaseHelper
         {
             if (args.Contains("restore"))
             {
-                Helper.RestoreDatabase();
-                Console.WriteLine("roma ne molodez");
+                Helper.RollbackDatabase();
             }
 
-           // Helper.RestoreDatabase();
-            //Console.Read();
-
-            //problem with db
+            if (args.Contains("backup"))
+            {
+                Helper.BackupDatabase();
+            }
         }
     }
 }
