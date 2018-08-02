@@ -24,6 +24,8 @@ namespace OnlineExam.Framework
         public Browsers Browser { get; set; }
         public string Url { get; set; }
         public string ConnectionString { get; set; }
+        public string ServerName { get; set; }
+        public string DatabaseName { get; set; }
 
         public BasicSettings(Browsers browser, string url, string connectionstring)
         {
@@ -65,7 +67,25 @@ namespace OnlineExam.Framework
             }
         }
 
+        public static string GetServerName()
+        {
+            using (StreamReader file = File.OpenText(@"ConfigFile.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                BasicSettings settings = (BasicSettings)serializer.Deserialize(file, typeof(BasicSettings));
+                return settings.ServerName.ToString();
+            }
+        }
 
+        public static string GetDatabaseName()
+        {
+            using (StreamReader file = File.OpenText(@"ConfigFile.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                BasicSettings settings = (BasicSettings)serializer.Deserialize(file, typeof(BasicSettings));
+                return settings.DatabaseName.ToString();
+            }
+        }
 
         public static ExtendedWebDriver Init()
         {
