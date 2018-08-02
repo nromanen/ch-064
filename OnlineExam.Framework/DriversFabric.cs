@@ -72,7 +72,7 @@ namespace OnlineExam.Framework
 
         public static string GetServerName()
         {
-            using (StreamReader file = File.OpenText(@"ConfigFile.json"))
+            using (StreamReader file = File.OpenText(JSONPATH))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 BasicSettings settings = (BasicSettings)serializer.Deserialize(file, typeof(BasicSettings));
@@ -82,7 +82,7 @@ namespace OnlineExam.Framework
 
         public static string GetDatabaseName()
         {
-            using (StreamReader file = File.OpenText(@"ConfigFile.json"))
+            using (StreamReader file = File.OpenText(JSONPATH))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 BasicSettings settings = (BasicSettings)serializer.Deserialize(file, typeof(BasicSettings));
