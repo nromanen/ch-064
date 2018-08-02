@@ -12,6 +12,7 @@ using OpenQA.Selenium.PhantomJS;
 
 namespace OnlineExam.Framework
 {
+
     public enum Browsers
     {
         Chrome,
@@ -35,9 +36,11 @@ namespace OnlineExam.Framework
 
     public class DriversFabric
     {
+        private static string JSONPATH = @"E:\SS\ch-064\ConfigFile.json";
+
         public static string GetHomeUrl()
         {
-            using (StreamReader file = File.OpenText(@"ConfigFile.json"))
+            using (StreamReader file = File.OpenText(JSONPATH))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 BasicSettings settings = (BasicSettings)serializer.Deserialize(file, typeof(BasicSettings));
@@ -47,7 +50,7 @@ namespace OnlineExam.Framework
 
         public static string GetBrowser()
         {
-            using (StreamReader file = File.OpenText(@"ConfigFile.json"))
+            using (StreamReader file = File.OpenText(JSONPATH))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 BasicSettings settings = (BasicSettings)serializer.Deserialize(file, typeof(BasicSettings));
@@ -57,7 +60,7 @@ namespace OnlineExam.Framework
 
         public static string GetConnectionString()
         {
-            using (StreamReader file = File.OpenText(@"ConfigFile.json"))
+            using (StreamReader file = File.OpenText(JSONPATH))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 BasicSettings settings = (BasicSettings)serializer.Deserialize(file, typeof(BasicSettings));
@@ -69,7 +72,7 @@ namespace OnlineExam.Framework
 
         public static ExtendedWebDriver Init()
         {
-            using (StreamReader file = File.OpenText(@"ConfigFile.json"))
+            using (StreamReader file = File.OpenText(JSONPATH))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 BasicSettings settings = (BasicSettings)serializer.Deserialize(file, typeof(BasicSettings));
