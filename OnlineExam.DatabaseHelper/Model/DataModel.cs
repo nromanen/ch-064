@@ -12,7 +12,7 @@ namespace OnlineExam.DatabaseHelper
         {
         }
 
-        public DataModel(string connectionString) : base(connectionString)
+        public DataModel(string connectionString): base(connectionString)
         { }
 
         public virtual DbSet<C__EFMigrationsHistory> C__EFMigrationsHistory { get; set; }

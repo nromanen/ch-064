@@ -1,7 +1,7 @@
 {
-  "Browser": "Phantom",
-  "Url": "http://localhost:55842/",
-  "SqlString": "data source = DESKTOP-424095L\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;",
-  "ServerName": "DESKTOP-7VG2H7M\SQLEXPRESS",
+"Browser" : "Chrome",
+"Url" : "http://localhost:55842/",
+"SqlString" : "data source = DESKTOP-424095L\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;",
+"ServerName": "DESKTOP-424095L\\SQLEXPRESS",
   "DatabaseName": "OnlineExamDB"
 }
