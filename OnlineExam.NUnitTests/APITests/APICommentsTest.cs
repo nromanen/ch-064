@@ -28,7 +28,7 @@ namespace OnlineExam.NUnitTests
             client = new APICommentsClient();
             client.Get(commentId);
             var actual = new CommentDAL().GetCommentById(commentId);
-            Assert.Equals(actual.Id, commentId);
+            Assert.AreEqual(actual.Id, commentId);
         }
 
         [Test]

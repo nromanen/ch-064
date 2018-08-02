@@ -8,7 +8,7 @@ namespace OnlineExam.DatabaseHelper.DAL
 {
     public class CommentDAL
     {
-        private static string conection = "data source = DESKTOP-7VG2H7M\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;";
+        private static string conection = "data source = DESKTOP-424095L\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;";
                                             //"Server=(localdb)\\mssqllocaldb;Database=Main;Trusted_Connection=True;MultipleActiveResultSets=true";
         public Comments GetCommentById(int id)
         {
