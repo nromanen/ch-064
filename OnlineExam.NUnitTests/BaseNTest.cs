@@ -31,9 +31,9 @@ namespace OnlineExam.NUnitTests
         [SetUp]
         public virtual void SetUp()
         {
-            driver = DriversFabric.InitChrome();
+            driver = DriversFabric.Init();
             driver.Maximize();
-            driver.GoToUrl(Constants.HOME_URL);
+            driver.GoToUrl(DriversFabric.GetHomeUrl());
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
