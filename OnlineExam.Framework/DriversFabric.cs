@@ -38,7 +38,7 @@ namespace OnlineExam.Framework
 
     public class DriversFabric
     {
-        private static string JSONPATH = @"E:\SS\ch-064\ConfigFile.json";
+        private static string JSONPATH = @"D:\ch-064\ConfigFile.json";
 
         public static string GetHomeUrl()
         {
