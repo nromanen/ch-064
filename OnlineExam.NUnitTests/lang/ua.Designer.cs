@@ -22,7 +22,7 @@ namespace OnlineExam.NUnitTests.lang {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ua {
+    public class ua {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace OnlineExam.NUnitTests.lang {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OnlineExam.NUnitTests.lang.ua", typeof(ua).Assembly);
@@ -51,7 +51,7 @@ namespace OnlineExam.NUnitTests.lang {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace OnlineExam.NUnitTests.lang {
         /// <summary>
         ///   Looks up a localized string similar to Редагувати.
         /// </summary>
-        internal static string btnChangeCourse {
+        public static string btnChangeCourse {
             get {
                 return ResourceManager.GetString("btnChangeCourse", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace OnlineExam.NUnitTests.lang {
         /// <summary>
         ///   Looks up a localized string similar to Змінити власника курсу.
         /// </summary>
-        internal static string btnChangeOwner {
+        public static string btnChangeOwner {
             get {
                 return ResourceManager.GetString("btnChangeOwner", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace OnlineExam.NUnitTests.lang {
         /// <summary>
         ///   Looks up a localized string similar to Видалити.
         /// </summary>
-        internal static string btnDeleteCourse {
+        public static string btnDeleteCourse {
             get {
                 return ResourceManager.GetString("btnDeleteCourse", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace OnlineExam.NUnitTests.lang {
         /// <summary>
         ///   Looks up a localized string similar to Відновити.
         /// </summary>
-        internal static string btnRecoverCourse {
+        public static string btnRecoverCourse {
             get {
                 return ResourceManager.GetString("btnRecoverCourse", resourceCulture);
             }

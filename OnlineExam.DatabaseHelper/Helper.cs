@@ -9,8 +9,7 @@ namespace OnlineExam.DatabaseHelper
         // ༼ つ ಥ_ಥ ༽つ
         // Created by Roma Bahlai
         //private static string conection = "Server = DESKTOP-ELQ4B0J\\SQLEXPRESS; Database = OnlineExamDB; integrated security = True;";
-        private static string conection =
-            $"Server = {DriversFabric.GetServerName()}; Database = {DriversFabric.GetDatabaseName()}; integrated security = True; MultipleActiveResultSets = True;";
+        private static string conection = $"Server = {DriversFabric.GetServerName()}; Database = {DriversFabric.GetDatabaseName()}; integrated security = True; MultipleActiveResultSets = True;";
 
         public static void RollbackDatabase()
         {

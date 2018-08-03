@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnlineExam.NUnitTests.lang {
+namespace OnlineExam.Pages.Properties {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace OnlineExam.NUnitTests.lang {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class lang_ua {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal lang_ua() {
+        internal Resources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace OnlineExam.NUnitTests.lang {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OnlineExam.NUnitTests.lang.lang-ua", typeof(lang_ua).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OnlineExam.Pages.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,42 +57,6 @@ namespace OnlineExam.NUnitTests.lang {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Редагувати.
-        /// </summary>
-        internal static string btnChangeCourse {
-            get {
-                return ResourceManager.GetString("btnChangeCourse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Змінити власника курсу.
-        /// </summary>
-        internal static string btnChangeOwner {
-            get {
-                return ResourceManager.GetString("btnChangeOwner", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Видалити.
-        /// </summary>
-        internal static string btnDeleteCourse {
-            get {
-                return ResourceManager.GetString("btnDeleteCourse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Відновити.
-        /// </summary>
-        internal static string btnRecoverCourse {
-            get {
-                return ResourceManager.GetString("btnRecoverCourse", resourceCulture);
             }
         }
     }
