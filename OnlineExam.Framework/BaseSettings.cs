@@ -12,6 +12,14 @@ namespace OnlineExam.Framework
         Phantom,
         Edge
     }
+    public class BasicSettingsFromJSON
+    {
+        public Browsers Browser { get; set; }
+        public string Url { get; set; }
+        public string ConnectionString { get; set; }
+        public string ServerName { get; set; }
+        public string DatabaseName { get; set; }
+    }
 
     public class BasicSettings
     {
@@ -23,17 +31,16 @@ namespace OnlineExam.Framework
 
         public BasicSettings()
         {
-            using (StreamReader file = File.OpenText(@"C:\Users\misha\Desktop\ch-064\ConfigFile.json"))
+            using (StreamReader file = File.OpenText(@"D:\ch-064\ConfigFile.json"))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                BasicSettings settings = (BasicSettings)serializer.Deserialize(file, typeof(BasicSettings));
-
+                var settings = (BasicSettingsFromJSON)serializer.Deserialize(file, typeof(BasicSettingsFromJSON));
                 Browser = settings.Browser;
                 Url = settings.Url;
                 ConnectionString = settings.ConnectionString;
                 ServerName = settings.ServerName;
                 DatabaseName = settings.DatabaseName;
-            }
+            } 
         }
     }
 
