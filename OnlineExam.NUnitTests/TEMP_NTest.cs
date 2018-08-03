@@ -11,6 +11,8 @@ using OnlineExam.Framework;
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
+    [Category("Basic")]
+
     public class TEMP_NTest : BaseNTest
     {
 

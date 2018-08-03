@@ -8,11 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineExam.NUnitTests
+namespace OnlineExam.NUnitTests.APITests
 {
     [Category("APITests")]
     [TestFixture]
-    public class CommentClient
+    public class APICommentsTest
     {
         private APICommentsClient client;
 
