@@ -11,7 +11,7 @@ namespace OnlineExam.NUnitTests
 {
     //[Parallelizable(ParallelScope.Self)]
     [TestFixture]
-    [Category("Natashas")]
+    [Category("Critical")]
     public class LoginNTest : BaseNTest
     {
         private Header header;
