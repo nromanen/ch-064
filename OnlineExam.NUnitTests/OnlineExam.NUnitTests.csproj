@@ -106,6 +106,7 @@
     <Compile Include="NewsNTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestTests\News\DBNewsItem.cs" />
+    <Compile Include="RestTests\News\NewsPostTest.cs" />
     <Compile Include="RestTests\News\NewsRestTest.cs" />
     <Compile Include="RestTests\News\RestNewsItem.cs" />
     <Compile Include="SaveExecutedTaskToCodeHistoryN.cs" />

@@ -57,6 +57,7 @@ namespace OnlineExam.Pages.POM
         public void AddBaseCodeForNewTask(string BaseCode)
         {
             FieldForBaseCode.SendKeys(BaseCode);
+            
         }
 
         public void AddTestCasesCode (string TestCaseCode)

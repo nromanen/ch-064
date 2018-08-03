@@ -107,6 +107,7 @@ namespace OnlineExam.NUnitTests
             var isEqual = String.Equals(Constants.USER_FOR_CHANGE_PASSWORD, newUserName, StringComparison.InvariantCultureIgnoreCase);
 
             Assert.True(isEqual);
+            
 
         }
 
