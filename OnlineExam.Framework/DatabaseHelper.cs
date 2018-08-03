@@ -9,7 +9,7 @@ namespace OnlineExam.Framework
 {
     public class DatabaseHelper
     {
-        private static string conection = DriversFabric.GetConnectionString();
+        private static string conection = BaseSettings.GetConnectionString();
         public static void BackupDatabase()
         {
             string backupLocation = System.IO.Path.Combine(Constants.PROJECT_PATH, "Backup", "Main.bak");
