@@ -20,7 +20,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.Id, Using = "Password")]
         public IWebElement PasswordInput { get; set; }
 
-        [FindsBy(How = How.Id, Using = "PasswordConfirm")]
+        [FindsBy(How = How.XPath, Using = "//*[@id=\"PasswordConfirm\"]")]
         public IWebElement PasswordConfirmInput { get; set; }
 
         [FindsBy(How = How.XPath, Using = "/html/body/div/div/form/div[4]/button")]
