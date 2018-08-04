@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExam.NUnitTests
 {
-    //[Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Self)]
     [TestFixture]
     [Category("Basic")]
     public class MailNTest : BaseNTest

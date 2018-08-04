@@ -25,13 +25,12 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "input.btn")]
         public IWebElement BtnOK { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".container > p:nth-child(2)")]
+        [FindsBy(How = How.CssSelector, Using = ".container > p:nth-child(2)")] 
         public IWebElement CurrentOwner { get; set; }
 
-        public string GetOwner()
+        public string GetOwnerName()
         {
-            string result = OwnerParser(CurrentOwner.Text);
-            return result;
+            return OwnerParser(CurrentOwner.Text);
         }
 
         public void ChangeOwner(string newTeacher)
@@ -72,8 +71,27 @@ namespace OnlineExam.Pages.POM
                 var str = text.Replace(replaceUA, "").Trim();
                 return str;
             }
-           
             return String.Empty;
+        }
+
+        public bool IsOwnerChanges(ViewCoursesPage page, string oldOwnerName)
+        {
+            var block = page.GetBlocks();
+            if (block != null)
+            {
+                var singleBlock = block.FirstOrDefault(x => x.GetCourseName().Equals("Owner", StringComparison.OrdinalIgnoreCase));
+                if (singleBlock != null)
+                {
+                    singleBlock.ClickBtnChangeOwner();
+                    var changeOwner = ConstructPage<ChangeCourseOwnerPage>();
+                    var currenOwner = changeOwner.GetOwnerName();
+                    if (currenOwner.Equals(oldOwnerName))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

@@ -19,8 +19,8 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.Id, Using = "Description")]
         public IWebElement CourseDescriptionInput { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "input.btn")]
-        public IWebElement BtnOk { get; set; }
+        [FindsBy(How = How.XPath, Using = "//*[@value='Ok']")]
+        public IWebElement BtnOk { get; set; } 
 
         public void FillCourse(string name, string description)
         {

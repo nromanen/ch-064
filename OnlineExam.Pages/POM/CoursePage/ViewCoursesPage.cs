@@ -6,6 +6,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,6 +43,51 @@ namespace OnlineExam.Pages.POM
                     blocks.Add(block);
             }
             return blocks;
+        }
+
+        public void ClickRestoreBtn(string courseName)
+        {
+            var block = this.GetBlocks();
+            if (block != null)
+            {
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                if (firstBlock != null)
+                {
+                    firstBlock.ClickBtnRecover();
+                }
+            }
+        }
+
+        public string IsDeleted(ViewCoursesPage page, string courseName, ResourceManager rm)
+        {
+            var blockList = page.GetBlocks();
+            if (blockList != null)
+            {
+                var singleBlock = blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                if (singleBlock != null && (singleBlock.GetBtnDeleteText().Equals(rm.GetString("btnDeleteCourse"))))
+                {
+                    singleBlock.ClickBtnDelete();
+                    string buttontText = singleBlock.ClickDeleteBtn(courseName, page);
+                    return buttontText;
+                }
+            }
+            return String.Empty;
+        }
+
+        public string IsRestored(ViewCoursesPage page, string courseName, ResourceManager rm)
+        {
+            var blockList = page.GetBlocks();
+            if (blockList != null)
+            {
+                var singleBlock = blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                if (singleBlock != null && (singleBlock.GetBtnDeleteText().Equals(rm.GetString("btnRecoverCourse"))))
+                {
+                    singleBlock.ClickBtnDelete();
+                    string buttontText = singleBlock.ClickRestoreBtn(courseName, page);
+                    return buttontText;
+                }
+            }
+            return String.Empty;
         }
     }
 }

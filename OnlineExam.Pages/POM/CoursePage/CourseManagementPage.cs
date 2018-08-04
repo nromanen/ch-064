@@ -16,11 +16,11 @@ namespace OnlineExam.Pages.POM
         // http://localhost:55842/CourseManagement
         // Created by Roma ༼ つ ◕_◕ ༽つ
         public CourseManagementPage(){ }
-
-        [FindsBy(How = How.CssSelector, Using = "a.btn:nth-child(1)")]
+        ///html/body/div/div/a[1]
+        [FindsBy(How = How.XPath, Using = "//a[@href='/CourseManagement/Create']")]
         public IWebElement BtnAddCourse { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "a.btn:nth-child(2)")]
+        [FindsBy(How = How.XPath, Using = "//a[@href='/CourseManagement/ViewCourses']")]
         public IWebElement BtnMyCourses { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".table tr:not(:first-of-type)")]
@@ -59,14 +59,21 @@ namespace OnlineExam.Pages.POM
             if (block != null)
             {
                 var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
-                System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseName());
-                System.Windows.Forms.MessageBox.Show(firstBlock.GetCourseCreatingDate());
                 if (firstBlock != null)
                 {
                     firstBlock.ClickOnCourseTitle();
-                    
                 }
             }
+        }
+
+        public string GetCreatedCourseName(IList<CreateCoursePageRowItem> blockList, string courseName)
+        {
+            if (blockList != null)
+            {
+                var singleBlock = blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                return singleBlock.GetCourseName();
+            }
+            return String.Empty;
         }
     }
 }
