@@ -14,6 +14,7 @@ using System.Resources;
 
 namespace OnlineExam.NUnitTests
 {
+    [Parallelizable(ParallelScope.Self)]
     [Category("Basic")]
     [TestFixture]
     public class CourseNTests : BaseNTest
@@ -21,7 +22,6 @@ namespace OnlineExam.NUnitTests
         private Header header;
         private LogInPage logInPage;
         private CourseManagementPage adminPanelPage;
-        private ResourceManager resxManager;
         
         [SetUp]
         public override void SetUp()
@@ -29,7 +29,6 @@ namespace OnlineExam.NUnitTests
             base.SetUp();
             header = ConstructPage<Header>();
             logInPage = header.GoToLogInPage();
-            resxManager = header.GetCurrentLanguage();
         }
         
         [Test]

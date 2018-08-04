@@ -133,4 +133,10 @@
     <value>Recover</value>
     <comment>Recover course as teacher</comment>
   </data>
+  <data name="signIn" xml:space="preserve">
+    <value>SIGN IN</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>ВХІД</value>
+  </data>
 </root>

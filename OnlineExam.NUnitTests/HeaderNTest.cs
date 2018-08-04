@@ -19,20 +19,22 @@ namespace OnlineExam.NUnitTests
         {
             base.SetUp();
             header = ConstructPage<Header>();
+            //resxManager = header.GetCurrentLanguage();
         }
 
         [Test]
         public void ChangeLanguageToEnglishTest()
         {
             header.ChangeLanguage(Constants.ENGLISH);
-            Assert.AreEqual(Constants.SIGN_IN_ENGLISH, header.GetSignInButtonText());
+            Assert.AreEqual(resxManager.GetString("signIn"), header.GetSignInButtonText());
         }
 
         [Test]
         public void ChangeLanguageToUkraineTest()
         {
             header.ChangeLanguage(Constants.UKRAINE);
-            Assert.AreEqual(Constants.SIGN_IN_UKRAINE, header.GetSignInButtonText());
+            resxManager = header.GetCurrentLanguage();
+            Assert.AreEqual(resxManager.GetString("signIn"), header.GetSignInButtonText());
         }
 
         [Test]

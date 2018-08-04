@@ -17,8 +17,6 @@ namespace OnlineExam.Framework
         public const string TEACHER = "Teacher";
         public const string ENGLISH = "en";
         public const string UKRAINE = "uk";
-        public const string SIGN_IN_ENGLISH = "SIGN IN";
-        public const string SIGN_IN_UKRAINE = "ВХІД";
         public const string LOGIN_URL_CONTAINS = "Login";
         public const string REGISTRATION_URL_CONTAINS = "Register";
         public const string RATING_URL_CONTAINS = "UserRating";

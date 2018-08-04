@@ -28,7 +28,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = @"a[href*='/CodeHistory/History']")]
         private IWebElement codeHistoryMenuItemElement;
 
-        [FindsBy(How = How.CssSelector, Using = "//a[@href='/EmailMessages']")]
+        [FindsBy(How = How.XPath, Using = "//a[@href='/EmailMessages']")]
         private IWebElement mailBoxMenuItemElement;
 
         [FindsBy(How = How.CssSelector, Using = @"a[href*='/EmailMessages/GetEmail']")]

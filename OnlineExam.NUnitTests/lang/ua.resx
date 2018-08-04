@@ -133,4 +133,7 @@
     <value>Відновити</value>
     <comment>Recover course as teacher</comment>
   </data>
+  <data name="signIn" xml:space="preserve">
+    <value>ВХІД</value>
+  </data>
 </root>

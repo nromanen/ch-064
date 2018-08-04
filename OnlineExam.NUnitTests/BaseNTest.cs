@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Resources;
 using System.Threading;
 using AventStack.ExtentReports;
 using NUnit.Framework;
@@ -14,11 +15,14 @@ namespace OnlineExam.NUnitTests
     public class BaseNTest
     {
         protected ExtendedWebDriver driver;
+        protected ResourceManager resxManager;
+
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
             ExtentTestManager.CreateParentTest(GetType().Name);
+           
         }
 
         [OneTimeTearDown]
@@ -34,6 +38,8 @@ namespace OnlineExam.NUnitTests
             driver = DriversFabric.Init();
             driver.Maximize();
             driver.GoToUrl(BaseSettings.fields.Url);
+            var header = ConstructPage<Header>();
+            resxManager = header.GetCurrentLanguage();
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 

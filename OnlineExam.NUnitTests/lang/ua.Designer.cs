@@ -95,5 +95,14 @@ namespace OnlineExam.NUnitTests.lang {
                 return ResourceManager.GetString("btnRecoverCourse", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ВХІД.
+        /// </summary>
+        public static string signIn {
+            get {
+                return ResourceManager.GetString("signIn", resourceCulture);
+            }
+        }
     }
 }

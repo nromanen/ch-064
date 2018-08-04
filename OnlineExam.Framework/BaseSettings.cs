@@ -36,7 +36,6 @@ namespace OnlineExam.Framework
         {
             using (StreamReader file = File.OpenText(CurrentPath.JSON_PATH))
             {
-                
                 JsonSerializer serializer = new JsonSerializer();
                 fields = (BasicSettingsFields)serializer.Deserialize(file, typeof(BasicSettingsFields));
             }

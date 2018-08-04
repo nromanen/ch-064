@@ -5,6 +5,7 @@ using OpenQA.Selenium.Support.UI;
 using System.Globalization;
 using System.Resources;
 using System.Threading;
+using OnlineExam.Framework;
 
 namespace OnlineExam.Pages.POM
 {
@@ -36,7 +37,6 @@ namespace OnlineExam.Pages.POM
         {
         }
 
-        
 
         public bool GetSignInElement()
         {
@@ -110,20 +110,25 @@ namespace OnlineExam.Pages.POM
         }
 
         string assemblyPath = "OnlineExam.NUnitTests, Version = 1.0.0.0, Culture = neutral, PublicKeyToken = null";
+
         public ResourceManager GetCurrentLanguage()
         {
             SelectElement selectedValue = new SelectElement(changeLanguageSelectElement);
-            string currentLanguage = selectedValue.SelectedOption.Text;
-            if (currentLanguage == "Українська")
+            string currentLanguage = selectedValue.SelectedOption.GetAttribute("value");
+            if (currentLanguage.Equals(Constants.UKRAINE))
             {
-                ResourceManager rm = new ResourceManager("OnlineExam.NUnitTests.lang.ua", System.Reflection.Assembly.Load(assemblyPath));
+                ResourceManager rm = new ResourceManager("OnlineExam.NUnitTests.lang.ua",
+                    System.Reflection.Assembly.Load(assemblyPath));
                 return rm;
             }
-            if (currentLanguage == "Англійська")
+
+            if (currentLanguage.Equals(Constants.ENGLISH))
             {
-                ResourceManager rm = new ResourceManager("OnlineExam.NUnitTests.lang.eng", System.Reflection.Assembly.Load(assemblyPath));
+                ResourceManager rm = new ResourceManager("OnlineExam.NUnitTests.lang.eng",
+                    System.Reflection.Assembly.Load(assemblyPath));
                 return rm;
             }
+
             return null;
         }
     }
