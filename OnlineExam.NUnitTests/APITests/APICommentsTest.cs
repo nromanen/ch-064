@@ -8,19 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineExam.NUnitTests
+namespace OnlineExam.NUnitTests.APITests
 {
+    [Category("APITests")]
     [TestFixture]
-    public class CommentClient
+    public class APICommentsTest
     {
         private APICommentsClient client;
-
-        [SetUp]
-        public void SetUp()
-        {
-            client = new APICommentsClient();
-        }
-
+       
         [Test]
         public void GetComment()
         {
@@ -34,19 +29,19 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void Post()
         {
+            Guid g = new Guid();
             var obj = new
             {
-                userId = 1,
-                userName = "Name",
-                commentText = $"Comment {new Guid()}",
-                creationDateTime = new DateTime(2001, 06, 01, 00, 00, 00),
-                exerciseId = 2,
-                rating = 3,
+                userId = "90b47207-4762-4886-a2cf-64dd84aceeb41",
+                userName = "student@gmail.com",
+                commentText = $"Comment {g}",
+                exerciseId = 1,
+                rating = 0,
             };
             client = new APICommentsClient();
             client.Post(obj);
             var actual = new CommentDAL().GetCommentByCommentText(obj.commentText.ToString());
-            Assert.AreEqual(actual.UserName, obj.userName);
+            Assert.AreEqual(actual.CommentText, obj.commentText);
         }
     }
 }

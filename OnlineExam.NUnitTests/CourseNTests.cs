@@ -14,6 +14,7 @@ using System.Resources;
 
 namespace OnlineExam.NUnitTests
 {
+    [Category("Basic")]
     [TestFixture]
     public class CourseNTests : BaseNTest
     {

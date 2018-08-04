@@ -19,7 +19,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.Id, Using = "CourseId")]
         public IWebElement ListofCourses { get; set; }
 
-        [FindsBy(How = How.Id, Using = "TaskName")]
+        [FindsBy(How = How.XPath, Using = "//*[@id=\"TaskName\"]")]
         public IWebElement AddTaskName { get; set; }
 
         [FindsBy(How =How.Id, Using = "tinymce")]
@@ -31,7 +31,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.row > div:nth-child(2) > div > div.CodeMirror-scroll > div.CodeMirror-sizer > div > div > div > div.CodeMirror-code > div")]
         public IWebElement FieldForTestCasesCode { get; set; }
 
-        [FindsBy(How =How.CssSelector, Using = "body > div > div > form > div:nth-child(8) > button")]
+        [FindsBy(How =How.XPath, Using = "/html/body/div/div/form/div[7]/button")]
         public IWebElement AddButton { get; set; }
 
         [FindsBy(How =How.Id, Using = "runCode")]

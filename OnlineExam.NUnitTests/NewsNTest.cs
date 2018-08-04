@@ -11,7 +11,7 @@ namespace OnlineExam.NUnitTests
 {
     //[Parallelizable(ParallelScope.Self)]
     [TestFixture]
-    [Category("Natashas")]
+    [Category("Basic")]
     public class NewsNTest : BaseNTest
     {
         private Header header;

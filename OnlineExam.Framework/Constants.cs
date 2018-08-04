@@ -8,19 +8,13 @@ namespace OnlineExam.Framework
 {
     public static class Constants
     {
-        public const string HOME_URL = "http://localhost:55842";
         public const string ADMIN_EMAIL = "admin@gmail.com";
         public const string ADMIN_PASSWORD = "Admin_123";
         public const string TEACHER_EMAIL = "teacher@gmail.com";
         public const string TEACHER_PASSWORD = "Teacher_123";
         public const string STUDENT_EMAIL = "student@gmail.com";
         public const string STUDENT_PASSWORD = "Student_123";
-        public const string STUDENT2_EMAIL = "student2@gmail.com";
-        public const string VIKTOR_EMAIL = "viktor@gmail.com";
         public const string TEACHER = "Teacher";
-        public const string STUDENT = "Student";
-        public const string REGISTRATION_EMAIL = "example@gmail.com";
-        public const string REGISTRATION_PASSWORD = "Example_123";
         public const string ENGLISH = "en";
         public const string UKRAINE = "uk";
         public const string SIGN_IN_ENGLISH = "SIGN IN";
@@ -34,12 +28,6 @@ namespace OnlineExam.Framework
         public const string EXAMPLE_PASSWORD = "Example_123";
         public const string FAKE_EMAIL = "fake@gmail.com";
         public const string FAKE_PASSWORD = "Fake_123";
-        public static string PATH = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
-        public static string ACTUAL_PATH = PATH.Substring(0, PATH.LastIndexOf("bin"));
-        public static string PROJECT_PATH = new Uri(ACTUAL_PATH).LocalPath;
-        public static string REPORT_PATH = PROJECT_PATH + "Reports\\MyOwnReport.html";
-        public static string SCREEN_SHOT_PATH = PROJECT_PATH + "\\Reports\\";
-        public static string BACKUP_PATH = PROJECT_PATH + @"Backup\OnlineExamDB.bak";
         public const string SCREEN_SHOT = "ScreenShot";
         public const string USER_FOR_DELETE_EMAIL = "UserForDelete@gmail.com";
         public const string USER_FOR_CHANGE_ROLE_EMAIL = "UserForChangeRole@gmail.com";

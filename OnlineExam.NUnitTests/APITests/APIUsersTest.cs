@@ -11,6 +11,7 @@ using OnlineExam.NUnitTests.APIClients;
 
 namespace OnlineExam.NUnitTests.APITests
 {
+    [Category("APITests")]
     [TestFixture]
     public class APIUsersTest
     {
