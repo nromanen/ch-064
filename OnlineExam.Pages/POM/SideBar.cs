@@ -13,23 +13,22 @@ namespace OnlineExam.Pages.POM
         public SideBar()
         {
         }
-
-        [FindsBy(How = How.CssSelector, Using = @"a[href*='/AdminPanel/Users']")]
+        [FindsBy(How = How.XPath, Using = "//a[@href='/AdminPanel/Users']")]
         private IWebElement adminPanelMenuItemElement;
 
         [FindsBy(How = How.CssSelector, Using = "a[href*='/AddNews/News']")]
         private IWebElement newsMenuItemElement;
 
-        [FindsBy(How = How.CssSelector, Using = @"a[href*='/UserRating']")]
+        [FindsBy(How = How.XPath, Using = "//a[@href='/UserRating']")]
         private IWebElement ratingsMenuItemElement;
 
-        [FindsBy(How = How.CssSelector, Using = @"a[href*='/CourseManagement']")]
+        [FindsBy(How = How.XPath, Using = "//a[@href='/CourseManagement']")]
         private IWebElement coursesMenuItemElement;
 
         [FindsBy(How = How.CssSelector, Using = @"a[href*='/CodeHistory/History']")]
         private IWebElement codeHistoryMenuItemElement;
 
-        [FindsBy(How = How.CssSelector, Using = @"a[href*='/EmailMessages']")]
+        [FindsBy(How = How.CssSelector, Using = "//a[@href='/EmailMessages']")]
         private IWebElement mailBoxMenuItemElement;
 
         [FindsBy(How = How.CssSelector, Using = @"a[href*='/EmailMessages/GetEmail']")]

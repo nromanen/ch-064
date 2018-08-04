@@ -7,22 +7,21 @@ using RestSharp;
 
 namespace OnlineExam.NUnitTests.APIClients
 {
-    public class APICommentsClient
+    public class APIUsersClient
     {
         RestClient client = new RestClient("http://localhost:55842");
 
-        public void Get(int commentId)
+       
+        public string PostChange(Object obj,string parameter)
         {
-            var request = new RestRequest($"/api/CommentApi/{commentId}", Method.GET);
-            var response = client.Execute(request);
-        }
-
-        public void Post(Object obj)
-        {
-            var request = new RestRequest($"/api/CommentApi", Method.POST);
+            var request = new RestRequest($"/api/users/change/{parameter}" ,Method.POST);
             request.AddHeader("content-type", "application/json");
+
+           
             request.AddJsonBody(obj);
-            client.Execute(request);
+            IRestResponse response = client.Execute(request);
+            var result = response.StatusDescription;
+            return result;
         }
     }
 }

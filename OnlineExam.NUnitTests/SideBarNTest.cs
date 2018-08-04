@@ -7,6 +7,7 @@ namespace OnlineExam.NUnitTests
 {
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
+    [Category("Critical")]
     public class SideBarNTest : BaseNTest
     {
         private SideBar sideBar;

@@ -5,8 +5,10 @@ using OnlineExam.Pages.POM;
 
 namespace OnlineExam.NUnitTests
 {
+    [Category("Critical")]
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
+
     public class HeaderTest : BaseNTest
     {
         private Header header;

@@ -12,6 +12,7 @@ using OnlineExam.DatabaseHelper;
 
 namespace OnlineExam.NUnitTests
 {
+    [Category("Basic")]
     [TestFixture]
     public class CourseNTests: BaseNTest
     {
