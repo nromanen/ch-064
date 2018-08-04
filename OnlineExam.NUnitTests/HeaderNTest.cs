@@ -6,6 +6,7 @@ using OnlineExam.Pages.POM;
 namespace OnlineExam.NUnitTests
 {
     [Category("Critical")]
+    [Category("Basic")]
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
 
