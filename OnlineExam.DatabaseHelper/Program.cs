@@ -14,7 +14,6 @@ namespace OnlineExam.DatabaseHelper
             {
                 Helper.RollbackDatabase();
             }
-            Helper.RollbackDatabase();
 
             if (args.Contains("backup"))
             {
