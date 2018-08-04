@@ -10,12 +10,15 @@ namespace OnlineExam.DatabaseHelper
     {
         static void Main(string[] args)
         {
-            if (args.Contains("restore"))
+            if (args.Count() == 0)
+            {
+                Menu menu = new Menu();
+            }
+            else if (args.Contains("restore"))
             {
                 Helper.RollbackDatabase();
             }
-
-            if (args.Contains("backup"))
+            else if (args.Contains("backup"))
             {
                 Helper.BackupDatabase();
             }
