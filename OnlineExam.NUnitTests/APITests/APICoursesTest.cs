@@ -42,8 +42,18 @@ namespace OnlineExam.NUnitTests.APITests
             };
             client = new APICoursesClient();
             client.Post(obj);
-            var actual = new CoursesDAL().GetCourseByCourseName(obj.CourseName.ToString());
-            Assert.AreEqual(actual.Name, obj.CourseName);
+            var actual = new CoursesDAL().GetCourseByCourseID(obj.CourseId);
+            Assert.AreEqual(actual.Id, obj.CourseId);
+        }
+
+        [Test]
+        public void Delete()
+        {
+            int CourseId = 2;
+            client = new APICoursesClient();
+            client.Delete(CourseId);
+            var actual = new CoursesDAL().GetCourseByCourseID(CourseId.ToString());
+            Assert.IsEmpty(actual.ToString());
         }
     }
 }

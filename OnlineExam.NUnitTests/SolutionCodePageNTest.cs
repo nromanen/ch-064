@@ -101,7 +101,7 @@ namespace OnlineExam.NUnitTests
                 var Code = ConstructPage<SolutionCodePage>();
                 Code.ClickOnExitButton();
                 var url = driver.GetCurrentUrl();
-                Assert.AreEqual("http://localhost:55842/", url);
+                Assert.AreEqual(BaseSettings.fields.Url, url);
             }
         }
 

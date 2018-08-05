@@ -24,5 +24,11 @@ namespace OnlineExam.NUnitTests.APIClients
             request.AddJsonBody(obj);
             client.Execute(request);
         }
+
+        public void Delete(int CourseId)
+        {
+            var request = new RestRequest($"/api/Course/delete", Method.DELETE);
+            var respons = client.Delete(request);
+        }
     }
 }

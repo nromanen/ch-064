@@ -23,5 +23,24 @@ namespace OnlineExam.DatabaseHelper.DAL
                 return result;
             }
         }
+
+        public Courses GetCourseByCourseID(string ID)
+        {
+            using (var ctx = new DataModel(BaseSettings.fields.ConnectionString))
+            {
+                var result = ctx.Courses.First(c => c.Id.ToString() == ID);
+                return result;
+            }
+        }
+
+        public Courses GetCourseById(int id)
+        {
+            using (var ctx = new DataModel(BaseSettings.fields.ConnectionString))
+            {
+                var result = ctx.Courses.Find(id);
+                return result;
+            }
+        }
+
     }
 }
