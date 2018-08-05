@@ -15,13 +15,16 @@ namespace OnlineExam.Pages.POM.UserDetails
         }
 
       
-        [FindsBy(How = How.Id, Using = "ChPaswBut1")]
+        //[FindsBy(How = How.Id, Using = "ChPaswBut1")]
+        [FindsBy(How = How.XPath, Using = "//a[@href='http://localhost:55842/User/ChangePassword/38e078ba-b621-4f3a-a4a0-17748a7b21ea']")]
         public IWebElement ChangePassButton { get; set; }
 
-        [FindsBy(How = How.Id, Using = "ChPaswBut2")]
+        //[FindsBy(How = How.Id, Using = "ChPaswBut2")]
+        [FindsBy(How = How.XPath, Using = "//*[@class='btn btn-sm btn-default' and @id='ChPaswBut2']")]
         public IWebElement ChangeNameButton { get; set; }
 
-        [FindsBy(How = How.Id, Using = "ChPaswBut3")]
+        //[FindsBy(How = How.Id, Using = "ChPaswBut3")]
+        [FindsBy(How = How.XPath, Using = "//*[contains(@id,'ChPaswBut3')]")]
         public IWebElement ChangeEmailButton { get; set; }
 
         [FindsBy(How = How.ClassName, Using = "col-lg-4")]
