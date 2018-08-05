@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\CommentDAL.cs" />
+    <Compile Include="DAL\NewsDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="Model\AspNetRoleClaims.cs" />
     <Compile Include="Model\AspNetRoles.cs" />

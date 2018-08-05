@@ -3,5 +3,5 @@
 "Url" : "http://localhost:55842/",
 "ConnectionString" : "data source = .\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;",
 "ServerName": ".\\SQLEXPRESS",
-  "DatabaseName": "OnlineExamDB"
+"DatabaseName": "OnlineExamDB"
 }
