@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExam.NUnitTests
 {
-    //[Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Self)]
     [TestFixture]
     [Category("Critical")]
 
@@ -18,6 +18,9 @@ namespace OnlineExam.NUnitTests
         private Header header;
         private SideBar sideBar;
 
+        public RegistrationNTest()
+        {
+        }
         [SetUp]
         public override void SetUp()
         {

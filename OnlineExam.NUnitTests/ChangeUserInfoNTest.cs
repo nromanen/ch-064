@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExam.NUnitTests
 {
+    [Parallelizable(ParallelScope.Self)]
     [Category("Basic")]
     [TestFixture]
     public class ChangeUserInfoNTest : BaseNTest

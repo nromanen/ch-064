@@ -10,12 +10,11 @@ using OnlineExam.Framework;
 
 namespace OnlineExam.NUnitTests
 {
+    [Parallelizable(ParallelScope.Self)]
     [TestFixture]
     [Category("Basic")]
-
     public class TEMP_NTest : BaseNTest
     {
-
         private Header header;
         private SideBar sidebar;
 
@@ -34,30 +33,28 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void IsTaskAvailable()
         {
-
             string TaskName = "Indexers";
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var firstBlock = blocks.FirstOrDefault(x => x.TEMP_GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                var firstBlock = blocks.FirstOrDefault(x =>
+                    x.TEMP_GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 Assert.AreEqual(firstBlock.TEMP_GetName(), TaskName);
             }
-
         }
-
 
 
         [Test]
         public void TaskRecover()
         {
-
             string taskname = "Elevator modeling";
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var myblock = blocks.FirstOrDefault(x => x.Get_DELETED_TaskName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
+                var myblock = blocks.FirstOrDefault(x =>
+                    x.Get_DELETED_TaskName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
                 myblock.ClickOnRecoverButton();
             }
 
@@ -65,26 +62,24 @@ namespace OnlineExam.NUnitTests
             blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var myblock = blocks.FirstOrDefault(x => x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
+                var myblock = blocks.FirstOrDefault(x =>
+                    x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
                 Assert.AreEqual(myblock.TEMP_GetName(), taskname);
                 myblock.ClickOnDeleteButton();
             }
-
         }
-
-
 
 
         [Test]
         public void TaskDelete()
         {
-
             string taskname = "Simple addition";
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var myblock = blocks.FirstOrDefault(x => x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
+                var myblock = blocks.FirstOrDefault(x =>
+                    x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
                 myblock.ClickOnDeleteButton();
             }
 
@@ -92,64 +87,59 @@ namespace OnlineExam.NUnitTests
             blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var myblock = blocks.FirstOrDefault(x => x.Get_DELETED_TaskName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
+                var myblock = blocks.FirstOrDefault(x =>
+                    x.Get_DELETED_TaskName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
                 Assert.AreEqual(myblock.Get_DELETED_TaskName(), taskname);
                 myblock.ClickOnRecoverButton();
             }
-
-
         }
-
 
 
         [Test]
         public void TaskSolution()
         {
-
             string taskname = "Indexers";
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var myblock = blocks.FirstOrDefault(x => x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
+                var myblock = blocks.FirstOrDefault(x =>
+                    x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
                 myblock.ClickOnSolutionButton();
             }
+
             var url = driver.GetCurrentUrl();
             bool f = false;
             if (url.Contains("ExerciseManagement/ExerciseSolutionsIndex/2")) f = true;
             Assert.That(f);
-
         }
-
-
 
 
         [Test]
         public void TaskCreationDate()
         {
-
             string CreationDate = "11/07/2018";
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
 
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var allblock = blocks.Where(x => x.TEMP_GetCreationDate().Equals(CreationDate, StringComparison.OrdinalIgnoreCase));
+                var allblock = blocks.Where(x =>
+                    x.TEMP_GetCreationDate().Equals(CreationDate, StringComparison.OrdinalIgnoreCase));
                 Assert.AreEqual(2, allblock.Count());
             }
-
         }
 
         [Test]
         public void TaskUpdateDate()
         {
-
             string UpdateDate = "11/07/2018";
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var allblock = blocks.Where(x => x.TEMP_GetCreationDate().Equals(UpdateDate, StringComparison.OrdinalIgnoreCase));
+                var allblock = blocks.Where(x =>
+                    x.TEMP_GetCreationDate().Equals(UpdateDate, StringComparison.OrdinalIgnoreCase));
                 Assert.AreEqual(2, allblock.Count());
             }
         }
@@ -158,7 +148,6 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void AddNewTaskTest()
         {
-
             string NEWTASK = "NewTask";
 
             var Tasks = ConstructPage<TeacherExerciseManagerPage>();
@@ -171,7 +160,8 @@ namespace OnlineExam.NUnitTests
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(NEWTASK, StringComparison.OrdinalIgnoreCase));
+                var firstblock =
+                    blocks.FirstOrDefault(x => x.GetName().Equals(NEWTASK, StringComparison.OrdinalIgnoreCase));
                 Assert.AreEqual(firstblock.GetName(), NEWTASK);
             }
 
@@ -179,7 +169,8 @@ namespace OnlineExam.NUnitTests
             var allblock = NewTasks.GetBlocks();
             if (allblock != null)
             {
-                var firstblock = allblock.FirstOrDefault(x => x.TEMP_GetName().Equals(NEWTASK, StringComparison.OrdinalIgnoreCase));
+                var firstblock = allblock.FirstOrDefault(x =>
+                    x.TEMP_GetName().Equals(NEWTASK, StringComparison.OrdinalIgnoreCase));
                 firstblock.ClickOnDeleteButton();
             }
         }

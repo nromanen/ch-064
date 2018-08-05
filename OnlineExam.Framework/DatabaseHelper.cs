@@ -9,10 +9,10 @@ namespace OnlineExam.Framework
 {
     public class DatabaseHelper
     {
-        private static string conection = BaseSettings.GetConnectionString();
+        private static string conection = BaseSettings.fields.ConnectionString;
         public static void BackupDatabase()
         {
-            string backupLocation = System.IO.Path.Combine(Constants.PROJECT_PATH, "Backup", "Main.bak");
+            string backupLocation = System.IO.Path.Combine(CurrentPath.PROJECT_PATH, "Backup", "Main.bak");
             System.IO.File.Delete(backupLocation);
             
             var sqlConStrBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(conection);

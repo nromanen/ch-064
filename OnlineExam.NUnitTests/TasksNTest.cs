@@ -10,6 +10,7 @@ using OnlineExam.Framework;
 
 namespace OnlineExam.NUnitTests
 {
+    [Parallelizable(ParallelScope.Self)]
     [TestFixture]
     [Category("TasksTest")]
     public class TasksNTest : BaseNTest

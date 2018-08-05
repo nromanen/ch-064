@@ -15,13 +15,7 @@ namespace OnlineExam.NUnitTests.APITests
     public class APICommentsTest
     {
         private APICommentsClient client;
-
-        [SetUp]
-        public void SetUp()
-        {
-            client = new APICommentsClient();
-        }
-
+       
         [Test]
         public void GetComment()
         {

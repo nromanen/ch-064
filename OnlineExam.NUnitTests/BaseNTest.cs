@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Resources;
 using System.Threading;
 using AventStack.ExtentReports;
 using NUnit.Framework;
@@ -14,15 +15,18 @@ namespace OnlineExam.NUnitTests
     public class BaseNTest
     {
         protected ExtendedWebDriver driver;
+        protected ResourceManager resxManager;
+
 
         [OneTimeSetUp]
-        public void test1()
+        public void OneTimeSetUp()
         {
             ExtentTestManager.CreateParentTest(GetType().Name);
+           
         }
 
         [OneTimeTearDown]
-        public void test2()
+        public void OneTimeTearDown()
         {
             ExtentManager.Instance.Flush();
         }
@@ -31,9 +35,11 @@ namespace OnlineExam.NUnitTests
         [SetUp]
         public virtual void SetUp()
         {
-            driver = BaseSettings.Init();
+            driver = DriversFabric.Init();
             driver.Maximize();
-            driver.GoToUrl(BaseSettings.GetHomeUrl());
+            driver.GoToUrl(BaseSettings.fields.Url);
+            var header = ConstructPage<Header>();
+            resxManager = header.GetCurrentLanguage();
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
@@ -94,7 +100,7 @@ namespace OnlineExam.NUnitTests
             {
                 case TestStatus.Failed:
                     logstatus = Status.Fail;
-                    var screenshotPathWithDate = driver.TakesScreenshotWithDate(Constants.SCREEN_SHOT_PATH,
+                    var screenshotPathWithDate = driver.TakesScreenshotWithDate(CurrentPath.SCREEN_SHOT_PATH,
                         Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
                     var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
                     ExtentTestManager.GetTest().AddScreenCaptureFromPath(screenshotPathWithDate);

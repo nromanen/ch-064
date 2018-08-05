@@ -1,9 +1,15 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.PhantomJS;
+
 namespace OnlineExam.Framework
 {
     public enum Browsers
@@ -13,81 +19,28 @@ namespace OnlineExam.Framework
         Edge
     }
 
-    public class BasicSettings
+    public class BasicSettingsFields
     {
         public Browsers Browser { get; set; }
         public string Url { get; set; }
         public string ConnectionString { get; set; }
         public string ServerName { get; set; }
-        public string DatabaseName{ get; set; }
+        public string DatabaseName { get; set; }
+    }
 
-        public BasicSettings()
+    public static class BaseSettings
+    {
+        public static BasicSettingsFields fields;
+
+        static BaseSettings()
         {
-            using (StreamReader file = File.OpenText(@"C:\Users\misha\Desktop\ch-064\ConfigFile.json"))
+            using (StreamReader file = File.OpenText(CurrentPath.JSON_PATH))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                BasicSettings settings = (BasicSettings)serializer.Deserialize(file, typeof(BasicSettings));
-
-                Browser = settings.Browser;
-                Url = settings.Url;
-                ConnectionString = settings.ConnectionString;
-                ServerName = settings.ServerName;
-                DatabaseName = settings.DatabaseName;
+                fields = (BasicSettingsFields)serializer.Deserialize(file, typeof(BasicSettingsFields));
             }
         }
+
+       
     }
-
-
-    public class BaseSettings : BasicSettings
-    {
-        public static string GetHomeUrl()
-        {
-            BaseSettings bs = new BaseSettings();
-            return bs.Url;
-        }
-
-        public static string GetConnectionString()
-        {
-            BaseSettings bs = new BaseSettings();
-            return bs.ConnectionString;
-        }
-
-        public static string GetServerName()
-        {
-            BaseSettings bs = new BaseSettings();
-            return bs.ServerName;
-        }
-
-        public static string GetDatabaseName()
-        {
-            BaseSettings bs = new BaseSettings();
-            return bs.DatabaseName;
-        }
-
-        public static ExtendedWebDriver Init()
-        {
-                BaseSettings bs = new BaseSettings();
-                if (bs.Browser.ToString().Equals("Chrome"))
-                {
-                    IWebDriver Chromedriver = new ChromeDriver();
-                    return new ExtendedWebDriver(Chromedriver);
-                }
-                else if (bs.Browser.ToString().Equals("Phantom"))
-                {
-                    IWebDriver Phantomdriver = new PhantomJSDriver();
-                    return new ExtendedWebDriver(Phantomdriver);
-                }
-                else if (bs.Browser.ToString().Equals("Edge"))
-                {
-                    IWebDriver Edgedriver = new EdgeDriver();
-                    return new ExtendedWebDriver(Edgedriver);
-                }
-                else
-                {
-                    IWebDriver Chromedriver = new ChromeDriver();
-                    return new ExtendedWebDriver(Chromedriver);
-                }
-            }
-        }
-    }
-
+}

@@ -22,7 +22,7 @@ namespace OnlineExam.NUnitTests
 
         static ExtentManager()
         {
-            var htmlReporter = new ExtentHtmlReporter(Constants.REPORT_PATH);
+            var htmlReporter = new ExtentHtmlReporter(CurrentPath.REPORT_PATH);
             htmlReporter.Configuration().ChartLocation = ChartLocation.Top;
             htmlReporter.Configuration().ChartVisibilityOnOpen = true;
             htmlReporter.Configuration().DocumentTitle = "Extent/NUnit Samples";

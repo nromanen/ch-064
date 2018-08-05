@@ -98,12 +98,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseSettings.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DriversFabric.cs" />
     <Compile Include="ExtendedWebDriver.cs" />
+    <Compile Include="CurrentPath.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BaseSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

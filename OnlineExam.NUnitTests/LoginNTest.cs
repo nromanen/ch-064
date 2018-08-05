@@ -9,9 +9,10 @@ using OnlineExam.Framework;
 
 namespace OnlineExam.NUnitTests
 {
-    //[Parallelizable(ParallelScope.Self)]
+    [Parallelizable(ParallelScope.Self)]
     [TestFixture]
     [Category("Critical")]
+    [Category("Basic")]
     public class LoginNTest : BaseNTest
     {
         private Header header;

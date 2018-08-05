@@ -7,6 +7,7 @@ using System.Threading;
 
 namespace OnlineExam.NUnitTests
 {
+    [Parallelizable(ParallelScope.Self)]
     [TestFixture]
     [Category("SolutionCodePage")]
     public class SolutionCodePageNTest : BaseNTest
