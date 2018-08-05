@@ -84,10 +84,10 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.XPath, Using = "/html/body/div/div/form/div[5]/div[6]/div[1]/div/div/div/div[5]/div[1]/pre/span")]
         public IWebElement TaskCode { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.col-md-1 > input")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div/div/form/div[6]/input")]
         public IWebElement OkButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "body > div > div > div.col-md-2 > form > button")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div/div/div[2]/form/button")]
         public IWebElement StartButton { get; set; }
 
         [FindsBy(How = How.Id, Using = "tggl")]
