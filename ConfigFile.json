@@ -1,7 +1,7 @@
 {
-"Browser" : "Chrome",
-"Url" : "http://localhost:55842/",
-"ConnectionString" : "data source = .\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;",
-"ServerName": ".\\SQLEXPRESS",
+  "Browser": "Chrome",
+  "Url": "http://localhost:55842/",
+  "ConnectionString": "data source = .\\SQLEXPRESS; initial catalog = OnlineExamDB; user=sa;password=ch64_password; MultipleActiveResultSets = True;",
+  "ServerName": ".\\SQLEXPRESS",
   "DatabaseName": "OnlineExamDB"
 }

@@ -102,10 +102,8 @@
   <ItemGroup>
     <Compile Include="AdminNTest.cs" />
     <Compile Include="APIClients\APICommentsClient.cs" />
-    <Compile Include="APIClients\APINewsClient.cs" />
     <Compile Include="APIClients\APIUsersClient.cs" />
     <Compile Include="APITests\APICommentsTest.cs" />
-    <Compile Include="APITests\APINewsTest.cs" />
     <Compile Include="APITests\APIUsersTest.cs" />
     <Compile Include="BaseNTest.cs" />
     <Compile Include="ChangeUserInfoNTest.cs" />
@@ -144,7 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="extent-config.xml" />
-    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineExam.DatabaseHelper\OnlineExam.DatabaseHelper.csproj">
