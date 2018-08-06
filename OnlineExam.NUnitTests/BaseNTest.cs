@@ -12,7 +12,7 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
-    public class BaseNTest
+    public  class BaseNTest
     {
         protected ExtendedWebDriver driver;
         protected ResourceManager resxManager;

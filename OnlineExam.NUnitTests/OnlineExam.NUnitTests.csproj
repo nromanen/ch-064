@@ -107,6 +107,7 @@
     <Compile Include="APITests\APICommentsTest.cs" />
     <Compile Include="APITests\APICoursesTest.cs" />
     <Compile Include="APITests\APIUsersTest.cs" />
+    <Compile Include="APITests\BaseAPITest.cs" />
     <Compile Include="BaseNTest.cs" />
     <Compile Include="ChangeUserInfoNTest.cs" />
     <Compile Include="CheckAnyInFavouritesN.cs" />

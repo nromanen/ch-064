@@ -13,13 +13,14 @@ namespace OnlineExam.NUnitTests.APITests
 {
     [Category("APITests")]
     [TestFixture]
-    public class APIUsersTest
+    public class APIUsersTest : BaseAPITest
     {
         private APIUsersClient client;
 
         [SetUp]
-        public void SetUp()
+        public override void SetUp()
         {
+            base.SetUp();
             client = new APIUsersClient();
         }
 
