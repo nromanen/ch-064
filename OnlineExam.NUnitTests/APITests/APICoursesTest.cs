@@ -8,7 +8,7 @@ namespace OnlineExam.NUnitTests.APITests
 {
     [Category("APITests")]
     [TestFixture]
-    public class APICoursesTest: BaseAPITest
+    public class APICoursesTest : BaseAPITest
     {
         private APICoursesClient client;
 
@@ -53,7 +53,7 @@ namespace OnlineExam.NUnitTests.APITests
         //    int CourseId = 2;
         //    client = new APICoursesClient();
         //    client.Delete(CourseId);
-        //    var actual = new CoursesDAL().GetCourseById(CourseId);
+        //    var actual = new CoursesDAL().GetCourseByCourseID(CourseId.ToString());
         //    Assert.IsEmpty(actual.ToString());
         //}
     }
