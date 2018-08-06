@@ -21,7 +21,7 @@ namespace OnlineExam.NUnitTests
             var browser = TestContext.Parameters.Get("Browser");
             if (!string.IsNullOrEmpty(browser))
             {
-                BaseSettings.fields.Browser = (Browsers)Enum.Parse(Type.GetType("Browsers"),browser);
+                BaseSettings.fields.Browser = (Browsers)Enum.Parse(typeof(Browsers),browser);
             }
             ExtentTestManager.CreateParentTest(GetType().Name);
         }
