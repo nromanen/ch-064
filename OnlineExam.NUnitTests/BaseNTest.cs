@@ -18,6 +18,11 @@ namespace OnlineExam.NUnitTests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
+            var browser = TestContext.Parameters.Get("Browser");
+            if (!string.IsNullOrEmpty(browser))
+            {
+                BaseSettings.fields.Browser = (Browsers)Enum.Parse(Type.GetType("Browsers"),browser);
+            }
             ExtentTestManager.CreateParentTest(GetType().Name);
         }
 
@@ -31,8 +36,7 @@ namespace OnlineExam.NUnitTests
         [SetUp]
         public virtual void SetUp()
         {
-            var browser = TestContext.Parameters.Get("Browser");
-            driver = DriversFabric.Init(browser);
+            driver = DriversFabric.Init();
             driver.Maximize();
             driver.GoToUrl(BaseSettings.fields.Url);
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
