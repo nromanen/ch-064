@@ -27,10 +27,10 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.Id, Using = "result")]
         public IWebElement FieldWithResultOfCompilationCode { get; set; }
 
-        [FindsBy(How = How.Id, Using = "executeButton")]
+        [FindsBy(How = How.XPath, Using = "//*[@id=\"executeButton\"]")]
         public IWebElement ExecuteButton { get; set; }
 
-        [FindsBy(How = How.Id, Using = "exit")]
+        [FindsBy(How = How.XPath, Using = "//*[@id=\"exit\"]")]
         public IWebElement ExitButton { get; set; }
 
         [FindsBy(How = How.Id, Using = "done")]
