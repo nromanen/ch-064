@@ -12,7 +12,7 @@ namespace OnlineExam.NUnitTests.APITests
 {
     [Category("APITests")]
     [TestFixture]
-    public class APICommentsTest
+    public class APICommentsTest : BaseAPITest
     {
         private APICommentsClient client;
        

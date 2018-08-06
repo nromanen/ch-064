@@ -12,6 +12,8 @@ namespace OnlineExam.Pages.POM.UserDetails
     {
 
         [FindsBy(How = How.Id, Using = "NewEmail")]
+        //[FindsBy(How = How.XPath, Using = "//a[@href='/User/ChangeEmail']")]
+        //[FindsBy(How = How.XPath, Using = "//input[@type = 'email']")]
         public IWebElement NewEmailField { get; set; }
 
         [FindsBy(How = How.Id, Using = "Password")]
