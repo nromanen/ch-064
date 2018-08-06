@@ -53,7 +53,7 @@ namespace OnlineExam.NUnitTests
                 var TaskView = ConstructPage<TaskViewPage>();
                 TaskView.ClickOnStartButton();
                 var Code = ConstructPage<SolutionCodePage>();
-                Code.ClickOnExecuteButton("Total");
+                Code.ClickOnExecuteButton();
                 Code.ClickOnDoneButton();
 
             }
@@ -99,7 +99,7 @@ namespace OnlineExam.NUnitTests
                 var Code = ConstructPage<SolutionCodePage>();
                 Code.ClickOnExitButton();
                 var url = driver.GetCurrentUrl().ToString();
-                Assert.AreEqual(BaseSettings.fields.Url, url+"/");
+                Assert.AreEqual(BaseSettings.fields.Url+"/", url);
             }
         }
 
@@ -107,7 +107,6 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void Compilation()
         {
-
             string TaskName = "Simple addition";
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
