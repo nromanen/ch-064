@@ -8,7 +8,8 @@ namespace OnlineExam.Framework
     {
         Chrome,
         Phantom,
-        Edge
+        Edge,
+        IE
     }
 
     public class BasicSettingsFields

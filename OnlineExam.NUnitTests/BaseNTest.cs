@@ -21,8 +21,12 @@ namespace OnlineExam.NUnitTests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
+            var browser = TestContext.Parameters.Get("Browser");
+            if (!string.IsNullOrEmpty(browser))
+            {
+                BaseSettings.fields.Browser = (Browsers)Enum.Parse(typeof(Browsers), browser);
+            }
             ExtentTestManager.CreateParentTest(GetType().Name);
-           
         }
 
         [OneTimeTearDown]
