@@ -31,7 +31,8 @@ namespace OnlineExam.NUnitTests
         [SetUp]
         public virtual void SetUp()
         {
-            driver = DriversFabric.Init();
+            var browser = TestContext.Parameters.Get("Browser");
+            driver = DriversFabric.Init(browser);
             driver.Maximize();
             driver.GoToUrl(BaseSettings.fields.Url);
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
