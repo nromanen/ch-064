@@ -34,8 +34,8 @@ namespace OnlineExam.NUnitTests.APITests
             var guid = new Guid().ToString();
             var obj = new
             {
-                name = $"C# CourseName1 {guid}",
-                description = "Description for new Course1",
+                name = $"C# CourseName {guid}",
+                description = "Description for new Course",
                 UserId = "c557d51b-2a7e-46b4-8ed0-fe9253d8f861"
             };
 
@@ -43,18 +43,7 @@ namespace OnlineExam.NUnitTests.APITests
             var result = client.Post(obj);
             Assert.AreEqual(result, HttpStatusCode.OK);
             var actual = new CoursesDAL().GetCourseByCourseName(obj.name);
-            Assert.NotNull(actual);
             Assert.AreEqual(actual.Description, obj.description);
-        }
-
-        //[Test]
-        //public void Delete()
-        //{
-        //    int CourseId = 2;
-        //    client = new APICoursesClient();
-        //    client.Delete(CourseId);
-        //    var actual = new CoursesDAL().GetCourseByCourseID(CourseId.ToString());
-        //    Assert.IsEmpty(actual.ToString());
-        //}
+        } 
     }
 }

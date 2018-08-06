@@ -228,37 +228,5 @@ namespace OnlineExam.NUnitTests
             }
 
         }
-
-
-        [Test]
-        public void CreateNewComment()
-        {
-
-            string TaskName = "Indexers";
-            string coment = "rate 4 stars";
-
-
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
-            {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.CreateCommentText(coment);
-                TaskView.Click_4_Star();
-                TaskView.ClickOnCommentButton();
-                driver.RefreshPage();
-                TaskView = ConstructPage<TaskViewPage>();
-                var divs = TaskView.GetDivs();
-                if (divs != null)
-                {
-                    var anyblock = divs.FirstOrDefault(x => x.GetCommentText().Equals(coment, StringComparison.OrdinalIgnoreCase));
-                    var comment = anyblock.GetCommentText();
-                    Assert.AreEqual(comment.ToString(), coment);
-                }
-            }
-
-        }
     }
 }

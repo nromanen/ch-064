@@ -118,7 +118,7 @@ namespace OnlineExam.NUnitTests
                 TaskView.ClickOnStartButton();
                 var Code = ConstructPage<SolutionCodePage>();
                 var result = Code.FieldWithResultOfCompilationCode.Text;
-                Assert.IsNotEmpty(result);
+                Assert.IsEmpty(result);
             }
         }
 
