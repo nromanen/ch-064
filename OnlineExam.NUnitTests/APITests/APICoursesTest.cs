@@ -33,6 +33,21 @@ namespace OnlineExam.NUnitTests.APITests
             Guid g = new Guid();
             var obj = new
             {
+                //        id = 0,
+                //        name = "string",
+                //        description = "string",
+                //        isActive = true,
+                //        creationDate = "2018-08-06T12:49:40.211Z",
+                //        userId = "string",
+                //        user = {
+                //        id = "string",
+                //            userName = "string",
+                //            email = "string",
+                //            userRating = 0,
+                //            doneTaskNumber = 0
+                //               }
+                //};
+
                 CourseId = "1",
                 CourseName = "C# CourseName",
                 Description = "Description for new Course",
@@ -40,6 +55,7 @@ namespace OnlineExam.NUnitTests.APITests
                 CreatingDate = "2018-08-05 16:30:00.4611346",
                 UserId = "c557d51b-2a7e-46b4-8ed0-fe9253d8f861"
             };
+
             client = new APICoursesClient();
             client.Post(obj);
             var actual = new CoursesDAL().GetCourseByCourseID(obj.CourseId);
