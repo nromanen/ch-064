@@ -14,7 +14,7 @@ namespace OnlineExam.Pages.POM.UserDetails
         {
         }
 
-      
+
         //[FindsBy(How = How.Id, Using = "ChPaswBut1")]
         [FindsBy(How = How.XPath, Using = "//*[contains(@id,'ChPaswBut1')]")]
         public IWebElement ChangePassButton { get; set; }
