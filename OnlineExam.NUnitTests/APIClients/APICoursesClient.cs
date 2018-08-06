@@ -28,7 +28,8 @@ namespace OnlineExam.NUnitTests.APIClients
         public void Delete(int CourseId)
         {
             var request = new RestRequest($"/api/Course/delete", Method.DELETE);
-            var respons = client.Delete(request);
+           // var respons = client.Delete(request);
+            client.Delete(request);
         }
     }
 }
