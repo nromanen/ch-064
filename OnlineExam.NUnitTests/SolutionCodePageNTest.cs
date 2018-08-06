@@ -98,8 +98,8 @@ namespace OnlineExam.NUnitTests
                 TaskView.ClickOnStartButton();
                 var Code = ConstructPage<SolutionCodePage>();
                 Code.ClickOnExitButton();
-                var url = driver.GetCurrentUrl();
-                Assert.Contains(BaseSettings.fields.Url, url);
+                var url = driver.GetCurrentUrl().ToString();
+                Assert.AreEqual(BaseSettings.fields.Url, url+"/");
             }
         }
 
