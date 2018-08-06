@@ -8,7 +8,7 @@ namespace OnlineExam.DatabaseHelper
     {
         // ༼ つ ಥ_ಥ ༽つ
         // Created by Roma Bahlai
-        private static string conection = $"Server = {BaseSettings.fields.ServerName}; Database = {BaseSettings.fields.DatabaseName};";
+        private static string conection = $"Server = {BaseSettings.fields.ServerName}; Database = {BaseSettings.fields.DatabaseName}; Integrated security = True;";
 
         public static void RollbackDatabase()
         {
