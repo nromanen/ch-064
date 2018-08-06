@@ -104,6 +104,7 @@
     <Compile Include="APIClients\APICommentsClient.cs" />
     <Compile Include="APIClients\APICoursesClient.cs" />
     <Compile Include="APIClients\APIUsersClient.cs" />
+    <Compile Include="APIClients\Models\NewsAPIModel.cs" />
     <Compile Include="APITests\APICommentsTest.cs" />
     <Compile Include="APITests\APICoursesTest.cs" />
     <Compile Include="APITests\APIUsersTest.cs" />

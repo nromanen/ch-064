@@ -10,22 +10,27 @@ namespace OnlineExam.DatabaseHelper.DAL
     {
         private static string conection = "data source = CH784\\SQLEXPRESS; initial catalog = OnlineExamDB; integrated security = True; MultipleActiveResultSets = True;";
         //"Server=(localdb)\\mssqllocaldb;Database=Main;Trusted_Connection=True;MultipleActiveResultSets=true";
-        public News GetNewsById(int id)
+      
+
+        public List<News> GetNews()
         {
             using (var ctx = new DataModel(conection))
             {
-                var result = ctx.News.Find(id);
+                var result = ctx.News.ToList();
                 return result;
             }
+
         }
 
         public News GetNewsByTitle(string title)
         {
             using (var ctx = new DataModel(conection))
             {
-                var result = ctx.News.First(c => c.Title == title);
+                var result = ctx.News.Include("Courses").FirstOrDefault(c => c.Title == title);
                 return result;
             }
         }
+        
+
     }
 }
