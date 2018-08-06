@@ -41,7 +41,6 @@ namespace OnlineExam.NUnitTests
 
 
         [Test]
-        [Category("TaskDone")]
         public void TaskDone()
         {
             string TaskName = "Simple addition";
@@ -85,7 +84,6 @@ namespace OnlineExam.NUnitTests
         }
 
         [Test]
-        [Category("ExitButton")]
         public void ExitButton()
         {
 
@@ -101,13 +99,12 @@ namespace OnlineExam.NUnitTests
                 var Code = ConstructPage<SolutionCodePage>();
                 Code.ClickOnExitButton();
                 var url = driver.GetCurrentUrl();
-                Assert.AreEqual(BaseSettings.fields.Url, url);
+                Assert.Contains(BaseSettings.fields.Url, url);
             }
         }
 
 
         [Test]
-        [Category("Compilation")]
         public void Compilation()
         {
 
@@ -121,8 +118,6 @@ namespace OnlineExam.NUnitTests
                 var TaskView = ConstructPage<TaskViewPage>();
                 TaskView.ClickOnStartButton();
                 var Code = ConstructPage<SolutionCodePage>();
-                Code.ClickOnExecuteButton("Total");
-                Code = ConstructPage<SolutionCodePage>();
                 var result = Code.FieldWithResultOfCompilationCode.Text;
                 Assert.IsNotEmpty(result);
             }
