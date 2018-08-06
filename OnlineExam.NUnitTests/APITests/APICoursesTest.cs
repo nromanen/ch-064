@@ -41,6 +41,7 @@ namespace OnlineExam.NUnitTests.APITests
 
             client = new APICoursesClient();
             var result = client.Post(obj);
+            Assert.NotNull(result);
             Assert.AreEqual(result, HttpStatusCode.OK);
             var actual = new CoursesDAL().GetCourseByCourseName(obj.name);
             Assert.AreEqual(actual.Description, obj.description);
