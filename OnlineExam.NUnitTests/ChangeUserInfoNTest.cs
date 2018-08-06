@@ -53,7 +53,7 @@ namespace OnlineExam.NUnitTests
         public void TestChangeEmail()
         {
 
-            logInPage.SignIn("UserForChangeEmail2@gmail.com", Constants.USER_PASSWORD);
+            logInPage.SignIn("UserForChangeEmail@gmail.com", Constants.USER_PASSWORD);
             userInfo = header.GoToUserAccountPage();
 
             var changeEmailPage = userInfo.OpenChangeEmailPage();
