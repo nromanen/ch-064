@@ -118,7 +118,7 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void TaskCreationDate()
         {
-            string CreationDate = "11/07/2018";
+            string CreationDate = "09/07/2018";
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
 
             var blocks = ListOfTasks.GetBlocks();
@@ -133,7 +133,7 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void TaskUpdateDate()
         {
-            string UpdateDate = "11/07/2018";
+            string UpdateDate = "09/07/2018";
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)

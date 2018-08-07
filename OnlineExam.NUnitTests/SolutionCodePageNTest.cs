@@ -9,7 +9,6 @@ namespace OnlineExam.NUnitTests
 {
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
-    [Category("SolutionCodePage")]
     public class SolutionCodePageNTest : BaseNTest
     {
         private Header header;
@@ -41,7 +40,6 @@ namespace OnlineExam.NUnitTests
 
 
         [Test]
-        [Category("TaskDone")]
         public void TaskDone()
         {
             string TaskName = "Simple addition";
@@ -54,7 +52,7 @@ namespace OnlineExam.NUnitTests
                 var TaskView = ConstructPage<TaskViewPage>();
                 TaskView.ClickOnStartButton();
                 var Code = ConstructPage<SolutionCodePage>();
-                Code.ClickOnExecuteButton("Total");
+                Code.ClickOnExecuteButton();
                 Code.ClickOnDoneButton();
 
             }
@@ -85,7 +83,6 @@ namespace OnlineExam.NUnitTests
         }
 
         [Test]
-        [Category("ExitButton")]
         public void ExitButton()
         {
 
@@ -100,17 +97,15 @@ namespace OnlineExam.NUnitTests
                 TaskView.ClickOnStartButton();
                 var Code = ConstructPage<SolutionCodePage>();
                 Code.ClickOnExitButton();
-                var url = driver.GetCurrentUrl();
-                Assert.AreEqual(BaseSettings.fields.Url, url);
+                var url = driver.GetCurrentUrl().ToString();
+                Assert.AreEqual(BaseSettings.fields.Url+"/", url);
             }
         }
 
 
         [Test]
-        [Category("Compilation")]
         public void Compilation()
         {
-
             string TaskName = "Simple addition";
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
@@ -121,10 +116,8 @@ namespace OnlineExam.NUnitTests
                 var TaskView = ConstructPage<TaskViewPage>();
                 TaskView.ClickOnStartButton();
                 var Code = ConstructPage<SolutionCodePage>();
-                Code.ClickOnExecuteButton("Total");
-                Code = ConstructPage<SolutionCodePage>();
                 var result = Code.FieldWithResultOfCompilationCode.Text;
-                Assert.IsNotEmpty(result);
+                Assert.IsEmpty(result);
             }
         }
 

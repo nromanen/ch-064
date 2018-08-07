@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OnlineExam.Framework;
 using RestSharp;
 
 namespace OnlineExam.NUnitTests.APIClients
 {
     public class APICommentsClient
     {
-        RestClient client = new RestClient("http://localhost:55842");
+        RestClient client = new RestClient(BaseSettings.fields.Url);
 
         public void Get(int commentId)
         {

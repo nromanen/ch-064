@@ -12,7 +12,6 @@ namespace OnlineExam.NUnitTests
 {
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
-    [Category("TasksTest")]
     public class TasksNTest : BaseNTest
     {
         private Header header;
@@ -44,7 +43,6 @@ namespace OnlineExam.NUnitTests
         }
 
         [Test]
-        [Category("IsTaskAvailable")]
         public void IsTaskAvailable()
         {
             string TaskName = "Simple addition";
@@ -60,7 +58,6 @@ namespace OnlineExam.NUnitTests
 
 
         [Test]
-        [Category("ClickOnTasksButton")]
         public void ClickOnTasksButton()
         {
 
@@ -79,7 +76,6 @@ namespace OnlineExam.NUnitTests
 
 
         [Test]
-        [Category("StarsCount")]
         public void StarsCount()
         {
 
@@ -90,7 +86,7 @@ namespace OnlineExam.NUnitTests
             {
                 var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 var count = firstBlock.GetStarsss();
-                Assert.AreEqual("5", count.ToString());
+                Assert.AreEqual("4", count.ToString());
             }
         }
     }
