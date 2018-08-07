@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OnlineExam.DatabaseHelper;
+using OnlineExam.Framework;
 using OnlineExam.NUnitTests.APIClients.Models;
 using RestSharp;
 
@@ -13,7 +14,7 @@ namespace OnlineExam.NUnitTests.APIClients
 {
     public class APINewsClient
     {
-        RestClient client = new RestClient("http://localhost:55842");
+        RestClient client = new RestClient(BaseSettings.fields.Url);
 
         public List<NewsAPIModel> Get()
         {
