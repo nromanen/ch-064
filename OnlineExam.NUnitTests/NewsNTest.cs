@@ -30,8 +30,9 @@ namespace OnlineExam.NUnitTests
         {
             var signIn = header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
             var newsPage = ConstructPage<SideBar>().GoToTeacherNewsPage();
-            var result = newsPage.CreateArticle();
-            Assert.True(result.UrlEndsWith("AddNews/News"));
+            var createArticle = newsPage.CreateArticle();
+            var result = createArticle.UrlEndsWith("AddNews/News");
+            Assert.True(result, "News page doesn't return. News article isn't created.");
         }
     }
 }

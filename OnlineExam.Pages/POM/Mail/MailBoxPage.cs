@@ -15,19 +15,19 @@ namespace OnlineExam.Pages.POM
         }
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div:nth-child(1) > a")]
-        public IWebElement SendMessageReference { get; set; }
+        private IWebElement SendMessageReference;
 
         [FindsBy(How = How.ClassName, Using = "Outbox")]
-        public IWebElement OutboxElement { get; set; }
+        private IWebElement OutboxElement;
 
         [FindsBy(How = How.ClassName, Using = "Inbox")]
-        public IWebElement InboxElement { get; set; }
+        private IWebElement InboxElement;
 
         [FindsBy(How = How.CssSelector, Using = "#InBoxMEssages > p")]
-        public IList<IWebElement> InboxMailList { get; set; }
+        private IList<IWebElement> InboxMailList;
 
         [FindsBy(How = How.CssSelector, Using = "#OutBoxMEssages > p")]
-        public IList<IWebElement> OutboxMailList { get; set; }
+        private IList<IWebElement> OutboxMailList;
 
         /// <summary>
         /// Opens Inbox mail.

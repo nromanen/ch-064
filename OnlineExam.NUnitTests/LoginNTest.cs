@@ -31,31 +31,32 @@ namespace OnlineExam.NUnitTests
         {
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
-            Assert.True(result);
+            Assert.True(result, $"User {Constants.STUDENT_EMAIL} is not presented in header.");
         }
 
         [Test]
         public void SignInUsingInvalidEmailTest()
         {
             logInPage.SignIn(Constants.FAKE_EMAIL, Constants.FAKE_PASSWORD);
-            Assert.False(header.IsUserEmailPresentedInHeader(Constants.FAKE_EMAIL));
+            var result = header.IsUserEmailPresentedInHeader(Constants.FAKE_EMAIL);
+            Assert.False(result, $"Fake user {Constants.FAKE_EMAIL} is presented in header.");
         }
 
         [Test]
         public void SignInUsingInvalidPasswordTest()
         {
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.FAKE_PASSWORD);
-            Assert.False(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+            var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
+            Assert.False(result, $"User {Constants.STUDENT_EMAIL} is presented in header.");
         }
 
         [Test]
         public void SignOutTest()
         {
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-            driver.RefreshPage();
             header.SignOut();
-            driver.RefreshPage();
-            Assert.True(logInPage.IsSignInPresentedInHeader());
+            var result = logInPage.IsSignInPresentedInHeader();
+            Assert.True(result, "User didn't sign out. Sign in button isn't presented in header.");
         }
     }
 }

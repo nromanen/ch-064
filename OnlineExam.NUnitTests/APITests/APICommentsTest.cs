@@ -23,11 +23,11 @@ namespace OnlineExam.NUnitTests.APITests
             client = new APICommentsClient();
             client.Get(commentId);
             var actual = new CommentDAL().GetCommentById(commentId);
-            Assert.AreEqual(actual.Id, commentId);
+            Assert.AreEqual(actual.Id, commentId, "Actual id isn't equal to expected id.");
         }
 
         [Test]
-        public void Post()
+        public void PostComment()
         {
             Guid g = new Guid();
             var obj = new
@@ -41,7 +41,7 @@ namespace OnlineExam.NUnitTests.APITests
             client = new APICommentsClient();
             client.Post(obj);
             var actual = new CommentDAL().GetCommentByCommentText(obj.commentText.ToString());
-            Assert.AreEqual(actual.CommentText, obj.commentText);
+            Assert.AreEqual(actual.CommentText, obj.commentText, "Actual comment text isn't equal to expected comment text.");
         }
     }
 }
