@@ -29,19 +29,21 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void IsUserPresentedInUserListTest()
         {
-            Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL));
+            var isUserPresentedInUserList = adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL);
+            Assert.True(isUserPresentedInUserList,$"User {Constants.STUDENT_EMAIL} is not presented in user list");
         }
 
         [Test]
         public void DeleteUserTest()
         {
-            Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL),
-                "User is not presented in the system," +
+            var isUserPresentedInUserList = adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL);
+            Assert.True(isUserPresentedInUserList,
+                $"User {Constants.USER_FOR_DELETE_EMAIL} is not presented in the system," +
                 "so we have not opportunity to delete this user");
             adminPanelPage.DeleteUser(Constants.USER_FOR_DELETE_EMAIL);
-
-            Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
-            Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL), "Error");
+            var isListOfUsersH2ElementPresented = adminPanelPage.IsListOfUsersH2ElementPresented();
+            Assert.True(isListOfUsersH2ElementPresented, "List of users is not available");
+            Assert.False(adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL), $"Can't delete user {Constants.USER_FOR_DELETE_EMAIL} from the system");
         }
 
         [Test]
@@ -50,13 +52,15 @@ namespace OnlineExam.NUnitTests
             var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
             changeRolePage.ChangeRole(Constants.TEACHER);
             changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
-            Assert.AreEqual(Constants.TEACHER, changeRolePage.CurrentRole());
+            var currentRole = changeRolePage.CurrentRole();
+            Assert.AreEqual(Constants.TEACHER, currentRole ,"Role of user are not the same");
         }
 
         [Test]
         public void IsUserListAvailableTest()
         {
-            Assert.True(adminPanelPage.IsListOfUsersH2ElementPresented());
+            var isUserListAvailable = adminPanelPage.IsListOfUsersH2ElementPresented();
+            Assert.True(isUserListAvailable,"User list is not available");
         }
     }
 }

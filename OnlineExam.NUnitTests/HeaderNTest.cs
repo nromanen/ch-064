@@ -9,7 +9,6 @@ namespace OnlineExam.NUnitTests
     [Category("Basic")]
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
-
     public class HeaderTest : BaseNTest
     {
         private Header header;
@@ -20,14 +19,15 @@ namespace OnlineExam.NUnitTests
         {
             base.SetUp();
             header = ConstructPage<Header>();
-            //resxManager = header.GetCurrentLanguage();
         }
 
         [Test]
         public void ChangeLanguageToEnglishTest()
         {
             header.ChangeLanguage(Constants.ENGLISH);
-            Assert.AreEqual(resxManager.GetString("signIn"), header.GetSignInButtonText());
+            var signInButtonText = header.GetSignInButtonText();
+            Assert.AreEqual(resxManager.GetString("signIn"), signInButtonText, "Sign In button has another text" +
+                                                                               "Language does not changed");
         }
 
         [Test]
@@ -35,21 +35,25 @@ namespace OnlineExam.NUnitTests
         {
             header.ChangeLanguage(Constants.UKRAINE);
             resxManager = header.GetCurrentLanguage();
-            Assert.AreEqual(resxManager.GetString("signIn"), header.GetSignInButtonText());
+            var signInButtonText = header.GetSignInButtonText();
+            Assert.AreEqual(resxManager.GetString("signIn"), signInButtonText, "Sign In button has another text" +
+                                                                               "Language does not changed");
         }
 
         [Test]
         public void SignInButtonTest()
         {
             var logIn = header.GoToLogInPage();
-            StringAssert.Contains(Constants.LOGIN_URL_CONTAINS, logIn.GetCurrentUrl());
+            var currentUrl = logIn.GetCurrentUrl();
+            StringAssert.Contains(Constants.LOGIN_URL_CONTAINS, currentUrl, $"Current url does not contain {Constants.LOGIN_URL_CONTAINS}");
         }
 
         [Test]
         public void SignUpButtonTest()
         {
             var regPage = header.GoToRegistrationPage();
-            StringAssert.Contains(Constants.REGISTRATION_URL_CONTAINS, regPage.GetCurrentUrl());
+            var currentUrl = regPage.GetCurrentUrl();
+            StringAssert.Contains(Constants.REGISTRATION_URL_CONTAINS, currentUrl, $"Current url does not contain {Constants.REGISTRATION_URL_CONTAINS}");
         }
     }
 }
