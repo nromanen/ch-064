@@ -25,7 +25,8 @@ namespace OnlineExam.NUnitTests.APITests
             client = new APICoursesClient();
             client.Get();
             var actual = new CoursesDAL().GetCourseByCourseName(CourseName);
-            Assert.AreEqual(actual.Name, CourseName);
+            var ActualName = actual.Name;
+            Assert.AreEqual(CourseName, ActualName, "Method get doesn't work, because of expected course name isn't equal actual course name");
         }
 
         [Test]
@@ -44,7 +45,8 @@ namespace OnlineExam.NUnitTests.APITests
             Assert.NotNull(result);
             Assert.AreEqual(result, HttpStatusCode.OK);
             var actual = new CoursesDAL().GetCourseByCourseName(obj.name);
-            Assert.AreEqual(actual.Description, obj.description);
+            var actualDescription = actual.Description;
+            Assert.AreEqual(obj.description, actualDescription, "Method post doesn't work, because of expected course name isn't equal actual course name");
         } 
     }
 }
