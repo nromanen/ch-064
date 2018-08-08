@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
@@ -36,9 +37,10 @@ namespace OnlineExam.NUnitTests.APITests
                 newUserName = "ApiTestNew"
             };
             var result = client.PostChange(obj, "name");
-            Assert.AreEqual("OK", result);
+            Assert.AreEqual(HttpStatusCode.OK, result, "Invalid result status");
             var actual = new UserDAL().GetUserById(obj.id);
-            Assert.AreEqual(actual.UserName, obj.newUserName);
+            Assert.AreEqual(obj.newUserName, actual.UserName, $"User names are not equal {obj.newUserName}" +
+                                                              $"user name does not changed in DB");
         }
 
         [Test]
@@ -52,9 +54,10 @@ namespace OnlineExam.NUnitTests.APITests
                 newEmail = "UserTestAPI@gmail.com"
             };
             var result = client.PostChange(obj, "email");
-            Assert.AreEqual("OK", result);
+            Assert.AreEqual(HttpStatusCode.OK, result, "Invalid result status");
             var actual = new UserDAL().GetUserById(obj.id);
-            Assert.AreEqual(obj.newEmail, actual.Email);
+            Assert.AreEqual(obj.newEmail, actual.Email, $"Emails are not equal {obj.newEmail}" +
+                                                        $"email does not changed in DB");
         }
     }
 }
