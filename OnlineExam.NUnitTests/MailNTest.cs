@@ -36,8 +36,8 @@ namespace OnlineExam.NUnitTests
             var mailBox = sideBar.GoToMailBoxPage();
             var inbox = mailBox.InboxElementClick();
             var blocks = inbox.GetInboxBlocksList();
-            var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
-            Assert.True(existMessage);
+            var doesMessageExist = blocks.Any(x => x.IsEqualText(testMessage));
+            Assert.True(doesMessageExist, "Message doesn't exist in inbox.");
         }
 
         [Test]
@@ -49,8 +49,8 @@ namespace OnlineExam.NUnitTests
             var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
             var outbox = mailBox.OutboxElementClick();
             var blocks = outbox.GetOutboxBlocksList();
-            var existMessage = blocks.Any(x => x.IsEqualText(testMessage));
-            Assert.True(existMessage);
+            var doesMessageExist = blocks.Any(x => x.IsEqualText(testMessage));
+            Assert.True(doesMessageExist, "Message doesn't exist in outbox.");
         }
 
         [Test]
@@ -58,9 +58,10 @@ namespace OnlineExam.NUnitTests
         {
             header.GoToLogInPage().SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var mailBox = sideBar.GoToMailBoxPage();
-            var sendEmail = mailBox.SendMessageReferenceClick();
-            var result = sendEmail.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
-            Assert.True(result.UrlEndsWith("/EmailMessages"));
+            var sendMessagePage = mailBox.SendMessageReferenceClick();
+            var sendEmail = sendMessagePage.SendEmail("Subject", Constants.STUDENT_EMAIL, testMessage);
+            var result = sendEmail.UrlEndsWith("/EmailMessages");
+            Assert.True(result, "EmailMessages page didn't return. User can't send email.");
         }
     }
 }

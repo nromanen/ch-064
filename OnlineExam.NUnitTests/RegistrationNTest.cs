@@ -38,7 +38,8 @@ namespace OnlineExam.NUnitTests
             var logIn = header.GoToLogInPage();
             logIn.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             var adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
-            Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.EXAMPLE_EMAIL));
+            var result = adminPanelPage.IsUserPresentedInUserList(Constants.EXAMPLE_EMAIL);
+            Assert.True(result, "User isn't presented in user list after sign up.");
         }
 
         [Test]
@@ -47,7 +48,8 @@ namespace OnlineExam.NUnitTests
             var signUp = header.GoToRegistrationPage();
             signUp.Registration(Constants.STUDENT_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
             header.GoToHomePage();
-            Assert.False(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+            var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
+            Assert.False(result, "User signed up with used email.");
         }
     }
 }
