@@ -40,7 +40,8 @@ namespace OnlineExam.NUnitTests
             {
                 var firstBlock = blocks.FirstOrDefault(x =>
                     x.TEMP_GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                Assert.AreEqual(firstBlock.TEMP_GetName(), TaskName);
+                var actualName = firstBlock.TEMP_GetName();
+                Assert.AreEqual(TaskName, actualName, "there is any tasks with whis name, because of expected task name isn't equal to actual task name");
             }
         }
 
@@ -64,7 +65,8 @@ namespace OnlineExam.NUnitTests
             {
                 var myblock = blocks.FirstOrDefault(x =>
                     x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
-                Assert.AreEqual(myblock.TEMP_GetName(), taskname);
+                var actualName = myblock.TEMP_GetName();
+                Assert.AreEqual(taskname, actualName, "button \"Recover\" doesn't work, because of expected task name isn't equal to actual task name");
                 myblock.ClickOnDeleteButton();
             }
         }
@@ -89,7 +91,8 @@ namespace OnlineExam.NUnitTests
             {
                 var myblock = blocks.FirstOrDefault(x =>
                     x.Get_DELETED_TaskName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
-                Assert.AreEqual(myblock.Get_DELETED_TaskName(), taskname);
+                var actualName = myblock.Get_DELETED_TaskName();
+                Assert.AreEqual(taskname, actualName, "button \"Delete\" doesn't work, because of expected task name isn't equal to actual task name");
                 myblock.ClickOnRecoverButton();
             }
         }
@@ -111,37 +114,7 @@ namespace OnlineExam.NUnitTests
             var url = driver.GetCurrentUrl();
             bool f = false;
             if (url.Contains("ExerciseManagement/ExerciseSolutionsIndex/2")) f = true;
-            Assert.That(f);
-        }
-
-
-        [Test]
-        public void TaskCreationDate()
-        {
-            string CreationDate = "09/07/2018";
-            var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
-
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
-            {
-                var allblock = blocks.Where(x =>
-                    x.TEMP_GetCreationDate().Equals(CreationDate, StringComparison.OrdinalIgnoreCase));
-                Assert.AreEqual(2, allblock.Count());
-            }
-        }
-
-        [Test]
-        public void TaskUpdateDate()
-        {
-            string UpdateDate = "09/07/2018";
-            var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
-            {
-                var allblock = blocks.Where(x =>
-                    x.TEMP_GetCreationDate().Equals(UpdateDate, StringComparison.OrdinalIgnoreCase));
-                Assert.AreEqual(2, allblock.Count());
-            }
+            Assert.That(f, "button \"Solution\" doesn't work, because of actual url doesn't contain expected url");
         }
 
 
@@ -160,9 +133,9 @@ namespace OnlineExam.NUnitTests
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var firstblock =
-                    blocks.FirstOrDefault(x => x.GetName().Equals(NEWTASK, StringComparison.OrdinalIgnoreCase));
-                Assert.AreEqual(firstblock.GetName(), NEWTASK);
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(NEWTASK, StringComparison.OrdinalIgnoreCase));
+                var actualName = firstblock.GetName();
+                Assert.AreEqual(NEWTASK, actualName, "function \"Add New Task\" doesn't work, because of expected task name isn't equal to actual task name");
             }
 
             var NewTasks = ConstructPage<TeacherExerciseManagerPage>();
