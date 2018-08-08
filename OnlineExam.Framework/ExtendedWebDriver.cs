@@ -105,5 +105,15 @@ namespace OnlineExam.Framework
         {
             driver.Dispose();
         }
+
+        public void Quit()
+        {
+            driver.Quit();
+        }
+
+        public void Close()
+        {
+            driver.Close();
+        }
     }
 }
