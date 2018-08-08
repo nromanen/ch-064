@@ -15,16 +15,16 @@ namespace OnlineExam.Pages.POM
         }
 
         [FindsBy(How = How.Id, Using = "Email")]
-        public IWebElement EmailInput { get; set; }
+        private IWebElement EmailInput;
 
         [FindsBy(How = How.Id, Using = "Password")]
-        public IWebElement PasswordInput { get; set; }
+        private IWebElement PasswordInput;
 
         [FindsBy(How = How.XPath, Using = "//*[@id=\"PasswordConfirm\"]")]
-        public IWebElement PasswordConfirmInput { get; set; }
+        private IWebElement PasswordConfirmInput;
 
         [FindsBy(How = How.XPath, Using = "/html/body/div/div/form/div[4]/button")]
-        public IWebElement RegistrationButton { get; set; }
+        private IWebElement RegistrationButton;
 
         /// <summary>
         /// Does registration using given email, password and password confirm.

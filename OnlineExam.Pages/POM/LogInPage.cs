@@ -16,16 +16,16 @@ namespace OnlineExam.Pages.POM
         }
 
         [FindsBy(How = How.Id, Using = "emailLogin")]
-        public IWebElement emailInput;
+        private IWebElement emailInput;
 
         [FindsBy(How = How.Id, Using = "passwordLogin")]
-        public IWebElement passwordInput;
+        private IWebElement passwordInput;
 
         [FindsBy(How = How.Id, Using = "RememberMe")]
-        public IWebElement rememberMeCheckBox;
+        private IWebElement rememberMeCheckBox;
 
         [FindsBy(How = How.Id, Using = "submitLogin")]
-        public IWebElement signInInputSubmit;
+        private IWebElement signInInputSubmit;
 
         /// <summary>
         /// Sugns in as given email and password.
@@ -49,7 +49,6 @@ namespace OnlineExam.Pages.POM
         public bool IsSignInPresentedInHeader()
         {
             Header header = ConstructPage<Header>();
-
             return header.GetSignInElement();
         }
     }

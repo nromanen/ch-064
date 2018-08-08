@@ -11,19 +11,19 @@ namespace OnlineExam.Pages.POM
         }
 
         [FindsBy(How = How.Id, Using = "name")]
-        public IWebElement NameInput { get; set; }
+        private IWebElement NameInput;
 
         [FindsBy(How = How.Id, Using = "email")]
-        public IWebElement EmailInput { get; set; }
+        private IWebElement EmailInput;
 
         [FindsBy(How = How.Id, Using = "message")]
-        public IWebElement MessageTextArea { get; set; }
+        private IWebElement MessageTextArea;
 
         [FindsBy(How = How.CssSelector, Using = "#reused_form > input.btn.btn-primary.btn-send-email")]
-        public IWebElement SendSubmit { get; set; }
+        private IWebElement SendSubmit;
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div:nth-child(1) > div.col-lg-5 > a > img")]
-        public IWebElement MapWithLink { get; set; }
+        private IWebElement MapWithLink;
 
         /// <summary>
         /// Send Contact us message to exact email and name with exact text
