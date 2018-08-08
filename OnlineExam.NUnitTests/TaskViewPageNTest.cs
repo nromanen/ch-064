@@ -75,8 +75,7 @@ namespace OnlineExam.NUnitTests
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var firstblock = blocks.FirstOrDefault(x =>
-                    x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
                 TaskView.ClickOnOkButton();
@@ -159,7 +158,7 @@ namespace OnlineExam.NUnitTests
                     var anyblock = divs.FirstOrDefault(x =>
                         x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
                     var date = anyblock.GetCommentDate();
-                    Assert.AreEqual("7/11/2018 11:26:28 AM", date.ToString());
+                    Assert.AreEqual("7/10/2018 6:28:20 PM", date.ToString());
                 }
             }
 
@@ -225,38 +224,6 @@ namespace OnlineExam.NUnitTests
                         x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
                     var count = anyblock.GetStarsss();
                     Assert.AreEqual("5", count.ToString());
-                }
-            }
-
-        }
-
-
-        [Test]
-        public void CreateNewComment()
-        {
-
-            string TaskName = "Indexers";
-            string coment = "rate 4 stars";
-
-
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
-            {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.CreateCommentText(coment);
-                TaskView.Click_4_Star();
-                TaskView.ClickOnCommentButton();
-                driver.RefreshPage();
-                TaskView = ConstructPage<TaskViewPage>();
-                var divs = TaskView.GetDivs();
-                if (divs != null)
-                {
-                    var anyblock = divs.FirstOrDefault(x => x.GetCommentText().Equals(coment, StringComparison.OrdinalIgnoreCase));
-                    var comment = anyblock.GetCommentText();
-                    Assert.AreEqual(comment.ToString(), coment);
                 }
             }
 

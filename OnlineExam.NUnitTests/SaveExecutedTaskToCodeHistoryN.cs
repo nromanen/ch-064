@@ -55,7 +55,7 @@ namespace OnlineExam.NUnitTests
 
                 var Code = ConstructPage<SolutionCodePage>();
 
-                Code.ClickOnExecuteButton("Total");
+                Code.ClickOnExecuteButton();
             }
 
             var historyPage = sideBar.GoToCodeHistoryPage();
