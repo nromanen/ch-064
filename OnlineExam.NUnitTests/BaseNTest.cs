@@ -122,8 +122,9 @@ namespace OnlineExam.NUnitTests
             }
 
             TestContext.Progress.WriteLine("Test ended " + TestContext.CurrentContext.Test.Name);
+
             ExtentTestManager.GetTest().Log(logstatus,
-                "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage);
+                "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage + "\n<br>\n<br> " + TestContext.Progress);
 
 
             driver?.Dispose();
