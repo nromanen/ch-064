@@ -25,21 +25,27 @@ namespace OnlineExam.NUnitTests
         public void GoToRatingsPageTest()
         {
             var ratingPage = sideBar.GoToRatingPage();
-            StringAssert.Contains(Constants.RATING_URL_CONTAINS, ratingPage.GetCurrentUrl());
+            var currentUrl = ratingPage.GetCurrentUrl();
+            StringAssert.Contains(Constants.RATING_URL_CONTAINS, currentUrl,
+                $"Current url does not contain {Constants.RATING_URL_CONTAINS}");
         }
 
         [Test]
         public void GoToCoursesPageTest()
         {
             var coursesPage = sideBar.GoToCourseManagementPage();
-            StringAssert.Contains(Constants.COURSEMANAGEMENT_URL_CONTAINS, coursesPage.GetCurrentUrl());
+            var currentUrl = coursesPage.GetCurrentUrl();
+            StringAssert.Contains(Constants.COURSEMANAGEMENT_URL_CONTAINS, currentUrl,
+                $"Current url does not contain {Constants.COURSEMANAGEMENT_URL_CONTAINS}");
         }
 
         [Test]
         public void GoToContactUsPageTest()
         {
             var contactUsPage = sideBar.GoToContactUsPage();
-            StringAssert.Contains(Constants.CONTACTUS_URL_CONTAINS, contactUsPage.GetCurrentUrl());
+            var currentUrl = contactUsPage.GetCurrentUrl();
+            StringAssert.Contains(Constants.CONTACTUS_URL_CONTAINS, currentUrl,
+                $"Current url does not contain {Constants.CONTACTUS_URL_CONTAINS}");
         }
     }
 }
