@@ -8,32 +8,27 @@ using System.Threading.Tasks;
 
 namespace OnlineExam.Pages.POM.CoursePage
 {
-    public class CreateCoursePageRowItem: BasePageElement
+    public class CreateCoursePageRowItem : BasePageElement
     {
         // Created by Roma ༼ つ ◕_◕ ༽つ
+        public CreateCoursePageRowItem() { }
 
-        public CreateCoursePageRowItem(){ }
-
-        public CreateCoursePageRowItem(IWebElement searchContext) : base(searchContext){ }
+        public CreateCoursePageRowItem(IWebElement searchContext) : base(searchContext) { }
 
         //.table > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1)
         [FindsBy(How = How.CssSelector, Using = ":nth-child(1)")]
-        public IWebElement courseName { get; set; }
+        private IWebElement courseName { get; set; }
 
         //.table > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2)
         [FindsBy(How = How.CssSelector, Using = ":nth-child(2)")]
-        public IWebElement createDate { get; set; }
+        private IWebElement createDate { get; set; }
 
         //.table > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(1) > a:nth-child(1)
         [FindsBy(How = How.CssSelector, Using = "a:nth-child(1)")]
-        public IWebElement link { get; set; }
-
-        
-
+        private IWebElement link { get; set; }
 
         public void ClickOnCourseTitle()
         {
-           
             courseName.Click();
         }
 
