@@ -21,6 +21,7 @@ namespace OnlineExam.NUnitTests
         public override void SetUp()
         {
             base.SetUp();
+            TestContext.Progress.WriteLine("Done base set up");
             header = ConstructPage<Header>();
             sideBar = ConstructPage<SideBar>();
         }
@@ -29,8 +30,11 @@ namespace OnlineExam.NUnitTests
         public void CreateNewsTest()
         {
             var signIn = header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
+            TestContext.Progress.WriteLine($"Signed in as {Constants.TEACHER_EMAIL}.");
             var newsPage = ConstructPage<SideBar>().GoToTeacherNewsPage();
+            TestContext.Progress.WriteLine("Opened news page.");
             var createArticle = newsPage.CreateArticle();
+            TestContext.Progress.WriteLine("Article created.");
             var result = createArticle.UrlEndsWith("AddNews/News");
             Assert.True(result, "News page doesn't return. News article isn't created.");
         }
