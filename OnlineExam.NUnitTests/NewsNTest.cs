@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OnlineExam.DatabaseHelper.DAL;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using System;
@@ -34,9 +35,10 @@ namespace OnlineExam.NUnitTests
             var newsPage = ConstructPage<SideBar>().GoToTeacherNewsPage();
             TestContext.Out.WriteLine("\n<br> " + "Opened news page.");
             var createArticle = newsPage.CreateArticle();
-            TestContext.Out.WriteLine("\n<br> " + "Article created.");
-            var result = createArticle.UrlEndsWith("AddNews/News");
-            Assert.True(result, "News page doesn't return. News article isn't created.");
+            var getNewsFromDB = new NewsDAL().GetNewsByTitle(TeacherNewsPage.Title);
+            Assert.True(getNewsFromDB != null, $"News doesn't exist in database.");
+            var doUrlEndsWith = createArticle.UrlEndsWith("AddNews/News");
+            Assert.True(doUrlEndsWith, "News page doesn't return. News article isn't created.");
         }
     }
 }
