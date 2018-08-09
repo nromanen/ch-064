@@ -33,8 +33,10 @@ namespace OnlineExam.NUnitTests
         {
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             TestContext.Progress.WriteLine($"Signed in as {Constants.STUDENT_EMAIL}.");
-            var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
-            Assert.True(result, $"User {Constants.STUDENT_EMAIL} is not presented in header.");
+            var isEmailInHeader = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
+            Assert.True(isEmailInHeader, $"User {Constants.STUDENT_EMAIL} is not presented in header.");
+            var currentUrl = header.GetCurrentUrl();
+            Assert.AreEqual(BaseSettings.Fields.Url+"/" , currentUrl, "Index page doesn't return.");
         }
 
         [Test]
@@ -44,6 +46,10 @@ namespace OnlineExam.NUnitTests
             TestContext.Progress.WriteLine($"Signed in as {Constants.FAKE_EMAIL}.");
             var result = header.IsUserEmailPresentedInHeader(Constants.FAKE_EMAIL);
             Assert.False(result, $"Fake user {Constants.FAKE_EMAIL} is presented in header.");
+            var currentUrl = header.GetCurrentUrl();
+            Assert.AreNotEqual(BaseSettings.Fields.Url + "/", currentUrl, "Index page returns.");
+            var isAlertDisplayed = logInPage.IsAlertVisible();
+            Assert.True(isAlertDisplayed, "Alert isn't displayed.");
         }
 
         [Test]
@@ -52,6 +58,10 @@ namespace OnlineExam.NUnitTests
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.FAKE_PASSWORD);
             var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
             Assert.False(result, $"User {Constants.STUDENT_EMAIL} is presented in header.");
+            var currentUrl = header.GetCurrentUrl();
+            Assert.AreNotEqual(BaseSettings.Fields.Url + "/", currentUrl, "Index page returns.");
+            var isAlertDisplayed = logInPage.IsAlertVisible();
+            Assert.True(isAlertDisplayed, "Alert isn't displayed.");
         }
 
         [Test]
@@ -62,7 +72,9 @@ namespace OnlineExam.NUnitTests
             header.SignOut();
             TestContext.Progress.WriteLine($"Signed out.");
             var result = logInPage.IsSignInPresentedInHeader();
-            Assert.True(result, "User didn't sign out. Sign in button isn't presented in header.");
+            Assert.True(result, "Sign in button isn't presented in header.");
+            var currentUrl = header.GetCurrentUrl();
+            Assert.AreEqual(BaseSettings.Fields.Url + "/", currentUrl, "Index page doesn't return.");
         }
     }
 }
