@@ -103,7 +103,7 @@ namespace OnlineExam.Framework
 
         public void Dispose()
         {
-            driver.Quit();
+           // driver.Quit();
             driver.Dispose();
         }
     }
