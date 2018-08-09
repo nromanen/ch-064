@@ -21,18 +21,24 @@ namespace OnlineExam.NUnitTests
             base.SetUp();
             string courseName = "C# Starter";
             var header = ConstructPage<Header>();
+            TestContext.Progress.WriteLine("Go to log in page");
             var logInPage = header.GoToLogInPage();
+            TestContext.Progress.WriteLine($"Log in as student: email {Constants.STUDENT_EMAIL}, password {Constants.STUDENT_PASSWORD}");
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             var sidebar = ConstructPage<SideBar>();
+            TestContext.Progress.WriteLine("Go to the course managment page");
             sidebar.GoToCourseManagementPage();
             var CoursesList = ConstructPage<CourseManagementPage>();
+            TestContext.Progress.WriteLine("get list of courses");
             var block = CoursesList.GetBlocks();
             if (block != null)
             {
+                TestContext.Progress.WriteLine($"search course with {courseName} name in list of courses  ");
                 var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
 
                 if (firstBlock != null)
                 {
+                    TestContext.Progress.WriteLine("Click on CourseName [link]");
                     firstBlock.ClickCourseLink();
                 }
             }
@@ -44,20 +50,26 @@ namespace OnlineExam.NUnitTests
         {
             string TaskName = "Simple addition";
             var ListOfTasks = ConstructPage<TasksPage>();
+            TestContext.Progress.WriteLine("get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Progress.WriteLine("Click on 'tasks' button");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
+                TestContext.Progress.WriteLine("Click on 'start' button");
                 TaskView.ClickOnStartButton();
                 var Code = ConstructPage<SolutionCodePage>();
+                TestContext.Progress.WriteLine("Click on 'execute' button");
                 Code.ClickOnExecuteButton();
+                TestContext.Progress.WriteLine("Click on 'done' button");
                 Code.ClickOnDoneButton();
 
             }
             var CoursesPage = ConstructPage<SideBar>().GoToCourseManagementPage();
             var CoursesList = ConstructPage<CourseManagementPage>();
+            TestContext.Progress.WriteLine("get list of courses");
             var block = CoursesList.GetBlocks();
             if (block != null)
             {
@@ -65,15 +77,20 @@ namespace OnlineExam.NUnitTests
 
                 if (firstBlock != null)
                 {
+                    TestContext.Progress.WriteLine("Click on CourseName [link]");
                     firstBlock.ClickCourseLink();
                 }
                 ListOfTasks = ConstructPage<TasksPage>();
+                TestContext.Progress.WriteLine("get list of tasks");
                 blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
                 {
+                    TestContext.Progress.WriteLine($"search task with {TaskName} name in list of tasks  ");
                     var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    TestContext.Progress.WriteLine("Click on 'tasks' button");
                     firstblock.ClickOnTasksButton();
                     var TaskView = ConstructPage<TaskViewPage>();
+                    TestContext.Progress.WriteLine("Click on 'start' button");
                     TaskView.ClickOnStartButton();
                     var Code = ConstructPage<SolutionCodePage>();
                     var review = Code.MessageAboutreviewingSolution.Text;
@@ -89,14 +106,19 @@ namespace OnlineExam.NUnitTests
             string TaskName = "Simple addition";
             var BaseUrl = BaseSettings.Fields.Url;
             var ListOfTasks = ConstructPage<TasksPage>();
+            TestContext.Progress.WriteLine("get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
+                TestContext.Progress.WriteLine($"search task with {TaskName} name in list of tasks  ");
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Progress.WriteLine("Click on 'tasks' button");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
+                TestContext.Progress.WriteLine("Click on 'start' button");
                 TaskView.ClickOnStartButton();
                 var Code = ConstructPage<SolutionCodePage>();
+                TestContext.Progress.WriteLine("Click on 'exit' button");
                 Code.ClickOnExitButton();
                 var actualUrl = driver.GetCurrentUrl().ToString();
                 Assert.AreEqual(BaseUrl+"/", actualUrl, "Exit \"button\" doesn't work, because of expected url isn't equal to actual url");
