@@ -104,6 +104,19 @@ namespace OnlineExam.Pages.POM
             }
         }
 
+        public void ClickChangeOwnerBtn(string courseName)
+        {
+            var block = GetBlocks();
+            if (block != null)
+            {
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                if (firstBlock != null)
+                {
+                    firstBlock.ClickBtnChangeOwner();
+                }
+            }
+        }
+     
         public bool IsCourseExist(string courseName)
         {
             var blockList = ConstructPage<ViewCoursesPage>().GetBlocks();

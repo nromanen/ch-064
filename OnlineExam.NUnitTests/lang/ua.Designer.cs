@@ -97,6 +97,15 @@ namespace OnlineExam.NUnitTests.lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Поточний власник:.
+        /// </summary>
+        public static string ownerStringToDel {
+            get {
+                return ResourceManager.GetString("ownerStringToDel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ВХІД.
         /// </summary>
         public static string signIn {
