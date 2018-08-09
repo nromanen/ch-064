@@ -29,8 +29,6 @@ namespace OnlineExam.NUnitTests.APIClients
             };
         }
 
-     
-
         public HttpStatusCode Post(Object obj)
         {
             var request = new RestRequest($"/api/news", Method.POST);
@@ -38,17 +36,6 @@ namespace OnlineExam.NUnitTests.APIClients
             request.AddJsonBody(obj);
             var result = client.Execute(request);
             return result.StatusCode;
-        }
-
-        public class RestResult
-        {
-            public HttpStatusCode Code { get; set; }
-
-        }
-
-        public class RestResultTyped<T> : RestResult
-        {
-            public T Data { get; set; }
         }
     }
 }
