@@ -15,22 +15,20 @@ namespace OnlineExam.NUnitTests.APITests
         [SetUp]
         public void SetUp()
         {
+            base.SetUp();
             client = new APICoursesClient();
         }
 
         [Test]
         public void GetCourse()
         {
-            string CourseName = "C# Essential";
             client = new APICoursesClient();
-            client.Get();
-            var actual = new CoursesDAL().GetCourseByCourseName(CourseName);
-            var ActualName = actual.Name;
-            Assert.AreEqual(CourseName, ActualName, "Method get doesn't work, because of expected course name isn't equal actual course name");
+            var Getcourse = client.Get();
+            Assert.AreEqual(HttpStatusCode.OK, Getcourse.Code, "Method get doesn't work, because of Invalid result status");
         }
 
         [Test]
-        public void Post()
+        public void PostCourse()
         {
             var guid = new Guid().ToString();
             var obj = new

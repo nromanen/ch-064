@@ -1,7 +1,7 @@
 {
   "Browser": "Chrome",
-  "Url": "http://localhost:93",
-  "ConnectionString": "Server = .\\SQLEXPRESS; Database = OnlineExamDB; integrated security = True;",  
-  "ServerName": ".\\SQLEXPRESS",        
-  "DatabaseName": "OnlineExamDB"
+  "Url": "http://localhost:55842/",
+  "ConnectionString": "Server = (localdb)\\mssqllocaldb; Database = Main; integrated security = True;",  
+  "ServerName": "(localdb)\\mssqllocaldb",        
+  "DatabaseName": "Main"
 }
