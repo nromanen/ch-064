@@ -5,6 +5,7 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,11 +20,11 @@ namespace OnlineExam.NUnitTests.APITests
         [Test]
         public void GetComment()
         {
-            var commentId = 1;
             client = new APICommentsClient();
-            client.Get(commentId);
-            var actual = new CommentDAL().GetCommentById(commentId);
-            Assert.AreEqual(actual.Id, commentId, "Actual id isn't equal to expected id.");
+            var getMethod = client.Get(1);
+            //Assert.AreEqual(actual.Id, commentId, "Actual id isn't equal to expected id.");
+            Assert.AreEqual(HttpStatusCode.OK, 
+                getMethod.Code, "Invalid result status");
         }
 
         [Test]

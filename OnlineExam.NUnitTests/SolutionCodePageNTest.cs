@@ -104,7 +104,7 @@ namespace OnlineExam.NUnitTests
         {
 
             string TaskName = "Simple addition";
-            var BaseUrl = BaseSettings.fields.Url;
+            var BaseUrl = BaseSettings.Fields.Url;
             var ListOfTasks = ConstructPage<TasksPage>();
             TestContext.Progress.WriteLine("get list of tasks");
             var blocks = ListOfTasks.GetBlocks();

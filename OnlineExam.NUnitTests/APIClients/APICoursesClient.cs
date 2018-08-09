@@ -11,7 +11,7 @@ namespace OnlineExam.NUnitTests.APIClients
 {
     public class APICoursesClient
     {
-        RestClient client = new RestClient(BaseSettings.fields.Url);
+        RestClient client = new RestClient(BaseSettings.Fields.Url);
 
         public void Get()
         {

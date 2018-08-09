@@ -22,14 +22,17 @@ namespace OnlineExam.NUnitTests
         public override void SetUp()
         {
             base.SetUp();
+            TestContext.Progress.WriteLine("Done base set up");
             header = ConstructPage<Header>();
             logInPage = header.GoToLogInPage();
+            TestContext.Progress.WriteLine("Went to log in page.");
         }
 
         [Test]
         public void SignInTest()
         {
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+            TestContext.Progress.WriteLine($"Signed in as {Constants.STUDENT_EMAIL}.");
             var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
             Assert.True(result, $"User {Constants.STUDENT_EMAIL} is not presented in header.");
         }
@@ -38,6 +41,7 @@ namespace OnlineExam.NUnitTests
         public void SignInUsingInvalidEmailTest()
         {
             logInPage.SignIn(Constants.FAKE_EMAIL, Constants.FAKE_PASSWORD);
+            TestContext.Progress.WriteLine($"Signed in as {Constants.FAKE_EMAIL}.");
             var result = header.IsUserEmailPresentedInHeader(Constants.FAKE_EMAIL);
             Assert.False(result, $"Fake user {Constants.FAKE_EMAIL} is presented in header.");
         }
@@ -54,7 +58,9 @@ namespace OnlineExam.NUnitTests
         public void SignOutTest()
         {
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
+            TestContext.Progress.WriteLine($"Signed in as {Constants.STUDENT_EMAIL}.");
             header.SignOut();
+            TestContext.Progress.WriteLine($"Signed out.");
             var result = logInPage.IsSignInPresentedInHeader();
             Assert.True(result, "User didn't sign out. Sign in button isn't presented in header.");
         }
