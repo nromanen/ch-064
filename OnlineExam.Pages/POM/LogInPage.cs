@@ -27,8 +27,16 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.Id, Using = "submitLogin")]
         private IWebElement signInInputSubmit;
 
+        [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.validation-summary-errors > ul > li")]
+        private IWebElement alert;
+
+        public bool IsAlertVisible()
+        {
+            return alert.Displayed;
+        }
+
         /// <summary>
-        /// Sugns in as given email and password.
+        /// Signs in as given email and password.
         /// </summary>
         /// <param name="email"></param>
         /// <param name="password"></param>
