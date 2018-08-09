@@ -23,7 +23,7 @@ namespace OnlineExam.DatabaseHelper.DAL
         {
             using (var ctx = new DataModel(BaseSettings.Fields.ConnectionString))
             {
-                var result = ctx.Comments.First(c => c.CommentText == commentText);
+                var result = ctx.Comments.FirstOrDefault(c => c.CommentText == commentText);
                 return result;
             }
         }

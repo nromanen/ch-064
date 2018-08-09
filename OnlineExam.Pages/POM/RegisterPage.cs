@@ -26,6 +26,14 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.XPath, Using = "/html/body/div/div/form/div[4]/button")]
         private IWebElement RegistrationButton;
 
+        [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.validation-summary-errors > ul > li")]
+        private IWebElement alert;
+
+        public bool IsAlertVisible()
+        {
+            return alert.Displayed;
+        }
+
         /// <summary>
         /// Does registration using given email, password and password confirm.
         /// </summary>
