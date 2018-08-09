@@ -37,6 +37,8 @@ namespace OnlineExam.NUnitTests
             Assert.True(isEmailInHeader, $"User {Constants.STUDENT_EMAIL} is not presented in header.");
             var currentUrl = header.GetCurrentUrl();
             Assert.AreEqual(BaseSettings.Fields.Url+"/" , currentUrl, "Index page doesn't return.");
+            var cookies = logInPage.IsCookieEnabled(".AspNetCore.Identity.Application");
+            Assert.True(cookies, "Cookies are not enabled.");
         }
 
         [Test]
@@ -75,6 +77,8 @@ namespace OnlineExam.NUnitTests
             Assert.True(result, "Sign in button isn't presented in header.");
             var currentUrl = header.GetCurrentUrl();
             Assert.AreEqual(BaseSettings.Fields.Url + "/", currentUrl, "Index page doesn't return.");
+            var cookies = logInPage.IsCookieEnabled(".AspNetCore.Identity.Application");
+            Assert.False(cookies, "Cookies are enabled.");
         }
     }
 }

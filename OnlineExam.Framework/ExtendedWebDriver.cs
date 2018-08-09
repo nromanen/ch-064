@@ -26,6 +26,12 @@ namespace OnlineExam.Framework
             driver.Navigate().GoToUrl(url);
         }
 
+        public bool IsCookieEnabled(string cookieName)
+        {
+            var result = driver.Manage().Cookies.GetCookieNamed(cookieName);
+            return result != null;
+        }
+
         public ISearchContext SeleniumContext => driver;
 
         public string TakesScreenshotWithDate(string Path, string FileName, ScreenshotImageFormat Format)
