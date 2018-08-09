@@ -25,7 +25,7 @@ namespace OnlineExam.NUnitTests
         public override void SetUp()
         {
             base.SetUp();
-            TestContext.Progress.WriteLine("Done base set up");
+            TestContext.Out.WriteLine("\n<br> " + "Done base set up");
             header = ConstructPage<Header>();
             sideBar = ConstructPage<SideBar>();
         }
@@ -34,17 +34,17 @@ namespace OnlineExam.NUnitTests
         public void CheckIfUserIsPresentedInUserListAfterSignUp()
         {
             var signUp = header.GoToRegistrationPage();
-            TestContext.Progress.WriteLine("Registration page opened.");
+            TestContext.Out.WriteLine("\n<br> " + "Registration page opened.");
             signUp.Registration(Constants.EXAMPLE_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
-            TestContext.Progress.WriteLine("Registration done.");
+            TestContext.Out.WriteLine("\n<br> " + "Registration done.");
             header.SignOut();
-            TestContext.Progress.WriteLine("Signed out.");
+            TestContext.Out.WriteLine("\n<br> " + "Signed out.");
             var logIn = header.GoToLogInPage();
-            TestContext.Progress.WriteLine("Login page opened.");
+            TestContext.Out.WriteLine("\n<br> " + "Login page opened.");
             logIn.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            TestContext.Progress.WriteLine($"Signed in as {Constants.ADMIN_EMAIL}.");
+            TestContext.Out.WriteLine("\n<br> " + $"Signed in as {Constants.ADMIN_EMAIL}.");
             var adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
-            TestContext.Progress.WriteLine("Opened admin page.");
+            TestContext.Out.WriteLine("\n<br> " + "Opened admin page.");
             var result = adminPanelPage.IsUserPresentedInUserList(Constants.EXAMPLE_EMAIL);
             Assert.True(result, "User isn't presented in user list after sign up.");
         }
@@ -53,11 +53,11 @@ namespace OnlineExam.NUnitTests
         public void SignUpAsUsedEmail()
         {
             var signUp = header.GoToRegistrationPage();
-            TestContext.Progress.WriteLine("Went to registration page.");
+            TestContext.Out.WriteLine("\n<br> " + "Went to registration page.");
             signUp.Registration(Constants.STUDENT_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
-            TestContext.Progress.WriteLine("Registration done.");
+            TestContext.Out.WriteLine("\n<br> " + "Registration done.");
             header.GoToHomePage();
-            TestContext.Progress.WriteLine("Went to home page.");
+            TestContext.Out.WriteLine("\n<br> " + "Went to home page.");
             var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
             Assert.False(result, "User signed up with used email.");
         }

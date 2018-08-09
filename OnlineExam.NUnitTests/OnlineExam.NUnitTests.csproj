@@ -105,6 +105,7 @@
     <Compile Include="APIClients\APICoursesClient.cs" />
     <Compile Include="APIClients\APINewsClient.cs" />
     <Compile Include="APIClients\APIUsersClient.cs" />
+    <Compile Include="APIClients\BaseAPIClient.cs" />
     <Compile Include="APIClients\Models\CommentsAPIModel.cs" />
     <Compile Include="APIClients\Models\NewsAPIModel.cs" />
     <Compile Include="APIClients\RestResult.cs" />
