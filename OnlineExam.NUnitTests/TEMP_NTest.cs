@@ -170,6 +170,10 @@ namespace OnlineExam.NUnitTests
                 TestContext.Progress.WriteLine("Click on delete button");
                 firstblock.ClickOnDeleteButton();
             }
+
+
+
+
         }
     }
 }

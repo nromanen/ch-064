@@ -23,8 +23,7 @@ namespace OnlineExam.NUnitTests.APITests
             client = new APICommentsClient();
             var getMethod = client.Get(1);
             //Assert.AreEqual(actual.Id, commentId, "Actual id isn't equal to expected id.");
-            Assert.AreEqual(HttpStatusCode.OK, 
-                getMethod.Code, "Invalid result status");
+            Assert.AreEqual(HttpStatusCode.OK, getMethod.Code, "Invalid result status");
         }
 
         [Test]
