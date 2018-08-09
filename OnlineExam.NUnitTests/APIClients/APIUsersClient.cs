@@ -9,9 +9,8 @@ using RestSharp;
 
 namespace OnlineExam.NUnitTests.APIClients
 {
-    public class APIUsersClient
+    public class APIUsersClient : BaseAPIClient
     {
-        RestClient client = new RestClient(BaseSettings.Fields.Url);
 
        
         public RestResult PostChange(Object obj,string parameter)

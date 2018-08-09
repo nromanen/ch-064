@@ -11,9 +11,8 @@ using RestSharp;
 
 namespace OnlineExam.NUnitTests.APIClients
 {
-    public class APICommentsClient
+    public class APICommentsClient : BaseAPIClient
     {
-        RestClient client = new RestClient(BaseSettings.Fields.Url);
 
 
         public RestResultTyped<List<CommentsAPIModel>> Get(int id)

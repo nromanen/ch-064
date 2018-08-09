@@ -8,11 +8,12 @@ using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using RazorEngine.Compilation.ImpromptuInterface.InvokeExt;
 
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
-    public  class BaseNTest
+    public class BaseNTest
     {
         protected ExtendedWebDriver driver;
         protected ResourceManager resxManager;
@@ -24,8 +25,9 @@ namespace OnlineExam.NUnitTests
             var browser = TestContext.Parameters.Get("Browser");
             if (!string.IsNullOrEmpty(browser))
             {
-                BaseSettings.Fields.Browser = (Browsers)Enum.Parse(typeof(Browsers), browser);
+                BaseSettings.Fields.Browser = (Browsers) Enum.Parse(typeof(Browsers), browser);
             }
+
             ExtentTestManager.CreateParentTest(GetType().Name);
         }
 
@@ -46,8 +48,6 @@ namespace OnlineExam.NUnitTests
             resxManager = header.GetCurrentLanguage();
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
             TestContext.Progress.WriteLine("Test started " + TestContext.CurrentContext.Test.Name);
-
-
         }
 
 
@@ -124,12 +124,11 @@ namespace OnlineExam.NUnitTests
             }
 
 
-
             TestContext.Progress.WriteLine("Test ended " + TestContext.CurrentContext.Test.Name);
 
             ExtentTestManager.GetTest().Log(logstatus,
                 "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage +
-                "\n<br>\n<br> " + TestContext.Progress.NewLine);
+                "\n<br>\n<br> " + TestContext.CurrentContext.Result.Outcome.ToString());
 
             driver?.Dispose();
         }

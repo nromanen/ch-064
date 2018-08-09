@@ -12,9 +12,8 @@ using RestSharp;
 
 namespace OnlineExam.NUnitTests.APIClients
 {
-    public class APINewsClient
+    public class APINewsClient : BaseAPIClient
     {
-        RestClient client = new RestClient(BaseSettings.Fields.Url);
 
         public RestResultTyped<List<NewsAPIModel>> Get()
         {
