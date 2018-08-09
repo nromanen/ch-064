@@ -87,7 +87,7 @@ namespace OnlineExam.NUnitTests
         {
 
             string TaskName = "Simple addition";
-            var BaseUrl = BaseSettings.fields.Url;
+            var BaseUrl = BaseSettings.Fields.Url;
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)

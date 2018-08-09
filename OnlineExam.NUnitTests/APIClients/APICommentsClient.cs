@@ -10,7 +10,7 @@ namespace OnlineExam.NUnitTests.APIClients
 {
     public class APICommentsClient
     {
-        RestClient client = new RestClient(BaseSettings.fields.Url);
+        RestClient client = new RestClient(BaseSettings.Fields.Url);
 
         public void Get(int commentId)
         {

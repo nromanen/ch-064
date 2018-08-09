@@ -58,7 +58,6 @@ namespace OnlineExam.NUnitTests
 
             var changeEmailPage = userInfo.OpenChangeEmailPage();
             string newEmail = "NewEmail@gmail.com";
-
             changeEmailPage.SetNewEmail(newEmail, Constants.USER_PASSWORD);
             var email = header.GoToUserAccountPage().GetEmail();
             var isEqual = String.Equals(email, newEmail);
