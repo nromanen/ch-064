@@ -8,7 +8,7 @@ namespace OnlineExam.DatabaseHelper.DAL
     {
         public Courses GetCourse()
         {
-            using (var ctx = new DataModel(BaseSettings.fields.ConnectionString))
+            using (var ctx = new DataModel(BaseSettings.Fields.ConnectionString))
             {
                 var result = ctx.Courses.Find();
                 return result;
@@ -17,7 +17,7 @@ namespace OnlineExam.DatabaseHelper.DAL
 
         public Courses GetCourseByCourseName(string Coursename)
         {
-            using (var ctx = new DataModel(BaseSettings.fields.ConnectionString))
+            using (var ctx = new DataModel(BaseSettings.Fields.ConnectionString))
             {
                 //var result = ctx.Courses.Find(Coursename);
                 var result = ctx.Courses.FirstOrDefault(c => c.Name == Coursename);
@@ -28,7 +28,7 @@ namespace OnlineExam.DatabaseHelper.DAL
 
         public Courses GetCourseById(int id)
         {
-            using (var ctx = new DataModel(BaseSettings.fields.ConnectionString))
+            using (var ctx = new DataModel(BaseSettings.Fields.ConnectionString))
             {
                 var result = ctx.Courses.First(c => c.Id == id);
                 return result;

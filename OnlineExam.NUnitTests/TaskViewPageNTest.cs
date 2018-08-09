@@ -26,19 +26,24 @@ namespace OnlineExam.NUnitTests
 
             string courseName = "C# Essential";
             var header = ConstructPage<Header>();
+            TestContext.Out.WriteLine("\n<br> " + "Go to log in page");
             var logInPage = header.GoToLogInPage();
+            TestContext.Out.WriteLine("\n<br> " + $"Log in as student: email {Constants.STUDENT_EMAIL}, password {Constants.STUDENT_PASSWORD}");
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             var sidebar = ConstructPage<SideBar>();
+            TestContext.Out.WriteLine("\n<br> " + "Go to the course managment page");
             sidebar.GoToCourseManagementPage();
             var CoursesList = ConstructPage<CourseManagementPage>();
+            TestContext.Out.WriteLine("\n<br> " + "get list of courses");
             var block = CoursesList.GetBlocks();
             if (block != null)
             {
-                var firstBlock = block.FirstOrDefault(x =>
-                    x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + $"search course with {courseName} name in list of courses  ");
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
 
                 if (firstBlock != null)
                 {
+                    TestContext.Out.WriteLine("\n<br> " + "Click on CourseName [link]");
                     firstBlock.ClickCourseLink();
                 }
             }
@@ -49,17 +54,22 @@ namespace OnlineExam.NUnitTests
         public void ClickOnStartButton()
         {
             string TaskName = "Indexers";
+            string Basetitle = "- WebApp";
 
             var ListOfTasks = ConstructPage<TasksPage>();
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + "Click on tasks button");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
+                TestContext.Out.WriteLine("\n<br> " + "Click on Start button");
                 TaskView.ClickOnStartButton();
                 var title = this.driver.GetCurrentTitle();
-                Assert.AreEqual("- WebApp", title);
+                Assert.AreEqual(Basetitle, title, "\"Start\" button doesn't work, because of expected title isn't equal to actual title");
             }
 
         }
@@ -70,19 +80,24 @@ namespace OnlineExam.NUnitTests
         {
 
             string TaskName = "Indexers";
+            string ContainUrl = "/CourseManagement/ShowExercise/2";
 
             var ListOfTasks = ConstructPage<TasksPage>();
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + "Click on tasks button ");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
+                TestContext.Out.WriteLine("\n<br> " + "Click on OK button ");
                 TaskView.ClickOnOkButton();
                 var current_url = this.driver.GetCurrentUrl();
                 bool f = false;
-                if (current_url.Contains("/CourseManagement/ShowExercise/2")) f = true;
-                Assert.That(f);
+                if (current_url.Contains(ContainUrl)) f = true;
+                Assert.That(f, "\"Ok\" button doesn't work, because of actual url doesn't contain expected url");
             }
 
         }
@@ -96,17 +111,22 @@ namespace OnlineExam.NUnitTests
             string email = "student@gmail.com";
 
             var ListOfTasks = ConstructPage<TasksPage>();
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + "Click on tasks button ");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
+                TestContext.Out.WriteLine("\n<br> " + "get list of comments");
                 var divs = TaskView.GetDivs();
                 if (divs != null)
                 {
+                    TestContext.Out.WriteLine("\n<br> " + $"search comment with email '{email}' in list of comments");
                     var anyblock = divs.Any(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    Assert.True(anyblock);
+                    Assert.True(anyblock, "There is any comments from user with this email");
                 }
             }
         }
@@ -114,23 +134,27 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void TextFromComment()
         {
-
             string TaskName = "Indexers";
-            string coment = "First comment";
+            string ExpectedComent = "First comment";
 
             var ListOfTasks = ConstructPage<TasksPage>();
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + "Click on tasks button ");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
+                TestContext.Out.WriteLine("\n<br> " + "get list of comments");
                 var divs = TaskView.GetDivs();
                 if (divs != null)
                 {
-                    var b = divs.FirstOrDefault(x =>
-                    x.GetCommentText().Equals(coment, StringComparison.OrdinalIgnoreCase));
-                    Assert.AreEqual(b.GetCommentText(), coment);
+                    TestContext.Out.WriteLine("\n<br> " + $"search comment with text '{ExpectedComent}' in list of comments");
+                    var b = divs.FirstOrDefault(x => x.GetCommentText().Equals(ExpectedComent, StringComparison.OrdinalIgnoreCase));
+                    var CommentText = b.GetCommentText();
+                    Assert.AreEqual(ExpectedComent, CommentText, "There is any comments with this comment text");
                 }
             }
 
@@ -142,23 +166,27 @@ namespace OnlineExam.NUnitTests
 
             string TaskName = "Indexers";
             string email = "student@gmail.com";
+            string date = "7/10/2018 6:28:20 PM";
 
 
             var ListOfTasks = ConstructPage<TasksPage>();
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var firstblock = blocks.FirstOrDefault(x =>
-                    x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + "Click on tasks button ");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
+                TestContext.Out.WriteLine("\n<br> " + "get list of comments");
                 var divs = TaskView.GetDivs();
                 if (divs != null)
                 {
-                    var anyblock = divs.FirstOrDefault(x =>
-                        x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    var date = anyblock.GetCommentDate();
-                    Assert.AreEqual("7/10/2018 6:28:20 PM", date.ToString());
+                    TestContext.Out.WriteLine("\n<br> " + $"search comment with email '{email}' in list of comments");
+                    var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
+                    var Actualdate = anyblock.GetCommentDate().ToString();
+                    Assert.AreEqual(date, Actualdate,"There is any comments with this date");
                 }
             }
 
@@ -169,32 +197,40 @@ namespace OnlineExam.NUnitTests
         {
 
             string TaskName = "Indexers";
+            string email = "student@gmail.com";
 
             var ListOfTasks = ConstructPage<TasksPage>();
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var firstblock = blocks.FirstOrDefault(x =>
-                x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + "Click on tasks button ");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
+                TestContext.Out.WriteLine("\n<br> " + "Click on 'Show/Hide' button");
                 TaskView.ClickOnShowHideCommentsButton();
-                Wait(1000);
                 TaskView = ConstructPage<TaskViewPage>();
+                TestContext.Out.WriteLine("\n<br> " + "get list of comments");
                 var divs = TaskView.GetDivs();
                 if (divs != null)
                 {
-                    var anyblock = divs.Any(x => x.GetEmail().Equals("student@gmail.com", StringComparison.OrdinalIgnoreCase));
-                    Assert.False(anyblock);
+                    TestContext.Out.WriteLine("\n<br> " + $"search comment with email '{email}' in list of comments");
+                    var anyblock = divs.Any(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
+                    Assert.False(anyblock,"there is any comments from user with this email");
                 }
+                TestContext.Out.WriteLine("\n<br> " + "Click on 'Show/Hide' button");
                 TaskView.ClickOnShowHideCommentsButton();
                 Wait(1000);
                 TaskView = ConstructPage<TaskViewPage>();
+                TestContext.Out.WriteLine("\n<br> " + "get list of comments");
                 divs = TaskView.GetDivs();
                 if (divs != null)
                 {
-                    var anyblock = divs.Any(x => x.GetEmail().Equals("student@gmail.com", StringComparison.OrdinalIgnoreCase));
-                    Assert.True(anyblock);
+                    TestContext.Out.WriteLine("\n<br> " + $"search comment with email '{email}' in list of comments");
+                    var anyblock = divs.Any(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
+                    Assert.True(anyblock, "there is any comments from user with this email");
                 }
             }
 
@@ -207,23 +243,26 @@ namespace OnlineExam.NUnitTests
 
             string TaskName = "Indexers";
             string email = "student@gmail.com";
-
+            string StarsCount = "5";
 
             var ListOfTasks = ConstructPage<TasksPage>();
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var firstblock = blocks.FirstOrDefault(x =>
-                    x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
+                var firstblock = blocks.FirstOrDefault(x =>                    x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + "Click on tasks button ");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
+                TestContext.Out.WriteLine("\n<br> " + "get list of comments");
                 var divs = TaskView.GetDivs();
                 if (divs != null)
                 {
-                    var anyblock = divs.FirstOrDefault(x =>
-                        x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    var count = anyblock.GetStarsss();
-                    Assert.AreEqual("5", count.ToString());
+                    TestContext.Out.WriteLine("\n<br> " + $"search comment with email '{email}' in list of comments");
+                    var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
+                    var count = anyblock.GetStarsss().ToString();
+                    Assert.AreEqual(StarsCount, count, "there is any comments with rate of this count stars");
                 }
             }
 

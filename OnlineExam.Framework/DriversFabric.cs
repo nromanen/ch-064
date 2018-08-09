@@ -10,7 +10,7 @@ namespace OnlineExam.Framework
     {
         public static ExtendedWebDriver Init()
         {
-            switch (BaseSettings.fields.Browser)
+            switch (BaseSettings.Fields.Browser)
             {
                 case (Browsers.IE):
                     IWebDriver IEDriver = new InternetExplorerDriver();

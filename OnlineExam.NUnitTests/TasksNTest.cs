@@ -24,20 +24,25 @@ namespace OnlineExam.NUnitTests
             base.SetUp();
             string courseName = "C# Starter";
             var header = ConstructPage<Header>();
+            TestContext.Out.WriteLine("\n<br> " + "Go to log in page");
             var logInPage = header.GoToLogInPage();
+            TestContext.Out.WriteLine("\n<br> " + $"Log in as student: email {Constants.STUDENT_EMAIL}, password {Constants.STUDENT_PASSWORD}");
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             var sidebar = ConstructPage<SideBar>();
+            TestContext.Out.WriteLine("\n<br> " + "Go to the course managment page");
             sidebar.GoToCourseManagementPage();
-
             var CoursesList = ConstructPage<CourseManagementPage>();
+            TestContext.Out.WriteLine("\n<br> " + "get list of courses");
             var block = CoursesList.GetBlocks();
             if (block != null)
             {
+                TestContext.Out.WriteLine("\n<br> " + $"search course with {courseName} name in list of courses  ");
                 var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
 
                 if (firstBlock != null)
                 {
                     firstBlock.ClickCourseLink();
+                    TestContext.Out.WriteLine("\n<br> " + "Click on CourseName [link]");
                 }
             }
         }
@@ -47,12 +52,14 @@ namespace OnlineExam.NUnitTests
         {
             string TaskName = "Simple addition";
             var ListOfTasks = ConstructPage<TasksPage>();
-
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                Assert.AreEqual(firstblock.GetName(), TaskName);
+                var ActualName = firstblock.GetName();
+                Assert.AreEqual(TaskName, ActualName, "Task with this name isn't available on this page, because of expected task name isn't equal to actual task name");
             }
         }
 
@@ -60,16 +67,18 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void ClickOnTasksButton()
         {
-
+            string BaseTitle = "Task View - WebApp";
             string TaskName = "Simple addition";
             var ListOfTasks = ConstructPage<TasksPage>();
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
                 var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 firstBlock.ClickOnTasksButton();
-                var title = driver.GetCurrentTitle();
-                Assert.AreEqual("Task View - WebApp", title);
+                var ActualTitle = driver.GetCurrentTitle();
+                Assert.AreEqual(BaseTitle, ActualTitle, "\"Tasks\" button doesn't work, because of expected title isn't equal to actual title");
             }
 
         }
@@ -78,15 +87,17 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void StarsCount()
         {
-
+            string StarsCount = "4";
             string TaskName = "Simple addition";
             var ListOfTasks = ConstructPage<TasksPage>();
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
                 var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                var count = firstBlock.GetStarsss();
-                Assert.AreEqual("4", count.ToString());
+                var count = firstBlock.GetStarsss().ToString();
+                Assert.AreEqual(StarsCount, count, "Stars count isn't correct, , because of expected stars cont isn't equal to actual stars count");
             }
         }
     }

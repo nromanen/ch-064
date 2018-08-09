@@ -16,19 +16,27 @@ namespace OnlineExam.Pages.POM
         }
 
         [FindsBy(How = How.Id, Using = "emailLogin")]
-        public IWebElement emailInput;
+        private IWebElement emailInput;
 
         [FindsBy(How = How.Id, Using = "passwordLogin")]
-        public IWebElement passwordInput;
+        private IWebElement passwordInput;
 
         [FindsBy(How = How.Id, Using = "RememberMe")]
-        public IWebElement rememberMeCheckBox;
+        private IWebElement rememberMeCheckBox;
 
         [FindsBy(How = How.Id, Using = "submitLogin")]
-        public IWebElement signInInputSubmit;
+        private IWebElement signInInputSubmit;
+
+        [FindsBy(How = How.CssSelector, Using = "body > div > div > form > div.validation-summary-errors > ul > li")]
+        private IWebElement alert;
+
+        public bool IsAlertVisible()
+        {
+            return alert.Displayed;
+        }
 
         /// <summary>
-        /// Sugns in as given email and password.
+        /// Signs in as given email and password.
         /// </summary>
         /// <param name="email"></param>
         /// <param name="password"></param>
@@ -42,6 +50,17 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<IndexPage>();
         }
 
+        public bool IsCookiesEnabled(string cookieName)
+        {
+            if (IsCookieEnabled(cookieName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// Checks if "Sign In" label is presented in Header.
         /// </summary>
@@ -49,7 +68,6 @@ namespace OnlineExam.Pages.POM
         public bool IsSignInPresentedInHeader()
         {
             Header header = ConstructPage<Header>();
-
             return header.GetSignInElement();
         }
     }

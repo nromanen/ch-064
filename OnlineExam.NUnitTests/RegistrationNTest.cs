@@ -25,6 +25,7 @@ namespace OnlineExam.NUnitTests
         public override void SetUp()
         {
             base.SetUp();
+            TestContext.Out.WriteLine("\n<br> " + "Done base set up");
             header = ConstructPage<Header>();
             sideBar = ConstructPage<SideBar>();
         }
@@ -33,21 +34,32 @@ namespace OnlineExam.NUnitTests
         public void CheckIfUserIsPresentedInUserListAfterSignUp()
         {
             var signUp = header.GoToRegistrationPage();
+            TestContext.Out.WriteLine("\n<br> " + "Registration page opened.");
             signUp.Registration(Constants.EXAMPLE_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
+            TestContext.Out.WriteLine("\n<br> " + "Registration done.");
             header.SignOut();
+            TestContext.Out.WriteLine("\n<br> " + "Signed out.");
             var logIn = header.GoToLogInPage();
+            TestContext.Out.WriteLine("\n<br> " + "Login page opened.");
             logIn.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+            TestContext.Out.WriteLine("\n<br> " + $"Signed in as {Constants.ADMIN_EMAIL}.");
             var adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
-            Assert.True(adminPanelPage.IsUserPresentedInUserList(Constants.EXAMPLE_EMAIL));
+            TestContext.Out.WriteLine("\n<br> " + "Opened admin page.");
+            var result = adminPanelPage.IsUserPresentedInUserList(Constants.EXAMPLE_EMAIL);
+            Assert.True(result, "User isn't presented in user list after sign up.");
         }
 
         [Test]
         public void SignUpAsUsedEmail()
         {
             var signUp = header.GoToRegistrationPage();
+            TestContext.Out.WriteLine("\n<br> " + "Went to registration page.");
             signUp.Registration(Constants.STUDENT_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
+            TestContext.Out.WriteLine("\n<br> " + "Registration done.");
             header.GoToHomePage();
-            Assert.False(header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL));
+            TestContext.Out.WriteLine("\n<br> " + "Went to home page.");
+            var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
+            Assert.False(result, "User signed up with used email.");
         }
     }
 }

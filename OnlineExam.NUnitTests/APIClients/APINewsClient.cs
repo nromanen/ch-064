@@ -12,20 +12,21 @@ using RestSharp;
 
 namespace OnlineExam.NUnitTests.APIClients
 {
-    public class APINewsClient
+    public class APINewsClient : BaseAPIClient
     {
-        RestClient client = new RestClient(BaseSettings.fields.Url);
 
-        public List<NewsAPIModel> Get()
+        public RestResultTyped<List<NewsAPIModel>> Get()
         {
             var request = new RestRequest($"/api/news", Method.GET);
             var response = client.Execute(request);
             string jsonString = response.Content;
             List<NewsAPIModel> result = JsonConvert.DeserializeObject<List<NewsAPIModel>>(jsonString);
-            return result;
+            return new RestResultTyped<List<NewsAPIModel>>()
+            {
+                Code = response.StatusCode,
+                Data = result
+            };
         }
-
-     
 
         public HttpStatusCode Post(Object obj)
         {

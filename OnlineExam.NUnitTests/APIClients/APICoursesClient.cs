@@ -4,20 +4,29 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using OnlineExam.Framework;
+using OnlineExam.NUnitTests.APIClients.Models;
 using RestSharp;
 
 namespace OnlineExam.NUnitTests.APIClients
 {
-    public class APICoursesClient
+    public class APICoursesClient : BaseAPIClient
     {
-        RestClient client = new RestClient(BaseSettings.fields.Url);
 
-        public void Get()
+        public RestResultTyped<List<CoursesAPIModel>> Get()
         {
             var request = new RestRequest($"/api/Course", Method.GET);
             var response = client.Execute(request);
+            string jsonString = response.Content;
+            List<CoursesAPIModel> result = JsonConvert.DeserializeObject<List<CoursesAPIModel>>(jsonString);
+            return new RestResultTyped<List<CoursesAPIModel>>()
+            {
+                Code = response.StatusCode,
+                Data = result
+            };
         }
+    
 
         public HttpStatusCode Post(Object obj)
         {

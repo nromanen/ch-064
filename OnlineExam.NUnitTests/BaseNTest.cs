@@ -4,15 +4,17 @@ using System.Threading;
 using AventStack.ExtentReports;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using NUnit.Framework.Internal;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using RazorEngine.Compilation.ImpromptuInterface.InvokeExt;
 
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
-    public  class BaseNTest
+    public class BaseNTest
     {
         protected ExtendedWebDriver driver;
         protected ResourceManager resxManager;
@@ -24,8 +26,9 @@ namespace OnlineExam.NUnitTests
             var browser = TestContext.Parameters.Get("Browser");
             if (!string.IsNullOrEmpty(browser))
             {
-                BaseSettings.fields.Browser = (Browsers)Enum.Parse(typeof(Browsers), browser);
+                BaseSettings.Fields.Browser = (Browsers) Enum.Parse(typeof(Browsers), browser);
             }
+
             ExtentTestManager.CreateParentTest(GetType().Name);
         }
 
@@ -41,10 +44,11 @@ namespace OnlineExam.NUnitTests
         {
             driver = DriversFabric.Init();
             driver.Maximize();
-            driver.GoToUrl(BaseSettings.fields.Url);
+            driver.GoToUrl(BaseSettings.Fields.Url);
             var header = ConstructPage<Header>();
             resxManager = header.GetCurrentLanguage();
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
+            TestContext.Out.WriteLine("\n<br> " + "Test started " + TestContext.CurrentContext.Test.Name);
         }
 
 
@@ -120,9 +124,12 @@ namespace OnlineExam.NUnitTests
                     break;
             }
 
-            ExtentTestManager.GetTest().Log(logstatus,
-                "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage);
 
+            TestContext.Out.WriteLine("\n<br> " + "Test ended " + TestContext.CurrentContext.Test.Name);
+
+            ExtentTestManager.GetTest().Log(logstatus,
+                "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage +
+                TestExecutionContext.CurrentContext.CurrentResult.Output);
 
             driver?.Dispose();
         }

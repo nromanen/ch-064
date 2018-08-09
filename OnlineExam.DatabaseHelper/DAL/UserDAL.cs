@@ -11,7 +11,7 @@ namespace OnlineExam.DatabaseHelper.DAL
     {
         public AspNetUsers GetUserById(string id)
         {
-            using (var ctx = new DataModel(BaseSettings.fields.ConnectionString))
+            using (var ctx = new DataModel(BaseSettings.Fields.ConnectionString))
             {
                 var result = ctx.AspNetUsers.Find(id);
                 return result;

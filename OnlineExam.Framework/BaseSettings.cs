@@ -23,17 +23,15 @@ namespace OnlineExam.Framework
 
     public static class BaseSettings
     {
-        public static BasicSettingsFields fields;
+        public static BasicSettingsFields Fields;
 
         static BaseSettings()
         {
             using (StreamReader file = File.OpenText(CurrentPath.JSON_PATH))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                fields = (BasicSettingsFields)serializer.Deserialize(file, typeof(BasicSettingsFields));
+                Fields = (BasicSettingsFields)serializer.Deserialize(file, typeof(BasicSettingsFields));
             }
         }
-
-       
     }
 }

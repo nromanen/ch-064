@@ -17,13 +17,13 @@ namespace OnlineExam.Pages.POM
         }
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div > div.col-lg-4 > a:nth-child(3)")]
-        public IWebElement CSharpStarterReference { get; set; }
+        private IWebElement CSharpStarterReference;
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div > div.col-lg-4 > a:nth-child(5)")]
-        public IWebElement CSharpEssentialReference { get; set; }
+        private IWebElement CSharpEssentialReference;
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div > div.col-lg-4 > a:nth-child(7)")]
-        public IWebElement CSharpAdvancedReference { get; set; }
+        private IWebElement CSharpAdvancedReference;
 
         [FindsBy(How = How.CssSelector, Using = ".row")]//
         private IList<IWebElement> rowOfDivsNewsListElements;

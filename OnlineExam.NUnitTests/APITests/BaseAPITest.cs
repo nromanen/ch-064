@@ -28,6 +28,7 @@ namespace OnlineExam.NUnitTests.APITests
         [SetUp]
         public virtual void SetUp()
         {
+            TestContext.Out.WriteLine("\n<br> " + "Test started " + TestContext.CurrentContext.Test.Name);
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
@@ -56,9 +57,11 @@ namespace OnlineExam.NUnitTests.APITests
                     logstatus = Status.Pass;
                     break;
             }
-
+            TestContext.Out.Write("Test ended " + TestContext.CurrentContext.Test.Name);
             ExtentTestManager.GetTest().Log(logstatus,
-                "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage);
+                "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage +
+                "\n<br>\n<br> " + TestContext.Out.NewLine);
+            
         }
     }
 }

@@ -12,7 +12,7 @@ namespace OnlineExam.DatabaseHelper.DAL
     
         public Comments GetCommentById(int id)
         {
-            using (var ctx = new DataModel(BaseSettings.fields.ConnectionString))
+            using (var ctx = new DataModel(BaseSettings.Fields.ConnectionString))
             {
                 var result = ctx.Comments.Find(id);
                 return result;
@@ -21,7 +21,7 @@ namespace OnlineExam.DatabaseHelper.DAL
 
         public Comments GetCommentByCommentText(string commentText)
         {
-            using (var ctx = new DataModel(BaseSettings.fields.ConnectionString))
+            using (var ctx = new DataModel(BaseSettings.Fields.ConnectionString))
             {
                 var result = ctx.Comments.First(c => c.CommentText == commentText);
                 return result;

@@ -105,7 +105,12 @@
     <Compile Include="APIClients\APICoursesClient.cs" />
     <Compile Include="APIClients\APINewsClient.cs" />
     <Compile Include="APIClients\APIUsersClient.cs" />
+    <Compile Include="APIClients\BaseAPIClient.cs" />
+    <Compile Include="APIClients\Models\CommentsAPIModel.cs" />
+    <Compile Include="APIClients\Models\CoursesAPIModel.cs" />
     <Compile Include="APIClients\Models\NewsAPIModel.cs" />
+    <Compile Include="APIClients\RestResult.cs" />
+    <Compile Include="APIClients\RestResultTyped.cs" />
     <Compile Include="APITests\APICommentsTest.cs" />
     <Compile Include="APITests\APICoursesTest.cs" />
     <Compile Include="APITests\APINewsTest.cs" />

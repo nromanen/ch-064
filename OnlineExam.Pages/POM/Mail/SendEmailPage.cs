@@ -17,19 +17,19 @@ namespace OnlineExam.Pages.POM
         }
 
         [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div > div.col-lg-3 > a")]
-        public IWebElement BackToMailboxReference { get; set; }
+        private IWebElement BackToMailboxReference;
 
         [FindsBy(How = How.CssSelector, Using = "#name")]
-        public IWebElement SubjectInput { get; set; }
+        private IWebElement SubjectInput;
 
         [FindsBy(How = How.CssSelector, Using = "#email")]
-        public IWebElement EmailInput { get; set; }
+        private IWebElement EmailInput;
 
         [FindsBy(How = How.CssSelector, Using = "#message")]
-        public IWebElement MessageInput { get; set; }
+        private IWebElement MessageInput;
 
         [FindsBy(How = How.CssSelector, Using = "#reused_form > input.btn.btn-primary.btn-send-email")]
-        public IWebElement SubmitInput { get; set; }
+        private IWebElement SubmitInput;
 
         /// <summary>
         /// Sends Email from Admin or Teacher to any user.
