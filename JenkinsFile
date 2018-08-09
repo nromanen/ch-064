@@ -1,0 +1,19 @@
+node
+{
+    stage 'Git checkout'
+        git branch: 'dev', url: 'https://github.com/nromanen/ch-064'
+    stage 'Restore NuGet packages'
+        bat '"C:/Program Files (x86)/Jenkins/tools/nuget.exe" restore OnlineExamTest.sln'
+    stage 'Build project'
+        bat "\"${tool 'MSBuildLocal'}\" OnlineExamTest.sln /p:Configuration=Debug /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+    stage 'Restore database'
+        bat '"OnlineExam.DatabaseHelper/bin/Debug/OnlineExam.DatabaseHelper.exe" restore'
+    try{
+    stage 'Run tests'
+        bat 'C:/Users/ch_admin/Desktop/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe  OnlineExam.NUnitTests/bin/Debug/OnlineExam.NUnitTests.dll'    
+    }catch(err){}
+     stage 'Publish result'
+        nunit testResultsPattern: 'TestResult.xml'
+    stage 'Publish html report'
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'OnlineExam.NUnitTests\\Reports', reportFiles: 'MyOwnReport.html', reportName: 'HTML Report', reportTitles: ''])
+}
