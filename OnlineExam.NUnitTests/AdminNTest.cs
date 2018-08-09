@@ -22,14 +22,14 @@ namespace OnlineExam.NUnitTests
 
             header = ConstructPage<Header>();
 
-            TestContext.Progress.WriteLine("Go to log in page");
+            TestContext.Out.WriteLine("\n<br> " + "Go to log in page");
             logInPage = header.GoToLogInPage();
 
-            TestContext.Progress.WriteLine(
+            TestContext.Out.WriteLine("\n<br> " + 
                 $"Log in as administrator: email {Constants.ADMIN_EMAIL}, password {Constants.ADMIN_PASSWORD}");
             logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
 
-            TestContext.Progress.WriteLine("Go to admin panel page");
+            TestContext.Out.WriteLine("\n<br> " + "Go to admin panel page");
             adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
         }
 
@@ -44,7 +44,7 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void DeleteUserTest()
         {
-            TestContext.Progress.WriteLine(
+            TestContext.Out.WriteLine("\n<br> " + 
                 $"Check if user {Constants.USER_FOR_DELETE_EMAIL} is presented in user list before delete");
             var isUserPresentedInUserListBeforeDelete =
                 adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL);
@@ -53,14 +53,14 @@ namespace OnlineExam.NUnitTests
                 $"User {Constants.USER_FOR_DELETE_EMAIL} is not presented in the system," +
                 "so we have not opportunity to delete this user");
 
-            TestContext.Progress.WriteLine($"Delete user {Constants.USER_FOR_DELETE_EMAIL}");
+            TestContext.Out.WriteLine("\n<br> " + $"Delete user {Constants.USER_FOR_DELETE_EMAIL}");
             adminPanelPage.DeleteUser(Constants.USER_FOR_DELETE_EMAIL);
 
-            TestContext.Progress.WriteLine("Check if user list is available");
+            TestContext.Out.WriteLine("\n<br> " + "Check if user list is available");
             var isListOfUsersH2ElementPresented = adminPanelPage.IsListOfUsersH2ElementPresented();
             Assert.True(isListOfUsersH2ElementPresented, "List of users is not available");
 
-            TestContext.Progress.WriteLine(
+            TestContext.Out.WriteLine("\n<br> " + 
                 $"Check if user {Constants.USER_FOR_DELETE_EMAIL} is presented in user list after delete");
             var isUserPresentedInUserListAfterDelete =
                 adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL);
@@ -71,18 +71,18 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void ChangeUserRoleTest()
         {
-            TestContext.Progress.WriteLine(
+            TestContext.Out.WriteLine("\n<br> " + 
                 $"Go to change role of user page, user {Constants.USER_FOR_CHANGE_ROLE_EMAIL} ");
             var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
 
-            TestContext.Progress.WriteLine($"Change user role to role {Constants.TEACHER}");
+            TestContext.Out.WriteLine("\n<br> " + $"Change user role to role {Constants.TEACHER}");
             changeRolePage.ChangeRole(Constants.TEACHER);
 
-            TestContext.Progress.WriteLine(
+            TestContext.Out.WriteLine("\n<br> " + 
                 $"Go to change role of user page, user {Constants.USER_FOR_CHANGE_ROLE_EMAIL} ");
             changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
 
-            TestContext.Progress.WriteLine("Check roles");
+            TestContext.Out.WriteLine("\n<br> " + "Check roles");
             var currentRole = changeRolePage.CurrentRole();
             Assert.AreEqual(Constants.TEACHER, currentRole, "Role of user are not the same");
         }

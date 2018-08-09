@@ -4,6 +4,7 @@ using System.Threading;
 using AventStack.ExtentReports;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using NUnit.Framework.Internal;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
@@ -47,7 +48,7 @@ namespace OnlineExam.NUnitTests
             var header = ConstructPage<Header>();
             resxManager = header.GetCurrentLanguage();
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
-            TestContext.Progress.WriteLine("Test started " + TestContext.CurrentContext.Test.Name);
+            TestContext.Out.WriteLine("\n<br> " + "Test started " + TestContext.CurrentContext.Test.Name);
         }
 
 
@@ -124,11 +125,11 @@ namespace OnlineExam.NUnitTests
             }
 
 
-            TestContext.Progress.WriteLine("Test ended " + TestContext.CurrentContext.Test.Name);
+            TestContext.Out.WriteLine("\n<br> " + "Test ended " + TestContext.CurrentContext.Test.Name);
 
             ExtentTestManager.GetTest().Log(logstatus,
                 "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage +
-                "\n<br>\n<br> " + TestContext.CurrentContext.Result.Outcome.ToString());
+                TestExecutionContext.CurrentContext.CurrentResult.Output);
 
             driver?.Dispose();
         }
