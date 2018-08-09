@@ -46,6 +46,9 @@ namespace OnlineExam.NUnitTests
             resxManager = header.GetCurrentLanguage();
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
             TestContext.Progress.WriteLine("Test started " + TestContext.CurrentContext.Test.Name);
+
+            TestContext.Out.WriteLine("Test started" + TestContext.CurrentContext.Test.Name);
+
         }
 
 
@@ -120,6 +123,9 @@ namespace OnlineExam.NUnitTests
                     logstatus = Status.Pass;
                     break;
             }
+
+            TestContext.Out.WriteLine("Test ended" + TestContext.CurrentContext.Test.Name);
+
 
             TestContext.Progress.WriteLine("Test ended " + TestContext.CurrentContext.Test.Name);
 
