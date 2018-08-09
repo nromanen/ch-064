@@ -24,7 +24,7 @@ namespace OnlineExam.NUnitTests.APITests
         {
             //If I'd cry about this test failing, please tell me I'm moron and to change URL in configfile.
             client = new APICommentsClient();
-            var getMethod = client.Get(1);
+            var getMethod = client.Get(9);
             //Assert.AreEqual(actual.Id, commentId, "Actual id isn't equal to expected id.");
             Assert.AreEqual(HttpStatusCode.OK, getMethod.Code, "Invalid result status");
         }

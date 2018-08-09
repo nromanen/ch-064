@@ -211,7 +211,6 @@ namespace OnlineExam.NUnitTests
                 var TaskView = ConstructPage<TaskViewPage>();
                 TestContext.Progress.WriteLine("Click on 'Show/Hide' button");
                 TaskView.ClickOnShowHideCommentsButton();
-                Wait(1000);
                 TaskView = ConstructPage<TaskViewPage>();
                 TestContext.Progress.WriteLine("get list of comments");
                 var divs = TaskView.GetDivs();

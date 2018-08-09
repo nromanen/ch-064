@@ -28,7 +28,7 @@ namespace OnlineExam.NUnitTests.APITests
         }
 
         [Test]
-        public void Post()
+        public void PostCourse()
         {
             var guid = new Guid().ToString();
             var obj = new
