@@ -8,7 +8,8 @@ namespace OnlineExam.DatabaseHelper
     {
         // ༼ つ ಥ_ಥ ༽つ
         // Created by Roma Bahlai
-        private static string conection = $"Server = {BaseSettings.fields.ServerName}; Database = {BaseSettings.fields.DatabaseName}; user=sa;password=ch64_password;";
+        //private static string conection = $"Server = {BaseSettings.fields.ServerName}; Database = {BaseSettings.fields.DatabaseName}; user=sa;password=ch64_password;";
+        private static string conection = $"Server = {BaseSettings.fields.ServerName}; Database = {BaseSettings.fields.DatabaseName}; integrated security = True";
 
         public static void RollbackDatabase()
         {
@@ -20,11 +21,11 @@ namespace OnlineExam.DatabaseHelper
                 con.Open();
             }
             try
-            {            
+            {
                 SqlCommand singleUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE", con);
                 singleUserQuery.ExecuteNonQuery();
 
-                SqlCommand restoreDatabaseQuery = new SqlCommand("USE MASTER RESTORE DATABASE [" + database + "] FROM DISK='" + CurrentPath.BACKUP_PATH +"' WITH REPLACE;", con);
+                SqlCommand restoreDatabaseQuery = new SqlCommand("USE MASTER RESTORE DATABASE [" + database + "] FROM DISK='" + CurrentPath.BACKUP_PATH + "' WITH REPLACE;", con);
                 restoreDatabaseQuery.ExecuteNonQuery();
 
                 SqlCommand multiUserQuery = new SqlCommand("ALTER DATABASE [" + database + "] SET MULTI_USER", con);

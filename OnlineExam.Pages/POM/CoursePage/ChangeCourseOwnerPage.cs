@@ -13,20 +13,17 @@ namespace OnlineExam.Pages.POM
 {
     public class ChangeCourseOwnerPage : BasePage
     {
-      
-        public ChangeCourseOwnerPage()
-        {
-                
-        }
+
+        public ChangeCourseOwnerPage() { }
 
         [FindsBy(How = How.Id, Using = "ResultTeacherId")]
-        public IWebElement TeacherSelect { get; set; }
+        private IWebElement TeacherSelect { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "input.btn")]
-        public IWebElement BtnOK { get; set; }
+        private IWebElement BtnOK { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = ".container > p:nth-child(2)")] 
-        public IWebElement CurrentOwner { get; set; }
+        [FindsBy(How = How.CssSelector, Using = ".container > p:nth-child(2)")]
+        private IWebElement CurrentOwner { get; set; }
 
         public string GetOwnerName()
         {

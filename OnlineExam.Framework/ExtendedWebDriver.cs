@@ -70,20 +70,23 @@ namespace OnlineExam.Framework
 
         public void WaitWhileTextToBePresentInElement(IWebElement webElement,string text)
         {
-            WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-            wait.Until(ExpectedConditions.TextToBePresentInElement(webElement,text));
+            //WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+           // wait.Until(ExpectedConditions.TextToBePresentInElement(webElement,text));
+            //wait.Until(e => webElement.Text.Contains(text));
         }
 
         public void WaitWhileNotClickableWebElement(IWebElement webElement)
         {
-            WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-            wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
+            //WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+            //wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
+            //wait.Until(e => webElement.Displayed && webElement.Enabled);
         }
 
         public void WaitUntilElementExists(IWebElement webElement, string expectedStr)
         {
-            WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-            wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));//  ElementExists(By.CssSelector(webElement)));
+            //WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
+            //wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));//  ElementExists(By.CssSelector(webElement)));
+            //wait.Until(e => webElement.Text.Contains(expectedStr));
         }
 
         public void RefreshPage()
