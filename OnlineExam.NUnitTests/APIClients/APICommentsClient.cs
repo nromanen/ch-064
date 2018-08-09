@@ -16,9 +16,9 @@ namespace OnlineExam.NUnitTests.APIClients
         RestClient client = new RestClient(BaseSettings.Fields.Url);
 
 
-        public RestResultTyped<List<CommentsAPIModel>> Get(int commentId)
+        public RestResultTyped<List<CommentsAPIModel>> Get(int id)
         {
-            var request = new RestRequest($"/api/CommentApi/{commentId}", Method.GET);
+            var request = new RestRequest($"/api/CommentApi?id={id}", Method.GET);
             var response = client.Execute(request);
             string jsonString = response.Content;
             List<CommentsAPIModel> result = JsonConvert.DeserializeObject<List<CommentsAPIModel>>(jsonString);
