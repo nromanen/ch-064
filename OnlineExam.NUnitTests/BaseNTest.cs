@@ -24,7 +24,7 @@ namespace OnlineExam.NUnitTests
             var browser = TestContext.Parameters.Get("Browser");
             if (!string.IsNullOrEmpty(browser))
             {
-                BaseSettings.fields.Browser = (Browsers)Enum.Parse(typeof(Browsers), browser);
+                BaseSettings.Fields.Browser = (Browsers)Enum.Parse(typeof(Browsers), browser);
             }
             ExtentTestManager.CreateParentTest(GetType().Name);
         }
@@ -41,7 +41,7 @@ namespace OnlineExam.NUnitTests
         {
             driver = DriversFabric.Init();
             driver.Maximize();
-            driver.GoToUrl(BaseSettings.fields.Url);
+            driver.GoToUrl(BaseSettings.Fields.Url);
             var header = ConstructPage<Header>();
             resxManager = header.GetCurrentLanguage();
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
@@ -125,7 +125,6 @@ namespace OnlineExam.NUnitTests
 
             ExtentTestManager.GetTest().Log(logstatus,
                 "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage + "\n<br>\n<br> " + TestContext.Progress);
-
 
             driver?.Dispose();
         }

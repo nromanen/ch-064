@@ -22,14 +22,16 @@ namespace OnlineExam.NUnitTests.APITests
             
             client = new APINewsClient();
             var news = client.Get();
-            Assert.NotNull(news);
+            // 
+            Assert.True(news.Code == HttpStatusCode.OK);
+
+            Assert.NotNull(news.Data);
            
             var actual = new NewsDAL().GetNews();
-            
-            Assert.AreEqual(news.Count, actual.Count);
+            Assert.AreEqual(news.Data.Count, actual.Count);
             foreach (var x in actual)
             {
-                var apiItem = news.FirstOrDefault(z => z.id == x.Id);
+                var apiItem = news.Data.FirstOrDefault(z => z.id == x.Id);
                 Assert.NotNull(apiItem);
                 StringAssert.AreEqualIgnoringCase(x.Title, apiItem.title);
                 StringAssert.AreEqualIgnoringCase(x.Text, apiItem.text);

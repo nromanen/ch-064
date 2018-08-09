@@ -49,7 +49,7 @@ namespace OnlineExam.NUnitTests
         public void ClickOnStartButton()
         {
             string TaskName = "Indexers";
-
+            string Basetitle = "- WebApp";
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
@@ -59,7 +59,7 @@ namespace OnlineExam.NUnitTests
                 var TaskView = ConstructPage<TaskViewPage>();
                 TaskView.ClickOnStartButton();
                 var title = this.driver.GetCurrentTitle();
-                Assert.AreEqual("- WebApp", title);
+                Assert.AreEqual(Basetitle, title, "\"Start\" button doesn't work, because of expected title isn't equal to actual title");
             }
 
         }
@@ -70,6 +70,7 @@ namespace OnlineExam.NUnitTests
         {
 
             string TaskName = "Indexers";
+            string ContainUrl = "/CourseManagement/ShowExercise/2";
 
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
@@ -81,8 +82,8 @@ namespace OnlineExam.NUnitTests
                 TaskView.ClickOnOkButton();
                 var current_url = this.driver.GetCurrentUrl();
                 bool f = false;
-                if (current_url.Contains("/CourseManagement/ShowExercise/2")) f = true;
-                Assert.That(f);
+                if (current_url.Contains(ContainUrl)) f = true;
+                Assert.That(f, "\"Ok\" button doesn't work, because of actual url doesn't contain expected url");
             }
 
         }
@@ -106,7 +107,7 @@ namespace OnlineExam.NUnitTests
                 if (divs != null)
                 {
                     var anyblock = divs.Any(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    Assert.True(anyblock);
+                    Assert.True(anyblock, "There is any comments from user with this email");
                 }
             }
         }
@@ -116,7 +117,7 @@ namespace OnlineExam.NUnitTests
         {
 
             string TaskName = "Indexers";
-            string coment = "First comment";
+            string ExpectedComent = "First comment";
 
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
@@ -128,9 +129,9 @@ namespace OnlineExam.NUnitTests
                 var divs = TaskView.GetDivs();
                 if (divs != null)
                 {
-                    var b = divs.FirstOrDefault(x =>
-                    x.GetCommentText().Equals(coment, StringComparison.OrdinalIgnoreCase));
-                    Assert.AreEqual(b.GetCommentText(), coment);
+                    var b = divs.FirstOrDefault(x => x.GetCommentText().Equals(ExpectedComent, StringComparison.OrdinalIgnoreCase));
+                    var CommentText = b.GetCommentText();
+                    Assert.AreEqual(ExpectedComent, CommentText, "There is any comments with this comment text");
                 }
             }
 
@@ -142,6 +143,7 @@ namespace OnlineExam.NUnitTests
 
             string TaskName = "Indexers";
             string email = "student@gmail.com";
+            string date = "7/10/2018 6:28:20 PM";
 
 
             var ListOfTasks = ConstructPage<TasksPage>();
@@ -157,8 +159,8 @@ namespace OnlineExam.NUnitTests
                 {
                     var anyblock = divs.FirstOrDefault(x =>
                         x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    var date = anyblock.GetCommentDate();
-                    Assert.AreEqual("7/10/2018 6:28:20 PM", date.ToString());
+                    var Actualdate = anyblock.GetCommentDate().ToString();
+                    Assert.AreEqual(date, Actualdate,"There is any comments with this date");
                 }
             }
 
@@ -174,8 +176,7 @@ namespace OnlineExam.NUnitTests
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var firstblock = blocks.FirstOrDefault(x =>
-                x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
                 TaskView.ClickOnShowHideCommentsButton();
@@ -185,7 +186,7 @@ namespace OnlineExam.NUnitTests
                 if (divs != null)
                 {
                     var anyblock = divs.Any(x => x.GetEmail().Equals("student@gmail.com", StringComparison.OrdinalIgnoreCase));
-                    Assert.False(anyblock);
+                    Assert.False(anyblock,"there is any comments from user with this email");
                 }
                 TaskView.ClickOnShowHideCommentsButton();
                 Wait(1000);
@@ -194,7 +195,7 @@ namespace OnlineExam.NUnitTests
                 if (divs != null)
                 {
                     var anyblock = divs.Any(x => x.GetEmail().Equals("student@gmail.com", StringComparison.OrdinalIgnoreCase));
-                    Assert.True(anyblock);
+                    Assert.True(anyblock, "there is any comments from user with this email");
                 }
             }
 
@@ -207,7 +208,7 @@ namespace OnlineExam.NUnitTests
 
             string TaskName = "Indexers";
             string email = "student@gmail.com";
-
+            string StarsCount = "5";
 
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
@@ -222,8 +223,8 @@ namespace OnlineExam.NUnitTests
                 {
                     var anyblock = divs.FirstOrDefault(x =>
                         x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    var count = anyblock.GetStarsss();
-                    Assert.AreEqual("5", count.ToString());
+                    var count = anyblock.GetStarsss().ToString();
+                    Assert.AreEqual(StarsCount, count, "there is any comments with rate of this count stars");
                 }
             }
 

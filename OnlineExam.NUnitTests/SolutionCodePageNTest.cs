@@ -77,7 +77,7 @@ namespace OnlineExam.NUnitTests
                     TaskView.ClickOnStartButton();
                     var Code = ConstructPage<SolutionCodePage>();
                     var review = Code.MessageAboutreviewingSolution.Text;
-                    Assert.IsNotEmpty(review);
+                    Assert.IsNotEmpty(review, "Button \"Done\" doesn't work, because of message about reviewing isn't visible on this page");
                 }
             }
         }
@@ -87,6 +87,7 @@ namespace OnlineExam.NUnitTests
         {
 
             string TaskName = "Simple addition";
+            var BaseUrl = BaseSettings.Fields.Url;
             var ListOfTasks = ConstructPage<TasksPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
@@ -97,29 +98,9 @@ namespace OnlineExam.NUnitTests
                 TaskView.ClickOnStartButton();
                 var Code = ConstructPage<SolutionCodePage>();
                 Code.ClickOnExitButton();
-                var url = driver.GetCurrentUrl().ToString();
-                Assert.AreEqual(BaseSettings.fields.Url+"/", url);
+                var actualUrl = driver.GetCurrentUrl().ToString();
+                Assert.AreEqual(BaseUrl+"/", actualUrl, "Exit \"button\" doesn't work, because of expected url isn't equal to actual url");
             }
         }
-
-
-        [Test]
-        public void Compilation()
-        {
-            string TaskName = "Simple addition";
-            var ListOfTasks = ConstructPage<TasksPage>();
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
-            {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-                TaskView.ClickOnStartButton();
-                var Code = ConstructPage<SolutionCodePage>();
-                var result = Code.FieldWithResultOfCompilationCode.Text;
-                Assert.IsEmpty(result);
-            }
-        }
-
     }
 }

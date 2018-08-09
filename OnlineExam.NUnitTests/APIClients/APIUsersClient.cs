@@ -10,7 +10,7 @@ namespace OnlineExam.NUnitTests.APIClients
 {
     public class APIUsersClient
     {
-        RestClient client = new RestClient(BaseSettings.fields.Url);
+        RestClient client = new RestClient(BaseSettings.Fields.Url);
 
        
         public string PostChange(Object obj,string parameter)
