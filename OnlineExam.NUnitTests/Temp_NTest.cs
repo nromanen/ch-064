@@ -24,12 +24,12 @@ namespace OnlineExam.NUnitTests
             base.SetUp();
 
             var header = ConstructPage<Header>();
-            TestContext.Progress.WriteLine("Go to log in page");
+            TestContext.Out.WriteLine("\n<br> " + "Go to log in page");
             var logInPage = header.GoToLogInPage();
-            TestContext.Progress.WriteLine( $"Log in as teacher: email {Constants.TEACHER_EMAIL}, password {Constants.TEACHER_PASSWORD}");
+            TestContext.Out.WriteLine("\n<br> " +  $"Log in as teacher: email {Constants.TEACHER_EMAIL}, password {Constants.TEACHER_PASSWORD}");
             logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
             var sidebar = ConstructPage<SideBar>();
-            TestContext.Progress.WriteLine("Go to the tasks page");
+            TestContext.Out.WriteLine("\n<br> " + "Go to the tasks page");
             sidebar.GoToTasksPage();
         }
 
@@ -37,12 +37,12 @@ namespace OnlineExam.NUnitTests
         public void IsTaskAvailable()
         {
             string TaskName = "Indexers";
-            TestContext.Progress.WriteLine("get list of tasks");
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                TestContext.Progress.WriteLine($"search task with {TaskName} name in list of tasks  ");
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
                 var firstBlock = blocks.FirstOrDefault(x => x.TEMP_GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 var actualName = firstBlock.TEMP_GetName();
                 Assert.AreEqual(TaskName, actualName, "there is any tasks with whis name, because of expected task name isn't equal to actual task name");
@@ -55,27 +55,27 @@ namespace OnlineExam.NUnitTests
         {
             string taskname = "Elevator modeling";
 
-            TestContext.Progress.WriteLine("get list of tasks");
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                TestContext.Progress.WriteLine($"search task with {taskname} name in list of tasks  ");
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {taskname} name in list of tasks  ");
                 var myblock = blocks.FirstOrDefault(x => x.Get_DELETED_TaskName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
-                TestContext.Progress.WriteLine("Click on Recover Button ");
+                TestContext.Out.WriteLine("\n<br> " + "Click on Recover Button ");
                 myblock.ClickOnRecoverButton();
             }
 
             ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
-            TestContext.Progress.WriteLine("get list of tasks");
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                TestContext.Progress.WriteLine($"search task with {taskname} name in list of tasks  ");
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {taskname} name in list of tasks  ");
                 var myblock = blocks.FirstOrDefault(x => x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
                 var actualName = myblock.TEMP_GetName();
                 Assert.AreEqual(taskname, actualName, "button \"Recover\" doesn't work, because of expected task name isn't equal to actual task name");
-                TestContext.Progress.WriteLine("Click on Delete button");
+                TestContext.Out.WriteLine("\n<br> " + "Click on Delete button");
                 myblock.ClickOnDeleteButton();
             }
         }
@@ -87,26 +87,26 @@ namespace OnlineExam.NUnitTests
             string taskname = "Simple addition";
 
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
-            TestContext.Progress.WriteLine("get list of tasks");
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                TestContext.Progress.WriteLine($"search task with {taskname} name in list of tasks  name in list of tasks ");
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {taskname} name in list of tasks  name in list of tasks ");
                 var myblock = blocks.FirstOrDefault(x => x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
-                TestContext.Progress.WriteLine("Click on Delete button");
+                TestContext.Out.WriteLine("\n<br> " + "Click on Delete button");
                 myblock.ClickOnDeleteButton();
             }
 
             ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
-            TestContext.Progress.WriteLine("get list of tasks");
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                TestContext.Progress.WriteLine($"search task with {taskname} name in list of tasks  ");
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {taskname} name in list of tasks  ");
                 var myblock = blocks.FirstOrDefault(x => x.Get_DELETED_TaskName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
                 var actualName = myblock.Get_DELETED_TaskName();
                 Assert.AreEqual(taskname, actualName, "button \"Delete\" doesn't work, because of expected task name isn't equal to actual task name");
-                TestContext.Progress.WriteLine("Click on Recover button");
+                TestContext.Out.WriteLine("\n<br> " + "Click on Recover button");
                 myblock.ClickOnRecoverButton();
             }
         }
@@ -117,13 +117,13 @@ namespace OnlineExam.NUnitTests
         {
             string taskname = "Indexers";
             var ListOfTasks = ConstructPage<TeacherExerciseManagerPage>();
-            TestContext.Progress.WriteLine("get list of tasks");
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                TestContext.Progress.WriteLine($"search task with {taskname} name in list of tasks  ");
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {taskname} name in list of tasks  ");
                 var myblock = blocks.FirstOrDefault(x => x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
-                TestContext.Progress.WriteLine("click on solution button");
+                TestContext.Out.WriteLine("\n<br> " + "click on solution button");
                 myblock.ClickOnSolutionButton();
             }
             var url = driver.GetCurrentUrl();
@@ -140,34 +140,34 @@ namespace OnlineExam.NUnitTests
             string coursename = "C# Essential";
 
             var Tasks = ConstructPage<TeacherExerciseManagerPage>();
-            TestContext.Progress.WriteLine("Click on Add button");
+            TestContext.Out.WriteLine("\n<br> " + "Click on Add button");
             Tasks.ClickOnAddTaskbutton();
             var AddTaskPage = ConstructPage<AddTaskAsTeacherPage>();
-            TestContext.Progress.WriteLine($"Chose {coursename} in drop down list");
+            TestContext.Out.WriteLine("\n<br> " + $"Chose {coursename} in drop down list");
             AddTaskPage.ChooseCourse(coursename);
-            TestContext.Progress.WriteLine($"add '{NEWTASK}' tasks's name for new task");
+            TestContext.Out.WriteLine("\n<br> " + $"add '{NEWTASK}' tasks's name for new task");
             AddTaskPage.AddTaskNameForNewTask(NEWTASK);
-            TestContext.Progress.WriteLine("Click on add button");
+            TestContext.Out.WriteLine("\n<br> " + "Click on add button");
             AddTaskPage.ClickOnAddButton();
             var ListOfTasks = ConstructPage<TasksPage>();
-            TestContext.Progress.WriteLine("get list of tasks");
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                TestContext.Progress.WriteLine($"search task with {NEWTASK} name in list of tasks  ");
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {NEWTASK} name in list of tasks  ");
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(NEWTASK, StringComparison.OrdinalIgnoreCase));
                 var actualName = firstblock.GetName();
                 Assert.AreEqual(NEWTASK, actualName, "function \"Add New Task\" doesn't work, because of expected task name isn't equal to actual task name");
             }
 
             var NewTasks = ConstructPage<TeacherExerciseManagerPage>();
-            TestContext.Progress.WriteLine("get list of tasks");
+            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var allblock = NewTasks.GetBlocks();
             if (allblock != null)
             {
-                TestContext.Progress.WriteLine($"search task with {NEWTASK} name in list of tasks  ");
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {NEWTASK} name in list of tasks  ");
                 var firstblock = allblock.FirstOrDefault(x => x.TEMP_GetName().Equals(NEWTASK, StringComparison.OrdinalIgnoreCase));
-                TestContext.Progress.WriteLine("Click on delete button");
+                TestContext.Out.WriteLine("\n<br> " + "Click on delete button");
                 firstblock.ClickOnDeleteButton();
             }
         }
