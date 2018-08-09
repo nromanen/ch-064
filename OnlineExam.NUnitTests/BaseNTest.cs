@@ -131,7 +131,7 @@ namespace OnlineExam.NUnitTests
 
             ExtentTestManager.GetTest().Log(logstatus,
                 "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage +
-                "\n<br>\n<br> " + TestContext.Progress.ToString());
+                "\n<br>\n<br> " + TestContext.Out.ToString());
 
             driver?.Dispose();
         }
