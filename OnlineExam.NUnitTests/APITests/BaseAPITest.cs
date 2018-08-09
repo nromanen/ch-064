@@ -57,11 +57,11 @@ namespace OnlineExam.NUnitTests.APITests
                     logstatus = Status.Pass;
                     break;
             }
-
-            TestContext.Progress.WriteLine("Test ended " + TestContext.CurrentContext.Test.Name);
+            TestContext.Progress.Write("Test ended " + TestContext.CurrentContext.Test.Name);
             ExtentTestManager.GetTest().Log(logstatus,
                 "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage +
-                "\n<br>\n<br> " + TestContext.Progress.ToString());
+                "\n<br>\n<br> " + TestContext.Progress.NewLine);
+            
         }
     }
 }
