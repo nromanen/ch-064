@@ -3,5 +3,5 @@
   "Url": "http://localhost:93",
   "ConnectionString": "Server = .\\SQLEXPRESS; Database = OnlineExamDB; integrated security = True;",  
   "ServerName": ".\\SQLEXPRESS",
-  "DatabaseName": "OnlineExamDB"
+  "DatabaseName": "OnlineExamDB"//try to fix config
 }
