@@ -41,6 +41,8 @@ namespace OnlineExam.NUnitTests.APITests
                 ? ""
                 : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
             var errorMessage = TestContext.CurrentContext.Result.Message;
+            var output = TestExecutionContext.CurrentContext.CurrentResult.Output;
+
             Status logstatus;
 
             switch (status)
@@ -58,11 +60,16 @@ namespace OnlineExam.NUnitTests.APITests
                     logstatus = Status.Pass;
                     break;
             }
-            TestContext.Out.Write("Test ended " + TestContext.CurrentContext.Test.Name);
+            TestContext.Out.WriteLine("\n<br> " + "Test ended " + TestContext.CurrentContext.Test.Name);
+
             ExtentTestManager.GetTest().Log(logstatus,
-                "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage +
-                TestExecutionContext.CurrentContext.CurrentResult.Output);
-            
+                "Test ended with " + logstatus + "\n<br>\n<br>" +
+                stacktrace != null ? "\n<br>\n<br>" + stacktrace + "\n<br>\n<br>" :
+                string.Empty
+                + errorMessage != null ? errorMessage + "\n<br>\n<br>" : string.Empty
+                                                                         + output
+
+
         }
     }
 }
