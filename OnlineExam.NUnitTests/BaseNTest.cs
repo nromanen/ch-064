@@ -133,8 +133,8 @@ namespace OnlineExam.NUnitTests
 
             ExtentTestManager.GetTest().Log(logstatus,
                 "Test ended with " + logstatus + "\n<br>\n<br>" +
-                (isStackTraceNullOrEmpty ? "\n<br>\n<br>" + stacktrace + "\n<br>\n<br>" : string.Empty)
-                + (isErrorMessageNullOrEmpty ? errorMessage + "\n<br>\n<br>" : string.Empty)
+                (!isStackTraceNullOrEmpty ? "\n<br>\n<br>" + stacktrace + "\n<br>\n<br>" : string.Empty)
+                + (!isErrorMessageNullOrEmpty ? errorMessage + "\n<br>\n<br>" : string.Empty)
                 + output);
 
             driver?.Dispose();
