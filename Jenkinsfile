@@ -24,7 +24,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        bat(script: '\\"${tool \'MSBuildLocal\'}\\" OnlineExamTest.sln /p:Configuration=Debug /p:Platform=\\"Any CPU\\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}', returnStatus: true, returnStdout: true)
+        bat "\"${tool 'MSBuildLocal'}\" OnlineExamTest.sln /p:Configuration=Debug /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
       }
     }
     stage('Restore DB') {
