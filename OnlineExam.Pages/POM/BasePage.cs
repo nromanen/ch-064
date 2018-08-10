@@ -4,7 +4,8 @@ using System;
 using System.Collections;
 using OnlineExam.Framework;
 using System.Threading;
-//werftgh
+//werftsdfrgtyuiop[]
+
 namespace OnlineExam.Pages.POM
 {
     public abstract class BasePage
