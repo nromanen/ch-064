@@ -32,16 +32,28 @@ pipeline {
             bat(script: '"OnlineExam.DatabaseHelper/bin/Debug/OnlineExam.DatabaseHelper.exe" restore')
         }
     }
-    stage(Test) {
+    stage('Test') {
         steps {
             bat(script: 'C:/Users/ch_admin/Desktop/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe  OnlineExam.NUnitTests/bin/Debug/OnlineExam.NUnitTests.dll')
         }
     }
-  }
-  post {
-        always {
-            nunit 'TestResult.xml'
-            //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'OnlineExam.NUnitTests\\Reports', reportFiles: 'MyOwnReport.html', reportName: 'HTML Report', reportTitles: ''])
+    stage('Publish report') {
+        steps {
+            nunit testResultsPattern: 'TestResult.xml'
         }
     }
+    stage('Publish HTML') {
+        steps {
+            script {
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'OnlineExam.NUnitTests\\Reports', reportFiles: 'MyOwnReport.html', reportName: 'HTML Report', reportTitles: ''])    
+            }
+        }
+    }
+  }
+  //post {
+  //      always {
+  //          nunit 'TestResult.xml'
+  //          publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'OnlineExam.NUnitTests\\Reports', reportFiles: 'MyOwnReport.html', reportName: 'HTML Report', reportTitles: ''])
+  //      }
+  //  }
 }
