@@ -14,7 +14,7 @@ namespace OnlineExam.Framework
         public const string TEACHER_PASSWORD = "Teacher_123";
         public const string STUDENT_EMAIL = "student@gmail.com";
         public const string STUDENT_PASSWORD = "Student_123";
-        public const string TEACHER = "Teacher";
+        public const string TEACHER = "TeacherRole";
         public const string ENGLISH = "en";
         public const string UKRAINE = "uk";
         public const string LOGIN_URL_CONTAINS = "Login";
@@ -28,7 +28,7 @@ namespace OnlineExam.Framework
         public const string FAKE_PASSWORD = "Fake_123";
         public const string SCREEN_SHOT = "ScreenShot";
         public const string USER_FOR_DELETE_EMAIL = "UserForDelete@gmail.com";
-        public const string USER_FOR_CHANGE_ROLE_EMAIL = "UserForChangeRole@gmail.com";
+        public const string USER_FOR_CHANGE_ROLE_EMAIL = "UserForChangeRoleEmail@gmail.com";
         public const string USER_PASSWORD = "User_123";
         public const string USER_FOR_CHANGE_EMAIL = "UserForChangeEmail@gmail.com";
         public const string USER_FOR_CHANGE_NAME = "UserForChangeName@gmail.com";

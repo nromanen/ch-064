@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OnlineExam.Framework;
+using OnlineExam.Framework.Params;
 using OnlineExam.Pages.POM;
 
 
@@ -14,6 +15,8 @@ namespace OnlineExam.NUnitTests
         private LogInPage logInPage;
         private AdminPanelPage adminPanelPage;
 
+        private AdminTestParams adminTestParams = ParametersResolver.Resolve<AdminTestParams>("AdminTestParams.json");
+
 
         [SetUp]
         public override void SetUp()
@@ -26,8 +29,8 @@ namespace OnlineExam.NUnitTests
             logInPage = header.GoToLogInPage();
 
             TestContext.Out.WriteLine("\n<br> " + 
-                $"Log in as administrator: email {Constants.ADMIN_EMAIL}, password {Constants.ADMIN_PASSWORD}");
-            logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
+                $"Log in as administrator: email {adminTestParams.AdminEmail}, password {adminTestParams.AdminPassword}");
+            logInPage.SignIn(adminTestParams.AdminEmail,adminTestParams.AdminPassword);
 
             TestContext.Out.WriteLine("\n<br> " + "Go to admin panel page");
             adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
@@ -37,54 +40,54 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void IsUserPresentedInUserListTest()
         {
-            var isUserPresentedInUserList = adminPanelPage.IsUserPresentedInUserList(Constants.STUDENT_EMAIL);
-            Assert.True(isUserPresentedInUserList, $"User {Constants.STUDENT_EMAIL} is not presented in user list");
+            var isUserPresentedInUserList = adminPanelPage.IsUserPresentedInUserList(adminTestParams.StudentEmail);
+            Assert.True(isUserPresentedInUserList, $"User {adminTestParams.StudentEmail} is not presented in user list");
         }
 
         [Test]
         public void DeleteUserTest()
         {
             TestContext.Out.WriteLine("\n<br> " + 
-                $"Check if user {Constants.USER_FOR_DELETE_EMAIL} is presented in user list before delete");
+                $"Check if user {adminTestParams.UserForDeleteEmail} is presented in user list before delete");
             var isUserPresentedInUserListBeforeDelete =
-                adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL);
+                adminPanelPage.IsUserPresentedInUserList(adminTestParams.UserForDeleteEmail);
 
             Assert.True(isUserPresentedInUserListBeforeDelete,
-                $"User {Constants.USER_FOR_DELETE_EMAIL} is not presented in the system," +
+                $"User {adminTestParams.UserForDeleteEmail} is not presented in the system," +
                 "so we have not opportunity to delete this user");
 
-            TestContext.Out.WriteLine("\n<br> " + $"Delete user {Constants.USER_FOR_DELETE_EMAIL}");
-            adminPanelPage.DeleteUser(Constants.USER_FOR_DELETE_EMAIL);
+            TestContext.Out.WriteLine("\n<br> " + $"Delete user {adminTestParams.UserForDeleteEmail}");
+            adminPanelPage.DeleteUser(adminTestParams.UserForDeleteEmail);
 
             TestContext.Out.WriteLine("\n<br> " + "Check if user list is available");
             var isListOfUsersH2ElementPresented = adminPanelPage.IsListOfUsersH2ElementPresented();
             Assert.True(isListOfUsersH2ElementPresented, "List of users is not available");
 
             TestContext.Out.WriteLine("\n<br> " + 
-                $"Check if user {Constants.USER_FOR_DELETE_EMAIL} is presented in user list after delete");
+                $"Check if user {adminTestParams.UserForDeleteEmail} is presented in user list after delete");
             var isUserPresentedInUserListAfterDelete =
-                adminPanelPage.IsUserPresentedInUserList(Constants.USER_FOR_DELETE_EMAIL);
+                adminPanelPage.IsUserPresentedInUserList(adminTestParams.UserForDeleteEmail);
             Assert.False(isUserPresentedInUserListAfterDelete,
-                $"User {Constants.USER_FOR_DELETE_EMAIL} was not deleted from the system");
+                $"User {adminTestParams.UserForDeleteEmail} was not deleted from the system");
         }
 
         [Test]
         public void ChangeUserRoleTest()
         {
             TestContext.Out.WriteLine("\n<br> " + 
-                $"Go to change role of user page, user {Constants.USER_FOR_CHANGE_ROLE_EMAIL} ");
-            var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
+                $"Go to change role of user page, user {adminTestParams.UserForChangeRoleEmail} ");
+            var changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(adminTestParams.UserForChangeRoleEmail);
 
-            TestContext.Out.WriteLine("\n<br> " + $"Change user role to role {Constants.TEACHER}");
-            changeRolePage.ChangeRole(Constants.TEACHER);
+            TestContext.Out.WriteLine("\n<br> " + $"Change user role to role {adminTestParams.TeacherRole}");
+            changeRolePage.ChangeRole(adminTestParams.TeacherRole);
 
             TestContext.Out.WriteLine("\n<br> " + 
-                $"Go to change role of user page, user {Constants.USER_FOR_CHANGE_ROLE_EMAIL} ");
-            changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
+                $"Go to change role of user page, user {adminTestParams.UserForChangeRoleEmail} ");
+            changeRolePage = adminPanelPage.ChangeRoleOfUserButtonClick(adminTestParams.UserForChangeRoleEmail);
 
             TestContext.Out.WriteLine("\n<br> " + "Check roles");
             var currentRole = changeRolePage.CurrentRole();
-            Assert.AreEqual(Constants.TEACHER, currentRole, "Role of user are not the same");
+            Assert.AreEqual(adminTestParams.TeacherRole, currentRole, "Role of user are not the same");
         }
 
         [Test]

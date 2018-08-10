@@ -102,6 +102,8 @@
     <Compile Include="DriversFabric.cs" />
     <Compile Include="ExtendedWebDriver.cs" />
     <Compile Include="CurrentPath.cs" />
+    <Compile Include="ParametersResolver.cs" />
+    <Compile Include="Params\AdminTestParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseSettings.cs" />
   </ItemGroup>

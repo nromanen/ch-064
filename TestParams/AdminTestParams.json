@@ -1,0 +1,9 @@
+{
+  "adminEmail": "admin@gmail.com",
+  "adminPassword": "Admin_123",
+  "userForDeleteEmail": "UserForDelete@gmail.com",
+  "userForChangeRoleEmail": "UserForChangeRole@gmail.com",
+  "userPassword": "User_123",
+  "teacherRole": "Teacher",
+  "studentEmail": "student@gmail.com"
+}
