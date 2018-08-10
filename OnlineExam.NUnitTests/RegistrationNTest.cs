@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OnlineExam.DatabaseHelper.DAL;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using System;
@@ -31,6 +32,23 @@ namespace OnlineExam.NUnitTests
         }
 
         [Test]
+        public void SignUp()
+        {
+            string localEmail = "loll@dmail.com";
+            var signUp = header.GoToRegistrationPage();
+            TestContext.Out.WriteLine("\n<br> " + "Registration page opened.");
+            signUp.Registration(localEmail, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
+            var currentUrl = header.GetCurrentUrl();
+            Assert.AreEqual(BaseSettings.Fields.Url + "/", currentUrl, "Index page doesn't return.");
+            var areCookiesEnabled = header.IsCookieEnabled(".AspNetCore.Identity.Application");
+            Assert.True(areCookiesEnabled, "Cookies are not enabled.");
+            var isEmailInHeader = header.IsUserEmailPresentedInHeader(localEmail);
+            Assert.True(isEmailInHeader, $"User is not presented in header.");
+            var getUserFromDB = new UserDAL().GetUserByEmail(localEmail);
+            Assert.True(getUserFromDB != null, $"Acc doesn't exist in database.");
+        }
+
+        [Test]
         public void CheckIfUserIsPresentedInUserListAfterSignUp()
         {
             var signUp = header.GoToRegistrationPage();
@@ -54,12 +72,17 @@ namespace OnlineExam.NUnitTests
         {
             var signUp = header.GoToRegistrationPage();
             TestContext.Out.WriteLine("\n<br> " + "Went to registration page.");
-            signUp.Registration(Constants.STUDENT_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
+            var currentPage = signUp.Registration(Constants.STUDENT_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
             TestContext.Out.WriteLine("\n<br> " + "Registration done.");
-            header.GoToHomePage();
-            TestContext.Out.WriteLine("\n<br> " + "Went to home page.");
-            var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
-            Assert.False(result, "User signed up with used email.");
+            var isEmailInHeader = header.IsUserEmailPresentedInHeader(Constants.EXAMPLE_EMAIL);
+            Assert.False(isEmailInHeader, $"User {Constants.EXAMPLE_EMAIL} is presented in header.");
+            var currentUrl = currentPage.GetCurrentUrl();
+            Assert.AreNotEqual(BaseSettings.Fields.Url + "/", currentUrl, "Index page returns.");
+            var areCookiesEnabled = currentPage.IsCookieEnabled(".AspNetCore.Identity.Application");
+            Assert.False(areCookiesEnabled, "Cookies are enabled.");
+            var isAlertVisible = signUp.IsAlertVisible();
+            Assert.True(isAlertVisible, "Alert isn't visible.");
+
         }
     }
 }

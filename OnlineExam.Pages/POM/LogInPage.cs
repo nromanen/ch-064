@@ -50,17 +50,6 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<IndexPage>();
         }
 
-        public bool IsCookiesEnabled(string cookieName)
-        {
-            if (IsCookieEnabled(cookieName))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         /// <summary>
         /// Checks if "Sign In" label is presented in Header.
         /// </summary>

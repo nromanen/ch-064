@@ -136,7 +136,7 @@
   <data name="signIn" xml:space="preserve">
     <value>SIGN IN</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>ВХІД</value>
+  <data name="ownerStringToDel" xml:space="preserve">
+    <value>Current owner:</value>
   </data>
 </root>

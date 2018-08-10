@@ -15,18 +15,18 @@ namespace OnlineExam.Pages.POM
     {
         // http://localhost:55842/CourseManagement
         // Created by Roma ༼ つ ◕_◕ ༽つ
-        public CourseManagementPage(){ }
+        public CourseManagementPage() { }
         ///html/body/div/div/a[1]
         [FindsBy(How = How.XPath, Using = "//a[@href='/CourseManagement/Create']")]
-        public IWebElement BtnAddCourse { get; set; }
+        private IWebElement BtnAddCourse { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//a[@href='/CourseManagement/ViewCourses']")]
-        public IWebElement BtnMyCourses { get; set; }
+        private IWebElement BtnMyCourses { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".table tr:not(:first-of-type)")]
-        public IList<IWebElement> RowOfTrs { get; set; }
+        private IList<IWebElement> RowOfTrs { get; set; }
 
-        public IList<CreateCoursePageRowItem> RowItems { get; set; }
+        private IList<CreateCoursePageRowItem> RowItems { get; set; }
 
         public CreateCoursePageRowItem GetByName(string name)
         {
@@ -50,7 +50,7 @@ namespace OnlineExam.Pages.POM
             BtnAddCourse.Click();
             var createPage = ConstructPage<CreateCoursePage>();
             createPage.FillCourse(courseName, courseDescription);
-            createPage.BtnOk.Click();
+            createPage.ClickBtnOk();
         }
 
         public void GoToCourse(string courseName)
@@ -74,6 +74,30 @@ namespace OnlineExam.Pages.POM
                 return singleBlock.GetCourseName();
             }
             return String.Empty;
+        }
+
+        /// <summary>
+        /// Returns true if created course presented in course list or false if not presented
+        /// </summary>
+        public bool IsCourseCreated(string courseName)
+        {
+            //IList<CreateCoursePageRowItem> blockList,
+            var blockList = ConstructPage<CourseManagementPage>().GetBlocks();
+            if (blockList != null)
+            {
+                return blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase)) != null;
+            }
+            return false;
+        }
+
+        public void ClickBtnAddCourse()
+        {
+            BtnAddCourse.Click();
+        }
+
+        public void ClickBtnMyCourses()
+        {
+            BtnMyCourses.Click();
         }
     }
 }

@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
-using OnlineExam.DatabaseHelper;
-using System.Globalization;
-using System.Resources;
-
 
 namespace OnlineExam.NUnitTests
 {
@@ -22,7 +14,7 @@ namespace OnlineExam.NUnitTests
         private Header header;
         private LogInPage logInPage;
         private CourseManagementPage adminPanelPage;
-        
+
         [SetUp]
         public override void SetUp()
         {
@@ -30,20 +22,27 @@ namespace OnlineExam.NUnitTests
             header = ConstructPage<Header>();
             logInPage = header.GoToLogInPage();
         }
-        
+
         [Test]
         public void CreateCourse_ValidData()
         {
             LoginAsTeacher();
             string courseName = "Console class", courseDescr = "Description";
-            var courseManagment = ConstructPage<CourseManagementPage>();
-            courseManagment.BtnAddCourse.Click();
+            var courseManagmentPage = ConstructPage<CourseManagementPage>();
+
+            TestContext.Out.WriteLine("Click on 'Add course' button.");
+            courseManagmentPage.ClickBtnAddCourse();
             var createCourse = ConstructPage<CreateCoursePage>();
+
+            TestContext.Out.WriteLine($"Creating course with title: {courseName} and description: {courseDescr}.");
             createCourse.FillCourse(courseName, courseDescr);
-            createCourse.BtnOk.Click();
-            var blockList = courseManagment.GetBlocks();
-            var name = courseManagment.GetCreatedCourseName(blockList, courseName);
-            Assert.AreEqual(courseName, name);
+
+            TestContext.Out.WriteLine("Click 'Ok' button.");
+            createCourse.ClickBtnOk();
+
+            bool isCourseCreated = courseManagmentPage.IsCourseCreated(courseName);
+            Assert.IsTrue(isCourseCreated, $"Test fail because course with '{courseName}' title is not presented in course list.");
+            TestContext.Out.WriteLine($"Course with title '{courseName}' is successfully created.");
         }
 
         [Test]
@@ -52,13 +51,19 @@ namespace OnlineExam.NUnitTests
             LoginAsTeacher();
             string courseName = String.Empty, courseDescr = string.Empty;
             var courseManagment = ConstructPage<CourseManagementPage>();
-            courseManagment.BtnAddCourse.Click();
+
+            TestContext.Out.WriteLine("Click on 'Add course' button");
+            courseManagment.ClickBtnAddCourse();
             var createCourse = ConstructPage<CreateCoursePage>();
             string expectedURL = createCourse.GetCurrentUrl();
+
+            TestContext.Out.WriteLine($"Creating course with empty title and description.");
             createCourse.FillCourse(courseName, courseDescr);
-            createCourse.BtnOk.Click();
+
+            TestContext.Out.WriteLine("Click 'Ok' button.");
+            createCourse.ClickBtnOk();
             string currentURL = createCourse.GetCurrentUrl();
-            Assert.AreEqual(expectedURL, currentURL);
+            Assert.AreEqual(expectedURL, currentURL, $"Test fail because expected URL: {expectedURL} is not equal to current URL: {currentURL}");
         }
 
         [Test]
@@ -67,10 +72,16 @@ namespace OnlineExam.NUnitTests
             LoginAsTeacher();
             string courseName = "Selenium";
             var courseManagment = ConstructPage<CourseManagementPage>();
-            courseManagment.BtnMyCourses.Click();
+
+            TestContext.Out.WriteLine("Click 'My courses' button");
+            courseManagment.ClickBtnMyCourses();
             var courseView = ConstructPage<ViewCoursesPage>();
-            var text = courseView.IsDeleted(courseView,courseName,resxManager);
-            Assert.AreEqual(resxManager.GetString("btnRecoverCourse"), text);
+            
+            TestContext.Out.WriteLine($"Deleting course with title: {courseName}.");
+            var IsCourseDeleted = courseView.IsDeleted(courseName, resxManager);
+            string btnRecoverCourseText = resxManager.GetString("btnRecoverCourse");
+            Assert.IsNotNull(IsCourseDeleted, $"Could not delete course '{courseName}' because it was already deleted.");
+            TestContext.Out.WriteLine($"Course with title '{courseName}' is successfully deleted.");
         }
 
         [Test]
@@ -79,10 +90,16 @@ namespace OnlineExam.NUnitTests
             LoginAsTeacher();
             string courseName = "CLR example";
             var courseManagment = ConstructPage<CourseManagementPage>();
-            courseManagment.BtnMyCourses.Click();
+
+            TestContext.Out.WriteLine("Click on 'My courses' button");
+            courseManagment.ClickBtnMyCourses();
             var courseView = ConstructPage<ViewCoursesPage>();
-            var text = courseView.IsRestored(courseView, courseName,resxManager);
-            Assert.AreEqual(resxManager.GetString("btnDeleteCourse"), text);
+
+            TestContext.Out.WriteLine($"Restoring course with title: {courseName}.");
+            string text = courseView.IsRestored(courseView, courseName, resxManager);
+            string btnRecoverCourseText = resxManager.GetString("btnDeleteCourse");
+            Assert.AreEqual(btnRecoverCourseText, text, $"Could not restore course because expect button'{btnRecoverCourseText}', but found button '{text}'.");
+            TestContext.Out.WriteLine($"Course with title '{courseName}' is successfully restored.");
         }
 
         [Test]
@@ -91,21 +108,24 @@ namespace OnlineExam.NUnitTests
             LoginAsTeacher();
             string courseName = "ChangeMe", newCourseName = "WebDriver";
             var courseManagment = ConstructPage<CourseManagementPage>();
-            courseManagment.BtnMyCourses.Click();
-            var courseView = ConstructPage<ViewCoursesPage>();
-            var blockList = courseView.GetBlocks();
-            if (blockList != null)
-            {
-                var singleBlock = blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
-                if (singleBlock != null)
-                {
-                    singleBlock.ClickBtnChange();
-                    var editPage = ConstructPage<CreateCoursePage>();
-                    editPage.EditCourse(newCourseName, "New Description");
-                    editPage.BtnOk.Click();
-                    Assert.True(singleBlock.IsCourseExist(courseName, newCourseName, courseView));
-                }
-            }  
+
+            TestContext.Out.WriteLine("Click on 'My courses' button.");
+            courseManagment.ClickBtnMyCourses();
+            var courseViewPage = ConstructPage<ViewCoursesPage>();
+
+            TestContext.Out.WriteLine("Click on 'Change' button.");
+            courseViewPage.ClickChangeBtn(courseName);
+            var editPage = ConstructPage<CreateCoursePage>();
+
+            TestContext.Out.WriteLine($"Change to ");
+            editPage.EditCourse(newCourseName, "New Description");
+
+            TestContext.Out.WriteLine("Click on 'Ok' button.");
+            editPage.ClickBtnOk();
+
+            bool isCourseExist = courseViewPage.IsCourseExist(newCourseName);
+            Assert.True(isCourseExist, $"Could not found course with title: {newCourseName}.");
+            TestContext.Out.WriteLine($"Title of '{courseName}' course successfully changed to '{newCourseName}'.");
         }
 
         [Test]
@@ -114,33 +134,34 @@ namespace OnlineExam.NUnitTests
             LoginAsAdmin();
             string courseName = "Owner";
             string owner = String.Empty;
-            
-            var courseManagment = ConstructPage<CourseManagementPage>();
-            var courseView = ConstructPage<ViewCoursesPage>();
-            var blockList = courseView.GetBlocks();
+            var courseViewPage = ConstructPage<ViewCoursesPage>();
 
-            if (blockList != null)
-            {
-                var singleBlock = blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
-                if (singleBlock != null)
-                {
-                    singleBlock.ClickBtnChangeOwner();
-                    var changeOwnerPage = ConstructPage<ChangeCourseOwnerPage>();
-                    owner = changeOwnerPage.GetOwnerName();
-                    changeOwnerPage.ChangeOwner();
-                    Assert.True(changeOwnerPage.IsOwnerChanges(courseView,owner));
-                }
-            }
+            TestContext.Out.WriteLine("Click on 'Change owner' button.");
+            courseViewPage.ClickChangeOwnerBtn(courseName);
+            var changeOwnerPage = ConstructPage<ChangeCourseOwnerPage>();
+            string pastOwner = changeOwnerPage.GetOwnerName(resxManager);
+            TestContext.Out.WriteLine($"Current owner: {pastOwner}.");
+
+            TestContext.Out.WriteLine($"Changing current owner: {pastOwner}.");
+            changeOwnerPage.ChangeOwner(resxManager);
+            courseViewPage.ClickChangeOwnerBtn(courseName);
+
+            string presentOwner = changeOwnerPage.GetOwnerName(resxManager);
+            TestContext.Out.WriteLine($"Get new owner: {presentOwner}.");
+            Assert.AreNotEqual(pastOwner, presentOwner, $"The owner has not changed. Past owner = '{pastOwner}', present owner = '{presentOwner}'");
+            TestContext.Out.WriteLine($"Owner successfully changed from '{pastOwner}' to '{presentOwner}'.");
         }
-        
+
         public void LoginAsTeacher()
         {
+            TestContext.Out.WriteLine($"SignIn as teacher using email: {Constants.TEACHER_EMAIL}, password: {Constants.TEACHER_PASSWORD}");
             logInPage.SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
             adminPanelPage = ConstructPage<SideBar>().GoToCourseManagementPage();
         }
 
         public void LoginAsAdmin()
         {
+            TestContext.Out.WriteLine($"SignIn as admin using email: {Constants.ADMIN_EMAIL}, password: {Constants.ADMIN_PASSWORD}");
             logInPage.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
             adminPanelPage = ConstructPage<SideBar>().GoToCourseManagementPage();
         }
