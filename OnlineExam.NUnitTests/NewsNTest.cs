@@ -36,7 +36,7 @@ namespace OnlineExam.NUnitTests
             TestContext.Out.WriteLine("\n<br> " + "Opened news page.");
             var createArticle = newsPage.CreateArticle();
             var getNewsFromDB = new NewsDAL().GetNewsByTitle(TeacherNewsPage.Title);
-            Assert.True(getNewsFromDB != null, $"News doesn't exist in database.");
+            Assert.NotNull(getNewsFromDB, $"News doesn't exist in database.");
             var doUrlEndsWith = createArticle.UrlEndsWith("AddNews/News");
             Assert.True(doUrlEndsWith, "News page doesn't return. News article isn't created.");
         }

@@ -45,7 +45,7 @@ namespace OnlineExam.NUnitTests
             var isEmailInHeader = header.IsUserEmailPresentedInHeader(localEmail);
             Assert.True(isEmailInHeader, $"User is not presented in header.");
             var getUserFromDB = new UserDAL().GetUserByEmail(localEmail);
-            Assert.True(getUserFromDB != null, $"Acc doesn't exist in database.");
+            Assert.NotNull(getUserFromDB, $"Acc doesn't exist in database.");
         }
 
         [Test]
