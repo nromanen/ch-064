@@ -60,16 +60,17 @@ namespace OnlineExam.NUnitTests.APITests
                     logstatus = Status.Pass;
                     break;
             }
+
             TestContext.Out.WriteLine("\n<br> " + "Test ended " + TestContext.CurrentContext.Test.Name);
+
+            var isStackTraceNullOrEmpty = string.IsNullOrEmpty(stacktrace);
+            var isErrorMessageNullOrEmpty = string.IsNullOrEmpty(errorMessage);
 
             ExtentTestManager.GetTest().Log(logstatus,
                 "Test ended with " + logstatus + "\n<br>\n<br>" +
-                stacktrace != null ? "\n<br>\n<br>" + stacktrace + "\n<br>\n<br>" :
-                string.Empty
-                + errorMessage != null ? errorMessage + "\n<br>\n<br>" : string.Empty
-                                                                         + output
-
-
+                (isStackTraceNullOrEmpty ? "\n<br>\n<br>" + stacktrace + "\n<br>\n<br>" : string.Empty)
+                + (isErrorMessageNullOrEmpty ? errorMessage + "\n<br>\n<br>" : string.Empty)
+                + output);
         }
     }
 }
