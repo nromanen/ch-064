@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OnlineExam.DatabaseHelper.DAL;
 using OnlineExam.Framework;
+using OnlineExam.Framework.Params;
 using OnlineExam.Pages.POM;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace OnlineExam.NUnitTests
     {
         private Header header;
         private SideBar sideBar;
+        private NewsParams newsParams = ParametersResolver.Resolve<NewsParams>("NewsParams.json");
 
         [SetUp]
         public override void SetUp()
@@ -30,12 +32,12 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void CreateNewsTest()
         {
-            var signIn = header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            TestContext.Out.WriteLine("\n<br> " + $"Signed in as {Constants.TEACHER_EMAIL}.");
+            var signIn = header.GoToLogInPage().SignIn(newsParams.TeacherEmail, newsParams.TeacherPasword);
+            TestContext.Out.WriteLine("\n<br> " + $"Signed in as {newsParams.TeacherEmail}.");
             var newsPage = ConstructPage<SideBar>().GoToTeacherNewsPage();
             TestContext.Out.WriteLine("\n<br> " + "Opened news page.");
-            var createArticle = newsPage.CreateArticle();
-            var getNewsFromDB = new NewsDAL().GetNewsByTitle(TeacherNewsPage.Title);
+            var createArticle = newsPage.CreateArticle(newsParams.ArticleName, newsParams.Title, newsParams.ArticleText);
+            var getNewsFromDB = new NewsDAL().GetNewsByTitle(newsParams.Title);
             Assert.NotNull(getNewsFromDB, $"News doesn't exist in database.");
             var doUrlEndsWith = createArticle.UrlEndsWith("AddNews/News");
             Assert.True(doUrlEndsWith, "News page doesn't return. News article isn't created.");

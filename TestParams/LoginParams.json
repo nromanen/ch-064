@@ -1,0 +1,7 @@
+{
+  "studentEmail": "student@gmail.com",
+  "studentPassword": "Student_123",
+  "cookie": ".AspNetCore.Identity.Application",
+  "fakeEmail": "fake@gmail.com",
+  "fakePassword": "Fake_123"
+}

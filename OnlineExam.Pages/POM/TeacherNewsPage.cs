@@ -37,18 +37,17 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.CssSelector, Using = "#openModal > div > form > input[type=\"submit\"]:nth-child(3)")]
         public IWebElement PublishInput { get; set; }
 
-        public static string Title = "New Title";
 
-        public TeacherNewsPage CreateArticle()
+        public TeacherNewsPage CreateArticle(string name, string title, string article)
         {
             WaitWhileNotClickableWebElement(CreateArticleReference);
             CreateArticleReference.Click();
             ChooseFileInput.Click();
             SendKeys.SendWait(@"D:\ch-064\OnlineExam.Pages\Sources\Example.jpg");
             SendKeys.SendWait("{Enter}");
-            CourseNameInput.SendKeys("New name");
-            TitleTextArea.SendKeys(Title);
-            ArticleTextArea.SendKeys("New article");
+            CourseNameInput.SendKeys(name);
+            TitleTextArea.SendKeys(title);
+            ArticleTextArea.SendKeys(article);
             WaitWhileNotClickableWebElement(PublishInput);
             PublishInput.Click();
             return ConstructPage<TeacherNewsPage>();
