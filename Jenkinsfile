@@ -34,11 +34,12 @@ pipeline {
             }
         }
     }
+    try{
     stage('Test') {
         steps {
             bat(script: 'C:/Users/ch_admin/Desktop/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe  OnlineExam.NUnitTests/bin/Debug/OnlineExam.NUnitTests.dll')
         }
-    }
+    }}catch(err){}
     stage('Publish report') {
         steps {
             nunit testResultsPattern: 'TestResult.xml'
