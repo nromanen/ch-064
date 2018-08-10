@@ -30,7 +30,7 @@ pipeline {
     stage('Restore DB') {
         steps {
             script {
-                bat '"OnlineExam.DatabaseHelper/bin/Debug/OnlineExam.DatabaseHelper.exe" restore'
+                bat '"C:/Program Files (x86)/Jenkins/workspace/ch-064_dev-5TBVADSHC434SIKJRNBJG3DYKKNOTWQPUWDQEFWSDJU2CXMOOBSQ/OnlineExam.DatabaseHelper/bin/Debug/OnlineExam.DatabaseHelper.exe" restore'
             }
         }
     }
