@@ -29,7 +29,9 @@ pipeline {
     }
     stage('Restore DB') {
         steps {
-            bat(script: '"OnlineExam.DatabaseHelper/bin/Debug/OnlineExam.DatabaseHelper.exe" restore')
+            script {
+                bat '"OnlineExam.DatabaseHelper/bin/Debug/OnlineExam.DatabaseHelper.exe" restore'
+            }
         }
     }
     stage('Test') {
