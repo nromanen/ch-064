@@ -14,6 +14,7 @@ namespace OnlineExam.NUnitTests
     [TestFixture]
     public class TasksNTest : BaseNTest
     {
+
         private Header header;
         private SideBar sidebar;
         private CourseManagementPage CoursesList;
@@ -22,7 +23,8 @@ namespace OnlineExam.NUnitTests
         public override void SetUp()
         {
             base.SetUp();
-            string courseName = "C# Starter";
+
+            string courseName = "C# Essential";
             var header = ConstructPage<Header>();
             TestContext.Out.WriteLine("\n<br> " + "Go to log in page");
             var logInPage = header.GoToLogInPage();
@@ -41,8 +43,8 @@ namespace OnlineExam.NUnitTests
 
                 if (firstBlock != null)
                 {
-                    firstBlock.ClickCourseLink();
                     TestContext.Out.WriteLine("\n<br> " + "Click on CourseName [link]");
+                    firstBlock.ClickCourseLink();
                 }
             }
         }

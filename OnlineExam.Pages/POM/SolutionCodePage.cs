@@ -21,7 +21,7 @@ namespace OnlineExam.Pages.POM
         [FindsBy(How = How.Id, Using = "tinymce")]
         public IWebElement TaskDescription { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "CodeMirror-code")]
+        [FindsBy(How = How.ClassName, Using = "CodeMirror")]
         public IWebElement FieldForCode { get; set; }
 
         [FindsBy(How = How.Id, Using = "result")]
@@ -54,6 +54,18 @@ namespace OnlineExam.Pages.POM
             ExecuteButton.Click();
             //WaitWhileTextToBePresentInElement(FieldWithResultOfCompilationCode,text);
         }
+
+        public void ClickOnExecuteButton(string text)
+        {
+            ExecuteButton.Click();
+            WaitWhileTextToBePresentInElement(FieldWithResultOfCompilationCode,text);
+        }
+
+
+        public string GetTextFromFieldWithResultOfCompilationCode()
+        {
+            return FieldWithResultOfCompilationCode.Text;
+        }
         /// <summary>
         /// Exit button will be clicked on
         /// </summary>
@@ -69,5 +81,11 @@ namespace OnlineExam.Pages.POM
             DoneButton.Click();
         }
 
+
+        public void SendKeysToFieldForCode(string keys)
+        {
+           // driver.ExecuteJavaScript("arguments[0].CodeMirror.setValue(\"\");",FieldForCode);
+            driver.ExecuteJavaScript("arguments[0].CodeMirror.setValue(\"" + keys + "\");",FieldForCode);
+        }
     }
 }
