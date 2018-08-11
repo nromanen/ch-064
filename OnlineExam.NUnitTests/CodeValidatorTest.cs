@@ -68,31 +68,55 @@ namespace OnlineExam.NUnitTests
             var goodCredentials =
                 "public class Program{    public static int Addition(int a, int b)    {        return a + b;    }}";
             var expectedText = "Pass";
+
+            TestContext.Out.WriteLine("\n<br> " + "Send keys to field for code " + goodCredentials);
             solutionCodePage.SendKeysToFieldForCode(goodCredentials);
+
+            TestContext.Out.WriteLine("\n<br> " + "Click on execute button");
             solutionCodePage.ClickOnExecuteButton(expectedText);
+
+            TestContext.Out.WriteLine("\n<br> " + "Getting text from result field");
             var resultOfCompilation = solutionCodePage.GetTextFromFieldWithResultOfCompilationCode();
-            StringAssert.Contains(expectedText, resultOfCompilation);
+
+            StringAssert.Contains(expectedText, resultOfCompilation,
+                $"Message are not same expectedText:{expectedText},+ actualText {resultOfCompilation}");
         }
 
         [Test]
         public void CodeValidatorTestWithBadCredentials()
         {
-            var compileErrors = "Compile errors";
+            var expectedText = "Compile errors";
             var badCredentials = "Bad code";
+
+            TestContext.Out.WriteLine("\n<br> " + "Send keys to field for code " + badCredentials);
             solutionCodePage.SendKeysToFieldForCode(badCredentials);
-            solutionCodePage.ClickOnExecuteButton(compileErrors);
+
+            TestContext.Out.WriteLine("\n<br> " + "Click on execute button");
+            solutionCodePage.ClickOnExecuteButton(expectedText);
+
+            TestContext.Out.WriteLine("\n<br> " + "Getting text from result field");
             var resultOfCompilation = solutionCodePage.GetTextFromFieldWithResultOfCompilationCode();
-            StringAssert.Contains(compileErrors, resultOfCompilation);
+
+            StringAssert.Contains(expectedText, resultOfCompilation,
+                $"Message are not same expectedText:{expectedText},+ actualText {resultOfCompilation}");
         }
 
         [Test]
         public void CodeValidatorTestWithEmptyCredentials()
         {
-            var message = "Write some codeeeee";
+            var expectedText = "Write some codeeeee";
+
+            TestContext.Out.WriteLine("\n<br> " + "Send  empty keys to field for code ");
             solutionCodePage.SendKeysToFieldForCode(string.Empty);
-            solutionCodePage.ClickOnExecuteButton(message);
+
+            TestContext.Out.WriteLine("\n<br> " + "Click on execute button");
+            solutionCodePage.ClickOnExecuteButton(expectedText);
+
+            TestContext.Out.WriteLine("\n<br> " + "Getting text from result field");
             var resultOfCompilation = solutionCodePage.GetTextFromFieldWithResultOfCompilationCode();
-            StringAssert.Contains(message, resultOfCompilation);
+
+            StringAssert.Contains(expectedText, resultOfCompilation,
+                $"Message are not same expectedText:{expectedText},+ actualText {resultOfCompilation}");
         }
     }
 }
