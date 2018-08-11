@@ -1,7 +1,7 @@
 {
   "Browser": "Chrome",
-  "Url": "http://51.144.34.125/",
-  "ConnectionString": "Server = .\\SQLEXPRESS; Database = OnlineExamDB; user=sa;password=140798;",
+  "Url": "http://localhost:93",
+  "ConnectionString": "Server = .\\SQLEXPRESS; Database = OnlineExamDB; user=sa;password=ch64_password;",
   "ServerName": ".\\SQLEXPRESS",
   "DatabaseName": "OnlineExamDB"
 }
