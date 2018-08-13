@@ -29,7 +29,7 @@ namespace OnlineExam.Pages.POM
             }
             return blocks;
         }
-
+        
         [FindsBy(How = How.CssSelector, Using = ".panel.panel-info")]
         public IList<IWebElement> RowOfDiv { get; set; }
 

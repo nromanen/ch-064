@@ -16,6 +16,7 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+
         public void SetDriver(ExtendedWebDriver driver)
         {
             this.driver = driver;
