@@ -15,7 +15,10 @@ namespace OnlineExam.Pages.POM
         public AdminPanelPage()
         {
         }
-
+        /// <summary>
+        /// Delete user from the system by email
+        /// </summary>
+        /// <param name="email"></param>
         public void DeleteUser(string email)
         {
             foreach (var row in rowOfDivsUserListElements)
@@ -30,6 +33,11 @@ namespace OnlineExam.Pages.POM
         }
 
 
+        /// <summary>
+        /// Click on the change role button by user email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public ChangeRolePage ChangeRoleOfUserButtonClick(string email)
         {
             foreach (var row in rowOfDivsUserListElements)
@@ -45,6 +53,11 @@ namespace OnlineExam.Pages.POM
             return null;
         }
 
+        /// <summary>
+        /// Checks if is user presented in the user's list
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public bool IsUserPresentedInUserList(string email)
         {
             foreach (var row in rowOfDivsUserListElements)
@@ -59,6 +72,11 @@ namespace OnlineExam.Pages.POM
             return false;
         }
 
+
+        /// <summary>
+        /// Checks if is list of users available
+        /// </summary>
+        /// <returns></returns>
         public bool IsListOfUsersH2ElementPresented()
         {
             if (listOfUsersH2Element.Displayed)

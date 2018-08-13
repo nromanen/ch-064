@@ -42,7 +42,10 @@ namespace OnlineExam.Pages.POM
 
 
 
-
+        /// <summary>
+        /// Go to admin panel page by clicking on the adminPanel menu item on side bar
+        /// </summary>
+        /// <returns>AdminPanelPage</returns>
         public AdminPanelPage GoToAdminPanelPage()
         {
             navBarElement.Click();
@@ -51,6 +54,10 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<AdminPanelPage>();
         }
 
+        /// <summary>
+        /// Go to teacher news page by clicking on the news menu item on side bar
+        /// </summary>
+        /// <returns>TeacherNewsPage</returns>
         public TeacherNewsPage GoToTeacherNewsPage()
         {
             navBarElement.Click();
@@ -59,6 +66,10 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<TeacherNewsPage>();
         }
 
+        /// <summary>
+        /// Go to ratings page by clicking on the rating menu item on side bar
+        /// </summary>
+        /// <returns>RatingsPage</returns>
         public RatingsPage GoToRatingPage()
         {
             navBarElement.Click();
@@ -67,6 +78,10 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<RatingsPage>();
         }
 
+        /// <summary>
+        /// Go to course management page by clicking on courses menu item on side bar
+        /// </summary>
+        /// <returns>CourseManagementPage</returns>
         public CourseManagementPage GoToCourseManagementPage()
         {
             navBarElement.Click();
@@ -75,6 +90,10 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<CourseManagementPage>();
         }
 
+        /// <summary>
+        /// Go to history favourites page by clicking on code history menu item on side bar
+        /// </summary>
+        /// <returns>HistoryFavouritePage</returns>
         public HistoryFavouritePage GoToCodeHistoryPage()
         {
             navBarElement.Click();
@@ -83,6 +102,10 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<HistoryFavouritePage>();
         }
 
+        /// <summary>
+        ///  Go to mail box page by clicking on  mail box menu item on side bar
+        /// </summary>
+        /// <returns>MailBoxPage</returns>
         public MailBoxPage GoToMailBoxPage()
         {
             navBarElement.Click();
@@ -91,6 +114,10 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<MailBoxPage>();
         }
 
+        /// <summary>
+        /// Go to contact us page by clicking on contact us menu item on side bar
+        /// </summary>
+        /// <returns>ContactUsPage</returns>
         public ContactUsPage GoToContactUsPage()
         {
             navBarElement.Click();
@@ -99,6 +126,10 @@ namespace OnlineExam.Pages.POM
             return ConstructPage<ContactUsPage>();
         }
 
+        /// <summary>
+        /// Go to task page by clicking on task menu item on side bar
+        /// </summary>
+        /// <returns>TasksPage</returns>
         public TasksPage GoToTasksPage()
         {
             navBarElement.Click();
