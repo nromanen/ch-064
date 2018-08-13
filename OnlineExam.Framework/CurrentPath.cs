@@ -13,7 +13,7 @@ namespace OnlineExam.Framework
         public static string ACTUAL_PATH = PATH.Substring(0, PATH.LastIndexOf("bin"));
         public static string PROJECT_PATH = new Uri(ACTUAL_PATH).LocalPath;
         public static string REPORT_PATH = PROJECT_PATH + "Reports\\MyOwnReport.html";
-        public static string SCREEN_SHOT_PATH = PROJECT_PATH + "\\Reports\\";
+        public static string SCREEN_SHOT_PATH = PROJECT_PATH + "\\Screenshots\\";
         public static string BACKUP_PATH = PROJECT_PATH + @"Backup\OnlineExamDB.bak";
         public static string JSON_PATH = new Uri(ACTUAL_PATH).LocalPath + "..\\ConfigFile.json";
 
