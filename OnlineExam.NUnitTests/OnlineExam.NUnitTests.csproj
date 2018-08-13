@@ -119,6 +119,7 @@
     <Compile Include="BaseNTest.cs" />
     <Compile Include="ChangeUserInfoNTest.cs" />
     <Compile Include="CheckAnyInFavouritesN.cs" />
+    <Compile Include="CodeValidatorTest.cs" />
     <Compile Include="CourseNTests.cs" />
     <Compile Include="ExtentManager.cs" />
     <Compile Include="ExtentTestManager.cs" />

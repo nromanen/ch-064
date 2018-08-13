@@ -105,6 +105,11 @@ namespace OnlineExam.Framework
             ((IJavaScriptExecutor) driver).ExecuteScript(jsCode, webElement0, webElement1);
         }
 
+        public void ExecuteJavaScript(string jsCode, IWebElement webElement0)
+        {
+            ((IJavaScriptExecutor)driver).ExecuteScript(jsCode, webElement0);
+        }
+
         public void Maximize()
         {
             driver.Manage().Window.Maximize();
