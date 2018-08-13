@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OnlineExam.DatabaseHelper.DAL;
+using OnlineExam.Framework;
 using OnlineExam.NUnitTests.APIClients;
 using System;
 using System.Net;
@@ -11,6 +12,8 @@ namespace OnlineExam.NUnitTests.APITests
     public class APICoursesTest : BaseAPITest
     {
         private APICoursesClient client;
+        private APICoursesParam APICourses = Paramresolver.Resolve<APICoursesParam>(Constants.PathForJsonParams + "CoursesAPI.json");
+
 
         [SetUp]
         public void SetUp()
@@ -33,9 +36,9 @@ namespace OnlineExam.NUnitTests.APITests
             var guid = new Guid().ToString();
             var obj = new
             {
-                name = $"C# CourseName {guid}",
-                description = "Description for new Course",
-                UserId = "c557d51b-2a7e-46b4-8ed0-fe9253d8f861"
+                name = APICourses.name + "{guid}",
+                description = APICourses.description+"",
+                UserId = APICourses.UserId+""
             };
 
             client = new APICoursesClient();

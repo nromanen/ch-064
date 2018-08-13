@@ -14,12 +14,12 @@ namespace OnlineExam.NUnitTests
         private Header header;
         private SideBar sidebar;
         private CourseManagementPage CoursesList;
+        private TasksParams SCP = Paramresolver.Resolve<TasksParams>(".json");
 
         [SetUp]
         public override void SetUp()
         {
             base.SetUp();
-            string courseName = "C# Starter";
             var header = ConstructPage<Header>();
             TestContext.Out.WriteLine("\n<br> " + "Go to log in page");
             var logInPage = header.GoToLogInPage();
@@ -33,8 +33,8 @@ namespace OnlineExam.NUnitTests
             var block = CoursesList.GetBlocks();
             if (block != null)
             {
-                TestContext.Out.WriteLine("\n<br> " + $"search course with {courseName} name in list of courses  ");
-                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + $"search course with {SCP.CourseName} name in list of courses  ");
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(SCP.CourseName, StringComparison.OrdinalIgnoreCase));
 
                 if (firstBlock != null)
                 {
@@ -48,13 +48,12 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void TaskDone()
         {
-            string TaskName = "Simple addition";
             var ListOfTasks = ConstructPage<TasksPage>();
             TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(SCP.TaskName, StringComparison.OrdinalIgnoreCase));
                 TestContext.Out.WriteLine("\n<br> " + "Click on 'tasks' button");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
@@ -85,8 +84,8 @@ namespace OnlineExam.NUnitTests
                 blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
                 {
-                    TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
-                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                    TestContext.Out.WriteLine("\n<br> " + $"search task with {SCP.TaskName} name in list of tasks  ");
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(SCP.TaskName, StringComparison.OrdinalIgnoreCase));
                     TestContext.Out.WriteLine("\n<br> " + "Click on 'tasks' button");
                     firstblock.ClickOnTasksButton();
                     var TaskView = ConstructPage<TaskViewPage>();
@@ -102,16 +101,14 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void ExitButton()
         {
-
-            string TaskName = "Simple addition";
             var BaseUrl = BaseSettings.Fields.Url;
             var ListOfTasks = ConstructPage<TasksPage>();
             TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
+                TestContext.Out.WriteLine("\n<br> " + $"search task with {SCP.TaskName} name in list of tasks  ");
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(SCP.TaskName, StringComparison.OrdinalIgnoreCase));
                 TestContext.Out.WriteLine("\n<br> " + "Click on 'tasks' button");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();

@@ -33,5 +33,6 @@ namespace OnlineExam.Framework
         public const string USER_FOR_CHANGE_EMAIL = "UserForChangeEmail@gmail.com";
         public const string USER_FOR_CHANGE_NAME = "UserForChangeName@gmail.com";
         public const string USER_FOR_CHANGE_PASSWORD = "UserForChangePassword@gmail.com";
+        public const string PathForJsonParams = "C:/Users/misha/Desktop/ch-064/JsonParams/";
     }
 }
