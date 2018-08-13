@@ -26,8 +26,10 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void CreateCourse_ValidData()
         {
+            var TEST_DATA = Framework.Params.ParametersResolver.Resolve<Framework.Params.CreateCourseParams>("CreateCourseData.json");
+            
             LoginAsTeacher();
-            string courseName = "Console class", courseDescr = "Description";
+            string courseName = TEST_DATA.Title, courseDescr = TEST_DATA.Description;
             var courseManagmentPage = ConstructPage<CourseManagementPage>();
 
             TestContext.Out.WriteLine("Click on 'Add course' button.");
@@ -69,8 +71,10 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void DeleteCourse_ShouldDeleteCourse()
         {
+            var TEST_DATA = Framework.Params.ParametersResolver.Resolve<Framework.Params.DeleteCourseParams>("DeleteCourseData.json");
+
             LoginAsTeacher();
-            string courseName = "Selenium";
+            string courseName = TEST_DATA.Title;
             var courseManagment = ConstructPage<CourseManagementPage>();
 
             TestContext.Out.WriteLine("Click 'My courses' button");
@@ -105,8 +109,10 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void EditCourse_ShouldChangeCourseData()
         {
+            var TEST_DATA = Framework.Params.ParametersResolver.Resolve<Framework.Params.EditCourseParams>("EditCourseData.json");
+
             LoginAsTeacher();
-            string courseName = "ChangeMe", newCourseName = "WebDriver";
+            string courseName = TEST_DATA.pastTitle, newCourseName = TEST_DATA.presentTitle;
             var courseManagment = ConstructPage<CourseManagementPage>();
 
             TestContext.Out.WriteLine("Click on 'My courses' button.");
@@ -118,7 +124,7 @@ namespace OnlineExam.NUnitTests
             var editPage = ConstructPage<CreateCoursePage>();
 
             TestContext.Out.WriteLine($"Change to ");
-            editPage.EditCourse(newCourseName, "New Description");
+            editPage.EditCourse(newCourseName, TEST_DATA.presentDescription);
 
             TestContext.Out.WriteLine("Click on 'Ok' button.");
             editPage.ClickBtnOk();

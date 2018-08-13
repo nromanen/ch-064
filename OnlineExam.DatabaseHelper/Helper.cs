@@ -8,7 +8,7 @@ namespace OnlineExam.DatabaseHelper
     {
         // ༼ つ ಥ_ಥ ༽つ
         // Created by Roma Bahlai
-        private static string conection = $"Server = {BaseSettings.Fields.ServerName}; Database = {BaseSettings.Fields.DatabaseName}; user=sa;password=ch64_password;";
+        private static string conection = $"Server = {BaseSettings.Fields.ServerName}; Database = {BaseSettings.Fields.DatabaseName}; Integrated security = True";
         public static void RollbackDatabase()
         {
             Console.WriteLine("Restore operation started");
