@@ -13,6 +13,7 @@ namespace OnlineExam.NUnitTests
     [TestFixture]
     [Category("Critical")]
     [Category("Basic")]
+    [Category("Mini")]
     public class LoginNTest : BaseNTest
     {
         private Header header;
