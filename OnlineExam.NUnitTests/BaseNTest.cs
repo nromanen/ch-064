@@ -110,10 +110,10 @@ namespace OnlineExam.NUnitTests
             {
                 case TestStatus.Failed:
                     logstatus = Status.Fail;
-                    var screenshotPathWithDate = driver.TakesScreenshotWithDate(CurrentPath.SCREEN_SHOT_PATH,
+                    var screenshotPathWithDate = driver.TakesScreenshotWithDate(
                         Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
-                     mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
-                      // ExtentTestManager.GetTest().AddScreenCaptureFromPath(screenshotPathWithDate);
+                    mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
+                    // ExtentTestManager.GetTest().AddScreenCaptureFromPath(screenshotPathWithDate);
                     break;
                 case TestStatus.Inconclusive:
                     logstatus = Status.Warning;
@@ -136,7 +136,7 @@ namespace OnlineExam.NUnitTests
                 "Test ended with " + logstatus +
                 (!isStackTraceNullOrEmpty ? "\n<br>\n<br>" + stacktrace + "\n<br>\n<br>" : "\n<br>\n<br>")
                 + (!isErrorMessageNullOrEmpty ? errorMessage + "\n<br>\n<br>" : string.Empty)
-                + output,mediaModel);
+                + output, mediaModel);
 
             driver?.Dispose();
         }

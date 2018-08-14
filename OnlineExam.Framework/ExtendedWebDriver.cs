@@ -34,7 +34,7 @@ namespace OnlineExam.Framework
 
         public ISearchContext SeleniumContext => driver;
 
-        public string TakesScreenshotWithDate(string Path, string FileName, ScreenshotImageFormat Format)
+        public string TakesScreenshotWithDate(string FileName, ScreenshotImageFormat Format)
         {
             ScreenCounter++; //Updates the number of screenshots that we took during the execution
 
@@ -48,7 +48,7 @@ namespace OnlineExam.Framework
             //After: 12_06_2015 14_54_55
 
             DirectoryInfo Validation = new DirectoryInfo(Path); //System IO object
-            var ScreenShotPath = Path + ScreenCounter.ToString() + "." + FileName + TimeAndDate.ToString() + "." +
+            var ScreenShotPath = ".\\Screenshots" + ScreenCounter.ToString() + "." + FileName + TimeAndDate.ToString() + "." +
                                  Format;
             if (Validation.Exists == true) //Capture screen if the path is available
             {
