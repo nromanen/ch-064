@@ -28,7 +28,6 @@ namespace OnlineExam.NUnitTests
             htmlReporter.Configuration().DocumentTitle = "Extent/NUnit Samples";
             htmlReporter.Configuration().ReportName = "Extent/NUnit Samples";
             htmlReporter.Configuration().Theme = Theme.Standard;
-            htmlReporter.config().setAutoCreateRelativePathMedia(true);
             Instance.AttachReporter(htmlReporter);
         }
 
