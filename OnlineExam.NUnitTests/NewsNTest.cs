@@ -13,6 +13,7 @@ namespace OnlineExam.NUnitTests
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
     [Category("Basic")]
+    [Category("Mini")]
     public class NewsNTest : BaseNTest
     {
         private Header header;
