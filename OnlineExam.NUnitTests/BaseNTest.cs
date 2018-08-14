@@ -140,5 +140,10 @@ namespace OnlineExam.NUnitTests
 
             driver?.Dispose();
         }
+
+        public void LogProgress(string message)
+        {
+            TestContext.Out.WriteLine("\n<br> " + message);
+        }
     }
 }
