@@ -48,7 +48,7 @@ namespace OnlineExam.Framework
             //After: 12_06_2015 14_54_55
 
             DirectoryInfo Validation = new DirectoryInfo(Path); //System IO object
-            var ScreenShotPath = "..\\Screenshots" + ScreenCounter.ToString() + "." + FileName + TimeAndDate.ToString() + "." +
+            var ScreenShotPath = "..\\Screenshots\\" + ScreenCounter.ToString() + "." + FileName + TimeAndDate.ToString() + "." +
                                  Format;
             if (Validation.Exists == true) //Capture screen if the path is available
             {
