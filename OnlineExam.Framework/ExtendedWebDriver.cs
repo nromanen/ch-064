@@ -34,7 +34,7 @@ namespace OnlineExam.Framework
 
         public ISearchContext SeleniumContext => driver;
 
-        public string TakesScreenshotWithDate(string FileName, ScreenshotImageFormat Format)
+        public string TakesScreenshotWithDate(string Path, string FileName, ScreenshotImageFormat Format)
         {
             ScreenCounter++; //Updates the number of screenshots that we took during the execution
 
