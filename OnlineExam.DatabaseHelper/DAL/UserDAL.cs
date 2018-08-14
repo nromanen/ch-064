@@ -17,5 +17,14 @@ namespace OnlineExam.DatabaseHelper.DAL
                 return result;
             }
         }
+
+        public AspNetUsers GetUserByEmail(string email)
+        {
+            using (var ctx = new DataModel(BaseSettings.Fields.ConnectionString))
+            {
+                var result = ctx.AspNetUsers.FirstOrDefault(c => c.Email == email);
+                return result;
+            }
+        }
     }
 }

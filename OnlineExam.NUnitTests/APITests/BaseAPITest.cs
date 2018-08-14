@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AventStack.ExtentReports;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using NUnit.Framework.Internal;
 using OnlineExam.Framework;
 using OpenQA.Selenium;
 
@@ -28,7 +29,7 @@ namespace OnlineExam.NUnitTests.APITests
         [SetUp]
         public virtual void SetUp()
         {
-            TestContext.Progress.WriteLine("Test started " + TestContext.CurrentContext.Test.Name);
+            TestContext.Out.WriteLine("\n<br> " + "Test started " + TestContext.CurrentContext.Test.Name);
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
@@ -40,6 +41,8 @@ namespace OnlineExam.NUnitTests.APITests
                 ? ""
                 : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
             var errorMessage = TestContext.CurrentContext.Result.Message;
+            var output = TestExecutionContext.CurrentContext.CurrentResult.Output;
+
             Status logstatus;
 
             switch (status)
@@ -57,11 +60,17 @@ namespace OnlineExam.NUnitTests.APITests
                     logstatus = Status.Pass;
                     break;
             }
-            TestContext.Progress.Write("Test ended " + TestContext.CurrentContext.Test.Name);
+
+            TestContext.Out.WriteLine("\n<br> " + "Test ended " + TestContext.CurrentContext.Test.Name);
+
+            var isStackTraceNullOrEmpty = string.IsNullOrEmpty(stacktrace);
+            var isErrorMessageNullOrEmpty = string.IsNullOrEmpty(errorMessage);
+
             ExtentTestManager.GetTest().Log(logstatus,
-                "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage +
-                "\n<br>\n<br> " + TestContext.Progress.NewLine);
-            
+                "Test ended with " + logstatus +
+                (!isStackTraceNullOrEmpty ? "\n<br>\n<br>" + stacktrace + "\n<br>\n<br>" : "\n<br>\n<br>")
+                + (!isErrorMessageNullOrEmpty ? errorMessage + "\n<br>\n<br>" : string.Empty)
+                + output);
         }
     }
 }

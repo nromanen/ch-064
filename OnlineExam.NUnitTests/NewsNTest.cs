@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OnlineExam.DatabaseHelper.DAL;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using System;
@@ -12,6 +13,7 @@ namespace OnlineExam.NUnitTests
     [Parallelizable(ParallelScope.Self)]
     [TestFixture]
     [Category("Basic")]
+    [Category("Mini")]
     public class NewsNTest : BaseNTest
     {
         private Header header;
@@ -21,7 +23,7 @@ namespace OnlineExam.NUnitTests
         public override void SetUp()
         {
             base.SetUp();
-            TestContext.Progress.WriteLine("Done base set up");
+            TestContext.Out.WriteLine("\n<br> " + "Done base set up");
             header = ConstructPage<Header>();
             sideBar = ConstructPage<SideBar>();
         }
@@ -30,13 +32,14 @@ namespace OnlineExam.NUnitTests
         public void CreateNewsTest()
         {
             var signIn = header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            TestContext.Progress.WriteLine($"Signed in as {Constants.TEACHER_EMAIL}.");
+            TestContext.Out.WriteLine("\n<br> " + $"Signed in as {Constants.TEACHER_EMAIL}.");
             var newsPage = ConstructPage<SideBar>().GoToTeacherNewsPage();
-            TestContext.Progress.WriteLine("Opened news page.");
+            TestContext.Out.WriteLine("\n<br> " + "Opened news page.");
             var createArticle = newsPage.CreateArticle();
-            TestContext.Progress.WriteLine("Article created.");
-            var result = createArticle.UrlEndsWith("AddNews/News");
-            Assert.True(result, "News page doesn't return. News article isn't created.");
+            var getNewsFromDB = new NewsDAL().GetNewsByTitle(TeacherNewsPage.Title);
+            Assert.NotNull(getNewsFromDB, $"News doesn't exist in database.");
+            var doUrlEndsWith = createArticle.UrlEndsWith("AddNews/News");
+            Assert.True(doUrlEndsWith, "News page doesn't return. News article isn't created.");
         }
     }
 }

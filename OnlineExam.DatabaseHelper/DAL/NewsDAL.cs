@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineExam.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace OnlineExam.DatabaseHelper.DAL
 
         public News GetNewsByTitle(string title)
         {
-            using (var ctx = new DataModel(conection))
+            using (var ctx = new DataModel(BaseSettings.Fields.ConnectionString))
             {
                 var result = ctx.News.Include("Courses").FirstOrDefault(c => c.Title == title);
                 return result;

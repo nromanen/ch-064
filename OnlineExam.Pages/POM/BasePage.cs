@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using OnlineExam.Framework;
 using System.Threading;
+//werftsdfrgtyuiop[]
 
 namespace OnlineExam.Pages.POM
 {
@@ -14,6 +15,7 @@ namespace OnlineExam.Pages.POM
         public BasePage()
         {
         }
+
 
         public void SetDriver(ExtendedWebDriver driver)
         {
@@ -51,20 +53,31 @@ namespace OnlineExam.Pages.POM
             }
         }
 
-		public void Wait(int time)
-		{
-			Thread.Sleep(time);
-		}
-
-        public void WaitWhileTextToBePresentInElement(IWebElement webElement,string text)
+        public void Wait(int time)
         {
-            driver.WaitWhileTextToBePresentInElement(webElement,text);
+            Thread.Sleep(time);
         }
 
-
-		public void WaitWhileNotClickableWebElement(IWebElement webElement)
+        public void WaitWhileTextToBePresentInElement(IWebElement webElement, string text)
         {
-           driver.WaitWhileNotClickableWebElement(webElement);
+            driver.WaitWhileTextToBePresentInElement(webElement, text);
+        }
+
+        public bool IsCookieEnabled(string cookieName)
+        {
+            if (driver.IsCookieEnabled(cookieName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void WaitWhileNotClickableWebElement(IWebElement webElement)
+        {
+            driver.WaitWhileNotClickableWebElement(webElement);
         }
 
         public void WaitUntilElementExists(IWebElement webElement, string expectedStr)

@@ -16,16 +16,10 @@ namespace OnlineExam.Pages.POM
         {
         }
 
-        [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div > div.col-lg-4 > a:nth-child(3)")]
-        private IWebElement CSharpStarterReference;
+        [FindsBy(How = How.XPath, Using = "/html/body/div/div/div/div/div[2]/a")]
+        private IList<IWebElement> listOfNewsSort;
 
-        [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div > div.col-lg-4 > a:nth-child(5)")]
-        private IWebElement CSharpEssentialReference;
-
-        [FindsBy(How = How.CssSelector, Using = "body > div > div > div > div > div.col-lg-4 > a:nth-child(7)")]
-        private IWebElement CSharpAdvancedReference;
-
-        [FindsBy(How = How.CssSelector, Using = ".row")]//
+        [FindsBy(How = How.ClassName, Using = "col-lg-8")]//
         private IList<IWebElement> rowOfDivsNewsListElements;
 
         /// <summary>

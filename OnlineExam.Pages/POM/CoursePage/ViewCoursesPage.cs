@@ -21,12 +21,12 @@ namespace OnlineExam.Pages.POM
         public ViewCoursesPage() { }
 
         [FindsBy(How = How.CssSelector, Using = ".container > a:nth-child(1)")]
-        public IWebElement BtnAddCourse { get; set; }
+        private IWebElement BtnAddCourse { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".table tr:not(:first-of-type)")]
-        public IList<IWebElement> RowOfTrs { get; set; }
+        private IList<IWebElement> RowOfTrs { get; set; }
 
-        public IList<ViewCoursesPageItem> RowItems { get; set; }
+        private IList<ViewCoursesPageItem> RowItems { get; set; }
 
         public ViewCoursesPageItem GetByName(string name)
         {
@@ -47,7 +47,7 @@ namespace OnlineExam.Pages.POM
 
         public void ClickRestoreBtn(string courseName)
         {
-            var block = this.GetBlocks();
+            var block = GetBlocks();
             if (block != null)
             {
                 var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
@@ -58,8 +58,9 @@ namespace OnlineExam.Pages.POM
             }
         }
 
-        public string IsDeleted(ViewCoursesPage page, string courseName, ResourceManager rm)
+        public string IsDeleted(string courseName, ResourceManager rm)
         {
+            var page = ConstructPage<ViewCoursesPage>();
             var blockList = page.GetBlocks();
             if (blockList != null)
             {
@@ -71,7 +72,7 @@ namespace OnlineExam.Pages.POM
                     return buttontText;
                 }
             }
-            return String.Empty;
+            return null;
         }
 
         public string IsRestored(ViewCoursesPage page, string courseName, ResourceManager rm)
@@ -88,6 +89,42 @@ namespace OnlineExam.Pages.POM
                 }
             }
             return String.Empty;
+        }
+
+        public void ClickChangeBtn(string courseName)
+        {
+            var block = GetBlocks();
+            if (block != null)
+            {
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                if (firstBlock != null)
+                {
+                    firstBlock.ClickBtnChange();
+                }
+            }
+        }
+
+        public void ClickChangeOwnerBtn(string courseName)
+        {
+            var block = GetBlocks();
+            if (block != null)
+            {
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+                if (firstBlock != null)
+                {
+                    firstBlock.ClickBtnChangeOwner();
+                }
+            }
+        }
+     
+        public bool IsCourseExist(string courseName)
+        {
+            var blockList = ConstructPage<ViewCoursesPage>().GetBlocks();
+            if (blockList != null)
+            {
+                return blockList.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase)) != null;
+            }
+            return false;
         }
     }
 }

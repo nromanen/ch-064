@@ -105,6 +105,7 @@
     <Compile Include="APIClients\APICoursesClient.cs" />
     <Compile Include="APIClients\APINewsClient.cs" />
     <Compile Include="APIClients\APIUsersClient.cs" />
+    <Compile Include="APIClients\BaseAPIClient.cs" />
     <Compile Include="APIClients\Models\CommentsAPIModel.cs" />
     <Compile Include="APIClients\Models\CoursesAPIModel.cs" />
     <Compile Include="APIClients\Models\NewsAPIModel.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="BaseNTest.cs" />
     <Compile Include="ChangeUserInfoNTest.cs" />
     <Compile Include="CheckAnyInFavouritesN.cs" />
+    <Compile Include="CodeValidatorTest.cs" />
     <Compile Include="CourseNTests.cs" />
     <Compile Include="ExtentManager.cs" />
     <Compile Include="ExtentTestManager.cs" />

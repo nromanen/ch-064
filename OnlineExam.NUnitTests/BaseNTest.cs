@@ -4,15 +4,17 @@ using System.Threading;
 using AventStack.ExtentReports;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using NUnit.Framework.Internal;
 using OnlineExam.Framework;
 using OnlineExam.Pages.POM;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using RazorEngine.Compilation.ImpromptuInterface.InvokeExt;
 
 namespace OnlineExam.NUnitTests
 {
     [TestFixture]
-    public  class BaseNTest
+    public class BaseNTest
     {
         protected ExtendedWebDriver driver;
         protected ResourceManager resxManager;
@@ -24,8 +26,9 @@ namespace OnlineExam.NUnitTests
             var browser = TestContext.Parameters.Get("Browser");
             if (!string.IsNullOrEmpty(browser))
             {
-                BaseSettings.Fields.Browser = (Browsers)Enum.Parse(typeof(Browsers), browser);
+                BaseSettings.Fields.Browser = (Browsers) Enum.Parse(typeof(Browsers), browser);
             }
+
             ExtentTestManager.CreateParentTest(GetType().Name);
         }
 
@@ -45,7 +48,7 @@ namespace OnlineExam.NUnitTests
             var header = ConstructPage<Header>();
             resxManager = header.GetCurrentLanguage();
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
-            TestContext.Progress.WriteLine("Test started " + TestContext.CurrentContext.Test.Name);
+            TestContext.Out.WriteLine("\n<br> " + "Test started " + TestContext.CurrentContext.Test.Name);
         }
 
 
@@ -99,7 +102,9 @@ namespace OnlineExam.NUnitTests
                 ? ""
                 : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
             var errorMessage = TestContext.CurrentContext.Result.Message;
+            var output = TestExecutionContext.CurrentContext.CurrentResult.Output;
             Status logstatus;
+            MediaEntityModelProvider mediaModel = null;
 
             switch (status)
             {
@@ -107,8 +112,8 @@ namespace OnlineExam.NUnitTests
                     logstatus = Status.Fail;
                     var screenshotPathWithDate = driver.TakesScreenshotWithDate(CurrentPath.SCREEN_SHOT_PATH,
                         Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
-                    var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
-                    ExtentTestManager.GetTest().AddScreenCaptureFromPath(screenshotPathWithDate);
+                     mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
+                      // ExtentTestManager.GetTest().AddScreenCaptureFromPath(screenshotPathWithDate);
                     break;
                 case TestStatus.Inconclusive:
                     logstatus = Status.Warning;
@@ -122,12 +127,16 @@ namespace OnlineExam.NUnitTests
             }
 
 
+            TestContext.Out.WriteLine("\n<br> " + "Test ended " + TestContext.CurrentContext.Test.Name);
 
-            TestContext.Progress.WriteLine("Test ended " + TestContext.CurrentContext.Test.Name);
+            var isStackTraceNullOrEmpty = string.IsNullOrEmpty(stacktrace);
+            var isErrorMessageNullOrEmpty = string.IsNullOrEmpty(errorMessage);
 
             ExtentTestManager.GetTest().Log(logstatus,
-                "Test ended with " + logstatus + "\n<br>\n<br>  " + stacktrace + "\n<br>\n<br> " + errorMessage +
-                "\n<br>\n<br> " + TestContext.Progress.NewLine);
+                "Test ended with " + logstatus +
+                (!isStackTraceNullOrEmpty ? "\n<br>\n<br>" + stacktrace + "\n<br>\n<br>" : "\n<br>\n<br>")
+                + (!isErrorMessageNullOrEmpty ? errorMessage + "\n<br>\n<br>" : string.Empty)
+                + output,mediaModel);
 
             driver?.Dispose();
         }

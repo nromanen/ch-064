@@ -26,6 +26,12 @@ namespace OnlineExam.Framework
             driver.Navigate().GoToUrl(url);
         }
 
+        public bool IsCookieEnabled(string cookieName)
+        {
+            var result = driver.Manage().Cookies.GetCookieNamed(cookieName);
+            return result != null;
+        }
+
         public ISearchContext SeleniumContext => driver;
 
         public string TakesScreenshotWithDate(string Path, string FileName, ScreenshotImageFormat Format)
@@ -71,19 +77,22 @@ namespace OnlineExam.Framework
         public void WaitWhileTextToBePresentInElement(IWebElement webElement,string text)
         {
             WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-            wait.Until(ExpectedConditions.TextToBePresentInElement(webElement,text));
+            //wait.Until(ExpectedConditions.TextToBePresentInElement(webElement,text));
+            wait.Until(e => webElement.Text.Contains(text));
         }
 
         public void WaitWhileNotClickableWebElement(IWebElement webElement)
         {
             WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-            wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
+            //wait.Until(ExpectedConditions.ElementToBeClickable(webElement));
+            wait.Until(e => webElement.Displayed && webElement.Enabled);
         }
 
         public void WaitUntilElementExists(IWebElement webElement, string expectedStr)
         {
             WebDriverWait wait = new WebDriverWait(driver, WAIT_TIME);
-            wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));//  ElementExists(By.CssSelector(webElement)));
+            //wait.Until(ExpectedConditions.TextToBePresentInElement(webElement, expectedStr));//  ElementExists(By.CssSelector(webElement)));
+            wait.Until(e => webElement.Text.Contains(expectedStr));
         }
 
         public void RefreshPage()
@@ -94,6 +103,11 @@ namespace OnlineExam.Framework
         public void ExecuteJavaScript(string jsCode, IWebElement webElement0, IWebElement webElement1)
         {
             ((IJavaScriptExecutor) driver).ExecuteScript(jsCode, webElement0, webElement1);
+        }
+
+        public void ExecuteJavaScript(string jsCode, IWebElement webElement0)
+        {
+            ((IJavaScriptExecutor)driver).ExecuteScript(jsCode, webElement0);
         }
 
         public void Maximize()

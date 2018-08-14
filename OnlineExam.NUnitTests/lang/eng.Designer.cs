@@ -97,20 +97,20 @@ namespace OnlineExam.NUnitTests.lang {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current owner:.
+        /// </summary>
+        public static string ownerStringToDel {
+            get {
+                return ResourceManager.GetString("ownerStringToDel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SIGN IN.
         /// </summary>
         public static string signIn {
             get {
                 return ResourceManager.GetString("signIn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ВХІД.
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }

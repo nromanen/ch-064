@@ -22,11 +22,19 @@ namespace OnlineExam.Pages.POM
         {
         }
 
+        /// <summary>
+        /// Get current role of user
+        /// </summary>
+        /// <returns></returns>
         public string CurrentRole()
         {
             return currentRoleOfUserDivElement.Text;
         }
 
+        /// <summary>
+        /// Change role of user
+        /// </summary>
+        /// <param name="role"></param>
         public void ChangeRole(string role)
         {
             foreach (var radio in radioButtonsChangeRoleOfUserListElements)
