@@ -35,9 +35,11 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void CheckAnyInFavourites()
         {
+            LogProgress("Opening History page");
             var historyPage = sideBar.GoToCodeHistoryPage();
             var blocks = historyPage.GetHistoryBlocks();
             string id = "";
+            LogProgress("Switching code to favourites");
             if (blocks.Any())
             {
                 var firstBlock = blocks[0];
@@ -45,8 +47,11 @@ namespace OnlineExam.NUnitTests
                 firstBlock.IsLiked();
                 historyPage.SwitchToFavourites();
             }
+            LogProgress("Opening Favourites page");
             var favouritesPage = ConstructPage<HistoryFavouritePage>();
+            LogProgress("Finding liked code");
             var favouritesBlocks = favouritesPage.GetFavouriteBlocks();
+
             bool likedBlockFound = false;
 
             if (favouritesBlocks.Any())

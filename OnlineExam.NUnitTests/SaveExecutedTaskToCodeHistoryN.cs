@@ -28,20 +28,22 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void SaveExecutedTestToCodeHistory()
         {
+            LogProgress($"User logging with e-mail: student3@gmail.com and password : {Constants.STUDENT_PASSWORD}");
             var logInPage = header.GoToLogInPage();
             logInPage.SignIn("student3@gmail.com", Constants.STUDENT_PASSWORD);
+            LogProgress("Opening Course managment page");
             sideBar = ConstructPage<SideBar>();
             var courseManagment = sideBar.GoToCourseManagementPage();
             var coursesBlocks = courseManagment.GetBlocks();
             var courseItem = coursesBlocks.FirstOrDefault(x =>
                 x.GetCourseName().Equals("C# Essential", StringComparison.OrdinalIgnoreCase));
             courseItem.ClickCourseLink();
-
+            LogProgress("Opening Tasks page");
             var ListOfTasks = ConstructPage<TasksPage>();
             string TaskName = "Indexers";
             string nameOfExecutedTask = "";
 
-
+            LogProgress("Getting block with task");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
@@ -57,8 +59,9 @@ namespace OnlineExam.NUnitTests
 
                 Code.ClickOnExecuteButton();
             }
-
+            LogProgress("Opening History page");
             var historyPage = sideBar.GoToCodeHistoryPage();
+            LogProgress("Finding executed task");
             var blocksHistory = historyPage.GetHistoryBlocks();
 
             bool blockOfExecutedCode = false;
