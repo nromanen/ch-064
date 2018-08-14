@@ -111,7 +111,8 @@ namespace OnlineExam.NUnitTests
                     logstatus = Status.Fail;
                     var screenshotPathWithDate = driver.TakesScreenshotWithDate(CurrentPath.SCREEN_SHOT_PATH,
                         Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
-                    var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
+                  //  var mediaModel = Ex
+                    // var mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
                     ExtentTestManager.GetTest().AddScreenCaptureFromPath(screenshotPathWithDate);
                     break;
                 case TestStatus.Inconclusive:
