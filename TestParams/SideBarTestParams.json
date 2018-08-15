@@ -1,0 +1,5 @@
+{
+  "ratingUrlContains": "UserRating",
+  "courseManagementUrlContains": "CourseManagement",
+  "ContactUsUrlContains": "EmailMessages"
+}

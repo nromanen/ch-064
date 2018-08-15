@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OnlineExam.Framework;
+using OnlineExam.Framework.Params;
 using OnlineExam.Pages.POM;
 
 
@@ -12,6 +13,9 @@ namespace OnlineExam.NUnitTests
     public class SideBarNTest : BaseNTest
     {
         private SideBar sideBar;
+
+        private SideBarTestParams sideBarTestParams =
+            ParametersResolver.Resolve<SideBarTestParams>("SideBarTestParams.json");
 
 
         [SetUp]
@@ -26,8 +30,8 @@ namespace OnlineExam.NUnitTests
         {
             var ratingPage = sideBar.GoToRatingPage();
             var currentUrl = ratingPage.GetCurrentUrl();
-            StringAssert.Contains(Constants.RATING_URL_CONTAINS, currentUrl,
-                $"Current url does not contain {Constants.RATING_URL_CONTAINS}");
+            StringAssert.Contains(sideBarTestParams.RatingUrlContains, currentUrl,
+                $"Current url does not contain {sideBarTestParams.RatingUrlContains}");
         }
 
         [Test]
@@ -35,8 +39,8 @@ namespace OnlineExam.NUnitTests
         {
             var coursesPage = sideBar.GoToCourseManagementPage();
             var currentUrl = coursesPage.GetCurrentUrl();
-            StringAssert.Contains(Constants.COURSEMANAGEMENT_URL_CONTAINS, currentUrl,
-                $"Current url does not contain {Constants.COURSEMANAGEMENT_URL_CONTAINS}");
+            StringAssert.Contains(sideBarTestParams.CourseManagementUrlContains, currentUrl,
+                $"Current url does not contain {sideBarTestParams.CourseManagementUrlContains}");
         }
 
         [Test]
@@ -44,8 +48,8 @@ namespace OnlineExam.NUnitTests
         {
             var contactUsPage = sideBar.GoToContactUsPage();
             var currentUrl = contactUsPage.GetCurrentUrl();
-            StringAssert.Contains(Constants.CONTACTUS_URL_CONTAINS, currentUrl,
-                $"Current url does not contain {Constants.CONTACTUS_URL_CONTAINS}");
+            StringAssert.Contains(sideBarTestParams.ContactUsUrlContains, currentUrl,
+                $"Current url does not contain {sideBarTestParams.ContactUsUrlContains}");
         }
     }
 }

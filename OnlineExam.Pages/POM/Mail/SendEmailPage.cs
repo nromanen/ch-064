@@ -32,7 +32,7 @@ namespace OnlineExam.Pages.POM
         private IWebElement SubmitInput;
 
         /// <summary>
-        /// Sends Email from Admin or Teacher to any user.
+        /// Sends Email from Admin or TeacherRole to any user.
         /// </summary>
         /// <param name="subject"></param>
         /// <param name="email"></param>
