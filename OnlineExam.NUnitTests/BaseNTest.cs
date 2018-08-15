@@ -142,7 +142,7 @@ namespace OnlineExam.NUnitTests
 
         public void LogProgress(string message)
         {
-            LogProgress(message);
+            TestContext.Out.WriteLine("\n<br> " + message);
         }
     }
 }

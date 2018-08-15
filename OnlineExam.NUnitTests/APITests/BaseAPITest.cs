@@ -77,7 +77,7 @@ namespace OnlineExam.NUnitTests.APITests
 
         public void LogProgress(string message)
         {
-            LogProgress(message);
+            TestContext.Out.WriteLine("\n<br> " + message);
         }
     }
 }
