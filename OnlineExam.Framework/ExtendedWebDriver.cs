@@ -52,12 +52,20 @@ namespace OnlineExam.Framework
                                  Format;
             if (Validation.Exists == true) //Capture screen if the path is available
             {
-                ((ITakesScreenshot) driver).GetScreenshot().SaveAsFile(ScreenShotPath, Format);
+                //((ITakesScreenshot) driver).GetScreenshot().SaveAsFile(ScreenShotPath, Format);
+                Screenshot screen = ((ITakesScreenshot)driver).GetScreenshot();
+                string screenshot = screen.AsBase64EncodedString;
+                byte[] screenByteArray = screen.AsByteArray;
+                screen.SaveAsFile(ScreenShotPath, Format);
             }
             else //Create the folder and then Capture the screen
             {
                 Validation.Create();
-                ((ITakesScreenshot) driver).GetScreenshot().SaveAsFile(ScreenShotPath, Format);
+                //((ITakesScreenshot) driver).GetScreenshot().SaveAsFile(ScreenShotPath, Format);
+                Screenshot screen = ((ITakesScreenshot)driver).GetScreenshot();
+                string screenshot = screen.AsBase64EncodedString;
+                byte[] screenByteArray = screen.AsByteArray;
+                screen.SaveAsFile(ScreenShotPath, Format);
             }
 
             return ScreenShotPath;
