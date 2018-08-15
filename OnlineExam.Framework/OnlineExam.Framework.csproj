@@ -104,6 +104,9 @@
     <Compile Include="CurrentPath.cs" />
     <Compile Include="ParametersResolver.cs" />
     <Compile Include="Params\AdminTestParams.cs" />
+    <Compile Include="Params\CreateCourseParams.cs" />
+    <Compile Include="Params\DeleteCourseParams.cs" />
+    <Compile Include="Params\EditCourseParams.cs" />
     <Compile Include="Params\HeaderTestParams.cs" />
     <Compile Include="Params\SideBarTestParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
