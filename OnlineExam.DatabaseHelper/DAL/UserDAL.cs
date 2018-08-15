@@ -26,5 +26,16 @@ namespace OnlineExam.DatabaseHelper.DAL
                 return result;
             }
         }
+
+        public string GetRoleOfUserByEmail(string email)
+        {
+            using (var ctx = new DataModel(BaseSettings.Fields.ConnectionString))
+            {
+                var user = GetUserByEmail(email);
+                var id = user.Id;
+            //    var role = ctx.AspNetRoles.FirstOrDefault(c => c.Name)
+                return "";
+            }
+        }
     }
 }

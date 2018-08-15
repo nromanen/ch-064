@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 using OnlineExam.DatabaseHelper;
 using OnlineExam.DatabaseHelper.DAL;
 using OnlineExam.Framework;
@@ -88,7 +89,7 @@ namespace OnlineExam.NUnitTests
             Assert.AreEqual(Constants.TEACHER, currentRole, "Role of user are not the same");
 
             LogProgress("Check roles in DB");
-            var currentRoleDB = new UserDAL().GetUserByEmail(Constants.USER_FOR_CHANGE_ROLE_EMAIL).AspNetRoles;
+            var currentRoleDB = new UserDAL().GetRoleOfUserByEmail(Constants.USER_FOR_CHANGE_ROLE_EMAIL);
             Assert.AreEqual(Constants.TEACHER,currentRoleDB);
         }
 

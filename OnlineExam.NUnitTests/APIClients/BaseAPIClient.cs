@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OnlineExam.Framework;
 using RestSharp;
+using RestSharp.Authenticators;
 
 namespace OnlineExam.NUnitTests.APIClients
 {
@@ -19,6 +20,7 @@ namespace OnlineExam.NUnitTests.APIClients
             loginRequest.AddParameter("username", email);
             loginRequest.AddParameter("password", password);
             var res = client.Execute<AuthResult>(loginRequest);
+            client.Authenticator = new HttpBasicAuthenticator("Authorization", "bearer" + res.Data.access_token);
             return res.Data.access_token;
         }
 
