@@ -124,7 +124,7 @@ namespace OnlineExam.NUnitTests
 
                             // Convert byte[] to Base64 String
                             string base64String = Convert.ToBase64String(imageBytes);
-                            MediaEntityBuilder.CreateScreenCaptureFromBase64String(base64String);
+                            mediaModel = MediaEntityBuilder.CreateScreenCaptureFromBase64String(base64String).Build();
                         }
                     }
                     
