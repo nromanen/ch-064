@@ -26,7 +26,7 @@ namespace OnlineExam.NUnitTests
         public override void SetUp()
         {
             base.SetUp();
-            TestContext.Out.WriteLine("\n<br> " + "Done base set up");
+           LogProgress("Done base set up");
             header = ConstructPage<Header>();
             sideBar = ConstructPage<SideBar>();
         }
@@ -36,7 +36,7 @@ namespace OnlineExam.NUnitTests
         {
             string localEmail = "loll@dmail.com";
             var signUp = header.GoToRegistrationPage();
-            TestContext.Out.WriteLine("\n<br> " + "Registration page opened.");
+           LogProgress("Registration page opened.");
             signUp.Registration(localEmail, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
             var currentUrl = header.GetCurrentUrl();
             Assert.AreEqual(BaseSettings.Fields.Url + "/", currentUrl, "Index page doesn't return.");
@@ -52,17 +52,17 @@ namespace OnlineExam.NUnitTests
         public void CheckIfUserIsPresentedInUserListAfterSignUp()
         {
             var signUp = header.GoToRegistrationPage();
-            TestContext.Out.WriteLine("\n<br> " + "Registration page opened.");
+           LogProgress("Registration page opened.");
             signUp.Registration(Constants.EXAMPLE_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
-            TestContext.Out.WriteLine("\n<br> " + "Registration done.");
+           LogProgress("Registration done.");
             header.SignOut();
-            TestContext.Out.WriteLine("\n<br> " + "Signed out.");
+           LogProgress("Signed out.");
             var logIn = header.GoToLogInPage();
-            TestContext.Out.WriteLine("\n<br> " + "Login page opened.");
+           LogProgress("Login page opened.");
             logIn.SignIn(Constants.ADMIN_EMAIL, Constants.ADMIN_PASSWORD);
-            TestContext.Out.WriteLine("\n<br> " + $"Signed in as {Constants.ADMIN_EMAIL}.");
+           LogProgress($"Signed in as {Constants.ADMIN_EMAIL}.");
             var adminPanelPage = ConstructPage<SideBar>().GoToAdminPanelPage();
-            TestContext.Out.WriteLine("\n<br> " + "Opened admin page.");
+           LogProgress("Opened admin page.");
             var result = adminPanelPage.IsUserPresentedInUserList(Constants.EXAMPLE_EMAIL);
             Assert.True(result, "User isn't presented in user list after sign up.");
         }
@@ -71,9 +71,9 @@ namespace OnlineExam.NUnitTests
         public void SignUpAsUsedEmail()
         {
             var signUp = header.GoToRegistrationPage();
-            TestContext.Out.WriteLine("\n<br> " + "Went to registration page.");
+           LogProgress("Went to registration page.");
             var currentPage = signUp.Registration(Constants.STUDENT_EMAIL, Constants.EXAMPLE_PASSWORD, Constants.EXAMPLE_PASSWORD);
-            TestContext.Out.WriteLine("\n<br> " + "Registration done.");
+           LogProgress("Registration done.");
             var isEmailInHeader = header.IsUserEmailPresentedInHeader(Constants.EXAMPLE_EMAIL);
             Assert.False(isEmailInHeader, $"User {Constants.EXAMPLE_EMAIL} is presented in header.");
             var currentUrl = currentPage.GetCurrentUrl();

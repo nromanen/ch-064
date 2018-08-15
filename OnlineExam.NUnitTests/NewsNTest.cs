@@ -23,7 +23,7 @@ namespace OnlineExam.NUnitTests
         public override void SetUp()
         {
             base.SetUp();
-            TestContext.Out.WriteLine("\n<br> " + "Done base set up");
+           LogProgress("Done base set up");
             header = ConstructPage<Header>();
             sideBar = ConstructPage<SideBar>();
         }
@@ -32,9 +32,9 @@ namespace OnlineExam.NUnitTests
         public void CreateNewsTest()
         {
             var signIn = header.GoToLogInPage().SignIn(Constants.TEACHER_EMAIL, Constants.TEACHER_PASSWORD);
-            TestContext.Out.WriteLine("\n<br> " + $"Signed in as {Constants.TEACHER_EMAIL}.");
+           LogProgress($"Signed in as {Constants.TEACHER_EMAIL}.");
             var newsPage = ConstructPage<SideBar>().GoToTeacherNewsPage();
-            TestContext.Out.WriteLine("\n<br> " + "Opened news page.");
+           LogProgress("Opened news page.");
             var createArticle = newsPage.CreateArticle();
             var getNewsFromDB = new NewsDAL().GetNewsByTitle(TeacherNewsPage.Title);
             Assert.NotNull(getNewsFromDB, $"News doesn't exist in database.");

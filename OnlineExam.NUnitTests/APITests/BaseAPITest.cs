@@ -29,7 +29,7 @@ namespace OnlineExam.NUnitTests.APITests
         [SetUp]
         public virtual void SetUp()
         {
-            TestContext.Out.WriteLine("\n<br> " + "Test started " + TestContext.CurrentContext.Test.Name);
+           LogProgress("Test started " + TestContext.CurrentContext.Test.Name);
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
@@ -61,7 +61,7 @@ namespace OnlineExam.NUnitTests.APITests
                     break;
             }
 
-            TestContext.Out.WriteLine("\n<br> " + "Test ended " + TestContext.CurrentContext.Test.Name);
+           LogProgress("Test ended " + TestContext.CurrentContext.Test.Name);
 
             var isStackTraceNullOrEmpty = string.IsNullOrEmpty(stacktrace);
             var isErrorMessageNullOrEmpty = string.IsNullOrEmpty(errorMessage);

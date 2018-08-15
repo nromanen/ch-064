@@ -48,7 +48,7 @@ namespace OnlineExam.NUnitTests
             var header = ConstructPage<Header>();
             resxManager = header.GetCurrentLanguage();
             ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
-            TestContext.Out.WriteLine("\n<br> " + "Test started " + TestContext.CurrentContext.Test.Name);
+            LogProgress("Test started " + TestContext.CurrentContext.Test.Name);
         }
 
 
@@ -112,8 +112,7 @@ namespace OnlineExam.NUnitTests
                     logstatus = Status.Fail;
                     var screenshotPathWithDate = driver.TakesScreenshotWithDate(CurrentPath.SCREEN_SHOT_PATH,
                         Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
-                     mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
-                      // ExtentTestManager.GetTest().AddScreenCaptureFromPath(screenshotPathWithDate);
+                    mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
                     break;
                 case TestStatus.Inconclusive:
                     logstatus = Status.Warning;
@@ -127,7 +126,7 @@ namespace OnlineExam.NUnitTests
             }
 
 
-            TestContext.Out.WriteLine("\n<br> " + "Test ended " + TestContext.CurrentContext.Test.Name);
+            LogProgress("Test ended " + TestContext.CurrentContext.Test.Name);
 
             var isStackTraceNullOrEmpty = string.IsNullOrEmpty(stacktrace);
             var isErrorMessageNullOrEmpty = string.IsNullOrEmpty(errorMessage);
@@ -136,14 +135,14 @@ namespace OnlineExam.NUnitTests
                 "Test ended with " + logstatus +
                 (!isStackTraceNullOrEmpty ? "\n<br>\n<br>" + stacktrace + "\n<br>\n<br>" : "\n<br>\n<br>")
                 + (!isErrorMessageNullOrEmpty ? errorMessage + "\n<br>\n<br>" : string.Empty)
-                + output,mediaModel);
+                + output, mediaModel);
 
             driver?.Dispose();
         }
 
         public void LogProgress(string message)
         {
-            TestContext.Out.WriteLine("\n<br> " + message);
+            LogProgress(message);
         }
     }
 }

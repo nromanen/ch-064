@@ -26,24 +26,24 @@ namespace OnlineExam.NUnitTests
 
             string courseName = "C# Essential";
             var header = ConstructPage<Header>();
-            TestContext.Out.WriteLine("\n<br> " + "Go to log in page");
+           LogProgress("Go to log in page");
             var logInPage = header.GoToLogInPage();
-            TestContext.Out.WriteLine("\n<br> " + $"Log in as student: email {Constants.STUDENT_EMAIL}, password {Constants.STUDENT_PASSWORD}");
+           LogProgress($"Log in as student: email {Constants.STUDENT_EMAIL}, password {Constants.STUDENT_PASSWORD}");
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             var sidebar = ConstructPage<SideBar>();
-            TestContext.Out.WriteLine("\n<br> " + "Go to the course managment page");
+           LogProgress("Go to the course managment page");
             sidebar.GoToCourseManagementPage();
             var CoursesList = ConstructPage<CourseManagementPage>();
-            TestContext.Out.WriteLine("\n<br> " + "get list of courses");
+           LogProgress("get list of courses");
             var block = CoursesList.GetBlocks();
             if (block != null)
             {
-                TestContext.Out.WriteLine("\n<br> " + $"search course with {courseName} name in list of courses  ");
+               LogProgress($"search course with {courseName} name in list of courses  ");
                 var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
 
                 if (firstBlock != null)
                 {
-                    TestContext.Out.WriteLine("\n<br> " + "Click on CourseName [link]");
+                   LogProgress("Click on CourseName [link]");
                     firstBlock.ClickCourseLink();
                 }
             }
@@ -54,11 +54,11 @@ namespace OnlineExam.NUnitTests
         {
             string TaskName = "Simple addition";
             var ListOfTasks = ConstructPage<TasksPage>();
-            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
+           LogProgress("get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
+               LogProgress($"search task with {TaskName} name in list of tasks  ");
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 var ActualName = firstblock.GetName();
                 Assert.AreEqual(TaskName, ActualName, "Task with this name isn't available on this page, because of expected task name isn't equal to actual task name");
@@ -72,11 +72,11 @@ namespace OnlineExam.NUnitTests
             string BaseTitle = "Task View - WebApp";
             string TaskName = "Simple addition";
             var ListOfTasks = ConstructPage<TasksPage>();
-            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
+           LogProgress("get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
+               LogProgress($"search task with {TaskName} name in list of tasks  ");
                 var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 firstBlock.ClickOnTasksButton();
                 var ActualTitle = driver.GetCurrentTitle();
@@ -92,11 +92,11 @@ namespace OnlineExam.NUnitTests
             string StarsCount = "4";
             string TaskName = "Simple addition";
             var ListOfTasks = ConstructPage<TasksPage>();
-            TestContext.Out.WriteLine("\n<br> " + "get list of tasks");
+           LogProgress("get list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                TestContext.Out.WriteLine("\n<br> " + $"search task with {TaskName} name in list of tasks  ");
+               LogProgress($"search task with {TaskName} name in list of tasks  ");
                 var firstBlock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 var count = firstBlock.GetStarsss().ToString();
                 Assert.AreEqual(StarsCount, count, "Stars count isn't correct, , because of expected stars cont isn't equal to actual stars count");
