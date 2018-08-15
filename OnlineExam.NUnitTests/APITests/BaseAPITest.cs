@@ -71,6 +71,13 @@ namespace OnlineExam.NUnitTests.APITests
                 (!isStackTraceNullOrEmpty ? "\n<br>\n<br>" + stacktrace + "\n<br>\n<br>" : "\n<br>\n<br>")
                 + (!isErrorMessageNullOrEmpty ? errorMessage + "\n<br>\n<br>" : string.Empty)
                 + output);
+
+           
+        }
+
+        public void LogProgress(string message)
+        {
+            LogProgress(message);
         }
     }
 }
