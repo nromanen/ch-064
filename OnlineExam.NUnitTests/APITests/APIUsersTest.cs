@@ -37,7 +37,7 @@ namespace OnlineExam.NUnitTests.APITests
                 newUserName = "ApiTestNew"
             };
             var result = client.PostChange(obj, "name");
-            Assert.AreEqual(HttpStatusCode.OK, result, "Invalid result status");
+            Assert.AreEqual(HttpStatusCode.OK, result.Code, "Invalid result status");
             var actual = new UserDAL().GetUserById(obj.id);
             Assert.AreEqual(obj.newUserName, actual.UserName, $"User names are not equal {obj.newUserName}" +
                                                               $"user name does not changed in DB");
@@ -54,7 +54,7 @@ namespace OnlineExam.NUnitTests.APITests
                 newEmail = "UserTestAPI@gmail.com"
             };
             var result = client.PostChange(obj, "email");
-            Assert.AreEqual(HttpStatusCode.OK, result, "Invalid result status");
+            Assert.AreEqual(HttpStatusCode.OK, result.Code, "Invalid result status");
             var actual = new UserDAL().GetUserById(obj.id);
             Assert.AreEqual(obj.newEmail, actual.Email, $"Emails are not equal {obj.newEmail}" +
                                                         $"email does not changed in DB");
