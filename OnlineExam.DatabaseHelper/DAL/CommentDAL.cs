@@ -27,5 +27,64 @@ namespace OnlineExam.DatabaseHelper.DAL
                 return result;
             }
         }
+
+        string ConnectionString = BaseSettings.Fields.ConnectionString;
+
+        public bool IsTaskPresentedByEmail(string Email)
+        {
+            using (DataModel db = new DataModel(ConnectionString))
+            {
+                bool f = false;
+                var comments = db.Comments;
+                foreach (Comments c in comments)
+                {
+                    if (c.UserName.Equals(Email))
+                    {
+                        f = true;
+                        return f;
+                    }
+                }
+                return f;
+            }
+        }
+
+        public bool IsTaskPresentedByCommentText(string text)
+        {
+            using (DataModel db = new DataModel(ConnectionString))
+            {
+                bool f = false;
+                var comments = db.Comments;
+                foreach (Comments c in comments)
+                {
+                    if (c.CommentText.Equals(text))
+                    {
+                        f = true;
+                        return f;
+                    }
+                }
+                return f;
+            }
+        }
+
+
+        public bool IsTaskPresentedByCreatingDate(string date)
+        {
+            using (DataModel db = new DataModel(ConnectionString))
+            {
+                bool f = false;
+                var comments = db.Comments;
+                foreach (Comments c in comments)
+                {
+                    if (c.CreationDateTime.Equals(date))
+                    {
+                        f = true;
+                        return f;
+                    }
+                }
+                return f;
+            }
+        }
+
+
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 using OnlineExam.Framework;
+using OnlineExam.DatabaseHelper.DAL;
 
 namespace OnlineExam.NUnitTests
 {
@@ -127,6 +128,11 @@ namespace OnlineExam.NUnitTests
                    LogProgress($"search comment with email '{email}' in list of comments");
                     var anyblock = divs.Any(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
                     Assert.True(anyblock, "There is any comments from user with this email");
+                    var comment = new CommentDAL();
+                    TestContext.Out.WriteLine("\n<br> " + $"Searching comment with user's email '{email}' in database");
+                    var result = comment.IsTaskPresentedByEmail(email);
+                    Assert.True(result, $"comment with user's email '{email}' in't available in database");
+
                 }
             }
         }
@@ -155,6 +161,11 @@ namespace OnlineExam.NUnitTests
                     var b = divs.FirstOrDefault(x => x.GetCommentText().Equals(ExpectedComent, StringComparison.OrdinalIgnoreCase));
                     var CommentText = b.GetCommentText();
                     Assert.AreEqual(ExpectedComent, CommentText, "There is any comments with this comment text");
+                    var comment = new CommentDAL();
+                    TestContext.Out.WriteLine("\n<br> " + $"Searching comment with comment text '{CommentText}' in database");
+                    var result = comment.IsTaskPresentedByCommentText(CommentText);
+                    Assert.True(result, $"comment with comment text '{CommentText}' in't available in database");
+
                 }
             }
 
@@ -163,7 +174,6 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void DateFromComment()
         {
-
             string TaskName = "Indexers";
             string email = "student@gmail.com";
             string date = "7/10/2018 6:28:20 PM";
@@ -187,6 +197,11 @@ namespace OnlineExam.NUnitTests
                     var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
                     var Actualdate = anyblock.GetCommentDate().ToString();
                     Assert.AreEqual(date, Actualdate,"There is any comments with this date");
+                    var comment = new CommentDAL();
+                    TestContext.Out.WriteLine("\n<br> " + $"Searching comment with creation date '{date}' in database");
+                    var result = comment.IsTaskPresentedByCreatingDate(date);
+                    Assert.True(result, $"comment with creating date '{date}' in't available in database");
+
                 }
             }
 
