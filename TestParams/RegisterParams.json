@@ -1,0 +1,9 @@
+{
+    "localEmail": "local@gmail.com",
+    "exampleEmail": "example@gmail.com",
+    "examplePassword": "Example_123",
+    "adminEmail": "admin@gmail.com",
+    "adminPassword": "Admin_123",
+    "cookie": ".AspNetCore.Identity.Application",
+    "studentEmail": "student@gmail.com"
+  } 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OnlineExam.Framework;
+using OnlineExam.Framework.Params;
 
 namespace OnlineExam.NUnitTests
 {
@@ -18,6 +19,7 @@ namespace OnlineExam.NUnitTests
     {
         private Header header;
         private LogInPage logInPage;
+        private LoginParams loginParams = ParametersResolver.Resolve<LoginParams>("LoginParams.json");
 
         [SetUp]
         public override void SetUp()
@@ -32,23 +34,23 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void SignInTest()
         {
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-           LogProgress($"Signed in as {Constants.STUDENT_EMAIL}.");
-            var isEmailInHeader = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
-            Assert.True(isEmailInHeader, $"User {Constants.STUDENT_EMAIL} is not presented in header.");
+            logInPage.SignIn(loginParams.StudentEmail, loginParams.StudentPassword);
+            LogProgress("Signed in.");
+            var isEmailInHeader = header.IsUserEmailPresentedInHeader(loginParams.StudentEmail);
+            Assert.True(isEmailInHeader, "User is not presented in header.");
             var currentUrl = header.GetCurrentUrl();
             Assert.AreEqual(BaseSettings.Fields.Url+"/" , currentUrl, "Index page doesn't return.");
-            var cookies = logInPage.IsCookieEnabled(".AspNetCore.Identity.Application");
+            var cookies = logInPage.IsCookieEnabled(loginParams.Cookie);
             Assert.True(cookies, "Cookies are not enabled.");
         }
 
         [Test]
         public void SignInUsingInvalidEmailTest()
         {
-            logInPage.SignIn(Constants.FAKE_EMAIL, Constants.FAKE_PASSWORD);
-           LogProgress($"Signed in as {Constants.FAKE_EMAIL}.");
-            var result = header.IsUserEmailPresentedInHeader(Constants.FAKE_EMAIL);
-            Assert.False(result, $"Fake user {Constants.FAKE_EMAIL} is presented in header.");
+            logInPage.SignIn(loginParams.FakeEmail, loginParams.FakePassword);
+            LogProgress("Signed in.");
+            var result = header.IsUserEmailPresentedInHeader(loginParams.FakeEmail);
+            Assert.False(result, "User is presented in header.");
             var currentUrl = header.GetCurrentUrl();
             Assert.AreNotEqual(BaseSettings.Fields.Url + "/", currentUrl, "Index page returns.");
             var isAlertDisplayed = logInPage.IsAlertVisible();
@@ -58,9 +60,9 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void SignInUsingInvalidPasswordTest()
         {
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.FAKE_PASSWORD);
-            var result = header.IsUserEmailPresentedInHeader(Constants.STUDENT_EMAIL);
-            Assert.False(result, $"User {Constants.STUDENT_EMAIL} is presented in header.");
+            logInPage.SignIn(loginParams.StudentEmail, loginParams.FakePassword);
+            var result = header.IsUserEmailPresentedInHeader(loginParams.StudentEmail);
+            Assert.False(result, "User is presented in header.");
             var currentUrl = header.GetCurrentUrl();
             Assert.AreNotEqual(BaseSettings.Fields.Url + "/", currentUrl, "Index page returns.");
             var isAlertDisplayed = logInPage.IsAlertVisible();
@@ -70,15 +72,15 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void SignOutTest()
         {
-            logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
-           LogProgress($"Signed in as {Constants.STUDENT_EMAIL}.");
+            logInPage.SignIn(loginParams.StudentEmail, loginParams.StudentPassword);
+            LogProgress("Signed in .");
             header.SignOut();
-           LogProgress($"Signed out.");
+            LogProgress($"Signed out.");
             var result = logInPage.IsSignInPresentedInHeader();
             Assert.True(result, "Sign in button isn't presented in header.");
             var currentUrl = header.GetCurrentUrl();
             Assert.AreEqual(BaseSettings.Fields.Url + "/", currentUrl, "Index page doesn't return.");
-            var cookies = logInPage.IsCookieEnabled(".AspNetCore.Identity.Application");
+            var cookies = logInPage.IsCookieEnabled(loginParams.Cookie);
             Assert.False(cookies, "Cookies are enabled.");
         }
     }
