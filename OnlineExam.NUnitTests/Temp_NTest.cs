@@ -147,8 +147,8 @@ namespace OnlineExam.NUnitTests
             var AddTaskPage = ConstructPage<AddTaskAsTeacherPage>();
            LogProgress($"Chose {coursename} in drop down list");
             AddTaskPage.ChooseCourse(coursename);
-           LogProgress($"add '{NEWTASK}' tasks's name for new task");
-            AddTaskPage.AddTaskNameForNewTask(NEWTASK);
+           LogProgress($"add '{NewTask}' tasks's name for new task");
+            AddTaskPage.AddTaskNameForNewTask(NewTask);
            LogProgress("Click on add button");
             AddTaskPage.ClickOnAddButton();
             var ListOfTasks = ConstructPage<TasksPage>();
@@ -156,8 +156,8 @@ namespace OnlineExam.NUnitTests
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-               LogProgress($"search task with {NEWTASK} name in list of tasks  ");
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(NEWTASK, StringComparison.OrdinalIgnoreCase));
+               LogProgress($"search task with {NewTask} name in list of tasks  ");
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(NewTask, StringComparison.OrdinalIgnoreCase));
                 var actualName = firstblock.GetName();
                 Assert.AreEqual(NewTask, actualName, "function \"Add New Task\" doesn't work, because of expected task name isn't equal to actual task name");
                 var task = new TasksDAL();
