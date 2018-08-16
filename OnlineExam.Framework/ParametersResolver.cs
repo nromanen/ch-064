@@ -16,7 +16,7 @@ namespace OnlineExam.Framework
             var json = File.ReadAllText(path);
             if(json.Contains("%GUID"))
             {
-                json = json.Replace("%GUID", $"{Guid.NewGuid()}");
+                json = json.Replace("%GUID", $"{Guid.NewGuid().ToString()}");
                 return JsonConvert.DeserializeObject<T>(json);
             }
             return JsonConvert.DeserializeObject<T>(json);
