@@ -81,8 +81,6 @@ namespace OnlineExam.NUnitTests
                 var myblock = blocks.FirstOrDefault(x => x.TEMP_GetName().Equals(taskname, StringComparison.OrdinalIgnoreCase));
                 var actualName = myblock.TEMP_GetName();
                 Assert.AreEqual(taskname, actualName, "button \"Recover\" doesn't work, because of expected task name isn't equal to actual task name");
-                TestContext.Out.WriteLine("\n<br> " + "Click on Delete button");
-                myblock.ClickOnDeleteButton();
             }
         }
 
