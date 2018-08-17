@@ -94,7 +94,7 @@ namespace OnlineExam.NUnitTests
 
             LogProgress("Check roles on UI");
             var currentRole = changeRolePage.CurrentRole();
-            Assert.AreEqual(Constants.TEACHER, currentRole, "Role of user are not the same");
+            Assert.AreEqual(adminTestParams.TeacherRole, currentRole, "Role of user are not the same");
 
             LogProgress("Check roles in DB");
             var currentRolesDB = new UserDAL().GetRoleOfUserByEmail(adminTestParams.UserForChangeRoleEmail);
