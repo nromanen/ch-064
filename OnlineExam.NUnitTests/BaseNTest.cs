@@ -114,15 +114,12 @@ namespace OnlineExam.NUnitTests
                     logstatus = Status.Fail;
                     var screenshotPathWithDate = driver.TakesScreenshotWithDate(CurrentPath.SCREEN_SHOT_PATH,
                         Constants.SCREEN_SHOT, ScreenshotImageFormat.Png);
-                    //mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(screenshotPathWithDate).Build();
                     using (Image image = Image.FromFile(screenshotPathWithDate))
                     {
                         using (MemoryStream m = new MemoryStream())
                         {
                             image.Save(m, image.RawFormat);
                             byte[] imageBytes = m.ToArray();
-
-                            // Convert byte[] to Base64 String
                             string base64String = Convert.ToBase64String(imageBytes);
                             mediaModel = MediaEntityBuilder.CreateScreenCaptureFromBase64String(base64String).Build();
                         }

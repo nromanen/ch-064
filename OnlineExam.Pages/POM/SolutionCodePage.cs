@@ -58,7 +58,7 @@ namespace OnlineExam.Pages.POM
         public void ClickOnExecuteButton(string text)
         {
             ExecuteButton.Click();
-            WaitWhileTextToBePresentInElement(FieldWithResultOfCompilationCode,text);
+            WaitUntilTextIsPresentInElement(FieldWithResultOfCompilationCode,text);
         }
 
 

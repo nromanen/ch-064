@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 using OnlineExam.Framework;
+using OnlineExam.DatabaseHelper.DAL;
 
 namespace OnlineExam.NUnitTests
 {
@@ -62,6 +63,10 @@ namespace OnlineExam.NUnitTests
                 var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
                 var ActualName = firstblock.GetName();
                 Assert.AreEqual(TaskName, ActualName, "Task with this name isn't available on this page, because of expected task name isn't equal to actual task name");
+                var task = new TasksDAL();
+                TestContext.Out.WriteLine("\n<br> " + $"Searching task with name '{TaskName}' in database");
+                var result = task.IsTaskPresentedByName(TaskName);
+                Assert.True(result, $"Task with name '{TaskName}' in't available in database");
             }
         }
 

@@ -58,9 +58,9 @@ namespace OnlineExam.Pages.POM
             Thread.Sleep(time);
         }
 
-        public void WaitWhileTextToBePresentInElement(IWebElement webElement, string text)
+        public void WaitUntilTextIsPresentInElement(IWebElement webElement, string text)
         {
-            driver.WaitWhileTextToBePresentInElement(webElement, text);
+            driver.WaitUntilTextIsPresentInElement(webElement, text);
         }
 
         public bool IsCookieEnabled(string cookieName)
@@ -79,12 +79,6 @@ namespace OnlineExam.Pages.POM
         {
             driver.WaitWhileNotClickableWebElement(webElement);
         }
-
-        public void WaitUntilElementExists(IWebElement webElement, string expectedStr)
-        {
-            driver.WaitUntilElementExists(webElement, expectedStr);
-        }
-
 
         public string GetCurrentUrl()
         {
