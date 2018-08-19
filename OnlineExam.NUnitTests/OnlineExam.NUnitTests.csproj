@@ -137,6 +137,8 @@
     <Compile Include="LoginNTest.cs" />
     <Compile Include="MailNTest.cs" />
     <Compile Include="NewsNTest.cs" />
+    <Compile Include="ParamsResolver.cs" />
+    <Compile Include="Params\ChangeNameParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaveExecutedTaskToCodeHistoryN.cs" />
     <Compile Include="RegistrationNTest.cs" />

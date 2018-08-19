@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OnlineExam.Framework;
+using OnlineExam.NUnitTests.Params;
 using OnlineExam.Pages.POM;
 using OnlineExam.Pages.POM.UserDetails;
 using System;
@@ -80,17 +81,18 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void TestChangeName()
         {
+            ChangeNameParam param = ParamsResolver.Resolve("ChangeUserInfo.ChangeName.json");
             LogProgress($"User logging with e-mail: {Constants.USER_FOR_CHANGE_NAME} and password : {Constants.USER_PASSWORD}");
-            logInPage.SignIn(Constants.USER_FOR_CHANGE_NAME, Constants.USER_PASSWORD);
+            logInPage.SignIn(param.Name, param.Password);
             LogProgress("Opening User accoumt page");
             userInfo = header.GoToUserAccountPage();
             LogProgress("Opening Change name page");
             var changeNamePage = userInfo.OpenChangeNamePage();
             LogProgress("Setting new name");
-            var newName = "NewName";
-            changeNamePage.SetNewName(newName, Constants.USER_PASSWORD);
+           
+            changeNamePage.SetNewName(param.NewName, param.Password);
             var newUserNameFromHeader = header.GetHeaderUserName();
-            var isEqual = String.Equals(newName, newUserNameFromHeader, StringComparison.InvariantCultureIgnoreCase);
+            var isEqual = String.Equals(param.NewName, newUserNameFromHeader, StringComparison.InvariantCultureIgnoreCase);
             Assert.True(isEqual);
 
         }
