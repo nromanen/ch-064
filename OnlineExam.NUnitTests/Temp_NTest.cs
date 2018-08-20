@@ -15,14 +15,15 @@ namespace OnlineExam.NUnitTests
     {
         private Header header;
         private SideBar sidebar;
-        private TEMP_Params TEMPParams = ParametersResolver.Resolve<TEMP_Params>();
+        private TEMP_Params TEMPParams;
 
 
         [SetUp]
         public override void SetUp()
         {
-            base.SetUp();
 
+            base.SetUp();
+            TEMPParams = ParametersResolver.Resolve<TEMP_Params>();
             var header = ConstructPage<Header>();
             LogProgress("Going to log in page");
             var logInPage = header.GoToLogInPage();
