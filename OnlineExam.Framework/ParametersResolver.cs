@@ -36,6 +36,10 @@ namespace OnlineExam.Framework
             Configure<HeaderTestParams>("HeaderTestParams.json");
             Configure<RegisterParams>("RegisterParams.json");
             Configure<SideBarTestParams>("SideBarTestParams.json");
+            Configure<TEMP_Params>("TEMPParams.json");
+            Configure<TaskTestParams>("TaskTestParams.json");
+            Configure<TaskViewPageParams>("TaskViewPageParams.json");
+            Configure<SolutionCodePageParams>("SolutionCodeParams.json");
 
         }
 
