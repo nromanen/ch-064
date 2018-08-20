@@ -1,0 +1,7 @@
+{
+  "TaskName1": "Indexers",
+  "TaskName2": "Elevator modeling",
+  "TaskName3": "Simple addition",
+  "CourseName": "C# Essential",
+  "NewTaskName": "NewTask %GUID"
+}
