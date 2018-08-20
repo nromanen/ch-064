@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using OnlineExam.DatabaseHelper;
 using OnlineExam.DatabaseHelper.DAL;
@@ -93,12 +94,12 @@ namespace OnlineExam.NUnitTests
 
             LogProgress("Check roles on UI");
             var currentRole = changeRolePage.CurrentRole();
-            Assert.AreEqual(Constants.TEACHER, currentRole, "Role of user are not the same");
+            Assert.AreEqual(adminTestParams.TeacherRole, currentRole, "Role of user are not the same");
 
             LogProgress("Check roles in DB");
-            var currentRoleDB = new UserDAL().GetRoleOfUserByEmail(adminTestParams.UserForChangeRoleEmail);
-            Assert.AreEqual(adminTestParams.TeacherRole,currentRoleDB);
-            Assert.AreEqual(adminTestParams.TeacherRole, currentRole, "Role of user are not the same");
+            var currentRolesDB = new UserDAL().GetRoleOfUserByEmail(adminTestParams.UserForChangeRoleEmail);
+            var expectedList = new List<string>() { adminTestParams.TeacherRole };
+            CollectionAssert.AreEqual(expectedList, currentRolesDB, "Role of user are not the same");
         }
 
         [Test]
