@@ -4,6 +4,7 @@ using OnlineExam.Pages.POM;
 using System;
 using System.Linq;
 using System.Threading;
+using OnlineExam.Framework.Params;
 
 namespace OnlineExam.NUnitTests
 {
@@ -14,31 +15,32 @@ namespace OnlineExam.NUnitTests
         private Header header;
         private SideBar sidebar;
         private CourseManagementPage CoursesList;
+        private SolutionCodePageParams SolCodeParams = ParametersResolver.Resolve<SolutionCodePageParams>("SolutionCodeParams.json");
+
 
         [SetUp]
         public override void SetUp()
         {
             base.SetUp();
-            string courseName = "C# Starter";
             var header = ConstructPage<Header>();
-           LogProgress("Go to log in page");
+           LogProgress("Going to log in page");
             var logInPage = header.GoToLogInPage();
-           LogProgress($"Log in as student: email {Constants.STUDENT_EMAIL}, password {Constants.STUDENT_PASSWORD}");
+           LogProgress($"Logging in as student: email {Constants.STUDENT_EMAIL}, password {Constants.STUDENT_PASSWORD}");
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             var sidebar = ConstructPage<SideBar>();
-           LogProgress("Go to the course managment page");
+           LogProgress("Going to the course managment page");
             sidebar.GoToCourseManagementPage();
             var CoursesList = ConstructPage<CourseManagementPage>();
-           LogProgress("get list of courses");
+           LogProgress("getting list of courses");
             var block = CoursesList.GetBlocks();
             if (block != null)
             {
-               LogProgress($"search course with {courseName} name in list of courses  ");
-                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+               LogProgress($"searching course with {SolCodeParams.CourseName} name in list of courses  ");
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(SolCodeParams.CourseName, StringComparison.OrdinalIgnoreCase));
 
                 if (firstBlock != null)
                 {
-                   LogProgress("Click on CourseName [link]");
+                   LogProgress("Clicking on CourseName [link]");
                     firstBlock.ClickCourseLink();
                 }
             }
@@ -48,28 +50,27 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void TaskDone()
         {
-            string TaskName = "Simple addition";
-            var ListOfTasks = ConstructPage<TasksPage>();
-           LogProgress("get list of tasks");
+        var ListOfTasks = ConstructPage<TasksPage>();
+           LogProgress("getting list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-               LogProgress("Click on 'tasks' button");
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(SolCodeParams.TaskName, StringComparison.OrdinalIgnoreCase));
+               LogProgress("Clicking on 'tasks' button");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
-               LogProgress("Click on 'start' button");
+               LogProgress("Clicking on 'start' button");
                 TaskView.ClickOnStartButton();
                 var Code = ConstructPage<SolutionCodePage>();
-               LogProgress("Click on 'execute' button");
+               LogProgress("Clicking on 'execute' button");
                 Code.ClickOnExecuteButton();
-               LogProgress("Click on 'done' button");
+               LogProgress("Clicking on 'done' button");
                 Code.ClickOnDoneButton();
 
             }
             var CoursesPage = ConstructPage<SideBar>().GoToCourseManagementPage();
             var CoursesList = ConstructPage<CourseManagementPage>();
-           LogProgress("get list of courses");
+           LogProgress("getting list of courses");
             var block = CoursesList.GetBlocks();
             if (block != null)
             {
@@ -77,20 +78,20 @@ namespace OnlineExam.NUnitTests
 
                 if (firstBlock != null)
                 {
-                   LogProgress("Click on CourseName [link]");
+                   LogProgress("Clicking on CourseName [link]");
                     firstBlock.ClickCourseLink();
                 }
                 ListOfTasks = ConstructPage<TasksPage>();
-               LogProgress("get list of tasks");
+               LogProgress("getting list of tasks");
                 blocks = ListOfTasks.GetBlocks();
                 if (blocks != null)
                 {
-                   LogProgress($"search task with {TaskName} name in list of tasks  ");
-                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-                   LogProgress("Click on 'tasks' button");
+                   LogProgress($"searching task with {SolCodeParams.TaskName} name in list of tasks  ");
+                    var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(SolCodeParams.TaskName, StringComparison.OrdinalIgnoreCase));
+                   LogProgress("Clicking on 'tasks' button");
                     firstblock.ClickOnTasksButton();
                     var TaskView = ConstructPage<TaskViewPage>();
-                   LogProgress("Click on 'start' button");
+                   LogProgress("Clicking on 'start' button");
                     TaskView.ClickOnStartButton();
                     var Code = ConstructPage<SolutionCodePage>();
                     var review = Code.MessageAboutreviewingSolution.Text;
@@ -102,23 +103,21 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void ExitButton()
         {
-
-            string TaskName = "Simple addition";
             var BaseUrl = BaseSettings.Fields.Url;
             var ListOfTasks = ConstructPage<TasksPage>();
-           LogProgress("get list of tasks");
+           LogProgress("getting list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-               LogProgress($"search task with {TaskName} name in list of tasks  ");
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-               LogProgress("Click on 'tasks' button");
+               LogProgress($"searching task with {SolCodeParams.TaskName} name in list of tasks  ");
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(SolCodeParams.TaskName, StringComparison.OrdinalIgnoreCase));
+               LogProgress("Clicking on 'tasks' button");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
-               LogProgress("Click on 'start' button");
+               LogProgress("Clicking on 'start' button");
                 TaskView.ClickOnStartButton();
                 var Code = ConstructPage<SolutionCodePage>();
-               LogProgress("Click on 'exit' button");
+               LogProgress("Clicking on 'exit' button");
                 Code.ClickOnExitButton();
                 var actualUrl = driver.GetCurrentUrl().ToString();
                 Assert.AreEqual(BaseUrl+"/", actualUrl, "Exit \"button\" doesn't work, because of expected url isn't equal to actual url");

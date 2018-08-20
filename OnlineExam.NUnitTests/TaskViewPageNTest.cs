@@ -1,12 +1,9 @@
 ﻿using OnlineExam.Pages.POM;
-using OnlineExam.Pages.POM.Tasks;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using NUnit.Framework;
 using OnlineExam.Framework;
+using OnlineExam.Framework.Params;
 using OnlineExam.DatabaseHelper.DAL;
 
 namespace OnlineExam.NUnitTests
@@ -18,6 +15,8 @@ namespace OnlineExam.NUnitTests
         private Header header;
         private SideBar sidebar;
         private CourseManagementPage CoursesList;
+        private TaskViewPageParams TaskViewParams = ParametersResolver.Resolve<TaskViewPageParams>("TaskViewPageParams.json");
+
 
 
         [SetUp]
@@ -25,26 +24,25 @@ namespace OnlineExam.NUnitTests
         {
             base.SetUp();
 
-            string courseName = "C# Essential";
             var header = ConstructPage<Header>();
-           LogProgress("Go to log in page");
+           LogProgress("Going to log in page");
             var logInPage = header.GoToLogInPage();
-           LogProgress($"Log in as student: email {Constants.STUDENT_EMAIL}, password {Constants.STUDENT_PASSWORD}");
+           LogProgress($"Logging in as student: email {Constants.STUDENT_EMAIL}, password {Constants.STUDENT_PASSWORD}");
             logInPage.SignIn(Constants.STUDENT_EMAIL, Constants.STUDENT_PASSWORD);
             var sidebar = ConstructPage<SideBar>();
-           LogProgress("Go to the course managment page");
+           LogProgress("Going to the course managment page");
             sidebar.GoToCourseManagementPage();
             var CoursesList = ConstructPage<CourseManagementPage>();
-           LogProgress("get list of courses");
+           LogProgress("getting list of courses");
             var block = CoursesList.GetBlocks();
             if (block != null)
             {
-               LogProgress($"search course with {courseName} name in list of courses  ");
-                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(courseName, StringComparison.OrdinalIgnoreCase));
+               LogProgress($"searching course with {TaskViewParams.CourseName} name in list of courses  ");
+                var firstBlock = block.FirstOrDefault(x => x.GetCourseName().Equals(TaskViewParams.CourseName, StringComparison.OrdinalIgnoreCase));
 
                 if (firstBlock != null)
                 {
-                   LogProgress("Click on CourseName [link]");
+                   LogProgress("Clicking on CourseName [link]");
                     firstBlock.ClickCourseLink();
                 }
             }
@@ -54,23 +52,20 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void ClickOnStartButton()
         {
-            string TaskName = "Indexers";
-            string Basetitle = "- WebApp";
-
             var ListOfTasks = ConstructPage<TasksPage>();
-           LogProgress("get list of tasks");
+           LogProgress("getting list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-               LogProgress($"search task with {TaskName} name in list of tasks  ");
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-               LogProgress("Click on tasks button");
+               LogProgress($"searching task with {TaskViewParams.TaskName} name in list of tasks  ");
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskViewParams.TaskName, StringComparison.OrdinalIgnoreCase));
+               LogProgress("Clicking on tasks button");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
-               LogProgress("Click on Start button");
+               LogProgress("Clicking on Start button");
                 TaskView.ClickOnStartButton();
                 var title = this.driver.GetCurrentTitle();
-                Assert.AreEqual(Basetitle, title, "\"Start\" button doesn't work, because of expected title isn't equal to actual title");
+                Assert.AreEqual(TaskViewParams.BaseTitle, title, "\"Start\" button doesn't work, because of expected title isn't equal to actual title");
             }
 
         }
@@ -80,24 +75,21 @@ namespace OnlineExam.NUnitTests
         public void ClickOnOkButton()
         {
 
-            string TaskName = "Indexers";
-            string ContainUrl = "/CourseManagement/ShowExercise/2";
-
             var ListOfTasks = ConstructPage<TasksPage>();
-           LogProgress("get list of tasks");
+           LogProgress("getting list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-               LogProgress($"search task with {TaskName} name in list of tasks  ");
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-               LogProgress("Click on tasks button ");
+               LogProgress($"searching task with {TaskViewParams.TaskName} name in list of tasks  ");
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskViewParams.TaskName, StringComparison.OrdinalIgnoreCase));
+               LogProgress("Clicking on tasks button ");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
-               LogProgress("Click on OK button ");
+               LogProgress("Clicking on OK button ");
                 TaskView.ClickOnOkButton();
                 var current_url = this.driver.GetCurrentUrl();
                 bool f = false;
-                if (current_url.Contains(ContainUrl)) f = true;
+                if (current_url.Contains(TaskViewParams.Url)) f = true;
                 Assert.That(f, "\"Ok\" button doesn't work, because of actual url doesn't contain expected url");
             }
 
@@ -108,30 +100,27 @@ namespace OnlineExam.NUnitTests
         public void EmailFromComment()
         {
 
-            string TaskName = "Indexers";
-            string email = "student@gmail.com";
-
             var ListOfTasks = ConstructPage<TasksPage>();
-           LogProgress("get list of tasks");
+           LogProgress("getting list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-               LogProgress($"search task with {TaskName} name in list of tasks  ");
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-               LogProgress("Click on tasks button ");
+               LogProgress($"searching task with {TaskViewParams.TaskName} name in list of tasks  ");
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskViewParams.TaskName, StringComparison.OrdinalIgnoreCase));
+               LogProgress("Clicking on tasks button ");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
-               LogProgress("get list of comments");
+               LogProgress("getting list of comments");
                 var divs = TaskView.GetDivs();
                 if (divs != null)
                 {
-                   LogProgress($"search comment with email '{email}' in list of comments");
-                    var anyblock = divs.Any(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
+                   LogProgress($"searching comment with email '{TaskViewParams.Email}' in list of comments");
+                    var anyblock = divs.Any(x => x.GetEmail().Equals(TaskViewParams.Email, StringComparison.OrdinalIgnoreCase));
                     Assert.True(anyblock, "There is any comments from user with this email");
                     var comment = new CommentDAL();
-                    TestContext.Out.WriteLine("\n<br> " + $"Searching comment with user's email '{email}' in database");
-                    var result = comment.IsTaskPresentedByEmail(email);
-                    Assert.True(result, $"comment with user's email '{email}' in't available in database");
+                    TestContext.Out.WriteLine("\n<br> " + $"Searching comment with user's email '{TaskViewParams.Email}' in database");
+                    var result = comment.IsTaskPresentedByEmail(TaskViewParams.Email);
+                    Assert.True(result, $"comment with user's email '{TaskViewParams.Email}' in't available in database");
 
                 }
             }
@@ -140,27 +129,24 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void TextFromComment()
         {
-            string TaskName = "Indexers";
-            string ExpectedComent = "First comment";
-
             var ListOfTasks = ConstructPage<TasksPage>();
-           LogProgress("get list of tasks");
+           LogProgress("getting list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-               LogProgress($"search task with {TaskName} name in list of tasks  ");
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-               LogProgress("Click on tasks button ");
+               LogProgress($"searching task with {TaskViewParams.TaskName} name in list of tasks  ");
+                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskViewParams.TaskName, StringComparison.OrdinalIgnoreCase));
+               LogProgress("Clicking on tasks button ");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
-               LogProgress("get list of comments");
+               LogProgress("getting list of comments");
                 var divs = TaskView.GetDivs();
                 if (divs != null)
                 {
-                   LogProgress($"search comment with text '{ExpectedComent}' in list of comments");
-                    var b = divs.FirstOrDefault(x => x.GetCommentText().Equals(ExpectedComent, StringComparison.OrdinalIgnoreCase));
+                   LogProgress($"searching comment with text '{TaskViewParams.Comment}' in list of comments");
+                    var b = divs.FirstOrDefault(x => x.GetCommentText().Equals(TaskViewParams.Comment, StringComparison.OrdinalIgnoreCase));
                     var CommentText = b.GetCommentText();
-                    Assert.AreEqual(ExpectedComent, CommentText, "There is any comments with this comment text");
+                    Assert.AreEqual(TaskViewParams.Comment, CommentText, "There is any comments with this comment text");
                     var comment = new CommentDAL();
                     TestContext.Out.WriteLine("\n<br> " + $"Searching comment with comment text '{CommentText}' in database");
                     var result = comment.IsTaskPresentedByCommentText(CommentText);
@@ -172,112 +158,27 @@ namespace OnlineExam.NUnitTests
         }
 
         [Test]
-        public void DateFromComment()
-        {
-            string TaskName = "Indexers";
-            string email = "student@gmail.com";
-            string date = "7/10/2018 6:28:20 PM";
-
-
-            var ListOfTasks = ConstructPage<TasksPage>();
-           LogProgress("get list of tasks");
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
-            {
-               LogProgress($"search task with {TaskName} name in list of tasks  ");
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-               LogProgress("Click on tasks button ");
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-               LogProgress("get list of comments");
-                var divs = TaskView.GetDivs();
-                if (divs != null)
-                {
-                   LogProgress($"search comment with email '{email}' in list of comments");
-                    var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    var Actualdate = anyblock.GetCommentDate().ToString();
-                    Assert.AreEqual(date, Actualdate,"There is any comments with this date");
-                    var comment = new CommentDAL();
-                    TestContext.Out.WriteLine("\n<br> " + $"Searching comment with creation date '{date}' in database");
-                    var result = comment.IsTaskPresentedByCreatingDate(date);
-                    Assert.True(result, $"comment with creating date '{date}' in't available in database");
-
-                }
-            }
-
-        }
-
-        [Test]
-        public void ShowHideComments()
-        {
-
-            string TaskName = "Indexers";
-            string email = "student@gmail.com";
-
-            var ListOfTasks = ConstructPage<TasksPage>();
-           LogProgress("get list of tasks");
-            var blocks = ListOfTasks.GetBlocks();
-            if (blocks != null)
-            {
-               LogProgress($"search task with {TaskName} name in list of tasks  ");
-                var firstblock = blocks.FirstOrDefault(x => x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-               LogProgress("Click on tasks button ");
-                firstblock.ClickOnTasksButton();
-                var TaskView = ConstructPage<TaskViewPage>();
-               LogProgress("Click on 'Show/Hide' button");
-                TaskView.ClickOnShowHideCommentsButton();
-                TaskView = ConstructPage<TaskViewPage>();
-               LogProgress("get list of comments");
-                var divs = TaskView.GetDivs();
-                if (divs != null)
-                {
-                   LogProgress($"search comment with email '{email}' in list of comments");
-                    var anyblock = divs.Any(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    Assert.False(anyblock,"there is any comments from user with this email");
-                }
-               LogProgress("Click on 'Show/Hide' button");
-                TaskView.ClickOnShowHideCommentsButton();
-                Wait(1000);
-                TaskView = ConstructPage<TaskViewPage>();
-               LogProgress("get list of comments");
-                divs = TaskView.GetDivs();
-                if (divs != null)
-                {
-                   LogProgress($"search comment with email '{email}' in list of comments");
-                    var anyblock = divs.Any(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
-                    Assert.True(anyblock, "there is any comments from user with this email");
-                }
-            }
-
-        }
-
-
-        [Test]
         public void StarsCount()
         {
 
-            string TaskName = "Indexers";
-            string email = "student@gmail.com";
-            string StarsCount = "5";
-
-            var ListOfTasks = ConstructPage<TasksPage>();
-           LogProgress("get list of tasks");
+           var ListOfTasks = ConstructPage<TasksPage>();
+           LogProgress("getting list of tasks");
             var blocks = ListOfTasks.GetBlocks();
             if (blocks != null)
             {
-               LogProgress($"search task with {TaskName} name in list of tasks  ");
-                var firstblock = blocks.FirstOrDefault(x =>                    x.GetName().Equals(TaskName, StringComparison.OrdinalIgnoreCase));
-               LogProgress("Click on tasks button ");
+               LogProgress($"searching task with {TaskViewParams.TaskName} name in list of tasks  ");
+                var firstblock = blocks.FirstOrDefault(x =>                    x.GetName().Equals(TaskViewParams.TaskName, StringComparison.OrdinalIgnoreCase));
+               LogProgress("Clicking on tasks button ");
                 firstblock.ClickOnTasksButton();
                 var TaskView = ConstructPage<TaskViewPage>();
-               LogProgress("get list of comments");
+               LogProgress("getting list of comments");
                 var divs = TaskView.GetDivs();
                 if (divs != null)
                 {
-                   LogProgress($"search comment with email '{email}' in list of comments");
-                    var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(email, StringComparison.OrdinalIgnoreCase));
+                   LogProgress($"searching comment with email '{TaskViewParams.Email}' in list of comments");
+                    var anyblock = divs.FirstOrDefault(x => x.GetEmail().Equals(TaskViewParams.Email, StringComparison.OrdinalIgnoreCase));
                     var count = anyblock.GetStarsss().ToString();
-                    Assert.AreEqual(StarsCount, count, "there is any comments with rate of this count stars");
+                    Assert.AreEqual(TaskViewParams.Stars, count, "there is any comments with rate of this count stars");
                 }
             }
 
