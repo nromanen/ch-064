@@ -15,7 +15,7 @@ namespace OnlineExam.NUnitTests
     {
         private Header header;
         private SideBar sidebar;
-        private TEMP_Params TEMPParams = ParametersResolver.Resolve<TEMP_Params>("TEMPParams.json");
+        private TEMP_Params TEMPParams = ParametersResolver.Resolve<TEMP_Params>();
 
 
         [SetUp]
