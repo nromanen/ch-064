@@ -15,7 +15,7 @@ namespace OnlineExam.NUnitTests
         private SideBar sideBar;
 
         private SideBarTestParams sideBarTestParams =
-            ParametersResolver.Resolve<SideBarTestParams>("SideBarTestParams.json");
+            ParametersResolver.Resolve<SideBarTestParams>();
 
 
         [SetUp]

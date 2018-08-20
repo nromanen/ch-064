@@ -14,12 +14,14 @@ namespace OnlineExam.NUnitTests
     {
         private Header header;
 
-        private HeaderTestParams headerTestParams =
-            ParametersResolver.Resolve<HeaderTestParams>("HeaderTestParams.json");
+        private HeaderTestParams headerTestParams;
+
 
         [SetUp]
         public override void SetUp()
         {
+            headerTestParams =
+                ParametersResolver.Resolve<HeaderTestParams>();
             base.SetUp();
             header = ConstructPage<Header>();
         }

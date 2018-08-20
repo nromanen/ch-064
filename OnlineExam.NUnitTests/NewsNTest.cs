@@ -19,7 +19,7 @@ namespace OnlineExam.NUnitTests
     {
         private Header header;
         private SideBar sideBar;
-        private NewsParams newsParams = ParametersResolver.Resolve<NewsParams>("NewsParams.json");
+        private NewsParams newsParams = ParametersResolver.Resolve<NewsParams>();
 
         [SetUp]
         public override void SetUp()

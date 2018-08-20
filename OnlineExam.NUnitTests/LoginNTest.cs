@@ -19,7 +19,7 @@ namespace OnlineExam.NUnitTests
     {
         private Header header;
         private LogInPage logInPage;
-        private LoginParams loginParams = ParametersResolver.Resolve<LoginParams>("LoginParams.json");
+        private LoginParams loginParams = ParametersResolver.Resolve<LoginParams>();
 
         [SetUp]
         public override void SetUp()

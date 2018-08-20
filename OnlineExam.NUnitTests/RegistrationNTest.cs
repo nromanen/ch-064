@@ -19,7 +19,7 @@ namespace OnlineExam.NUnitTests
     {
         private Header header;
         private SideBar sideBar;
-        private RegisterParams registerParams = ParametersResolver.Resolve<RegisterParams>("RegisterParams.json");
+        private RegisterParams registerParams = ParametersResolver.Resolve<RegisterParams>();
 
         public RegistrationNTest()
         {

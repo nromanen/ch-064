@@ -26,7 +26,7 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void CreateCourse_ValidData()
         {
-            var TEST_DATA = ParametersResolver.Resolve<Framework.Params.CreateCourseParams>("CreateCourseData.json");
+            var TEST_DATA = ParametersResolver.Resolve<Framework.Params.CreateCourseParams>();
 
             LoginAsTeacher();
             string courseName = TEST_DATA.Title, courseDescr = TEST_DATA.Description;

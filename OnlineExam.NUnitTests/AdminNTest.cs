@@ -26,7 +26,7 @@ namespace OnlineExam.NUnitTests
         public override void SetUp()
         {
             base.SetUp();
-            adminTestParams = ParametersResolver.Resolve<AdminTestParams>("AdminTestParams.json");
+            adminTestParams = ParametersResolver.Resolve<AdminTestParams>();
             header = ConstructPage<Header>();
 
             LogProgress("Go to log in page");
