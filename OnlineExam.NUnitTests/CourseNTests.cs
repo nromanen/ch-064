@@ -2,6 +2,7 @@
 using System.Threading;
 using NUnit.Framework;
 using OnlineExam.Framework;
+using OnlineExam.Framework.Params;
 using OnlineExam.Pages.POM;
 
 namespace OnlineExam.NUnitTests
@@ -26,7 +27,7 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void CreateCourse_ValidData()
         {
-            var TEST_DATA = ParametersResolver.Resolve<Framework.Params.CreateCourseParams>();
+            var TEST_DATA = ParametersResolver.Resolve<CreateCourseParams>();
 
             LoginAsTeacher();
             string courseName = TEST_DATA.Title, courseDescr = TEST_DATA.Description;
@@ -71,7 +72,7 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void DeleteCourse_ShouldDeleteCourse()
         {
-            var TEST_DATA = ParametersResolver.Resolve<Framework.Params.DeleteCourseParams>("DeleteCourseData.json");
+            var TEST_DATA = ParametersResolver.Resolve<DeleteCourseParams>();
 
             LoginAsTeacher();
             string courseName = TEST_DATA.Title;
@@ -109,7 +110,7 @@ namespace OnlineExam.NUnitTests
         [Test]
         public void EditCourse_ShouldChangeCourseData()
         {
-            var TEST_DATA = ParametersResolver.Resolve<Framework.Params.EditCourseParams>("EditCourseData.json");
+            var TEST_DATA = ParametersResolver.Resolve<EditCourseParams>();
 
             LoginAsTeacher();
             string courseName = TEST_DATA.pastTitle, newCourseName = TEST_DATA.presentTitle;
