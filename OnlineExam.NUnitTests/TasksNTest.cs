@@ -16,7 +16,7 @@ namespace OnlineExam.NUnitTests
         private Header header;
         private SideBar sidebar;
         private CourseManagementPage CoursesList;
-        private TaskTestParams TaskParams = ParametersResolver.Resolve<TaskTestParams>("TaskTestParams.json");
+        private TaskTestParams TaskParams = ParametersResolver.Resolve<TaskTestParams>();
 
 
         [SetUp]

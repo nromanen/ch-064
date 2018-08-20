@@ -15,7 +15,7 @@ namespace OnlineExam.NUnitTests
         private Header header;
         private SideBar sidebar;
         private CourseManagementPage CoursesList;
-        private SolutionCodePageParams SolCodeParams = ParametersResolver.Resolve<SolutionCodePageParams>("SolutionCodeParams.json");
+        private SolutionCodePageParams SolCodeParams = ParametersResolver.Resolve<SolutionCodePageParams>();
 
 
         [SetUp]

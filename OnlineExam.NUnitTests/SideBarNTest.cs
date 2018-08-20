@@ -14,13 +14,14 @@ namespace OnlineExam.NUnitTests
     {
         private SideBar sideBar;
 
-        private SideBarTestParams sideBarTestParams =
-            ParametersResolver.Resolve<SideBarTestParams>();
+        private SideBarTestParams sideBarTestParams;
 
 
         [SetUp]
         public override void SetUp()
         {
+            sideBarTestParams =
+                ParametersResolver.Resolve<SideBarTestParams>();
             base.SetUp();
             sideBar = ConstructPage<SideBar>();
         }
