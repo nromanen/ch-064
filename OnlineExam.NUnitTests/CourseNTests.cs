@@ -33,14 +33,14 @@ namespace OnlineExam.NUnitTests
             string courseName = TEST_DATA.Title, courseDescr = TEST_DATA.Description;
             var courseManagmentPage = ConstructPage<CourseManagementPage>();
 
-            LogProgress("Click on 'Add course' button.");
+            LogProgress("Clicking on 'Add course' button.");
             courseManagmentPage.ClickBtnAddCourse();
             var createCourse = ConstructPage<CreateCoursePage>();
 
             LogProgress($"Creating course with title: {courseName} and description: {courseDescr}.");
             createCourse.FillCourse(courseName, courseDescr);
 
-            LogProgress("Click 'Ok' button.");
+            LogProgress("Clicking 'Ok' button.");
             createCourse.ClickBtnOk();
 
             bool isCourseCreated = courseManagmentPage.IsCourseCreated(courseName);
@@ -55,7 +55,7 @@ namespace OnlineExam.NUnitTests
             string courseName = String.Empty, courseDescr = string.Empty;
             var courseManagment = ConstructPage<CourseManagementPage>();
 
-            LogProgress("Click on 'Add course' button");
+            LogProgress("Clicking on 'Add course' button");
             courseManagment.ClickBtnAddCourse();
             var createCourse = ConstructPage<CreateCoursePage>();
             string expectedURL = createCourse.GetCurrentUrl();
@@ -63,7 +63,7 @@ namespace OnlineExam.NUnitTests
             LogProgress($"Creating course with empty title and description.");
             createCourse.FillCourse(courseName, courseDescr);
 
-            LogProgress("Click 'Ok' button.");
+            LogProgress("Clicking 'Ok' button.");
             createCourse.ClickBtnOk();
             string currentURL = createCourse.GetCurrentUrl();
             Assert.AreEqual(expectedURL, currentURL, $"Test fail because expected URL: {expectedURL} is not equal to current URL: {currentURL}");
@@ -78,7 +78,7 @@ namespace OnlineExam.NUnitTests
             string courseName = TEST_DATA.Title;
             var courseManagment = ConstructPage<CourseManagementPage>();
 
-            LogProgress("Click 'My courses' button");
+            LogProgress("Clicking 'My courses' button");
             courseManagment.ClickBtnMyCourses();
             var courseView = ConstructPage<ViewCoursesPage>();
 
@@ -96,14 +96,14 @@ namespace OnlineExam.NUnitTests
             string courseName = "CLR example";
             var courseManagment = ConstructPage<CourseManagementPage>();
 
-            LogProgress("Click on 'My courses' button");
+            LogProgress("Clicking on 'My courses' button");
             courseManagment.ClickBtnMyCourses();
             var courseView = ConstructPage<ViewCoursesPage>();
 
             LogProgress($"Restoring course with title: {courseName}.");
             string text = courseView.IsRestored(courseView, courseName, resxManager);
             string btnRecoverCourseText = resxManager.GetString("btnDeleteCourse");
-            Assert.AreEqual(btnRecoverCourseText, text, $"Could not restore course because expect button'{btnRecoverCourseText}', but found button '{text}'.");
+            Assert.AreEqual(btnRecoverCourseText, text, $"Could not restore course because expect button '{btnRecoverCourseText}', but found button '{text}'.");
             LogProgress($"Course with title '{courseName}' is successfully restored.");
         }
 
@@ -116,18 +116,18 @@ namespace OnlineExam.NUnitTests
             string courseName = TEST_DATA.pastTitle, newCourseName = TEST_DATA.presentTitle;
             var courseManagment = ConstructPage<CourseManagementPage>();
 
-            LogProgress("Click on 'My courses' button.");
+            LogProgress("Clicking on 'My courses' button.");
             courseManagment.ClickBtnMyCourses();
             var courseViewPage = ConstructPage<ViewCoursesPage>();
 
-            LogProgress("Click on 'Change' button.");
+            LogProgress("Clicking on 'Change' button.");
             courseViewPage.ClickChangeBtn(courseName);
             var editPage = ConstructPage<CreateCoursePage>();
 
-            LogProgress($"Change to ");
+            LogProgress($"Change course name to '{newCourseName}' and course description to '{TEST_DATA.presentDescription}'.");
             editPage.EditCourse(newCourseName, TEST_DATA.presentDescription);
 
-            LogProgress("Click on 'Ok' button.");
+            LogProgress("Clicking on 'Ok' button.");
             editPage.ClickBtnOk();
 
             bool isCourseExist = courseViewPage.IsCourseExist(newCourseName);
@@ -143,7 +143,7 @@ namespace OnlineExam.NUnitTests
             string owner = String.Empty;
             var courseViewPage = ConstructPage<ViewCoursesPage>();
 
-            LogProgress("Click on 'Change owner' button.");
+            LogProgress("Clicking on 'Change owner' button.");
             courseViewPage.ClickChangeOwnerBtn(courseName);
             var changeOwnerPage = ConstructPage<ChangeCourseOwnerPage>();
             string pastOwner = changeOwnerPage.GetOwnerName(resxManager);
