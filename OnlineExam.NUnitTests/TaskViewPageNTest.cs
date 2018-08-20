@@ -65,7 +65,7 @@ namespace OnlineExam.NUnitTests
                LogProgress("Clicking on Start button");
                 TaskView.ClickOnStartButton();
                 var title = this.driver.GetCurrentTitle();
-                Assert.AreEqual(TaskViewParams.BasseTitle, title, "\"Start\" button doesn't work, because of expected title isn't equal to actual title");
+                Assert.AreEqual(TaskViewParams.BaseTitle, title, "\"Start\" button doesn't work, because of expected title isn't equal to actual title");
             }
 
         }

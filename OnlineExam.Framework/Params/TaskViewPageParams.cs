@@ -15,6 +15,6 @@ namespace OnlineExam.Framework.Params
         public string Date {get;set;}
         public string Stars {get;set;}
         public string Url {get;set;}
-        public string BasseTitle{get;set;}
+        public string BaseTitle{get;set;}
     }
 }
