@@ -19,16 +19,17 @@ namespace OnlineExam.NUnitTests
     {
         private Header header;
         private LogInPage logInPage;
-        private LoginParams loginParams = ParametersResolver.Resolve<LoginParams>();
+        private LoginParams loginParams;
 
         [SetUp]
         public override void SetUp()
         {
             base.SetUp();
-           LogProgress("Done base set up");
+            loginParams = ParametersResolver.Resolve<LoginParams>();
+            LogProgress("Done base set up");
             header = ConstructPage<Header>();
             logInPage = header.GoToLogInPage();
-           LogProgress("Went to log in page.");
+            LogProgress("Went to log in page.");
         }
 
         [Test]

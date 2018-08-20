@@ -19,12 +19,13 @@ namespace OnlineExam.NUnitTests
     {
         private Header header;
         private SideBar sideBar;
-        private NewsParams newsParams = ParametersResolver.Resolve<NewsParams>();
+        private NewsParams newsParams;
 
         [SetUp]
         public override void SetUp()
         {
             base.SetUp();
+            newsParams = ParametersResolver.Resolve<NewsParams>();
             LogProgress("Done base set up");
             header = ConstructPage<Header>();
             sideBar = ConstructPage<SideBar>();

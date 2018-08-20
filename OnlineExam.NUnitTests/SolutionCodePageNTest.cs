@@ -15,13 +15,15 @@ namespace OnlineExam.NUnitTests
         private Header header;
         private SideBar sidebar;
         private CourseManagementPage CoursesList;
-        private SolutionCodePageParams SolCodeParams = ParametersResolver.Resolve<SolutionCodePageParams>();
+        private SolutionCodePageParams SolCodeParams;
 
 
         [SetUp]
         public override void SetUp()
         {
             base.SetUp();
+            SolCodeParams = ParametersResolver.Resolve<SolutionCodePageParams>();
+
             var header = ConstructPage<Header>();
             LogProgress("Going to log in page");
             var logInPage = header.GoToLogInPage();

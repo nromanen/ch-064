@@ -20,9 +20,10 @@ namespace OnlineExam.NUnitTests
         [SetUp]
         public override void SetUp()
         {
+        
+            base.SetUp();
             headerTestParams =
                 ParametersResolver.Resolve<HeaderTestParams>();
-            base.SetUp();
             header = ConstructPage<Header>();
         }
 

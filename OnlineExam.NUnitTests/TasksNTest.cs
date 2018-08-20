@@ -15,13 +15,14 @@ namespace OnlineExam.NUnitTests
         private Header header;
         private SideBar sidebar;
         private CourseManagementPage CoursesList;
-        private TaskTestParams TaskParams = ParametersResolver.Resolve<TaskTestParams>();
+        private TaskTestParams TaskParams;
 
 
         [SetUp]
         public override void SetUp()
         {
             base.SetUp();
+            TaskParams = ParametersResolver.Resolve<TaskTestParams>();
 
             var header = ConstructPage<Header>();
             LogProgress("Going to log in page");

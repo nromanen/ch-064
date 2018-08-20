@@ -19,7 +19,7 @@ namespace OnlineExam.NUnitTests
     {
         private Header header;
         private SideBar sideBar;
-        private RegisterParams registerParams = ParametersResolver.Resolve<RegisterParams>();
+        private RegisterParams registerParams;
 
         public RegistrationNTest()
         {
@@ -28,6 +28,7 @@ namespace OnlineExam.NUnitTests
         public override void SetUp()
         {
             base.SetUp();
+            registerParams = ParametersResolver.Resolve<RegisterParams>();
             LogProgress("Done base set up");
             header = ConstructPage<Header>();
             sideBar = ConstructPage<SideBar>();
