@@ -120,8 +120,7 @@ namespace OnlineExam.NUnitTests
                         x.GetEmail().Equals(TaskViewParams.Email, StringComparison.OrdinalIgnoreCase));
                     Assert.True(anyblock, "There is any comments from user with this email");
                     var comment = new CommentDAL();
-                    TestContext.Out.WriteLine(
-                        "\n<br> " + $"Searching comment with user's email '{TaskViewParams.Email}' in database");
+                    LogProgress("\n<br> " + $"Searching comment with user's email '{TaskViewParams.Email}' in database");
                     var result = comment.IsTaskPresentedByEmail(TaskViewParams.Email);
                     Assert.True(result,
                         $"comment with user's email '{TaskViewParams.Email}' in't available in database");

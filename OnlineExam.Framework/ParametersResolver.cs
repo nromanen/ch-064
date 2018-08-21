@@ -60,12 +60,9 @@ namespace OnlineExam.Framework
         {
             var path = CurrentPath.TEST_PARAMS_PATH + jsonFile;
             var json = File.ReadAllText(path);
-            if(json.Contains("%GUID"))
-            {
-                json = json.Replace("%GUID", $"{Guid.NewGuid().ToString()}");
-                return JsonConvert.DeserializeObject<T>(json);
-            }
+            json = json.Replace("%%GUID", $"{Guid.NewGuid().ToString()}");
             return JsonConvert.DeserializeObject<T>(json);
+
         }
     }
 }
