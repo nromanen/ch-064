@@ -1,5 +1,5 @@
 {
-    "articleName": "Name",
+    "articleName": "Name %%GUID",
     "articleText": "Article",
     "title": "Title",
     "teacherEmail": "teacher@gmail.com",

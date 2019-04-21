@@ -103,8 +103,7 @@ namespace OnlineExam.NUnitTests
                     TaskView.ClickOnStartButton();
                     var Code = ConstructPage<SolutionCodePage>();
                     var review = Code.MessageAboutreviewingSolution.Text;
-                    Assert.IsNotEmpty(review,
-                        "Button \"Done\" doesn't work, because of message about reviewing isn't visible on this page");
+                    Assert.IsNotEmpty(review, "Button \"Done\" doesn't work, because of message about reviewing isn't visible on this page");
                 }
             }
         }

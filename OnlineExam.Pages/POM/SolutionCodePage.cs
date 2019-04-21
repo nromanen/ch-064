@@ -15,7 +15,7 @@ namespace OnlineExam.Pages.POM
     {
         public SolutionCodePage() { }
 
-        [FindsBy(How = How.CssSelector, Using = "body > div > div > div:nth-child(1) > div:nth-child(2)")]
+        [FindsBy(How = How.CssSelector, Using = "body > div > div > div:nth-child(1) > div:nth-child(2) > h5")]
         public IWebElement MessageAboutreviewingSolution { get; set; }
         
         [FindsBy(How = How.Id, Using = "tinymce")]
