@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using OnlineExam.Framework;
 using System.Threading;
-//werftsdfrgtyuiop[]
+
 
 namespace OnlineExam.Pages.POM
 {
